@@ -14,7 +14,7 @@ namespace COLSTRAT
         {
             InitializeComponent();
 
-            MainPage = new MainView();
+            MainPage = new NavigationPage(new COLSTRAT.Views.MainView());
         }
 
         protected override void OnStart()

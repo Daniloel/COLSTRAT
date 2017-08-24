@@ -15,6 +15,19 @@ namespace COLSTRAT.Views
         public MainView()
         {
             InitializeComponent();
+            
+            btnIgneousRocks.Clicked += (sender,e) =>
+            {  
+                Navigation.PushAsync(new Rocks.IgneousView());
+            };
+            btnMetamorphicRocks.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new Rocks.MetamorphicView());
+            };
+            btnSedimentaryRocks.Clicked += (sender, e) =>
+            {
+                Navigation.PushAsync(new Rocks.SedimentaryView());
+            };
         }
     }
 }

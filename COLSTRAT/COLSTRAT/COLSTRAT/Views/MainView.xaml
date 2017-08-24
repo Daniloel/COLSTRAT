@@ -23,14 +23,16 @@
                         BackgroundColor="GreenYellow"
                         TextColor="Black"
                         FontAttributes="Bold"
-                        HorizontalOptions="FillAndExpand">
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="False">
                 </Button>
                 <Button x:Name="btnMetamorphicRocks"
                         Text="Metamorphic Rocks"
                         BackgroundColor="GreenYellow"
                         TextColor="Black"
                         FontAttributes="Bold"
-                        HorizontalOptions="FillAndExpand">
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="False">
                 </Button>
             </StackLayout>
             <Button x:Name="btnSedimentaryRocks"
@@ -38,7 +40,8 @@
                     BackgroundColor="GreenYellow"
                     TextColor="Black"
                     FontAttributes="Bold"
-                    HorizontalOptions="FillAndExpand">
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="False">
             </Button>
         </StackLayout>
     </ContentPage.Content>
