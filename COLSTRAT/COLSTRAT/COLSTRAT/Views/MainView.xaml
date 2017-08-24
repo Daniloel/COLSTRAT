@@ -23,8 +23,7 @@
                         BackgroundColor="GreenYellow"
                         TextColor="Black"
                         FontAttributes="Bold"
-                        HorizontalOptions="FillAndExpand"
-                        IsEnabled="False">
+                        HorizontalOptions="FillAndExpand">
                 </Button>
                 <Button x:Name="btnMetamorphicRocks"
                         Text="Metamorphic Rocks"
