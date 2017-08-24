@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace COLSTRAT.Models
 {
-    public class IgneousRocks
+    /// <summary>
+    /// Retorna todos los tipos de rocas igneas
+    /// </summary>
+    public class IgneousRock
     {
         public object Id { get; set; }
         public string Image { get; set; }
