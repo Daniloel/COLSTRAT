@@ -5,20 +5,41 @@
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
              BackgroundColor="Bisque">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
-                     HorizontalOptions="Center">
+        <StackLayout VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Padding="20">
             <Label Text="Welcome to COLSTRAT!"
-                   FontSize="Large"
+                   FontSize="25"
                    TextColor="ForestGreen" 
                    FontAttributes="Bold"
                    HorizontalOptions="Center">
             </Label>
-            <Label Text="This app is under contruction"
-                   FontSize="Medium"
-                   TextColor="GreenYellow"
-                   FontAttributes="Italic"
-                   HorizontalOptions="Center">
-            </Label>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand">
+                <Button x:Name="btnIgneousRocks"
+                        Text="Igneous Rocks"
+                        BackgroundColor="GreenYellow"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand">
+                </Button>
+                <Button x:Name="btnMetamorphicRocks"
+                        Text="Metamorphic Rocks"
+                        BackgroundColor="GreenYellow"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand">
+                </Button>
+            </StackLayout>
+            <Button x:Name="btnSedimentaryRocks"
+                    Text="Sedimentary Rocks"
+                    BackgroundColor="GreenYellow"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
