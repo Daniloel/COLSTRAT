@@ -7,13 +7,14 @@ using Xamarin.Forms;
 
 namespace COLSTRAT
 {
+    using Views;
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
 
-            MainPage = new COLSTRAT.MainPage();
+            MainPage = new MainView();
         }
 
         protected override void OnStart()

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace COLSTRAT
+namespace COLSTRAT.ViewModels
 {
-    public partial class MainPage : ContentPage
+    public class MainViewModel
     {
-        public MainPage()
+        public MainViewModel()
         {
-            InitializeComponent();
+
         }
     }
 }
