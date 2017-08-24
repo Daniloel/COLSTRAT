@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace COLSTRAT.Models
 {
     /// <summary>
-    /// Retorna todos los tipos de rocas igneas
+    /// Retorna una roca ignea
     /// </summary>
     public class IgneousRock
     {

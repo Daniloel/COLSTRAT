@@ -15,10 +15,11 @@ namespace COLSTRAT.ViewModels
     {
         #region properties
         /// <summary>
-        /// La propiedad contiene todas las propiedades de las rocas igneas bindadas
+        /// La propiedad contiene una coleccion de rocas igneas
         /// </summary>
         /// <return></return>
         public ObservableCollection<IgneousRock> IgneousRocks { get; set; }
+        public IgneousRock SourceRock { get; set; }
         public bool IsRunning { get; set; }
         public bool IsEnable { get; set; }
         #endregion
