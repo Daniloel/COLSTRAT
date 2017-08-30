@@ -2,10 +2,82 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.Views.Rocks.SedimentaryView"
-             BindingContext="{Binding Sedimentary, Source={StaticResource Key=Locator}}">
+             Title="Rocas sedimentarias"
+             BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Padding>
+        <OnPlatform 
+            x:TypeArguments="Thickness"
+            iOS="20,30,20,10"
+            Android="20,20,20,10">
+        </OnPlatform>
+    </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="" />
+        <StackLayout
+            BindingContext="{Binding Sedimentary}"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <Label 
+                Text="Rocas sedimentarias"
+                FontSize="Large"
+                FontAttributes="Bold,Italic"
+                HorizontalOptions="Center">
+            </Label>
+            <Label 
+                Text="Nombre:">
+            </Label>
+            <Picker 
+                SelectedIndex="{Binding Index, Mode=TwoWay}"
+                ItemsSource="{Binding SedimentaryRocks}"
+                SelectedItem="{Binding SourceRock}"
+                ItemDisplayBinding="{Binding Name}"
+                Title="Seleccione la roca">
+            </Picker>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+            </ActivityIndicator>
+            <Button
+                BackgroundColor="Navy"
+                FontAttributes="Bold"
+                TextColor="White"
+                Text="Mostrar"
+                BorderRadius="20"
+                HeightRequest="40"
+                Command="{Binding ShowCommand}"
+                IsEnabled="{Binding IsEnable, Mode=TwoWay}">
+            </Button>
+            <Label
+                Text="Descripción:"
+                Margin="0,10">
+            </Label>
+            <Label
+                Text="{Binding Descripcion, Mode=TwoWay}"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center">
+            </Label>
+            <Label 
+                Text="Minerales:"
+                Margin="0,10">
+            </Label>
+            <Label
+                Text="{Binding Minerals, Mode=TwoWay}"
+                BackgroundColor="{StaticResource BackgroundColor}"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center">
+            </Label>
+            <Label
+                Text="Imagen:"
+                Margin="0,10">
+            </Label>
+            <Image
+                Source="{Binding Image,Mode=TwoWay}"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="{StaticResource BackgroundColor}">
+            </Image>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -11,18 +11,8 @@ namespace COLSTRAT.Infraestructure
 
     public class InstanceLocator
     {
+
         public MainViewModel Main { get; set; }
-        public IgneousViewModel Igneous
-        {
-            get
-            {
-                return new IgneousViewModel();
-            }
-            set
-            {
-                    Igneous = value;
-            }
-        }
 
         public InstanceLocator()
         {

@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.Views.Rocks.IgneousView"
-             BindingContext="{Binding Igneous, Source={StaticResource Key=Locator}}"
-             BackgroundColor="Bisque">
+             Title="Rocas igneas"
+             BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+             BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Padding>
         <OnPlatform 
             x:TypeArguments="Thickness"
@@ -13,6 +14,7 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout
+            BindingContext="{Binding Igneous}"
             Orientation="Vertical"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand">
@@ -26,13 +28,14 @@
                 Text="Nombre:">
             </Label>
             <Picker 
-                ItemDisplayBinding="{Binding Name}"
+                SelectedIndex="{Binding Index, Mode=TwoWay}"
                 ItemsSource="{Binding IgneousRocks}"
                 SelectedItem="{Binding SourceRock}"
+                ItemDisplayBinding="{Binding Name}"
                 Title="Seleccione la roca">
             </Picker>
             <ActivityIndicator
-                IsRunning="{Binding IsRunning,Mode=TwoWay}">
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
             </ActivityIndicator>
             <Button
                 BackgroundColor="Navy"
@@ -42,7 +45,7 @@
                 BorderRadius="20"
                 HeightRequest="40"
                 Command="{Binding ShowCommand}"
-                IsEnabled="{Binding IsEnable,Mode=TwoWay}">
+                IsEnabled="{Binding IsEnable, Mode=TwoWay}">
             </Button>
             <Label
                 Text="Descripción:"
@@ -50,7 +53,7 @@
             </Label>
             <Label
                 Text="{Binding Descripcion, Mode=TwoWay}"
-                BackgroundColor="IndianRed"
+                BackgroundColor="{StaticResource BackgroundColor}"
                 VerticalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
@@ -61,7 +64,7 @@
             </Label>
             <Label
                 Text="{Binding Minerals, Mode=TwoWay}"
-                BackgroundColor="IndianRed"
+                BackgroundColor="{StaticResource BackgroundColor}"
                 VerticalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
@@ -73,7 +76,7 @@
             <Image
                 Source="{Binding Image,Mode=TwoWay}"
                 VerticalOptions="FillAndExpand"
-                BackgroundColor="Azure">
+                BackgroundColor="{StaticResource BackgroundColor}">
             </Image>
         </StackLayout>
     </ContentPage.Content>

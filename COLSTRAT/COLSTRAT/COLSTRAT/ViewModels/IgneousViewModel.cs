@@ -1,84 +1,171 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace COLSTRAT.ViewModels
+﻿namespace COLSTRAT.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using Models;
-    using Newtonsoft.Json;
+    using System;
     using System.ComponentModel;
-    using System.Net.Http;
     using System.Windows.Input;
-    using Xamarin.Forms;
+    using COLSTRAT.Service;
+    using System.Collections.ObjectModel;
+    using COLSTRAT.Models;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     public class IgneousViewModel : INotifyPropertyChanged
     {
+        #region Services
+        private ApiService apiService;
+        private NavigationService navigationService;
+        private DialogService dialogService;
+        #endregion
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region Attributes
-        bool _IsRunning;
-        bool _IsEnable;
-        ObservableCollection<IgneousRock> _IgneousRocks;
+        private int _index;
+        private bool _isRunning;
+        private bool _IsEnabled;
+        private ObservableCollection<IgneousRock> _igneousRocks;
+        private IgneousRock _sourceRock;
+        private string _descripcion;
+        private string _minerals;
+        private string _image;
         #endregion
         #region Properties
-        /// <summary>
-        /// La propiedad contiene una coleccion de rocas igneas
-        /// </summary>
-        /// <return></return>
+        public int Index
+        {
+            get
+            {
+                return _index;
+            }
+            set
+            {
+                if (_index != value)
+                {
+                    _index = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(Index)));
+                }
+            }
+        }
+        public IgneousRock SourceRock
+        {
+            get
+            {
+                return _sourceRock;
+            }
+            set
+            {
+                if (_sourceRock != value)
+                {
+                    _sourceRock = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(SourceRock)));
+                }
+            }
+        }
+        public string Image
+        {
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                if (_image != value)
+                {
+                    _image = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(Image)));
+                }
+            }
+        }
+        public string Descripcion
+        {
+            get
+            {
+                return _descripcion;
+            }
+            set
+            {
+                if (_descripcion != value)
+                {
+                    _descripcion = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(Descripcion)));
+                }
+            }
+        }
+        public string Minerals
+        {
+            get
+            {
+                return _minerals;
+            }
+            set
+            {
+                if (_minerals != value)
+                {
+                    _minerals = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(Minerals)));
+                }
+            }
+        }
         public ObservableCollection<IgneousRock> IgneousRocks
         {
             get
             {
-                return _IgneousRocks;
+                return _igneousRocks;
             }
             set
             {
-                if (_IgneousRocks != value)
+                if (_igneousRocks != value)
                 {
-                    _IgneousRocks = value;
+                    _igneousRocks = value;
                     PropertyChanged?.Invoke(
                         this,
                         new PropertyChangedEventArgs(nameof(IgneousRocks)));
                 }
             }
         }
-        public IgneousRock SourceRock { get; set; }
+
+        
         public bool IsRunning
         {
             get
             {
-                return _IsRunning;
+                return _isRunning;
             }
             set
             {
-                if (_IsRunning != value)
+                if (_isRunning != value)
                 {
-                    _IsRunning = value;
+                    _isRunning = value;
                     PropertyChanged?.Invoke(
                         this,
                         new PropertyChangedEventArgs(nameof(IsRunning)));
                 }
             }
         }
-        public bool IsEnable
+        public bool IsEnabled
         {
             get
             {
-                return _IsEnable;
+                return _IsEnabled;
             }
             set
             {
-                if(_IsEnable != value)
+                if(_IsEnabled != value)
                 {
-                    _IsEnable = value;
+                    _IsEnabled = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(IsEnable)));
+                        new PropertyChangedEventArgs(nameof(IsEnabled)));
                 }
             }
         }
@@ -87,34 +174,28 @@ namespace COLSTRAT.ViewModels
         #region Contructor
         public IgneousViewModel()
         {
-            LoadIgneousRocks();
+            apiService = new ApiService();
+            dialogService = new DialogService();
+            Load();
         }
         #endregion
 
         #region Methods
-        async void LoadIgneousRocks()
+        async void Load()
         {
             IsRunning = true;
-            try
-            {
-                var client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:3000");
-                var controller = "/igneous_rocks";
-                var response = await client.GetAsync(controller);
-                var result = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    IsRunning = false;
-                }
-                var rocks = JsonConvert.DeserializeObject<List<IgneousRock>>(result);
-                IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
-                IsRunning = false;
-                IsEnable = true;
-            }
-            catch (Exception ex)
+            IsEnabled = false;
+            var controller = "/igneous_rocks";
+            var response = await apiService.GetRocks(controller);
+            if (!response.IsSuccess)
             {
                 IsRunning = false;
+                await dialogService.ShowMessage("Error", response.Message);
             }
+            var rocks = JsonConvert.DeserializeObject<List<IgneousRock>>(response.Result.ToString());
+            IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
+            IsEnabled = true;
+            IsRunning = false;
         }
         #endregion
         #region Commands
@@ -123,13 +204,19 @@ namespace COLSTRAT.ViewModels
         {
             get
             {
-                return new RelayCommand(Show());
+                return new RelayCommand(Show);
             }
         }
 
-        private Action Show()
+        async void Show()
         {
-            throw new NotImplementedException();
+            if (Index == 0)
+            {
+                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                return;
+            }
+            Descripcion = SourceRock.Descripcion;
+            Minerals = SourceRock.Minerals;
         }
         #endregion
     }

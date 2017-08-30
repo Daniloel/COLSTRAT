@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace COLSTRAT.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainView : ContentPage
+    public partial class MenuView : ContentPage
     {
-        public MainView()
+        public MenuView()
         {
             InitializeComponent();
         }
