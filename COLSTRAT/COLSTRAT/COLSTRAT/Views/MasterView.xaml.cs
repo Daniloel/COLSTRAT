@@ -10,11 +10,17 @@ using Xamarin.Forms.Xaml;
 namespace COLSTRAT.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainView : ContentPage
+    public partial class MasterView : MasterDetailPage
     {
-        public MainView()
+        public MasterView()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            App.Navigator = Navigator;
+            App.Master = this;
         }
     }
 }

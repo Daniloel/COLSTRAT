@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace COLSTRAT.Infraestructure
 {
+    using GalaSoft.MvvmLight.Ioc;
     using ViewModels;
+
     public class InstanceLocator
     {
+
         public MainViewModel Main { get; set; }
-        public IgneousViewModel Igneous { get; set; }
-        public MetamorphicViewModel Metamorphic { get; set; }
-        public SedimentaryViewModel Sedimentary { get; set; }
+
         public InstanceLocator()
         {
-
+            Main = new MainViewModel();
         }
 
     }

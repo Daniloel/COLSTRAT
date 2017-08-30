@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace COLSTRAT.Views
+namespace COLSTRAT.Views.Rocks
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainView : ContentPage
+    public partial class IgneousView : ContentPage
     {
-        public MainView()
+        public IgneousView()
         {
             InitializeComponent();
         }

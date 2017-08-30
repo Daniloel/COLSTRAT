@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.Views.MainView"
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
-             BackgroundColor="Bisque">
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="COLSTRAT App">
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" 
                      HorizontalOptions="FillAndExpand"
@@ -11,37 +12,34 @@
                      Padding="20">
             <Label Text="Welcome to COLSTRAT!"
                    FontSize="25"
-                   TextColor="ForestGreen" 
+                   TextColor="{StaticResource FontColor}" 
                    FontAttributes="Bold"
                    HorizontalOptions="Center">
             </Label>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand">
-                <Button x:Name="btnIgneousRocks"
+                <Button Command="{Binding ToIgneousRocks}"
                         Text="Igneous Rocks"
-                        BackgroundColor="GreenYellow"
+                        BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
-                        HorizontalOptions="FillAndExpand"
-                        IsEnabled="False">
+                        HorizontalOptions="FillAndExpand">
                 </Button>
-                <Button x:Name="btnMetamorphicRocks"
+                <Button Command="{Binding ToMetamorphicRocks}"
                         Text="Metamorphic Rocks"
-                        BackgroundColor="GreenYellow"
+                        BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
-                        HorizontalOptions="FillAndExpand"
-                        IsEnabled="False">
+                        HorizontalOptions="FillAndExpand">
                 </Button>
             </StackLayout>
-            <Button x:Name="btnSedimentaryRocks"
+            <Button Command="{Binding ToSedimentaryRocks}"
                     Text="Sedimentary Rocks"
-                    BackgroundColor="GreenYellow"
+                    BackgroundColor="{StaticResource AccentColor}"
                     TextColor="Black"
                     FontAttributes="Bold"
-                    HorizontalOptions="FillAndExpand"
-                    IsEnabled="False">
+                    HorizontalOptions="FillAndExpand">
             </Button>
         </StackLayout>
     </ContentPage.Content>
