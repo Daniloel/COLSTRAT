@@ -9,6 +9,7 @@
     using COLSTRAT.Models;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Xamarin.Forms;
 
     public class IgneousViewModel : INotifyPropertyChanged
     {
@@ -28,7 +29,7 @@
         private IgneousRock _sourceRock;
         private string _descripcion;
         private string _minerals;
-        private string _image;
+        private string _imageSource;
         #endregion
         #region Properties
         public int Index
@@ -65,20 +66,20 @@
                 }
             }
         }
-        public string Image
+        public string ImageSource
         {
             get
             {
-                return _image;
+                return _imageSource;
             }
             set
             {
-                if (_image != value)
+                if (_imageSource != value)
                 {
-                    _image = value;
+                    _imageSource = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(Image)));
+                        new PropertyChangedEventArgs(nameof(ImageSource)));
                 }
             }
         }
@@ -217,6 +218,9 @@
             }
             Descripcion = SourceRock.Descripcion;
             Minerals = SourceRock.Minerals;
+            ImageSource = SourceRock.Image;
+            
+            
         }
         #endregion
     }

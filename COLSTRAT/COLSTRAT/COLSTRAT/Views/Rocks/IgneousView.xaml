@@ -13,6 +13,7 @@
         </OnPlatform>
     </ContentPage.Padding>
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout
             BindingContext="{Binding Igneous}"
             Orientation="Vertical"
@@ -21,13 +22,17 @@
             <Label 
                 Text="Rocas ígneas"
                 FontSize="Large"
+                TextColor="White"
                 FontAttributes="Bold,Italic"
                 HorizontalOptions="Center">
             </Label>
             <Label 
-                Text="Nombre:">
+                Text="Nombre:"
+                FontAttributes="Italic"
+                TextColor="White">
             </Label>
             <Picker 
+                TextColor="White"
                 SelectedIndex="{Binding Index, Mode=TwoWay}"
                 ItemsSource="{Binding IgneousRocks}"
                 SelectedItem="{Binding SourceRock}"
@@ -38,7 +43,7 @@
                 IsRunning="{Binding IsRunning, Mode=TwoWay}">
             </ActivityIndicator>
             <Button
-                BackgroundColor="Navy"
+                BackgroundColor="{StaticResource AccentColor}"
                 FontAttributes="Bold"
                 TextColor="White"
                 Text="Mostrar"
@@ -49,35 +54,39 @@
             </Button>
             <Label
                 Text="Descripción:"
+                FontAttributes="Italic"
+                TextColor="White"
                 Margin="0,10">
             </Label>
             <Label
                 Text="{Binding Descripcion, Mode=TwoWay}"
-                BackgroundColor="{StaticResource BackgroundColor}"
                 VerticalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
             </Label>
             <Label 
                 Text="Minerales:"
+                FontAttributes="Italic"
+                TextColor="White"
                 Margin="0,10">
             </Label>
             <Label
                 Text="{Binding Minerals, Mode=TwoWay}"
-                BackgroundColor="{StaticResource BackgroundColor}"
                 VerticalOptions="FillAndExpand"
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
             </Label>
-            <Label
+                <Label
                 Text="Imagen:"
+                FontAttributes="Italic"
+                TextColor="White"
                 Margin="0,10">
-            </Label>
-            <Image
-                Source="{Binding Image,Mode=TwoWay}"
-                VerticalOptions="FillAndExpand"
-                BackgroundColor="{StaticResource BackgroundColor}">
-            </Image>
-        </StackLayout>
+                </Label>
+                <Image
+                    Source="{Binding ImageSource, Mode=TwoWay}"
+                    VerticalOptions="FillAndExpand">
+                </Image>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
