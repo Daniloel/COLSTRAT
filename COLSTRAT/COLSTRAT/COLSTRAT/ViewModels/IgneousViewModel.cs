@@ -195,8 +195,8 @@
             }
             var rocks = JsonConvert.DeserializeObject<List<IgneousRock>>(response.Result.ToString());
             IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
-            IsEnabled = true;
             IsRunning = false;
+            IsEnabled = true;
         }
         #endregion
         #region Commands
@@ -211,7 +211,7 @@
 
         async void Show()
         {
-            if (Index == 0)
+            if (SourceRock == null)
             {
                 await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
                 return;

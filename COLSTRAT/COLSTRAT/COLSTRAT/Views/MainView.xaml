@@ -10,7 +10,8 @@
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
                      Padding="20">
-            <Label Text="Welcome to COLSTRAT!"
+            <Label Text="Bienvenido a COLSTRAT!"
+                   HorizontalTextAlignment="Center"
                    FontSize="25"
                    TextColor="{StaticResource FontColor}" 
                    FontAttributes="Bold"
@@ -20,14 +21,14 @@
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand">
                 <Button Command="{Binding ToIgneousRocks}"
-                        Text="Igneous Rocks"
+                        Text="Rocas ígneas"
                         BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
                         HorizontalOptions="FillAndExpand">
                 </Button>
                 <Button Command="{Binding ToMetamorphicRocks}"
-                        Text="Metamorphic Rocks"
+                        Text="Rocas metamórficas"
                         BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
@@ -35,7 +36,7 @@
                 </Button>
             </StackLayout>
             <Button Command="{Binding ToSedimentaryRocks}"
-                    Text="Sedimentary Rocks"
+                    Text="Rocas sedimentarias"
                     BackgroundColor="{StaticResource AccentColor}"
                     TextColor="Black"
                     FontAttributes="Bold"

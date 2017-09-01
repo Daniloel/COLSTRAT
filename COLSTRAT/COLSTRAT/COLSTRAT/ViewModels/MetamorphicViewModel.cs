@@ -24,33 +24,15 @@ namespace COLSTRAT.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region Attributes
-        private int _index;
         private bool _isRunning;
         private bool _isEnabled;
         private MetamorphicRock _sourceRock;
         private ObservableCollection<MetamorphicRock> _metamorphicRocks;
         private string _descripcion;
         private string _minerals;
-        private string _image;
+        private string _imageSource;
         #endregion
         #region Properties
-        public int Index
-        {
-            get
-            {
-                return _index;
-            }
-            set
-            {
-                if (_index != value)
-                {
-                    _index = value;
-                    PropertyChanged?.Invoke(
-                        this,
-                        new PropertyChangedEventArgs(nameof(Index)));
-                }
-            }
-        }
         public ObservableCollection<MetamorphicRock> MetamorphicRocks
         {
             get
@@ -85,20 +67,20 @@ namespace COLSTRAT.ViewModels
                 }
             }
         }
-        public string Image
+        public string ImageSource
         {
             get
             {
-                return _image;
+                return _imageSource;
             }
             set
             {
-                if (_image != value)
+                if (_imageSource != value)
                 {
-                    _image = value;
+                    _imageSource = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(Image)));
+                        new PropertyChangedEventArgs(nameof(ImageSource)));
                 }
             }
         }
@@ -211,13 +193,14 @@ namespace COLSTRAT.ViewModels
 
         async void Show()
         {
-            if (Index == 0)
+            if (SourceRock == null)
             {
                 await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
                 return;
             }
             Descripcion = SourceRock.Descripcion;
             Minerals = SourceRock.Minerals;
+            ImageSource = SourceRock.Image;
         }
         #endregion
     }

@@ -3,6 +3,7 @@
     using COLSTRAT.Views.Rocks;
     using System.Threading.Tasks;
     using Views;
+    using ViewModels;
     using Xamarin.Forms;
 
     public class NavigationService
