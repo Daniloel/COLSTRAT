@@ -5,7 +5,15 @@
              xmlns:infra="clr-namespace:COLSTRAT.Infraestructure">
     <Application.Resources>
         <ResourceDictionary>
+            <!--Locator-->
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
-        </ResourceDictionary>
+            <!--Colours-->
+            <Color x:Key="MainColor">#F1CD81</Color><!--color anemico-->
+            <Color x:Key="FontColor">#100D0D</Color><!--negro-->
+            <Color x:Key="MenuColor">#D9855A</Color><!--fondo del menu-->
+            <Color x:Key="MenuFontColor">#F5D5B2</Color><!--letras del menu-->
+            <Color x:Key="BackgroundColor">#F5D5B2</Color><!--color carne-->
+            <Color x:Key="AccentColor">#BF533B</Color><!--rojo-->
+        </ResourceDictionary> 
     </Application.Resources>
 </Application>

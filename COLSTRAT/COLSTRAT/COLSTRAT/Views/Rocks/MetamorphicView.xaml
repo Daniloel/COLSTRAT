@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="COLSTRAT.Views.Rocks.MetamorphicView"
+             Title="Rocas metamorficas"
+             BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+             BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Padding>
+        <OnPlatform 
+            x:TypeArguments="Thickness"
+            iOS="20,30,20,10"
+            Android="20,20,20,10">
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout
+            BindingContext="{Binding Metamorphic}"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <Label 
+                Text="Rocas metamórficas"
+                FontSize="Large"
+                TextColor="{StaticResource FontColor}"
+                FontAttributes="Bold,Italic"
+                HorizontalOptions="Center">
+            </Label>
+            <Label 
+                Text="Nombre:"
+                FontAttributes="Italic"
+                TextColor="{StaticResource FontColor}">
+            </Label>
+            <Picker
+                TextColor="{StaticResource FontColor}"
+                SelectedItem="{Binding SourceRock}"
+                ItemsSource="{Binding MetamorphicRocks}"
+                ItemDisplayBinding="{Binding Name}"
+                Title="Seleccione la roca">
+            </Picker>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning}">
+            </ActivityIndicator>
+            <Button
+                BackgroundColor="{StaticResource AccentColor}"
+                FontAttributes="Bold"
+                TextColor="{StaticResource FontColor}"
+                Text="Mostrar"
+                BorderRadius="20"
+                HeightRequest="40"
+                Command="{Binding ShowCommand}"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+            </Button>
+            <Label
+                Text="Descripción:"
+                FontAttributes="Italic"
+                TextColor="{StaticResource FontColor}"
+                Margin="0,10">
+            </Label>
+            <Label
+                Text="{Binding Descripcion, Mode=TwoWay}"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center">
+            </Label>
+            <Label 
+                Text="Minerales:"
+                FontAttributes="Italic"
+                TextColor="{StaticResource FontColor}"
+                Margin="0,10">
+            </Label>
+            <Label
+                Text="{Binding Minerals, Mode=TwoWay}"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center">
+            </Label>
+            <Label
+                Text="Imagen:"
+                FontAttributes="Italic"
+                TextColor="{StaticResource FontColor}"
+                Margin="0,10">
+            </Label>
+            <Image
+                Source="{Binding ImageSource,Mode=TwoWay}"
+                VerticalOptions="FillAndExpand">
+            </Image>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

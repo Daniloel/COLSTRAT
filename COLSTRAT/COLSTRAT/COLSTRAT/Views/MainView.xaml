@@ -3,22 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.Views.MainView"
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
-             BackgroundColor="Bisque">
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="COLSTRAT App">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
-                     HorizontalOptions="Center">
-            <Label Text="Welcome to COLSTRAT!"
-                   FontSize="Large"
-                   TextColor="ForestGreen" 
+        <StackLayout VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand"
+                     Orientation="Vertical"
+                     Padding="20">
+            <Label Text="Bienvenido a COLSTRAT!"
+                   HorizontalTextAlignment="Center"
+                   FontSize="25"
+                   TextColor="{StaticResource FontColor}" 
                    FontAttributes="Bold"
                    HorizontalOptions="Center">
             </Label>
-            <Label Text="This app is under contruction"
-                   FontSize="Medium"
-                   TextColor="GreenYellow"
-                   FontAttributes="Italic"
-                   HorizontalOptions="Center">
-            </Label>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand">
+                <Button Command="{Binding ToIgneousRocks}"
+                        Text="Rocas ígneas"
+                        BackgroundColor="{StaticResource AccentColor}"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand">
+                </Button>
+                <Button Command="{Binding ToMetamorphicRocks}"
+                        Text="Rocas metamórficas"
+                        BackgroundColor="{StaticResource AccentColor}"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand">
+                </Button>
+            </StackLayout>
+            <Button Command="{Binding ToSedimentaryRocks}"
+                    Text="Rocas sedimentarias"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
