@@ -63,6 +63,10 @@
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
             </Label>
+            <BoxView
+                HeightRequest="3"
+                Color="{StaticResource AccentColor}">
+            </BoxView>
             <Label 
                 Text="Minerales:"
                 FontAttributes="Italic"
@@ -75,7 +79,11 @@
                 HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Center">
             </Label>
-            <Label
+            <BoxView
+                HeightRequest="3"
+                Color="{StaticResource AccentColor}">
+            </BoxView>
+                <Label
                 Text="Imagen:"
                 FontAttributes="Italic"
                 TextColor="{StaticResource FontColor}"
@@ -85,7 +93,11 @@
                 Source="{Binding ImageSource,Mode=TwoWay}"
                 VerticalOptions="FillAndExpand">
             </Image>
-        </StackLayout>
+            <BoxView
+                HeightRequest="3"
+                Color="{StaticResource AccentColor}">
+            </BoxView>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
