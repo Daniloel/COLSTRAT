@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="COLSTRAT.Views.Rocks.IgneousView"
-             Title="Rocas igneas"
-             BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
-             BackgroundColor="{StaticResource BackgroundColor}">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Rocks.IgneousView"
+    Title="Rocas igneas"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Padding>
         <OnPlatform 
             x:TypeArguments="Thickness"
@@ -14,77 +15,115 @@
     </ContentPage.Padding>
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout
-            BindingContext="{Binding Igneous}"
-            Orientation="Vertical"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand">
-            <Label 
-                Text="Rocas ígneas"
-                FontSize="Large"
-                TextColor="{StaticResource FontColor}"
-                FontAttributes="Bold,Italic"
-                HorizontalOptions="Center">
-            </Label>
-            <Label 
-                Text="Nombre:"
-                FontAttributes="Italic"
-                TextColor="{StaticResource FontColor}">
-            </Label>
-            <Picker 
-                TextColor="{StaticResource FontColor}"
-                ItemsSource="{Binding IgneousRocks}"
-                SelectedItem="{Binding SourceRock}"
-                ItemDisplayBinding="{Binding Name}"
-                Title="Seleccione la roca">
-            </Picker>
-            <ActivityIndicator
-                IsRunning="{Binding IsRunning, Mode=TwoWay}">
-            </ActivityIndicator>
-            <Button
-                BackgroundColor="{StaticResource AccentColor}"
-                FontAttributes="Bold"
-                TextColor="{StaticResource FontColor}"
-                Text="Mostrar"
-                BorderRadius="20"
-                HeightRequest="40"
-                Command="{Binding ShowCommand}"
-                IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
-            </Button>
-            <Label
-                Text="Descripción:"
-                FontAttributes="Italic"
-                TextColor="{StaticResource FontColor}"
-                Margin="0,10">
-            </Label>
-            <Label
-                Text="{Binding Descripcion, Mode=TwoWay}"
+            <StackLayout
+                BindingContext="{Binding Igneous}"
+                Orientation="Vertical"
                 VerticalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center">
-            </Label>
-            <Label 
-                Text="Minerales:"
-                FontAttributes="Italic"
-                TextColor="{StaticResource FontColor}"
-                Margin="0,10">
-            </Label>
-            <Label
-                Text="{Binding Minerals, Mode=TwoWay}"
-                VerticalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center">
-            </Label>
-                <Label
-                Text="Imagen:"
-                FontAttributes="Italic"
-                TextColor="{StaticResource FontColor}"
-                Margin="0,10">
+                HorizontalOptions="FillAndExpand">
+                <Label 
+                    Text="Rocas ígneas"
+                    FontSize="Large"
+                    TextColor="{StaticResource FontColor}"
+                    FontAttributes="Bold,Italic"
+                    HorizontalOptions="Center">
                 </Label>
-                <Image
-                    Source="{Binding ImageSource, Mode=TwoWay}"
-                    VerticalOptions="FillAndExpand">
-                </Image>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="180"/>
+                        <RowDefinition Height="180"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Nombre:"
+                        FontAttributes="Italic"
+                        TextColor="{StaticResource FontColor}">
+                    </Label>
+                    <Picker 
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        TextColor="{StaticResource FontColor}"
+                        ItemsSource="{Binding IgneousRocks}"
+                        SelectedItem="{Binding SourceRock}"
+                        ItemDisplayBinding="{Binding Name}"
+                        Title="Seleccione la roca">
+                    </Picker>
+                    <Button
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            BackgroundColor="{StaticResource AccentColor}"
+                            FontAttributes="Bold"
+                            TextColor="{StaticResource FontColor}"
+                            Text="Mostrar"
+                            BorderRadius="20"
+                            HeightRequest="40"
+                            Command="{Binding ShowCommand}"
+                            IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
+                    </Button>
+                    <BoxView
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Color="{StaticResource AccentColor}">
+                    </BoxView>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Descripción:"
+                        FontAttributes="Italic"
+                        TextColor="{StaticResource FontColor}"
+                        Margin="0,10">
+                    </Label>
+                    <Label
+                         Grid.Column="0"
+                         Grid.Row="4"
+                         Text="{Binding Descripcion, Mode=TwoWay}"
+                         VerticalOptions="FillAndExpand"
+                         HorizontalTextAlignment="Center"
+                         VerticalTextAlignment="Center">
+                    </Label>
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Text="Minerales:"
+                        HorizontalTextAlignment="End"
+                        FontAttributes="Italic"
+                        TextColor="{StaticResource FontColor}"
+                        Margin="0,10">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        Text="{Binding Minerals, Mode=TwoWay}"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center">
+                    </Label>
+                    <Image
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Source="{Binding ImageSource, Mode=TwoWay}"
+                        VerticalOptions="FillAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ImageCommand}">
+                            </TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                </ActivityIndicator>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

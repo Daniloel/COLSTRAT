@@ -219,8 +219,17 @@
             Descripcion = SourceRock.Descripcion;
             Minerals = SourceRock.Minerals;
             ImageSource = SourceRock.Image;
-            
-            
+        }
+        public ICommand ImageCommand
+        {
+            get
+            {
+                return new RelayCommand(ImageDialog);
+            }
+        }
+        async void ImageDialog()
+        {
+            await dialogService.ShowConfirm("Mensaje", "Esta imagen te parece de buena calidad?");
         }
         #endregion
     }
