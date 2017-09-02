@@ -10,6 +10,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using COLSTRAT.Helpers;
+    using Xamarin.Forms;
 
     public class SedimentaryViewModel : INotifyPropertyChanged
     {
@@ -168,7 +169,7 @@
         {
             IsRunning = true;
             IsEnabled = false;
-            var url = "http://192.168.0.105:3000";
+            var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/sedimentary_rocks";
             var response = await apiService.GetList<SedimentaryRock>(url, controller);
             if (!response.IsSuccess)

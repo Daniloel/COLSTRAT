@@ -180,4 +180,7 @@
   <data name="loaded_api" xml:space="preserve">
     <value>Rocks loaded from api.</value>
   </data>
+  <data name="loaded_local" xml:space="preserve">
+    <value>Rocks loaded from local data.</value>
+  </data>
 </root>

@@ -2,7 +2,6 @@
 {
     using COLSTRAT.Helpers;
     using COLSTRAT.Service;
-    using COLSTRAT.Views.Rocks;
     using GalaSoft.MvvmLight.Command;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -36,25 +35,25 @@
         {
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "",
+                Icon = "ic_launcher_igneous",
                 PageName = "IgneousView",
                 Title = Languages.IgneousRocks
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "",
+                Icon = "ic_launcher_metamorphic",
                 PageName = "MetamorphicView",
                 Title = Languages.MetamorphicRocks
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "",
+                Icon = "ic_launcher_sedimentary",
                 PageName = "SedimentaryView",
                 Title = Languages.SedimentaryRocks
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "",
+                Icon = "ic_launcher_exit",
                 PageName = "LogoutView",
                 Title = Languages.btnExit
             });
@@ -68,7 +67,7 @@
         {
            get { return new RelayCommand(ShowIgneousRocks); }
         }
-        async void ShowIgneousRocks()
+        public async void ShowIgneousRocks()
         {
             Igneous = new IgneousViewModel();
             await navigationService.Navigate("IgneousView");

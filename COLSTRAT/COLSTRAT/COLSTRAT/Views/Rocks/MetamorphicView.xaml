@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
              x:Class="COLSTRAT.Views.Rocks.MetamorphicView"
-             Title="Rocas metamorficas"
+             Title="{i18n:Translate MetamorphicRocks}"
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Padding>

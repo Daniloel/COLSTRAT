@@ -1,4 +1,4 @@
-﻿namespace ForeignExchange2.Data
+﻿namespace COLSTRAT.Data
 {
     using System;
     using System.Collections.Generic;

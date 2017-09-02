@@ -201,4 +201,7 @@
     <value>Verifica la configuración de internet</value>
     <comment>mensaje de error de config de internet</comment>
   </data>
+  <data name="loaded_local" xml:space="preserve">
+    <value>Rocas cargadas de datos locales.</value>
+  </data>
 </root>

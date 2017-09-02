@@ -14,6 +14,9 @@
             <Color x:Key="MenuFontColor">#F5D5B2</Color><!--letras del menu-->
             <Color x:Key="BackgroundColor">#F5D5B2</Color><!--color carne-->
             <Color x:Key="AccentColor">#BF533B</Color><!--rojo-->
+            
+            <!--Parameters-->
+            <x:String x:Key="URL_API">http://192.168.0.105:3000</x:String>
         </ResourceDictionary> 
     </Application.Resources>
 </Application>

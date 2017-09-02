@@ -38,10 +38,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataAccess.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Infraestructure\InstanceLocator.cs" />
+    <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Models\IgneousRock.cs" />
     <Compile Include="Models\MetamorphicRock.cs" />
@@ -54,6 +56,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Service\ApiService.cs" />
+    <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\NavigationService.cs" />
     <Compile Include="ViewModels\IgneousViewModel.cs" />

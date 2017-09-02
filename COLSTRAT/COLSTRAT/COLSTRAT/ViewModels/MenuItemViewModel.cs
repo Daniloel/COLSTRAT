@@ -1,14 +1,8 @@
-﻿using COLSTRAT.Service;
-using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace COLSTRAT.ViewModels
+﻿namespace COLSTRAT.ViewModels
 {
+    using COLSTRAT.Service;
+    using GalaSoft.MvvmLight.Command;
+    using System.Windows.Input;
     public class MenuItemViewModel
     {
         #region Services
@@ -18,6 +12,9 @@ namespace COLSTRAT.ViewModels
         public string Icon { get; set; }
         public string Title { get; set; }
         public string PageName { get; set; }
+        public IgneousViewModel Igneous { get; set; }
+        public MetamorphicViewModel Metamorphic { get; set; }
+        public SedimentaryViewModel Sedimentary { get; set; }
         #endregion
 
         #region Constructor
@@ -30,7 +27,7 @@ namespace COLSTRAT.ViewModels
 
         #region Commands
         public ICommand NavigateCommand { get { return new RelayCommand(Navigate); } }
-        private async void Navigate()
+        async void Navigate()
         {
             await navigationService.Navigate(PageName);
         }

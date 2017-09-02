@@ -14,6 +14,10 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Loaded_From_Local
+        {
+            get { return Resources.loaded_local; }
+        }
         public static string Internet_Connection
         {
             get { return Resources.check_internet_connection; }

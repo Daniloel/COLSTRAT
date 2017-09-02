@@ -161,6 +161,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rocks loaded from local data..
+        /// </summary>
+        public static string loaded_local {
+            get {
+                return ResourceManager.GetString("loaded_local", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string message_image {

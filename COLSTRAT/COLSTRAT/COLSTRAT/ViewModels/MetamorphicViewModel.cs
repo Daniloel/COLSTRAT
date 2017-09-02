@@ -12,6 +12,7 @@ using COLSTRAT.Service;
 using Newtonsoft.Json;
 using System.Net.Http;
 using COLSTRAT.Helpers;
+using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels
 {
@@ -169,7 +170,7 @@ namespace COLSTRAT.ViewModels
         {
             IsRunning = true;
             IsEnabled = false;
-            var url = "http://192.168.0.105:3000";
+            var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/metamorphic_rocks";
             var response = await apiService.GetList<MetamorphicRock>(url, controller);
             if (!response.IsSuccess)

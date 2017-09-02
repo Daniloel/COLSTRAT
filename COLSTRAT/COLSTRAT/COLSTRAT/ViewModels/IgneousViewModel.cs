@@ -8,13 +8,16 @@
     using COLSTRAT.Models;
     using System.Collections.Generic;
     using COLSTRAT.Helpers;
+    using Xamarin.Forms;
+    using System;
+    using System.Threading.Tasks;
 
     public class IgneousViewModel : INotifyPropertyChanged
     {
         #region Services
         private ApiService apiService;
-        private NavigationService navigationService;
         private DialogService dialogService;
+        private DataService dataService;
         #endregion
 
         #region Events
@@ -22,7 +25,7 @@
         #endregion
 
         #region Attributes
-        private int _index;
+        List<IgneousRock> rocks;
         private bool _isRunning;
         private bool _IsEnabled;
         private ObservableCollection<IgneousRock> _igneousRocks;
@@ -178,6 +181,7 @@
         public IgneousViewModel()
         {
             apiService = new ApiService();
+            dataService = new DataService();
             dialogService = new DialogService();
             Load();
         }
@@ -191,22 +195,47 @@
             var connection = await apiService.CheckConnection();
             if (!connection.IsSuccess)
             {
-                IsRunning = false;
-                await dialogService.ShowMessage(Languages.Warning, connection.Message);
-                return;
+                LoadLocalData();
             }
-            var url = "http://192.168.0.105:3000";
-            var controller = "/igneous_rocks";
-            var response = await apiService.GetList<IgneousRock>(url,controller);
-            if (!response.IsSuccess)
+            else
+            {
+                await LoadDataFromAPI();
+            }
+            if (rocks.Count == 0)
             {
                 IsRunning = false;
-                await dialogService.ShowMessage(Languages.Warning, response.Message);
+                IsEnabled = false;
+                await dialogService.ShowMessage(Languages.Warning, 
+                    "There are not internet connection " +
+                    "and not load previously rocks. " +
+                    "Please try again with internet connection");
+                StatusLoad = "No rocks loaded";
                 return;
             }
-            IgneousRocks = new ObservableCollection<IgneousRock>((List<IgneousRock>)response.Result);
+            IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
             IsRunning = false;
             IsEnabled = true;
+        }
+
+        void LoadLocalData()
+        {
+            rocks = dataService.Get<IgneousRock>(false);
+            StatusLoad = Languages.Loaded_From_Local;
+        }
+
+        async Task LoadDataFromAPI()
+        {
+            var url = Application.Current.Resources["URL_API"].ToString();
+            var controller = "/igneous_rocks";
+            var response = await apiService.GetList<IgneousRock>(url, controller);
+            if (!response.IsSuccess)
+            {
+                LoadLocalData();
+                return;
+            }
+            rocks = (List<IgneousRock>)response.Result;
+            dataService.DeleteAll<IgneousRock>();
+            dataService.Save(rocks);
             StatusLoad = Languages.Loaded_From_Api;
         }
         #endregion
