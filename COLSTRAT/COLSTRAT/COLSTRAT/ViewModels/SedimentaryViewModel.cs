@@ -168,15 +168,16 @@
         {
             IsRunning = true;
             IsEnabled = false;
+            var url = "http://192.168.0.105:3000";
             var controller = "/sedimentary_rocks";
-            var response = await apiService.GetRocks(controller);
+            var response = await apiService.GetList<SedimentaryRock>(url, controller);
             if (!response.IsSuccess)
             {
                 IsRunning = false;
-                await dialogService.ShowMessage("Error", response.Message);
+                await dialogService.ShowMessage(Languages.Warning, response.Message);
+                return;
             }
-            var rocks = JsonConvert.DeserializeObject<List<SedimentaryRock>>(response.Result.ToString());
-            SedimentaryRocks = new ObservableCollection<SedimentaryRock>(rocks);
+            SedimentaryRocks = new ObservableCollection<SedimentaryRock>((List<SedimentaryRock>)response.Result);
             IsEnabled = true;
             IsRunning = false;
         }

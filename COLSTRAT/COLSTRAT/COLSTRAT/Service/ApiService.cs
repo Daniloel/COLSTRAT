@@ -6,35 +6,70 @@ using System.Threading.Tasks;
 using COLSTRAT.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 
 namespace COLSTRAT.Service
 {
     public class ApiService
     {
-        public async Task<Response> GetRocks(string controller)
+        public async Task<Response> CheckConnection()
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Check your internet settings"
+                };
+            }
+
+            var response = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            if (!response)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = "Check your internet connection"
+                };
+            }
+            return new Response
+            {
+                IsSuccess = true
+            };
+        }
+
+        /// <summary>
+        /// Devuelve una petición por GET
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="urlBase">url base www.ejemplo.com</param>
+        /// <param name="controller">controlador de la url /datos</param>
+        /// <returns></returns>
+        public async Task<Response> GetList<T>(string urlBase, string controller)
         {
             try
             {
                 var client = new HttpClient
                 {
-                    BaseAddress = new Uri("http://192.168.0.105:3000")
+                    BaseAddress = new Uri(urlBase)
                 };
                 var response = await client.GetAsync(controller);
+                var result = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
                     return new Response
                     {
                         IsSuccess = false,
-                        Message = "NO hay conexion"
+                        Message = result
                     };
                 }
-                var result = await response.Content.ReadAsStringAsync();
-
+                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                
                 return new Response
                 {
                     IsSuccess = true,
                     Message = "Rocks OK",
-                    Result = result
+                    Result = list
                 };
             }
             catch (Exception e)
@@ -45,6 +80,6 @@ namespace COLSTRAT.Service
                     Message = e.Message
                 };
             }
-        }  
+        }
     }
 }

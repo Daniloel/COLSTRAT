@@ -1,15 +1,12 @@
 ﻿namespace COLSTRAT.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using System;
     using System.ComponentModel;
     using System.Windows.Input;
     using COLSTRAT.Service;
     using System.Collections.ObjectModel;
     using COLSTRAT.Models;
-    using Newtonsoft.Json;
     using System.Collections.Generic;
-    using Xamarin.Forms;
     using COLSTRAT.Helpers;
 
     public class IgneousViewModel : INotifyPropertyChanged
@@ -19,9 +16,11 @@
         private NavigationService navigationService;
         private DialogService dialogService;
         #endregion
+
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
+
         #region Attributes
         private int _index;
         private bool _isRunning;
@@ -31,22 +30,24 @@
         private string _descripcion;
         private string _minerals;
         private string _imageSource;
+        private string _statusLoad;
         #endregion
+
         #region Properties
-        public int Index
+        public string StatusLoad
         {
             get
             {
-                return _index;
+                return _statusLoad;
             }
             set
             {
-                if (_index != value)
+                if (_statusLoad != value)
                 {
-                    _index = value;
+                    _statusLoad = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(Index)));
+                        new PropertyChangedEventArgs(nameof(StatusLoad)));
                 }
             }
         }
@@ -187,19 +188,29 @@
         {
             IsRunning = true;
             IsEnabled = false;
+            var connection = await apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                IsRunning = false;
+                await dialogService.ShowMessage(Languages.Warning, connection.Message);
+                return;
+            }
+            var url = "http://192.168.0.105:3000";
             var controller = "/igneous_rocks";
-            var response = await apiService.GetRocks(controller);
+            var response = await apiService.GetList<IgneousRock>(url,controller);
             if (!response.IsSuccess)
             {
                 IsRunning = false;
-                await dialogService.ShowMessage("Error", response.Message);
+                await dialogService.ShowMessage(Languages.Warning, response.Message);
+                return;
             }
-            var rocks = JsonConvert.DeserializeObject<List<IgneousRock>>(response.Result.ToString());
-            IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
+            IgneousRocks = new ObservableCollection<IgneousRock>((List<IgneousRock>)response.Result);
             IsRunning = false;
             IsEnabled = true;
+            StatusLoad = "Rocks loaded from api.";
         }
         #endregion
+
         #region Commands
 
         public ICommand ShowCommand
