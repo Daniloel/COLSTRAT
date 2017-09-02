@@ -189,4 +189,16 @@
     <value>¿Esta imagen te parece de buena calidad?</value>
     <comment>contenido del mensaje al select image</comment>
   </data>
+  <data name="loaded_api" xml:space="preserve">
+    <value>Rocas cargadas del api.</value>
+    <comment>label para mostrar de donde fueron cargadas las rocas</comment>
+  </data>
+  <data name="check_internet_connection" xml:space="preserve">
+    <value>Verifica la conexión a internet</value>
+    <comment>mensaje de error de conexión a internet</comment>
+  </data>
+  <data name="check_internet_settings" xml:space="preserve">
+    <value>Verifica la configuración de internet</value>
+    <comment>mensaje de error de config de internet</comment>
+  </data>
 </root>

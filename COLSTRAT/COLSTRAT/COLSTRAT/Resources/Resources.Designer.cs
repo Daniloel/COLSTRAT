@@ -89,6 +89,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Check your internet connection.
+        /// </summary>
+        public static string check_internet_connection {
+            get {
+                return ResourceManager.GetString("check_internet_connection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check your internet settings.
+        /// </summary>
+        public static string check_internet_settings {
+            get {
+                return ResourceManager.GetString("check_internet_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Igneous Rocks.
         /// </summary>
         public static string IgneousRocks {
@@ -130,6 +148,15 @@ namespace COLSTRAT.Resources {
         public static string label_name {
             get {
                 return ResourceManager.GetString("label_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocks loaded from api..
+        /// </summary>
+        public static string loaded_api {
+            get {
+                return ResourceManager.GetString("loaded_api", resourceCulture);
             }
         }
         

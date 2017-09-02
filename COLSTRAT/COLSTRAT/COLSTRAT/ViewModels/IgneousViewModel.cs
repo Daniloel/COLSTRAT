@@ -207,7 +207,7 @@
             IgneousRocks = new ObservableCollection<IgneousRock>((List<IgneousRock>)response.Result);
             IsRunning = false;
             IsEnabled = true;
-            StatusLoad = "Rocks loaded from api.";
+            StatusLoad = Languages.Loaded_From_Api;
         }
         #endregion
 

@@ -171,4 +171,13 @@
   <data name="message_image_content" xml:space="preserve">
     <value>Does this image look good?</value>
   </data>
+  <data name="check_internet_connection" xml:space="preserve">
+    <value>Check your internet connection</value>
+  </data>
+  <data name="check_internet_settings" xml:space="preserve">
+    <value>Check your internet settings</value>
+  </data>
+  <data name="loaded_api" xml:space="preserve">
+    <value>Rocks loaded from api.</value>
+  </data>
 </root>

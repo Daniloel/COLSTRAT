@@ -7,6 +7,7 @@ using COLSTRAT.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using COLSTRAT.Helpers;
 
 namespace COLSTRAT.Service
 {
@@ -19,7 +20,7 @@ namespace COLSTRAT.Service
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Check your internet settings"
+                    Message = Languages.Internet_Settings
                 };
             }
 
@@ -29,7 +30,7 @@ namespace COLSTRAT.Service
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Check your internet connection"
+                    Message = Languages.Internet_Connection
                 };
             }
             return new Response
@@ -68,7 +69,6 @@ namespace COLSTRAT.Service
                 return new Response
                 {
                     IsSuccess = true,
-                    Message = "Rocks OK",
                     Result = list
                 };
             }
