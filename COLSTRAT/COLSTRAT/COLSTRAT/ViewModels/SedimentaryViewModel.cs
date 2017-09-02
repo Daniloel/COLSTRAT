@@ -9,6 +9,8 @@
     using COLSTRAT.Models;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using COLSTRAT.Helpers;
+
     public class SedimentaryViewModel : INotifyPropertyChanged
     {
         #region Services
@@ -193,7 +195,7 @@
         {
             if (SourceRock == null)
             {
-                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;

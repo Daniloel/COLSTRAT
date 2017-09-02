@@ -10,6 +10,7 @@
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using Xamarin.Forms;
+    using COLSTRAT.Helpers;
 
     public class IgneousViewModel : INotifyPropertyChanged
     {
@@ -213,7 +214,7 @@
         {
             if (SourceRock == null)
             {
-                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
@@ -229,7 +230,7 @@
         }
         async void ImageDialog()
         {
-            await dialogService.ShowConfirm("Mensaje", "Esta imagen te parece de buena calidad?");
+            await dialogService.ShowConfirm(Languages.Message_Image, Languages.Message_Image_Content);
         }
         #endregion
     }

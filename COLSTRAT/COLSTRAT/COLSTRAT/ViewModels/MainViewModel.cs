@@ -1,5 +1,6 @@
 ﻿namespace COLSTRAT.ViewModels
 {
+    using COLSTRAT.Helpers;
     using COLSTRAT.Service;
     using COLSTRAT.Views.Rocks;
     using GalaSoft.MvvmLight.Command;
@@ -37,25 +38,25 @@
             {
                 Icon = "",
                 PageName = "IgneousView",
-                Title = "Rocas igneas"
+                Title = Languages.IgneousRocks
             });
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "",
                 PageName = "MetamorphicView",
-                Title = "Rocas metamorficas"
+                Title = Languages.MetamorphicRocks
             });
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "",
                 PageName = "SedimentaryView",
-                Title = "Rocas sedimentarias"
+                Title = Languages.SedimentaryRocks
             });
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "",
                 PageName = "LogoutView",
-                Title = "Salir"
+                Title = Languages.btnExit
             });
         }
         #endregion

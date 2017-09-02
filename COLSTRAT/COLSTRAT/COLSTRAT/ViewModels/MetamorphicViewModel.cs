@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Command;
 using COLSTRAT.Service;
 using Newtonsoft.Json;
 using System.Net.Http;
+using COLSTRAT.Helpers;
 
 namespace COLSTRAT.ViewModels
 {
@@ -195,7 +196,7 @@ namespace COLSTRAT.ViewModels
         {
             if (SourceRock == null)
             {
-                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
