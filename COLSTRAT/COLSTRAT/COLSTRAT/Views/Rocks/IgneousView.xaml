@@ -2,8 +2,9 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     x:Class="COLSTRAT.Views.Rocks.IgneousView"
-    Title="Rocas igneas"
+    Title="{i18n:Translate IgneousRocks}"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Padding>
@@ -21,12 +22,15 @@
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
                 <Label 
-                    Text="Rocas ígneas"
+                    Text="{i18n:Translate IgneousRocks}"
                     FontSize="Large"
                     TextColor="{StaticResource FontColor}"
                     FontAttributes="Bold,Italic"
                     HorizontalOptions="Center">
                 </Label>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                </ActivityIndicator>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
@@ -43,7 +47,7 @@
                     <Label 
                         Grid.Column="0"
                         Grid.Row="0"
-                        Text="Nombre:"
+                        Text="{i18n:Translate label_name}"
                         FontAttributes="Italic"
                         TextColor="{StaticResource FontColor}">
                     </Label>
@@ -54,7 +58,7 @@
                         ItemsSource="{Binding IgneousRocks}"
                         SelectedItem="{Binding SourceRock}"
                         ItemDisplayBinding="{Binding Name}"
-                        Title="Seleccione la roca">
+                        Title="{i18n:Translate picker_select_the_rock}">
                     </Picker>
                     <Button
                             Grid.Column="1"
@@ -63,7 +67,7 @@
                             BackgroundColor="{StaticResource AccentColor}"
                             FontAttributes="Bold"
                             TextColor="{StaticResource FontColor}"
-                            Text="Mostrar"
+                            Text="{i18n:Translate btnShow}"
                             BorderRadius="20"
                             HeightRequest="40"
                             Command="{Binding ShowCommand}"
@@ -78,7 +82,7 @@
                     <Label
                         Grid.Column="0"
                         Grid.Row="3"
-                        Text="Descripción:"
+                        Text="{i18n:Translate label_description}"
                         FontAttributes="Italic"
                         TextColor="{StaticResource FontColor}"
                         Margin="0,10">
@@ -94,7 +98,7 @@
                     <Label 
                         Grid.Column="1"
                         Grid.Row="3"
-                        Text="Minerales:"
+                        Text="{i18n:Translate label_minerals}"
                         HorizontalTextAlignment="End"
                         FontAttributes="Italic"
                         TextColor="{StaticResource FontColor}"
@@ -121,9 +125,10 @@
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
-                <ActivityIndicator
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
-                </ActivityIndicator>
+                <Label
+                    HorizontalOptions="Center"
+                    Text="{Binding StatusLoad, Mode=TwoWay}">
+                </Label>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

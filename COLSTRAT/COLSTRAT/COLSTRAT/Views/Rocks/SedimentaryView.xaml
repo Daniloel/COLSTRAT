@@ -2,8 +2,9 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     x:Class="COLSTRAT.Views.Rocks.SedimentaryView"
-    Title="Rocas sedimentarias"
+    Title="{i18n:Translate SedimentaryRocks}"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Padding>
@@ -21,14 +22,14 @@
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
                 <Label 
-                    Text="Rocas sedimentarias"
+                    Text="{i18n:Translate SedimentaryRocks}"
                     FontSize="Large"
                     TextColor="{StaticResource FontColor}"
                     FontAttributes="Bold,Italic"
                     HorizontalOptions="Center">
                 </Label>
                 <Label 
-                    Text="Nombre:"
+                    Text="{i18n:Translate label_name}"
                     FontAttributes="Italic"
                     TextColor="{StaticResource FontColor}">
                 </Label>
@@ -37,7 +38,7 @@
                     ItemsSource="{Binding SedimentaryRocks}"
                     SelectedItem="{Binding SourceRock}"
                     ItemDisplayBinding="{Binding Name}"
-                    Title="Seleccione la roca">
+                    Title="{i18n:Translate picker_select_the_rock}">
                 </Picker>
                 <ActivityIndicator
                     IsRunning="{Binding IsRunning, Mode=TwoWay}">
@@ -46,14 +47,14 @@
                     BackgroundColor="{StaticResource AccentColor}"
                     FontAttributes="Bold"
                     TextColor="{StaticResource FontColor}"
-                    Text="Mostrar"
+                    Text="{i18n:Translate btnShow}"
                     BorderRadius="20"
                     HeightRequest="40"
                     Command="{Binding ShowCommand}"
                     IsEnabled="{Binding IsEnabled, Mode=TwoWay}">
                 </Button>
                 <Label
-                    Text="Descripción:"
+                    Text="{i18n:Translate label_description}"
                     FontAttributes="Italic"
                     TextColor="{StaticResource FontColor}"
                     Margin="0,10">
@@ -69,7 +70,7 @@
                     Color="{StaticResource AccentColor}">
                 </BoxView>
                 <Label 
-                    Text="Minerales:"
+                    Text="{i18n:Translate label_minerals}"
                     FontAttributes="Italic"
                     TextColor="{StaticResource FontColor}"
                     Margin="0,10">
@@ -85,7 +86,7 @@
                     Color="{StaticResource AccentColor}">
                 </BoxView>
                 <Label
-                    Text="Imagen:"
+                    Text="{i18n:Translate label_image}"
                     FontAttributes="Italic"
                     TextColor="{StaticResource FontColor}"
                     Margin="0,10">

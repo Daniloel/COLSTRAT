@@ -11,6 +11,8 @@ using GalaSoft.MvvmLight.Command;
 using COLSTRAT.Service;
 using Newtonsoft.Json;
 using System.Net.Http;
+using COLSTRAT.Helpers;
+using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels
 {
@@ -168,15 +170,16 @@ namespace COLSTRAT.ViewModels
         {
             IsRunning = true;
             IsEnabled = false;
+            var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/metamorphic_rocks";
-            var response = await apiService.GetRocks(controller);
+            var response = await apiService.GetList<MetamorphicRock>(url, controller);
             if (!response.IsSuccess)
             {
                 IsRunning = false;
-                await dialogService.ShowMessage("ERROR", response.Message);
+                await dialogService.ShowMessage(Languages.Warning, response.Message);
+                return;
             }
-            var rocks = JsonConvert.DeserializeObject<List<MetamorphicRock>>(response.Result.ToString());
-            MetamorphicRocks = new ObservableCollection<MetamorphicRock>(rocks);
+            MetamorphicRocks = new ObservableCollection<MetamorphicRock>((List<MetamorphicRock>)response.Result);
             IsEnabled = true;
             IsRunning = false;
         }
@@ -195,7 +198,7 @@ namespace COLSTRAT.ViewModels
         {
             if (SourceRock == null)
             {
-                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
