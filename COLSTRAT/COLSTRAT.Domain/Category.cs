@@ -1,5 +1,6 @@
 ﻿namespace COLSTRAT.Domain
 {
+    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -13,8 +14,10 @@
         [Index("Category_Description_Index", IsUnique = true)]
         [Display(Name = "Category")]
         public string Description { get; set; }
-        
+
+        [JsonIgnore]
         public virtual ICollection<Rock> Rocks { get; set; }
+        [JsonIgnore]
         public virtual ICollection<MohsScale> MohsScales { get; set; }
     }
 }

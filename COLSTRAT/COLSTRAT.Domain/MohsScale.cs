@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,7 +17,8 @@ namespace COLSTRAT.Domain
 
         public string Mineral { get; set; }
         public string Test { get; set; }
-        
+
+        [JsonIgnore]
         public virtual Category Category { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace COLSTRAT.Domain
 {
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,8 +33,11 @@
         [Display(Name = "Hardness mohs of this rock")]
         public int MohsScaleId { get; set; }
 
+        [JsonIgnore]
         public virtual TypeOfRock TypeOfRock { get; set; }
+        [JsonIgnore]
         public virtual Category Category { get; set; }
+        [JsonIgnore]
         public virtual MohsScale MohsScale { get; set; }
     }
 }
