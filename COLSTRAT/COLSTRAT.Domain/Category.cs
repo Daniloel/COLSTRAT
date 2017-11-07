@@ -16,7 +16,7 @@
         public string Description { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Rock> Rocks { get; set; }
+        public virtual ICollection<TypeOfRock> TypesOfRocks { get; set; }
         [JsonIgnore]
         public virtual ICollection<MohsScale> MohsScales { get; set; }
     }

@@ -18,7 +18,7 @@
         // GET: Rocks
         public async Task<ActionResult> Index()
         {
-            var rocks = db.Rocks.Include(r => r.Category).Include(r => r.MohsScale).Include(r => r.TypeOfRock);
+            var rocks = db.Rocks.Include(r => r.MohsScale).Include(r => r.TypeOfRock);
             return View(await rocks.ToListAsync());
         }
 
@@ -40,7 +40,6 @@
         // GET: Rocks/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description");
             ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale");
             ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name");
             return View();
@@ -74,8 +73,7 @@
                 var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.Exception));
                 Console.WriteLine(errors);
             }
-
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", view.CategoryId);
+            
             ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
             ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
             return View(view);
@@ -85,14 +83,12 @@
         {
             return new Rock
             {
-                Category = view.Category,
-                CategoryId = view.CategoryId,
                 Descripcion = view.Descripcion,
                 Image = view.Image,
                 TypeOfRock = view.TypeOfRock,
                 TypeOfRockId = view.TypeOfRockId,
                 Name = view.Name,
-                Minerals_Composition = view.Descripcion,
+                Minerals_Composition = view.Minerals_Composition,
                 UseFor = view.UseFor,
                 Structure = view.Structure,
                 Chemical_Composition = view.Chemical_Composition,
@@ -116,7 +112,6 @@
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
             ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
             ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
             var view = ToView(rock);
@@ -127,14 +122,12 @@
         {
             return new RockView
             {
-                Category = rock.Category,
-                CategoryId = rock.CategoryId,
                 Descripcion = rock.Descripcion,
                 Image = rock.Image,
                 TypeOfRock = rock.TypeOfRock,
                 TypeOfRockId = rock.TypeOfRockId,
                 Name = rock.Name,
-                Minerals_Composition = rock.Descripcion,
+                Minerals_Composition = rock.Minerals_Composition,
                 UseFor = rock.UseFor,
                 Structure = rock.Structure,
                 Chemical_Composition = rock.Chemical_Composition,
@@ -169,8 +162,7 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", view.CategoryId);
+            
             ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
             ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
             return View(view);

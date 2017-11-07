@@ -7,6 +7,8 @@ namespace COLSTRAT.Domain
 {
     public class TypeOfRock
     {
+
+        public int CategoryId { get; set; }
         [Key]
         public int TypeOfRockId { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
@@ -18,6 +20,9 @@ namespace COLSTRAT.Domain
         [MaxLength(500, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [JsonIgnore]
+        public virtual Category Category { get; set; }
         [JsonIgnore]
         public virtual Collection<Rock> Rocks { get; set; }
     }

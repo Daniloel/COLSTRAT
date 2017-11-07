@@ -35,6 +35,7 @@
         // GET: TypeOfRocks/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description");
             return View();
         }
 
@@ -43,7 +44,7 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TypeOfRockId,Name,Description")] TypeOfRock typeOfRock)
+        public async Task<ActionResult> Create(TypeOfRock typeOfRock)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +52,7 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description",typeOfRock.CategoryId);
             return View(typeOfRock);
         }
 
@@ -67,6 +68,8 @@
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", typeOfRock.CategoryId);
+
             return View(typeOfRock);
         }
 
@@ -75,7 +78,7 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TypeOfRockId,Name,Description")] TypeOfRock typeOfRock)
+        public async Task<ActionResult> Edit(TypeOfRock typeOfRock)
         {
             if (ModelState.IsValid)
             {

@@ -12,9 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Description)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TypeOfRock.Name)
         </th>
         <th>
@@ -34,9 +31,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Description)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TypeOfRock.Name)
         </td>

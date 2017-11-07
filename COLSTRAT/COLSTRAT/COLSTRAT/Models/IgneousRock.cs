@@ -23,7 +23,7 @@ namespace COLSTRAT.Models
 
         public override int GetHashCode()
         {
-            return Id;
+            return RockId;
         }
     }
 }

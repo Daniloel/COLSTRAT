@@ -8,7 +8,6 @@
     {
         [Key]
         public int RockId { get; set; }
-        public int CategoryId { get; set; }
         public int TypeOfRockId { get; set; }
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
@@ -34,8 +33,6 @@
 
         [JsonIgnore]
         public virtual TypeOfRock TypeOfRock { get; set; }
-        [JsonIgnore]
-        public virtual Category Category { get; set; }
         [JsonIgnore]
         public virtual MohsScale MohsScale { get; set; }
     }
