@@ -258,7 +258,7 @@
                 return;
             }
             Descripcion = SourceRock.Descripcion;
-            Minerals = SourceRock.Minerals;
+            Minerals = SourceRock.Minerals_Composition;
             ImageSource = SourceRock.Image;
         }
         public ICommand ImageCommand

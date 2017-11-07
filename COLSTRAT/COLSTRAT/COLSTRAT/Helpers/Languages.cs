@@ -103,5 +103,20 @@ namespace COLSTRAT.Helpers
         {
             get { return Resources.btnExit; }
         }
+        public static string ErrorEmailEmpty
+        {
+            get { return Resources.error_input_email_0;  }
+        }
+        public static string ErrorPasswordEmpty
+        {
+            get { return Resources.error_input_password_0; }
+        }
+        public static string ErrorResponseNotFound
+        {
+            get
+            {
+                return Resources.error_service_no_available;
+            }
+        }
     }
 }

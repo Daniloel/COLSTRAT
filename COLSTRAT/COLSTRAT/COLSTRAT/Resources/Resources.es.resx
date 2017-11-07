@@ -212,4 +212,47 @@
     <value>Recordarme</value>
     <comment>recuerdame dle login</comment>
   </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>¿Olvidó su contraseña?</value>
+  </data>
+  <data name="btnLogin" xml:space="preserve">
+    <value>Ingresar</value>
+    <comment>boton de ingreso</comment>
+  </data>
+  <data name="btnLoginWithFacebook" xml:space="preserve">
+    <value>Ingresar con Facebook</value>
+    <comment>boton de login con face</comment>
+  </data>
+  <data name="btnSignUp" xml:space="preserve">
+    <value>Registrarse</value>
+    <comment>boton de registro</comment>
+  </data>
+  <data name="error_input_email_0" xml:space="preserve">
+    <value>Debes ingresar un email.</value>
+    <comment>error de email vacio</comment>
+  </data>
+  <data name="error_input_password_0" xml:space="preserve">
+    <value>Debes ingresar una contraseña</value>
+    <comment>error de pass vacia</comment>
+  </data>
+  <data name="label_email" xml:space="preserve">
+    <value>Correo electrónico:</value>
+    <comment>label de correo en login</comment>
+  </data>
+  <data name="label_password" xml:space="preserve">
+    <value>Contraseña:</value>
+    <comment>label de contraseña en login</comment>
+  </data>
+  <data name="placeholder_email" xml:space="preserve">
+    <value>Ingrese su correo...</value>
+    <comment>placeholder de correo en login</comment>
+  </data>
+  <data name="placeholder_password" xml:space="preserve">
+    <value>Ingrese su contraseña...</value>
+    <comment>placeholder de contraseña en login</comment>
+  </data>
+  <data name="error_service_no_available" xml:space="preserve">
+    <value>Servicio no disponible, por favor intente más tarde</value>
+    <comment>fallo el response</comment>
+  </data>
 </root>

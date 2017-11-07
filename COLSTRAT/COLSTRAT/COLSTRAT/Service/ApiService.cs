@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using COLSTRAT.Models;
-using System.Net.Http;
-using Newtonsoft.Json;
-using Plugin.Connectivity;
-using COLSTRAT.Helpers;
-
-namespace COLSTRAT.Service
+﻿namespace COLSTRAT.Service
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using COLSTRAT.Models;
+    using System.Net.Http;
+    using Newtonsoft.Json;
+    using Plugin.Connectivity;
+    using COLSTRAT.Helpers;
+    using System.Text;
+
     public class ApiService
     {
         public async Task<Response> CheckConnection()
@@ -38,6 +37,26 @@ namespace COLSTRAT.Service
                 IsSuccess = true
             };
         }
+
+        public async Task<TokenResponse> GetToken(string urlBase,string username,string password)
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var response = await client.PostAsync(
+                    "Token",new StringContent(string.Format("grant_type=password&username={0}&password={1}",username, password),
+                    Encoding.UTF8, "application/x-www-form-urlencoded"));
+                var resultJSON = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<TokenResponse>(resultJSON);
+                return result;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
         /// <summary>
         /// Devuelve una petición por GET

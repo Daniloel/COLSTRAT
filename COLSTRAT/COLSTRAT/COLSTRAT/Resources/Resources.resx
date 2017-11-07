@@ -189,4 +189,37 @@
   <data name="RememberMe" xml:space="preserve">
     <value>Remember me</value>
   </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>Forgot your Password?</value>
+  </data>
+  <data name="btnLogin" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="btnLoginWithFacebook" xml:space="preserve">
+    <value>Login with Facebook</value>
+  </data>
+  <data name="btnSignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="error_input_email_0" xml:space="preserve">
+    <value>You must enter an email.</value>
+  </data>
+  <data name="error_input_password_0" xml:space="preserve">
+    <value>You must enter a password.</value>
+  </data>
+  <data name="label_email" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="label_password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="placeholder_email" xml:space="preserve">
+    <value>Enter your email...</value>
+  </data>
+  <data name="placeholder_password" xml:space="preserve">
+    <value>Enter your password...</value>
+  </data>
+  <data name="error_service_no_available" xml:space="preserve">
+    <value>The service is not available, please try latter.</value>
+  </data>
 </root>
