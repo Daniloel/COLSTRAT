@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Login.LoginView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    Title="{i18n:Translate LoginViewTitle}"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Login}"
+            Padding="10">
+            <Label 
+                Text="COLSTRAT App"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center">
+            </Label>
+            <Grid
+                Margin="50,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Text="Email:">
+                </Label>
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Keyboard="Email"
+                    Placeholder="Enter your email..."
+                    Text="{Binding Email,Mode=TwoWay}">
+                </Entry>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Text="Password:">
+                </Label>
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    IsPassword="True"
+                    Placeholder="Enter your password..."
+                    Text="{Binding Password,Mode=TwoWay}">
+                </Entry>
+            </Grid>
+            <StackLayout
+                Orientation="Horizontal">
+                <Label 
+                    Text="{i18n:Translate RememberMe}"
+                    VerticalOptions="Center">
+                </Label>
+                <Switch
+                    IsToggled="{Binding IsToggled, Mode=TwoWay}">
+                </Switch>
+            </StackLayout>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning,Mode=TwoWay}">
+            </ActivityIndicator>
+            <Button
+                Command="{Binding LoginCommand}"
+                Margin="50,0"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                BackgroundColor="{StaticResource AccentColor}"
+                Text="Login"
+                TextColor="White">
+            </Button>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

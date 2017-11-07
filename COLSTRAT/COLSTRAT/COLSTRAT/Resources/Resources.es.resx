@@ -204,4 +204,12 @@
   <data name="loaded_local" xml:space="preserve">
     <value>Rocas cargadas de datos locales.</value>
   </data>
+  <data name="LoginViewTitle" xml:space="preserve">
+    <value>Ingresar</value>
+    <comment>titulo de la page dle login</comment>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recordarme</value>
+    <comment>recuerdame dle login</comment>
+  </data>
 </root>

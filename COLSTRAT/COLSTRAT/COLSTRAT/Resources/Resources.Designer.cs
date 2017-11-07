@@ -170,6 +170,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        public static string LoginViewTitle {
+            get {
+                return ResourceManager.GetString("LoginViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Message.
         /// </summary>
         public static string message_image {
@@ -220,6 +229,15 @@ namespace COLSTRAT.Resources {
         public static string picker_select_the_rock {
             get {
                 return ResourceManager.GetString("picker_select_the_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
             }
         }
         

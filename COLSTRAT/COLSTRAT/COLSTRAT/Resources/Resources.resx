@@ -183,4 +183,10 @@
   <data name="loaded_local" xml:space="preserve">
     <value>Rocks loaded from local data.</value>
   </data>
+  <data name="LoginViewTitle" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
 </root>
