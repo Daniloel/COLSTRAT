@@ -18,5 +18,9 @@ namespace COLSTRAT.Service
         {
             return await App.Current.MainPage.DisplayAlert(title, message, Languages.Yes, Languages.Not);
         }
+        public async Task ShowErrorMessage(string message)
+        {
+            await App.Current.MainPage.DisplayAlert(Languages.Warning, message, Languages.Accept);
+        }
     }
 }

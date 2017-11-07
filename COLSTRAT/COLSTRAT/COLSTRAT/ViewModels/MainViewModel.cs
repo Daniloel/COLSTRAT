@@ -1,7 +1,9 @@
 ﻿namespace COLSTRAT.ViewModels
 {
     using COLSTRAT.Helpers;
+    using COLSTRAT.Models;
     using COLSTRAT.Service;
+    using COLSTRAT.ViewModels.Login;
     using GalaSoft.MvvmLight.Command;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -11,6 +13,7 @@
         #region Services
         private NavigationService navigationService;
         #endregion
+
         #region Properties
         public ObservableCollection<MenuItemViewModel> Menu
         {
@@ -20,16 +23,35 @@
         public IgneousViewModel Igneous { get; set; }
         public MetamorphicViewModel Metamorphic { get; set; }
         public SedimentaryViewModel Sedimentary { get; set; }
+        public LoginViewModel Login { get; set; }
+        public TokenResponse Token { get; set; }
         #endregion
 
         #region Constructor
         public MainViewModel()
         {
+            instance = this;
+            Login = new LoginViewModel();
             Menu = new ObservableCollection<MenuItemViewModel>();
             navigationService = new NavigationService();
             LoadMenu();
         }
         #endregion
+
+        #region Singleton
+        static MainViewModel instance;
+
+        public static MainViewModel GetInstante()
+        {
+            if (instance == null)
+            {
+                return new MainViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
+
         #region Methods
         private void LoadMenu()
         {
