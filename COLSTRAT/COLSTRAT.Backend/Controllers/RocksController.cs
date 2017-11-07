@@ -111,7 +111,7 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rock rock = await db.Rocks.FindAsync(id);
+            var rock = await db.Rocks.FindAsync(id);
             if (rock == null)
             {
                 return HttpNotFound();
@@ -119,7 +119,31 @@
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
             ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
             ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
-            return View(rock);
+            var view = ToView(rock);
+            return View(view);
+        }
+
+        private RockView ToView(Rock rock)
+        {
+            return new RockView
+            {
+                Category = rock.Category,
+                CategoryId = rock.CategoryId,
+                Descripcion = rock.Descripcion,
+                Image = rock.Image,
+                TypeOfRock = rock.TypeOfRock,
+                TypeOfRockId = rock.TypeOfRockId,
+                Name = rock.Name,
+                Minerals_Composition = rock.Descripcion,
+                UseFor = rock.UseFor,
+                Structure = rock.Structure,
+                Chemical_Composition = rock.Chemical_Composition,
+                Mechanical_Strength = rock.Mechanical_Strength,
+                Porosity = rock.Porosity,
+                MohsScale = rock.MohsScale,
+                MohsScaleId = rock.MohsScaleId,
+                RockId = rock.RockId
+            };
         }
 
         // POST: Rocks/Edit/5
@@ -127,18 +151,29 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RockId,CategoryId,TypeOfRockId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity,MohsScaleId")] Rock rock)
+        public async Task<ActionResult> Edit(RockView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = view.Image;
+                var folder = "~/Content/RocksImages";
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }
+
+                var rock = ToRock(view);
+                rock.Image = pic;
                 db.Entry(rock).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
-            return View(rock);
+
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", view.CategoryId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
+            return View(view);
         }
 
         // GET: Rocks/Delete/5
