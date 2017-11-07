@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using COLSTRAT.Domain;
-
-namespace COLSTRAT.API.Controllers
+﻿namespace COLSTRAT.API.Controllers
 {
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using COLSTRAT.Domain;
+    [Authorize]
     public class CategoriesController : ApiController
     {
         private DataContext db = new DataContext();

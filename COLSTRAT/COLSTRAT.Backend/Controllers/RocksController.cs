@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using COLSTRAT.Backend.Models;
-using COLSTRAT.Domain;
-
-namespace COLSTRAT.Backend.Controllers
+﻿namespace COLSTRAT.Backend.Controllers
 {
+    using System.Data.Entity;
+    using System.Threading.Tasks;
+    using System.Net;
+    using System.Web.Mvc;
+    using COLSTRAT.Backend.Models;
+    using COLSTRAT.Domain;
+    [Authorize(Users = "danieldaniyyelda@gmail.com")]
     public class RocksController : Controller
     {
         private DataContextLocal db = new DataContextLocal();
@@ -52,7 +47,7 @@ namespace COLSTRAT.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RockId,CategoryId,TypeOfRockId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity,MohsScaleId")] Rock rock)
+        public async Task<ActionResult> Create(Rock rock)
         {
             if (ModelState.IsValid)
             {
