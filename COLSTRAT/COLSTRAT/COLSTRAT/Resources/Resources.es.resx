@@ -255,4 +255,8 @@
     <value>Servicio no disponible, por favor intente más tarde</value>
     <comment>fallo el response</comment>
   </data>
+  <data name="btn_rocks_types" xml:space="preserve">
+    <value>Tipos de rocas</value>
+    <comment>boton de tipos de rocas, open category</comment>
+  </data>
 </root>

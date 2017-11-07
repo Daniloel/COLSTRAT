@@ -45,11 +45,15 @@
     <Compile Include="Infraestructure\InstanceLocator.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategoryTypeOfRocks.cs" />
+    <Compile Include="Models\Rock.cs" />
     <Compile Include="Models\IgneousRock.cs" />
     <Compile Include="Models\MetamorphicRock.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\SedimentaryRock.cs" />
     <Compile Include="Models\TokenResponse.cs" />
+    <Compile Include="Models\TypeOfRock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -60,6 +64,7 @@
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\NavigationService.cs" />
+    <Compile Include="ViewModels\TypesOfRocksViewModel.cs" />
     <Compile Include="ViewModels\IgneousViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
@@ -69,6 +74,9 @@
     <Compile Include="ViewModels\SedimentaryViewModel.cs" />
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\TypesOfRocksView.xaml.cs">
+      <DependentUpon>TypesOfRocksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
@@ -186,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Login\LoginView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Main\TypesOfRocksView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

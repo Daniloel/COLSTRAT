@@ -108,6 +108,8 @@
             IsToggled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
+            Email = "danieldaniyyelda@gmail.com";
+            Password = "123456";
         }
         #endregion
 

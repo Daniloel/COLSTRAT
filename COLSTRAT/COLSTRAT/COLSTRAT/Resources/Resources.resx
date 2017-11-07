@@ -222,4 +222,8 @@
   <data name="error_service_no_available" xml:space="preserve">
     <value>The service is not available, please try latter.</value>
   </data>
+  <data name="btn_rocks_types" xml:space="preserve">
+    <value>Types of rocks</value>
+    <comment>category</comment>
+  </data>
 </root>

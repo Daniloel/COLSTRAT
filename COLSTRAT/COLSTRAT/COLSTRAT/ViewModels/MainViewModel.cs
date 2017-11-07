@@ -25,6 +25,7 @@
         public SedimentaryViewModel Sedimentary { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
+        public TypesOfRocksViewModel TypesOfRocks { get; set; }
         #endregion
 
         #region Constructor
@@ -81,8 +82,7 @@
             });
         }
         #endregion
-
-
+        
         #region Commands
 
         public ICommand ToIgneousRocks
@@ -112,7 +112,15 @@
             Sedimentary = new SedimentaryViewModel();
             await navigationService.Navigate("SedimentaryView");
         }
-
+        public ICommand ToTypesOfRocks
+        {
+            get{ return new RelayCommand(ShowTypesOfRocks); }
+        }
+        async void ShowTypesOfRocks()
+        {
+            TypesOfRocks = new TypesOfRocksViewModel();
+            await navigationService.Navigate("TypesOfRocksView");
+        }
         #endregion
 
     }
