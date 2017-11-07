@@ -46,7 +46,6 @@
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\CategoryTypeOfRocks.cs" />
     <Compile Include="Models\Rock.cs" />
     <Compile Include="Models\IgneousRock.cs" />
     <Compile Include="Models\MetamorphicRock.cs" />
@@ -64,6 +63,7 @@
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\DialogService.cs" />
     <Compile Include="Service\NavigationService.cs" />
+    <Compile Include="ViewModels\Rocks\RocksViewModel.cs" />
     <Compile Include="ViewModels\TypesOfRocksViewModel.cs" />
     <Compile Include="ViewModels\IgneousViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -89,6 +89,9 @@
     </Compile>
     <Compile Include="Views\Rocks\MetamorphicView.xaml.cs">
       <DependentUpon>MetamorphicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rocks\RocksView.xaml.cs">
+      <DependentUpon>RocksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Rocks\SedimentaryView.xaml.cs">
       <DependentUpon>SedimentaryView.xaml</DependentUpon>
@@ -200,6 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Main\TypesOfRocksView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Rocks\RocksView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

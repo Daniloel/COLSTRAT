@@ -19,9 +19,44 @@ namespace COLSTRAT.API.Controllers
         private DataContext db = new DataContext();
 
         // GET: api/TypeOfRocks
-        public IQueryable<TypeOfRock> GetTypeOfRocks()
+        public async Task<IHttpActionResult> GetTypeOfRocks()
         {
-            return db.TypeOfRocks;
+            var typeOfRock = await db.TypeOfRocks.ToListAsync();
+            var typeRocksResponse = new List<TypeOfRockResponse>();
+
+            foreach (var types in typeOfRock)
+            {
+                var rocksResponse = new List<RockResponse>();
+                foreach (var rock in types.Rocks)
+                {
+                    rocksResponse.Add(new RockResponse
+                    {
+                        Descripcion = rock.Descripcion,
+                        Image = rock.Image,
+                        TypeOfRockId = rock.TypeOfRockId,
+                        Name = rock.Name,
+                        Minerals_Composition = rock.Descripcion,
+                        UseFor = rock.UseFor,
+                        Structure = rock.Structure,
+                        Chemical_Composition = rock.Chemical_Composition,
+                        Mechanical_Strength = rock.Mechanical_Strength,
+                        Porosity = rock.Porosity,
+                        MohsScaleId = rock.MohsScaleId,
+                        RockId = rock.RockId
+                    });
+                }
+                typeRocksResponse.Add(new TypeOfRockResponse
+                {
+                    TypeOfRockId = types.TypeOfRockId,
+                    Name = types.Name,
+                    Description = types.Description,
+                    Rocks = rocksResponse
+                });
+            }
+            
+            
+
+            return Ok(typeRocksResponse);
         }
 
         // GET: api/TypeOfRocks/5

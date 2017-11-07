@@ -1,9 +1,13 @@
 ﻿using COLSTRAT.Models;
 using COLSTRAT.Service;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
+using System;
 
 namespace COLSTRAT.ViewModels
 {
@@ -19,11 +23,11 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Attributes
-        ObservableCollection<CategoryTypeOfRocks> _typesOfRocks;
+        ObservableCollection<TypeOfRock> _typesOfRocks;
         #endregion
 
         #region Properties
-        public ObservableCollection<CategoryTypeOfRocks> TypeOfRocks
+        public ObservableCollection<TypeOfRock> TypeOfRocks
         {
             get { return _typesOfRocks; }
             set
@@ -57,10 +61,10 @@ namespace COLSTRAT.ViewModels
             }
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<CategoryTypeOfRocks>(
+            var response = await apiService.GetList<TypeOfRock>(
                 urlBase,
                 "/api",
-                "/TypeOfRocks/2",
+                "/TypeOfRocks",
                 mainViewModel.Token.TokenType,
                 mainViewModel.Token.AccessToken);
 
@@ -70,11 +74,12 @@ namespace COLSTRAT.ViewModels
                 return;
             }
 
-            var typeofRocks = (List<CategoryTypeOfRocks>)response.Result;
+            var typeofRocks = (List<TypeOfRock>)response.Result;
+            TypeOfRocks = new ObservableCollection<TypeOfRock>(typeofRocks.OrderBy(c => c.Description));
         }
         #endregion
 
-
+        
 
     }
 }

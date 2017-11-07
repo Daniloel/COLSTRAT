@@ -1,4 +1,6 @@
-﻿namespace COLSTRAT.Models
+﻿using Xamarin.Forms;
+
+namespace COLSTRAT.Models
 {
     public class Rock
     {
@@ -25,6 +27,19 @@
         public string Porosity { get; set; }
 
         public int MohsScaleId { get; set; }
+
+        public string ImageFullPath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Image))
+                {
+                    return "noimage";
+                }
+                return string.Format("http://colstrat-api.somee.com{0}", Image.Substring(1));
+            }
+        }
+
 
         public override int GetHashCode()
         {

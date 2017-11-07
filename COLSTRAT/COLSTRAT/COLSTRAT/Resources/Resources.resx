@@ -226,4 +226,10 @@
     <value>Types of rocks</value>
     <comment>category</comment>
   </data>
+  <data name="RocksTitle" xml:space="preserve">
+    <value>Rocks</value>
+  </data>
+  <data name="TypeOfRocksViewTitle" xml:space="preserve">
+    <value>Types of rocks</value>
+  </data>
 </root>

@@ -350,11 +350,29 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rocks.
+        /// </summary>
+        public static string RocksTitle {
+            get {
+                return ResourceManager.GetString("RocksTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sedimentary Rocks.
         /// </summary>
         public static string SedimentaryRocks {
             get {
                 return ResourceManager.GetString("SedimentaryRocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types of rocks.
+        /// </summary>
+        public static string TypeOfRocksViewTitle {
+            get {
+                return ResourceManager.GetString("TypeOfRocksViewTitle", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@
     using COLSTRAT.Models;
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels.Login;
+    using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -26,6 +27,7 @@
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
         public TypesOfRocksViewModel TypesOfRocks { get; set; }
+        public RocksViewModel Rocks { get; set; }
         #endregion
 
         #region Constructor

@@ -33,6 +33,9 @@
                 case "TypesOfRocksView":
                     await App.Navigator.PushAsync(new TypesOfRocksView());
                     break;
+                case "RocksView":
+                    await App.Navigator.PushAsync(new RocksView());
+                    break;
                 default:
                     break;
             }

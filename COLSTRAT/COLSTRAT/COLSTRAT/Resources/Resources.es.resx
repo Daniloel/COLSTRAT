@@ -259,4 +259,10 @@
     <value>Tipos de rocas</value>
     <comment>boton de tipos de rocas, open category</comment>
   </data>
+  <data name="RocksTitle" xml:space="preserve">
+    <value>Rocas</value>
+  </data>
+  <data name="TypeOfRocksViewTitle" xml:space="preserve">
+    <value>Tipos de roca</value>
+  </data>
 </root>

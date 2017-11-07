@@ -2,51 +2,45 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="COLSTRAT.Views.Main.TypesOfRocksView"
-    Title="{i18n:Translate TypeOfRocksViewTitle}"
+    x:Class="COLSTRAT.Views.Rocks.RocksView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
-    BackgroundColor="{StaticResource BackgroundColor}">
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{i18n:Translate RocksTitle}">
     <ContentPage.Content>
         <StackLayout
-            Padding="10"
-             BindingContext="{Binding TypesOfRocks}">
+            BindingContext="{Binding Rocks}"
+            Padding="10">
             <ListView 
-                ItemsSource="{Binding TypeOfRocks}"
+                ItemsSource="{Binding Rocks}"
                 HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label 
+                                <Image 
+                                    HorizontalOptions="Start"
                                     Grid.Column="0"
-                                    FontSize="Large"
+                                    HeightRequest="150"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                </Image>
+                                <Label 
+                                    Grid.Column="1"
+                                    FontSize="Medium"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     Text="{Binding Name}">
                                 </Label>
-                                <Image 
-                                    HorizontalOptions="End"
-                                    Grid.Column="1"
-                                    Source="ic_chevron_right"
-                                    WidthRequest="50"
-                                    HeightRequest="50">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding OpenTypeOfRockCommand}">
-                                        </TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
-                                </Image>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
