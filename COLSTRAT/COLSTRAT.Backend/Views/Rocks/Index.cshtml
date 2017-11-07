@@ -1,21 +1,18 @@
 ﻿@model IEnumerable<COLSTRAT.Domain.Rock>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Rocks";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Category.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MohsScale.Scale)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TypeOfRock.Name)
@@ -32,21 +29,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Minerals_Composition)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UseFor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Structure)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Chemical_Composition)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mechanical_Strength)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Porosity)
-        </th>
         <th></th>
     </tr>
 
@@ -56,13 +38,14 @@
             @Html.DisplayFor(modelItem => item.Category.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MohsScale.Scale)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TypeOfRock.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            @if (!string.IsNullOrEmpty(item.Image))
+            {
+                <img src="@Url.Content(item.Image)" alt="Image" style="width:300px;height:350px;max-width: 100%; height: auto;" />
+            }
+
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -74,24 +57,9 @@
             @Html.DisplayFor(modelItem => item.Minerals_Composition)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UseFor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Structure)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Chemical_Composition)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mechanical_Strength)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Porosity)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RockId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RockId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RockId })
+            @Html.ActionLink("Edit", "Edit", new { id=item.RockId }, new { @class = "btn btn-warning" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.RockId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.RockId }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
