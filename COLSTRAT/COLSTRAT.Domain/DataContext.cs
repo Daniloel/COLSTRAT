@@ -8,10 +8,6 @@
         public DataContext() : base("DefaultConnection")
         {
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-        }
         
     }
 }
