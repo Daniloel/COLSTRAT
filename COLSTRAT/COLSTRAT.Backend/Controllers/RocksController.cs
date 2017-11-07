@@ -19,7 +19,7 @@ namespace COLSTRAT.Backend.Controllers
         // GET: Rocks
         public async Task<ActionResult> Index()
         {
-            var rocks = db.Rocks.Include(r => r.Category);
+            var rocks = db.Rocks.Include(r => r.Category).Include(r => r.MohsScale).Include(r => r.TypeOfRock);
             return View(await rocks.ToListAsync());
         }
 
@@ -42,6 +42,8 @@ namespace COLSTRAT.Backend.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description");
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale");
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name");
             return View();
         }
 
@@ -50,7 +52,7 @@ namespace COLSTRAT.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "RockId,CategoryId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity")] Rock rock)
+        public async Task<ActionResult> Create([Bind(Include = "RockId,CategoryId,TypeOfRockId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity,MohsScaleId")] Rock rock)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +62,8 @@ namespace COLSTRAT.Backend.Controllers
             }
 
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
             return View(rock);
         }
 
@@ -76,6 +80,8 @@ namespace COLSTRAT.Backend.Controllers
                 return HttpNotFound();
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
             return View(rock);
         }
 
@@ -84,7 +90,7 @@ namespace COLSTRAT.Backend.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "RockId,CategoryId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity")] Rock rock)
+        public async Task<ActionResult> Edit([Bind(Include = "RockId,CategoryId,TypeOfRockId,Image,Name,Descripcion,Minerals_Composition,UseFor,Structure,Chemical_Composition,Mechanical_Strength,Porosity,MohsScaleId")] Rock rock)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +99,8 @@ namespace COLSTRAT.Backend.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
             return View(rock);
         }
 

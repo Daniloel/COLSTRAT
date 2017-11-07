@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.Category.Description)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MohsScale.Scale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfRock.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Image)
         </th>
         <th>
@@ -48,6 +54,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Category.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MohsScale.Scale)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOfRock.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Image)

@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MohsScalesController.cs" />
     <Compile Include="Controllers\RocksController.cs" />
+    <Compile Include="Controllers\TypeOfRocksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -289,6 +290,11 @@
     <Content Include="Views\MohsScales\Details.cshtml" />
     <Content Include="Views\MohsScales\Edit.cshtml" />
     <Content Include="Views\MohsScales\Index.cshtml" />
+    <Content Include="Views\TypeOfRocks\Create.cshtml" />
+    <Content Include="Views\TypeOfRocks\Delete.cshtml" />
+    <Content Include="Views\TypeOfRocks\Details.cshtml" />
+    <Content Include="Views\TypeOfRocks\Edit.cshtml" />
+    <Content Include="Views\TypeOfRocks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

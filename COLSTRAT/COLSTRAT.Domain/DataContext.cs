@@ -8,7 +8,7 @@
         public DbSet<Category> Categories { get; set; }
         public DbSet<Rock> Rocks { get; set; }
         public DbSet<MohsScale> MohsScales { get; set; }
-
+        public DbSet<TypeOfRock> TypeOfRocks { get; set; }
         public DataContext() : base("DefaultConnection")
         {
         }

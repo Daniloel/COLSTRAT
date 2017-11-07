@@ -8,10 +8,11 @@
         [Key]
         public int RockId { get; set; }
         public int CategoryId { get; set; }
+        public int TypeOfRockId { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
-        [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
+        [MaxLength(140, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
         [Index("Rocks_Name_Index", IsUnique = true)]
         public string Name { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
@@ -29,8 +30,9 @@
         [Display(Name = "Porosity of this rock")]
         public string Porosity { get; set; } //TODO debe ser una clase
         [Display(Name = "Hardness mohs of this rock")]
-        public int MohsScaleId { get; set; } //TODO escala de dureza debe ser una clase, dureza,mineral,prueba
+        public int MohsScaleId { get; set; }
 
+        public virtual TypeOfRock TypeOfRock { get; set; }
         public virtual Category Category { get; set; }
         public virtual MohsScale MohsScale { get; set; }
     }
