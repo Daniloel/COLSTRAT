@@ -6,6 +6,10 @@
     using System.Web.Mvc;
     using COLSTRAT.Backend.Models;
     using COLSTRAT.Domain;
+    using COLSTRAT.Backend.Helpers;
+    using System;
+    using System.Linq;
+
     [Authorize(Users = "danieldaniyyelda@gmail.com")]
     public class RocksController : Controller
     {
@@ -47,19 +51,57 @@
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Rock rock)
+        public async Task<ActionResult> Create(RockView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = string.Empty;
+                var folder = "~/Content/RocksImages";
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }
+
+                var rock = ToRock(view);
+                rock.Image = pic;
                 db.Rocks.Add(rock);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.Exception));
+                Console.WriteLine(errors);
+            }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", rock.CategoryId);
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
-            return View(rock);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", view.CategoryId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
+            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
+            return View(view);
+        }
+
+        private Rock ToRock(RockView view)
+        {
+            return new Rock
+            {
+                Category = view.Category,
+                CategoryId = view.CategoryId,
+                Descripcion = view.Descripcion,
+                Image = view.Image,
+                TypeOfRock = view.TypeOfRock,
+                TypeOfRockId = view.TypeOfRockId,
+                Name = view.Name,
+                Minerals_Composition = view.Descripcion,
+                UseFor = view.UseFor,
+                Structure = view.Structure,
+                Chemical_Composition = view.Chemical_Composition,
+                Mechanical_Strength = view.Mechanical_Strength,
+                Porosity = view.Porosity,
+                MohsScale = view.MohsScale,
+                MohsScaleId = view.MohsScaleId,
+                RockId = view.RockId
+            };
         }
 
         // GET: Rocks/Edit/5

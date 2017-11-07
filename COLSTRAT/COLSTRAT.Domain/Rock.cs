@@ -10,7 +10,6 @@
         public int RockId { get; set; }
         public int CategoryId { get; set; }
         public int TypeOfRockId { get; set; }
-        [Required(ErrorMessage = "The field {0} is required.")]
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(140, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
