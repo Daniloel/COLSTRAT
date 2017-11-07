@@ -29,8 +29,9 @@
         [Display(Name = "Porosity of this rock")]
         public string Porosity { get; set; } //TODO debe ser una clase
         [Display(Name = "Hardness mohs of this rock")]
-        public MohsScale Hardness_Scale { get; set; } //TODO escala de dureza debe ser una clase, dureza,mineral,prueba
+        public int MohsScaleId { get; set; } //TODO escala de dureza debe ser una clase, dureza,mineral,prueba
 
         public virtual Category Category { get; set; }
+        public virtual MohsScale MohsScale { get; set; }
     }
 }
