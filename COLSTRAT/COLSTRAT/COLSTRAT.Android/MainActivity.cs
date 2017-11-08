@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Droid;
+using FFImageLoading;
 
 namespace COLSTRAT.Droid
 {
@@ -16,12 +18,22 @@ namespace COLSTRAT.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
-
             base.OnCreate(bundle);
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
 
+            var config = new FFImageLoading.Config.Configuration()
+            {
+                VerboseLogging = false,
+                VerbosePerformanceLogging = false,
+                VerboseMemoryCacheLogging = false,
+                VerboseLoadingCancelledLogging = false,
+                //Logger = new CustomLogger(),
+            };
+            ImageService.Instance.Initialize(config);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
+        
     }
 }
 

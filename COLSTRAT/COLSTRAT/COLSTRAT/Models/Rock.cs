@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-
-namespace COLSTRAT.Models
+﻿namespace COLSTRAT.Models
 {
     public class Rock
     {
@@ -36,7 +34,7 @@ namespace COLSTRAT.Models
                 {
                     return "noimage";
                 }
-                return string.Format("http://colstrat-api.somee.com{0}", Image.Substring(1));
+                return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
             }
         }
 

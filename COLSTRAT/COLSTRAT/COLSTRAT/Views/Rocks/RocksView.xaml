@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="COLSTRAT.Views.Rocks.RocksView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
     Title="{i18n:Translate RocksTitle}">
@@ -22,13 +24,24 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Image 
+                              <!--  <Image
                                     HorizontalOptions="Start"
                                     Grid.Column="0"
                                     HeightRequest="150"
                                     Source="{Binding ImageFullPath}"
                                     WidthRequest="100">
-                                </Image>
+                                    
+                                </Image>-->
+                                <ff:CachedImage
+                                    HorizontalOptions="Start"
+                                    Grid.Column="0"
+                                    HeightRequest="150"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="240"/>
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
                                 <Label 
                                     Grid.Column="1"
                                     FontSize="Medium"
