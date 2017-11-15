@@ -42,13 +42,22 @@
                                         <ffTransformations:RoundedTransformation Radius="240"/>
                                     </ff:CachedImage.Transformations>
                                 </ff:CachedImage>
-                                <Label 
+                                <StackLayout
                                     Grid.Column="1"
+                                    Orientation="Vertical">
+                                    <Label 
                                     FontSize="Medium"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     Text="{Binding Name}">
-                                </Label>
+                                    </Label>
+                                    <Label 
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Description}">
+                                    </Label>
+                                </StackLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
