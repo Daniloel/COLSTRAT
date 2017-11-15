@@ -55,7 +55,7 @@
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
-                                    Text="{Binding Description}">
+                                    Text="{Binding Descripcion}">
                                     </Label>
                                 </StackLayout>
                             </Grid>
