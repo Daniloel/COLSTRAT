@@ -286,6 +286,3 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-# json-server
-*.api_rest_json-server-node-js.txt
-*.type_of_rocks.json
