@@ -8,6 +8,7 @@
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout
             BindingContext="{Binding Login}"
             Padding="10"
@@ -21,10 +22,14 @@
             <Grid
                 Margin="50,10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                    <Label 
                     Grid.Column="0"
                     Grid.Row="0"
                     VerticalOptions="Center"
@@ -71,6 +76,7 @@
                 </Label.GestureRecognizers>
             </Label>
             <ActivityIndicator
+                IsVisible="{Binding IsRunning, Mode=TwoWay}"
                 IsRunning="{Binding IsRunning,Mode=TwoWay}">
             </ActivityIndicator>
             <StackLayout
@@ -106,6 +112,7 @@
                     TextColor="White">
                 </Button>
             </StackLayout>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

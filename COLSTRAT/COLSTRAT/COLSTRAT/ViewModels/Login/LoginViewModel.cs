@@ -3,11 +3,9 @@
     using GalaSoft.MvvmLight.Command;
     using System.ComponentModel;
     using System.Windows.Input;
-    using System;
     using COLSTRAT.Service;
     using COLSTRAT.Helpers;
     using Xamarin.Forms;
-    using COLSTRAT.Views;
 
     public class LoginViewModel : INotifyPropertyChanged
     {
@@ -18,6 +16,7 @@
         #region Services
         ApiService apiService;
         DialogService dialogService;
+        NavigationService navigationService;
         #endregion
 
         #region Attributes
@@ -108,6 +107,7 @@
             IsToggled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
+            navigationService = new NavigationService();
             Email = "danieldaniyyelda@gmail.com";
             Password = "123456";
         }
@@ -164,7 +164,8 @@
             }
             var mainViewModel = MainViewModel.GetInstante();
             mainViewModel.Token = response;
-            Application.Current.MainPage = new MasterView();
+            mainViewModel.TypesOfRocks = new TypesOfRocksViewModel();
+            navigationService.SetMainPage();
             IsRunning = false;
             IsEnabled = true;
             Email = null;

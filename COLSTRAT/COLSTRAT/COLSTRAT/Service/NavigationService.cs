@@ -8,10 +8,10 @@
 
     public class NavigationService
     {
-        public void SetMainPage(string pageName)
+        public void SetMainPage(string pageName = null)
         {
-            
-            Application.Current.MainPage = new MainView();
+            if (pageName is default)
+                Application.Current.MainPage = new MasterView();
                
         }
 

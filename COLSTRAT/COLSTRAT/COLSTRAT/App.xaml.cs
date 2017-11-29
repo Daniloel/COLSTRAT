@@ -2,6 +2,8 @@
 {
     using Xamarin.Forms;
     using COLSTRAT.Views.Login;
+    using COLSTRAT.Resources;
+
     public partial class App : Application
     {
         #region Properties
@@ -13,7 +15,7 @@
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginView());
+            MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor=Colors.AccentColor };
             //MainPage = new MasterView();
         }
         #endregion
