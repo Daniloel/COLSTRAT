@@ -62,18 +62,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.cs" />
+    <Compile Include="Menu\Entity\Fluids\FluidsCategory.cs" />
+    <Compile Include="Menu\Entity\Fluids\Valvules\Valvule.cs" />
+    <Compile Include="Menu\Entity\Fluids\Valvules\ValvulesMenu.cs" />
+    <Compile Include="Menu\Entity\Geology\GeologyCategory.cs" />
+    <Compile Include="Menu\Entity\Geology\Rocks\RocksMenu.cs" />
+    <Compile Include="Menu\Main\MainMenu.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="MohsScale.cs" />
+    <Compile Include="Menu\Entity\Units\MohsScale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rock.cs" />
-    <Compile Include="TypeOfRock.cs" />
+    <Compile Include="Menu\Entity\Geology\Rocks\Rock.cs" />
+    <Compile Include="Menu\Categories\Category.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Menu\Entity\Fluids\FlowMeters\" />
+    <Folder Include="Menu\Entity\Fluids\Pumps\" />
+    <Folder Include="Menu\Entity\Geology\StratigraphicColumn\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

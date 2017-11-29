@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Backend.Models.RockView
+﻿@model COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm("Edit", "Rocks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -16,13 +16,20 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RockId)
-        @Html.HiddenFor(model => model.Image)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TypeOfRockId, "TypeOfRockId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RocksMenuId, "RocksMenuId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TypeOfRockId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TypeOfRockId, "", new { @class = "text-danger" })
+                @Html.DropDownList("RocksMenuId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RocksMenuId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -39,15 +46,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <span class="btn btn-default btn-file">
-                    @Html.TextBoxFor(modelo => modelo.ImageFile, new { type = "file" })
-                </span>
             </div>
         </div>
 

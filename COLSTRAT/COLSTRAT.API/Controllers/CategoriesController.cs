@@ -1,27 +1,28 @@
-﻿namespace COLSTRAT.API.Controllers
-{
-    using COLSTRAT.API.Models;
-    using COLSTRAT.Domain;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    using System.Linq;
-    using System.Net;
-    using System.Threading.Tasks;
-    using System.Web.Http;
-    using System.Web.Http.Description;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Http.Description;
+using COLSTRAT.Domain;
+using COLSTRAT.Domain.Menu.Categories;
 
+namespace COLSTRAT.API.Controllers
+{
     [Authorize]
     public class CategoriesController : ApiController
     {
         private DataContext db = new DataContext();
 
         // GET: api/Categories
-        public async Task<IHttpActionResult> GetCategories()
+        public IQueryable<Category> GetCategories()
         {
-            var categories = db.Categories.ToListAsync();
-            
-            return Ok(categories);
+            return db.Categories;
         }
 
         // GET: api/Categories/5
@@ -34,74 +35,7 @@
                 return NotFound();
             }
 
-            switch (category.CategoryId)
-            {
-                case ConstBase.ROCKS_CATEGORY:
-                    var rocksCategory = LoadRocks();
-                    return Ok(rocksCategory);
-                    break;
-                case ConstBase.SCALES_CATEGORY:
-                    break;
-                case ConstBase.COLUMN_STRATIGRAPH_CATEGORY:
-                    break;
-                default:
-                    break;
-            }
-
-
-
-            CategoryRockResponse LoadRocks(){
-
-                CategoryRockResponse categoriyResponse = new CategoryRockResponse();
-                if (category.TypesOfRocks != null)
-                {
-                    var typeRockResponseList = new List<TypeOfRockResponse>();
-                    
-                    foreach (var typeRock in category.TypesOfRocks)
-                    {
-                        var typeRockResponse = new TypeOfRockResponse();
-                        var rocksResponse = new List<RockResponse>();
-                        foreach (var rock in typeRock.Rocks)
-                        {
-                            rocksResponse.Add(new RockResponse
-                            {
-                                Descripcion = rock.Descripcion,
-                                Image = rock.Image,
-                                TypeOfRockId = rock.TypeOfRockId,
-                                Name = rock.Name,
-                                Minerals_Composition = rock.Descripcion,
-                                UseFor = rock.UseFor,
-                                Structure = rock.Structure,
-                                Chemical_Composition = rock.Chemical_Composition,
-                                Mechanical_Strength = rock.Mechanical_Strength,
-                                Porosity = rock.Porosity,
-                                MohsScaleId = rock.MohsScaleId,
-                                RockId = rock.RockId
-                            });
-                            
-                        }
-                        typeRockResponseList.Add(new TypeOfRockResponse
-                        {
-                            TypeOfRockId = typeRock.TypeOfRockId,
-                            Name = typeRock.Name,
-                            Description = typeRock.Description,
-                            Rocks = rocksResponse
-                        });
-                    }
-
-                    categoriyResponse.CategoryId = category.CategoryId;
-                    categoriyResponse.Description = category.Description;
-                    categoriyResponse.TypeOfRocks = typeRockResponseList;
-                }
-                return categoriyResponse;
-            }
-
-
-
             return Ok(category);
-
-
-
         }
 
         // PUT: api/Categories/5

@@ -1,13 +1,14 @@
-﻿namespace COLSTRAT.Domain
+﻿namespace COLSTRAT.Domain.Menu.Main
 {
+    using COLSTRAT.Domain.Menu.Categories;
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    public class Category
+    public class MainMenu
     {
         [Key]
-        public int CategoryId { get; set; }
+        public int MainMenuId { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(50,ErrorMessage ="The field {0} only can contain {1} characters lenth")]
@@ -16,8 +17,6 @@
         public string Description { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<TypeOfRock> TypesOfRocks { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<MohsScale> MohsScales { get; set; }
+        public virtual ICollection<Category> Category { get; set; }
     }
 }

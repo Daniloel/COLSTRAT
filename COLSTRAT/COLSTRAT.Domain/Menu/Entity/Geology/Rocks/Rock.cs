@@ -1,4 +1,4 @@
-﻿namespace COLSTRAT.Domain
+﻿namespace COLSTRAT.Domain.Menu.Entity.Geology.Rocks
 {
     using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@
     {
         [Key]
         public int RockId { get; set; }
-        public int TypeOfRockId { get; set; }
+        public int RocksMenuId { get; set; }
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(140, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
@@ -32,7 +32,7 @@
         public int MohsScaleId { get; set; }
 
         [JsonIgnore]
-        public virtual TypeOfRock TypeOfRock { get; set; }
+        public virtual RocksMenu RocksMenu { get; set; }
         [JsonIgnore]
         public virtual MohsScale MohsScale { get; set; }
     }

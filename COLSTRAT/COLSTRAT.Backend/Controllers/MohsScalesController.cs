@@ -1,11 +1,17 @@
-﻿namespace COLSTRAT.Backend.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using COLSTRAT.Backend.Models;
+using COLSTRAT.Domain;
+
+namespace COLSTRAT.Backend.Controllers
 {
-    using System.Data.Entity;
-    using System.Threading.Tasks;
-    using System.Net;
-    using System.Web.Mvc;
-    using COLSTRAT.Backend.Models;
-    using COLSTRAT.Domain;
     [Authorize(Users = "danieldaniyyelda@gmail.com")]
     public class MohsScalesController : Controller
     {
@@ -14,8 +20,7 @@
         // GET: MohsScales
         public async Task<ActionResult> Index()
         {
-            var mohsScales = db.MohsScales.Include(m => m.Category);
-            return View(await mohsScales.ToListAsync());
+            return View(await db.MohsScales.ToListAsync());
         }
 
         // GET: MohsScales/Details/5
@@ -36,16 +41,15 @@
         // GET: MohsScales/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description");
             return View();
         }
 
         // POST: MohsScales/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MohsScaleId,CategoryId,Scale,Mineral,Test")] MohsScale mohsScale)
+        public async Task<ActionResult> Create([Bind(Include = "MohsScaleId,Scale,Mineral,Test")] MohsScale mohsScale)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +58,6 @@
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", mohsScale.CategoryId);
             return View(mohsScale);
         }
 
@@ -70,16 +73,15 @@
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", mohsScale.CategoryId);
             return View(mohsScale);
         }
 
         // POST: MohsScales/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MohsScaleId,CategoryId,Scale,Mineral,Test")] MohsScale mohsScale)
+        public async Task<ActionResult> Edit([Bind(Include = "MohsScaleId,Scale,Mineral,Test")] MohsScale mohsScale)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +89,6 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Description", mohsScale.CategoryId);
             return View(mohsScale);
         }
 

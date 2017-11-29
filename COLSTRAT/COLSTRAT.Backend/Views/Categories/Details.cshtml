@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Category
+﻿@model COLSTRAT.Domain.Menu.Categories.Category
 
 @{
     ViewBag.Title = "Details";
@@ -11,15 +11,21 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CategoryId)
+            @Html.DisplayNameFor(model => model.MainMenu.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.DisplayFor(model => model.MainMenu.Description)
         </dd>
 
-    </dl>
-    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -29,7 +35,6 @@
         </dd>
 
     </dl>
-    
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryId }) |

@@ -200,11 +200,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\GeologyCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainMenusController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MohsScalesController.cs" />
     <Compile Include="Controllers\RocksController.cs" />
-    <Compile Include="Controllers\TypeOfRocksController.cs" />
+    <Compile Include="Controllers\RocksMenusController.cs" />
+    <Compile Include="Controllers\ValvulesController.cs" />
+    <Compile Include="Controllers\ValvulesMenusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +283,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MainMenus\Create.cshtml" />
+    <Content Include="Views\MainMenus\Delete.cshtml" />
+    <Content Include="Views\MainMenus\Details.cshtml" />
+    <Content Include="Views\MainMenus\Edit.cshtml" />
+    <Content Include="Views\MainMenus\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
@@ -289,16 +298,31 @@
     <Content Include="Views\Rocks\Details.cshtml" />
     <Content Include="Views\Rocks\Edit.cshtml" />
     <Content Include="Views\Rocks\Index.cshtml" />
+    <Content Include="Views\RocksMenus\Create.cshtml" />
+    <Content Include="Views\RocksMenus\Delete.cshtml" />
+    <Content Include="Views\RocksMenus\Details.cshtml" />
+    <Content Include="Views\RocksMenus\Edit.cshtml" />
+    <Content Include="Views\RocksMenus\Index.cshtml" />
+    <Content Include="Views\GeologyCategories\Create.cshtml" />
+    <Content Include="Views\GeologyCategories\Delete.cshtml" />
+    <Content Include="Views\GeologyCategories\Details.cshtml" />
+    <Content Include="Views\GeologyCategories\Edit.cshtml" />
+    <Content Include="Views\GeologyCategories\Index.cshtml" />
     <Content Include="Views\MohsScales\Create.cshtml" />
     <Content Include="Views\MohsScales\Delete.cshtml" />
     <Content Include="Views\MohsScales\Details.cshtml" />
     <Content Include="Views\MohsScales\Edit.cshtml" />
     <Content Include="Views\MohsScales\Index.cshtml" />
-    <Content Include="Views\TypeOfRocks\Create.cshtml" />
-    <Content Include="Views\TypeOfRocks\Delete.cshtml" />
-    <Content Include="Views\TypeOfRocks\Details.cshtml" />
-    <Content Include="Views\TypeOfRocks\Edit.cshtml" />
-    <Content Include="Views\TypeOfRocks\Index.cshtml" />
+    <Content Include="Views\ValvulesMenus\Create.cshtml" />
+    <Content Include="Views\ValvulesMenus\Delete.cshtml" />
+    <Content Include="Views\ValvulesMenus\Details.cshtml" />
+    <Content Include="Views\ValvulesMenus\Edit.cshtml" />
+    <Content Include="Views\ValvulesMenus\Index.cshtml" />
+    <Content Include="Views\Valvules\Create.cshtml" />
+    <Content Include="Views\Valvules\Delete.cshtml" />
+    <Content Include="Views\Valvules\Details.cshtml" />
+    <Content Include="Views\Valvules\Edit.cshtml" />
+    <Content Include="Views\Valvules\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
