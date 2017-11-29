@@ -164,7 +164,7 @@
             }
             var mainViewModel = MainViewModel.GetInstante();
             mainViewModel.Token = response;
-            mainViewModel.TypesOfRocks = new TypesOfRocksViewModel();
+            mainViewModel.MainMenu = new MainMenuViewModel();
             navigationService.SetMainPage();
             IsRunning = false;
             IsEnabled = true;

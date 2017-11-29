@@ -4,6 +4,7 @@
     using COLSTRAT.Models;
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels.Login;
+    using COLSTRAT.ViewModels.Main;
     using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
     using System.Collections.ObjectModel;
@@ -26,8 +27,9 @@
         public SedimentaryViewModel Sedimentary { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
-        public TypesOfRocksViewModel TypesOfRocks { get; set; }
+        public MainMenuViewModel MainMenu { get; set; }
         public RocksViewModel Rocks { get; set; }
+        public CategoryMenuViewModel CategoryMenu { get; set; }
         #endregion
 
         #region Constructor
@@ -120,8 +122,8 @@
         }
         async void ShowTypesOfRocks()
         {
-            TypesOfRocks = new TypesOfRocksViewModel();
-            await navigationService.Navigate("TypesOfRocksView");
+            MainMenu = new MainMenuViewModel();
+            await navigationService.Navigate("MainMenuView");
         }
         #endregion
 

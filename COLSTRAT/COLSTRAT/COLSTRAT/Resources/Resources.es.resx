@@ -262,7 +262,7 @@
   <data name="RocksTitle" xml:space="preserve">
     <value>Rocas</value>
   </data>
-  <data name="TypeOfRocksViewTitle" xml:space="preserve">
-    <value>Tipos de roca</value>
+  <data name="MainMenuViewTitle" xml:space="preserve">
+    <value>Menu principal</value>
   </data>
 </root>

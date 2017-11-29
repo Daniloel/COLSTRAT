@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.CategoryMenuView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{Binding TitlePage}">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10"
+             BindingContext="{Binding CategoryMenu}">
+            <ListView 
+                ItemsSource="{Binding CategoryMenuItems}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label 
+                                    Grid.Column="0"
+                                    FontSize="Large"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Name}">
+                                </Label>
+                                <Image 
+                                    HorizontalOptions="End"
+                                    Grid.Column="1"
+                                    Source="ic_chevron_right"
+                                    WidthRequest="50"
+                                    HeightRequest="50">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding OpenCategoryCommand}">
+                                        </TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

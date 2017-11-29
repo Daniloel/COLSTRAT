@@ -30,11 +30,14 @@
                 case "SedimentaryView":
                     await App.Navigator.PushAsync(new SedimentaryView());
                     break;
-                case "TypesOfRocksView":
-                    await App.Navigator.PushAsync(new TypesOfRocksView());
+                case "MainMenuView":
+                    await App.Navigator.PushAsync(new MainMenuView());
                     break;
                 case "RocksView":
                     await App.Navigator.PushAsync(new RocksView());
+                    break;
+                case "CategoryMenuView":
+                    await App.Navigator.PushAsync(new CategoryMenuView());
                     break;
                 default:
                     break;

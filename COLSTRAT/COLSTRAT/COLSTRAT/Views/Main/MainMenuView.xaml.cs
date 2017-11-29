@@ -3,9 +3,9 @@
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TypesOfRocksView : ContentPage
+    public partial class MainMenuView : ContentPage
     {
-        public TypesOfRocksView()
+        public MainMenuView()
         {
             InitializeComponent();
         }

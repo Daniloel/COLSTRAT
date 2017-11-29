@@ -4,8 +4,6 @@
     {
         public int RockId { get; set; }
 
-        public int TypeOfRockId { get; set; }
-
         public string Image { get; set; }
 
         public string Name { get; set; }

@@ -122,7 +122,7 @@
                     controller,
                     id);
                 var response = await client.GetAsync(url);
-
+                var result = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
                     return new Response
@@ -132,7 +132,6 @@
                     };
                 }
 
-                var result = await response.Content.ReadAsStringAsync();
                 var list = JsonConvert.DeserializeObject<List<T>>(result);
                 return new Response
                 {

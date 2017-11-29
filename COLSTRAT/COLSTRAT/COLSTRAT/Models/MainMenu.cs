@@ -1,48 +1,47 @@
 ﻿namespace COLSTRAT.Models
 {
-    using COLSTRAT.Views.Rocks;
+    using COLSTRAT.Service;
     using COLSTRAT.ViewModels;
+    using COLSTRAT.ViewModels.Main;
     using GalaSoft.MvvmLight.Command;
     using System.Collections.Generic;
     using System.Windows.Input;
-    using Xamarin.Forms;
-    using COLSTRAT.ViewModels.Rocks;
-    using COLSTRAT.Service;
 
-    public class TypeOfRock
+    public class MainMenu
     {
-        #region SErvices
+        #region Services
         DialogService dialogService;
         NavigationService navigationService;
         #endregion
-
-        public int TypeOfRockId { get; set; }
-        public string Name { get; set; }
+        #region Attributes
+        public int MainMenuId { get; set; }
         public string Description { get; set; }
-        public List<Rock> Rocks { get; set; }
+        public List<Category> Category { get; set; } 
+        #endregion
 
-        #region Constructors
-        public TypeOfRock()
+        #region Contructor
+        public MainMenu()
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();
         }
         #endregion
+
         #region Commands
-        public ICommand OpenTypeOfRockCommand
+        public ICommand OpenDetailCommand
         {
             get
             {
-                return new RelayCommand(OpenTypeOfRock);
+                return new RelayCommand(OpenDetail);
             }
         }
 
-        private async void OpenTypeOfRock()
+        private async void OpenDetail()
         {
             var mainViewModel = MainViewModel.GetInstante();
-            mainViewModel.Rocks = new RocksViewModel(Rocks);
-            await navigationService.Navigate("RocksView");
-            
+            mainViewModel.CategoryMenu = new CategoryMenuViewModel(Category,Description);
+            await navigationService.Navigate("CategoryMenuView");
+
         }
         #endregion
     }

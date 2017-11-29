@@ -11,7 +11,7 @@ using System;
 
 namespace COLSTRAT.ViewModels
 {
-    public class TypesOfRocksViewModel : INotifyPropertyChanged
+    public class MainMenuViewModel : INotifyPropertyChanged
     {
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -23,35 +23,35 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Attributes
-        ObservableCollection<TypeOfRock> _typesOfRocks;
+        ObservableCollection<MainMenu> _mainMenuItems;
         #endregion
 
         #region Properties
-        public ObservableCollection<TypeOfRock> TypeOfRocks
+        public ObservableCollection<MainMenu> MainMenuItems
         {
-            get { return _typesOfRocks; }
+            get { return _mainMenuItems; }
             set
             {
-                if (_typesOfRocks != value)
+                if (_mainMenuItems != value)
                 {
-                    _typesOfRocks = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TypeOfRocks)));
+                    _mainMenuItems = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MainMenuItems)));
                 }
             }
         }
         #endregion
 
         #region Constructor
-        public TypesOfRocksViewModel()
+        public MainMenuViewModel()
         {
             dialogService = new DialogService();
             apiService = new ApiService();
-            LoadTypesOfRocks();
+            LoadMainMenu();
         }
         #endregion
 
         #region Methods
-        private async void LoadTypesOfRocks()
+        private async void LoadMainMenu()
         {
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
@@ -61,10 +61,10 @@ namespace COLSTRAT.ViewModels
             }
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<TypeOfRock>(
+            var response = await apiService.GetList<MainMenu>(
                 urlBase,
                 "/api",
-                "/TypeOfRocks",
+                "/MainMenus",
                 mainViewModel.Token.TokenType,
                 mainViewModel.Token.AccessToken);
 
@@ -74,8 +74,8 @@ namespace COLSTRAT.ViewModels
                 return;
             }
 
-            var typeofRocks = (List<TypeOfRock>)response.Result;
-            TypeOfRocks = new ObservableCollection<TypeOfRock>(typeofRocks.OrderBy(c => c.Description));
+            var mainMenu = (List<MainMenu>)response.Result;
+            MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
         }
         #endregion
 
