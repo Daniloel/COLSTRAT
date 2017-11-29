@@ -12,6 +12,7 @@ namespace COLSTRAT.API.Models
         public string Name { get; set; }
         
         public string Description { get; set; }
-        
+        public List<RocksMenuResponse> RocksMenu { get; set; }
+
     }
 }

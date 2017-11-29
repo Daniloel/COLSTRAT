@@ -10,5 +10,11 @@ namespace COLSTRAT.API.Models
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+
+        public const int GEOLOGY = 1;
+        public const int FLUIDS = 2;
+
+
     }
 }

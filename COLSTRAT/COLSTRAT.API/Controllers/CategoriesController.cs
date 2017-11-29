@@ -30,11 +30,93 @@
         [ResponseType(typeof(Category))]
         public async Task<IHttpActionResult> GetCategory(int id)
         {
-            Category category = await db.Categories.FindAsync(id);
+            var category = await db.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
+            if (id == CategoryResponse.GEOLOGY)
+            {
+                var categoryResponse = new List<GeologyCategoryResponse>();
+
+                foreach (var item in category.GeologyCategory)
+                {
+                    var rocksmenu = new List<RocksMenuResponse>();
+                    foreach (var rocksm in item.RocksMenu)
+                    {
+                        var rocksResponse = new List<RockResponse>();
+                        foreach (var rocks in rocksm.Rock)
+                        {
+                            rocksResponse.Add(new RockResponse
+                            {
+                                RockId = rocks.RockId,
+                                Image = rocks.Image,
+                                Name = rocks.Name,
+                                Descripcion = rocks.Descripcion,
+                                Minerals_Composition = rocks.Minerals_Composition,
+                                UseFor = rocks.UseFor,
+                                Structure = rocks.Structure,
+                                Chemical_Composition = rocks.Chemical_Composition,
+                                Mechanical_Strength = rocks.Mechanical_Strength,
+                                Porosity = rocks.Porosity,
+                                MohsScaleId = rocks.MohsScaleId
+                            });
+                        }
+
+                        rocksmenu.Add(new RocksMenuResponse
+                        {
+                            RocksMenuId = rocksm.RocksMenuId,
+                            Name = rocksm.Name,
+                            Description = rocksm.Description,
+                            Rocks = rocksResponse
+                        });
+                    }
+                    categoryResponse.Add(new GeologyCategoryResponse
+                    {
+                        GeologyCategoryId = item.GeologyCategoryId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        RocksMenu = rocksmenu
+                    });
+                }
+                return Ok(categoryResponse);
+
+            }
+            else if(id == CategoryResponse.FLUIDS)
+            {
+                var categoryResponse = new List<FluidsCategoryResponse>();
+
+                foreach (var item in category.FluidsCategory)
+                {
+                    var valvuleResponse = new List<ValvuleResponse>();
+
+                    foreach (var valvule in item.Valvules)
+                    {
+
+                        valvuleResponse.Add(new ValvuleResponse
+                        {
+                            ValvuleId = valvule.ValvuleId,
+                            Image = valvule.Image,
+                            Name = valvule.Name,
+                            Descripcion = valvule.Descripcion,
+                            UseFor = valvule.UseFor
+                        });
+                    }
+                    
+                    categoryResponse.Add(new FluidsCategoryResponse
+                    {
+                        FluidsCategoryId = item.FluidsCategoryId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        Valvules = valvuleResponse
+                    });
+                }
+
+                return Ok(categoryResponse);
+
+            }
+
+
 
             return Ok(category);
         }
