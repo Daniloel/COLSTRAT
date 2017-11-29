@@ -10,7 +10,7 @@ namespace COLSTRAT.Domain
 
         public int CategoryId { get; set; }
         [Key]
-        public int ArticleId { get; set; }
+        public int TypeOfRockId { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(20)]
         [Index(IsUnique = true)]
