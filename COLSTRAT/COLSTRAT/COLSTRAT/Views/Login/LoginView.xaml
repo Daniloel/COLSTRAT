@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Login.LoginView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    Title="{i18n:Translate LoginViewTitle}"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Login}"
+            Padding="10"
+            Spacing="16">
+            <Label 
+                Text="COLSTRAT App"
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center">
+            </Label>
+            <Grid
+                Margin="50,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    VerticalOptions="Center"
+                    Text="{i18n:Translate label_email}">
+                </Label>
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Keyboard="Email"
+                    Placeholder="{i18n:Translate placeholder_email}"
+                    Text="{Binding Email,Mode=TwoWay}">
+                </Entry>
+                <Label 
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    VerticalOptions="Center"
+                    Text="{i18n:Translate label_password}">
+                </Label>
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    IsPassword="True"
+                    Placeholder="{i18n:Translate placeholder_password}"
+                    Text="{Binding Password,Mode=TwoWay}">
+                </Entry>
+            </Grid>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="{i18n:Translate RememberMe}"
+                    VerticalOptions="Center">
+                </Label>
+                <Switch
+                    IsToggled="{Binding IsToggled, Mode=TwoWay}">
+                </Switch>
+            </StackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Text="{i18n:Translate ForgotPass}"
+                TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RecoverPassCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <ActivityIndicator
+                IsRunning="{Binding IsRunning,Mode=TwoWay}">
+            </ActivityIndicator>
+            <StackLayout
+                Margin="50,0">
+                <Button
+                    Command="{Binding LoginCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Text="{i18n:Translate btnLogin}"
+                    TextColor="White">
+                </Button>
+                <Button
+                    Command="{Binding RegistryUserCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="{StaticResource AccentColor2}"
+                    Text="{i18n:Translate btnSignUp}"
+                    TextColor="White">
+                </Button>
+                <Button
+                    Command="{Binding LoginWithFacebookCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="{StaticResource AccentColor2}"
+                    Text="{i18n:Translate btnLoginWithFacebook}"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

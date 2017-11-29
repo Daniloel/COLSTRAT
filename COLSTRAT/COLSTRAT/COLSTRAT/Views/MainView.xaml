@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
              x:Class="COLSTRAT.Views.MainView"
+             xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
              BackgroundColor="{StaticResource BackgroundColor}"
              Title="COLSTRAT App">
@@ -38,6 +38,13 @@
             </StackLayout>
             <Button Command="{Binding ToSedimentaryRocks}"
                     Text="{i18n:Translate SedimentaryRocks}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand">
+            </Button>
+            <Button Command="{Binding ToTypesOfRocks}"
+                    Text="{i18n:Translate btn_rocks_types}"
                     BackgroundColor="{StaticResource AccentColor}"
                     TextColor="Black"
                     FontAttributes="Bold"

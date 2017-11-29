@@ -1,5 +1,6 @@
 ﻿namespace COLSTRAT.Domain
 {
+    using Newtonsoft.Json;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,11 +8,10 @@
     {
         [Key]
         public int RockId { get; set; }
-        public int CategoryId { get; set; }
-        [Required(ErrorMessage = "The field {0} is required.")]
+        public int TypeOfRockId { get; set; }
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
-        [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
+        [MaxLength(140, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
         [Index("Rocks_Name_Index", IsUnique = true)]
         public string Name { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
@@ -29,8 +29,11 @@
         [Display(Name = "Porosity of this rock")]
         public string Porosity { get; set; } //TODO debe ser una clase
         [Display(Name = "Hardness mohs of this rock")]
-        public MohsScale Hardness_Scale { get; set; } //TODO escala de dureza debe ser una clase, dureza,mineral,prueba
+        public int MohsScaleId { get; set; }
 
-        public virtual Category Category { get; set; }
+        [JsonIgnore]
+        public virtual TypeOfRock TypeOfRock { get; set; }
+        [JsonIgnore]
+        public virtual MohsScale MohsScale { get; set; }
     }
 }

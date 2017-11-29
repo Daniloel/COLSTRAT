@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
-
-namespace COLSTRAT
+﻿namespace COLSTRAT
 {
-    using Views;
+    using Xamarin.Forms;
+    using COLSTRAT.Views.Login;
     public partial class App : Application
     {
         #region Properties
@@ -19,8 +13,8 @@ namespace COLSTRAT
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MasterView();
+            MainPage = new NavigationPage(new LoginView());
+            //MainPage = new MasterView();
         }
         #endregion
 

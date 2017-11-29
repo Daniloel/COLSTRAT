@@ -183,14 +183,14 @@
             apiService = new ApiService();
             dataService = new DataService();
             dialogService = new DialogService();
-            Load();
+          //  Load();
         }
         #endregion
 
         #region Methods
         async void Load()
         {
-            IsRunning = true;
+      /*      IsRunning = true;
             IsEnabled = false;
             var connection = await apiService.CheckConnection();
             if (!connection.IsSuccess)
@@ -214,7 +214,7 @@
             }
             IgneousRocks = new ObservableCollection<IgneousRock>(rocks);
             IsRunning = false;
-            IsEnabled = true;
+            IsEnabled = true;*/
         }
 
         void LoadLocalData()
@@ -225,7 +225,7 @@
 
         async Task LoadDataFromAPI()
         {
-            var url = Application.Current.Resources["URL_API"].ToString();
+       /*     var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/igneous_rocks";
             var response = await apiService.GetList<IgneousRock>(url, controller);
             if (!response.IsSuccess)
@@ -236,7 +236,7 @@
             rocks = (List<IgneousRock>)response.Result;
             dataService.DeleteAll<IgneousRock>();
             dataService.Save(rocks);
-            StatusLoad = Languages.Loaded_From_Api;
+            StatusLoad = Languages.Loaded_From_Api;*/
         }
         #endregion
 
@@ -252,14 +252,14 @@
 
         async void Show()
         {
-            if (SourceRock == null)
+         /*   if (SourceRock == null)
             {
                 await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
-            Minerals = SourceRock.Minerals;
-            ImageSource = SourceRock.Image;
+            Minerals = SourceRock.Minerals_Composition;
+            ImageSource = SourceRock.Image;*/
         }
         public ICommand ImageCommand
         {

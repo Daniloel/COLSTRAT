@@ -1,6 +1,6 @@
 ﻿namespace COLSTRAT.Domain
 {
-    using System.Collections;
+    using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -12,9 +12,12 @@
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(50,ErrorMessage ="The field {0} only can contain {1} characters lenth")]
         [Index("Category_Description_Index", IsUnique = true)]
+        [Display(Name = "Category")]
         public string Description { get; set; }
-        
-        public virtual ICollection<Rock> Rocks { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<TypeOfRock> TypesOfRocks { get; set; }
+        [JsonIgnore]
         public virtual ICollection<MohsScale> MohsScales { get; set; }
     }
 }

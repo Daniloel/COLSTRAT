@@ -71,6 +71,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Types of rocks.
+        /// </summary>
+        public static string btn_rocks_types {
+            get {
+                return ResourceManager.GetString("btn_rocks_types", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string btnExit {
@@ -80,11 +89,38 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sign In.
+        /// </summary>
+        public static string btnLogin {
+            get {
+                return ResourceManager.GetString("btnLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login with Facebook.
+        /// </summary>
+        public static string btnLoginWithFacebook {
+            get {
+                return ResourceManager.GetString("btnLoginWithFacebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show.
         /// </summary>
         public static string btnShow {
             get {
                 return ResourceManager.GetString("btnShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Up.
+        /// </summary>
+        public static string btnSignUp {
+            get {
+                return ResourceManager.GetString("btnSignUp", resourceCulture);
             }
         }
         
@@ -107,6 +143,42 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must enter an email..
+        /// </summary>
+        public static string error_input_email_0 {
+            get {
+                return ResourceManager.GetString("error_input_email_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a password..
+        /// </summary>
+        public static string error_input_password_0 {
+            get {
+                return ResourceManager.GetString("error_input_password_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The service is not available, please try latter..
+        /// </summary>
+        public static string error_service_no_available {
+            get {
+                return ResourceManager.GetString("error_service_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your Password?.
+        /// </summary>
+        public static string ForgotPass {
+            get {
+                return ResourceManager.GetString("ForgotPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Igneous Rocks.
         /// </summary>
         public static string IgneousRocks {
@@ -121,6 +193,15 @@ namespace COLSTRAT.Resources {
         public static string label_description {
             get {
                 return ResourceManager.GetString("label_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email:.
+        /// </summary>
+        public static string label_email {
+            get {
+                return ResourceManager.GetString("label_email", resourceCulture);
             }
         }
         
@@ -152,6 +233,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string label_password {
+            get {
+                return ResourceManager.GetString("label_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rocks loaded from api..
         /// </summary>
         public static string loaded_api {
@@ -166,6 +256,15 @@ namespace COLSTRAT.Resources {
         public static string loaded_local {
             get {
                 return ResourceManager.GetString("loaded_local", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log in.
+        /// </summary>
+        public static string LoginViewTitle {
+            get {
+                return ResourceManager.GetString("LoginViewTitle", resourceCulture);
             }
         }
         
@@ -224,11 +323,56 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter your email....
+        /// </summary>
+        public static string placeholder_email {
+            get {
+                return ResourceManager.GetString("placeholder_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your password....
+        /// </summary>
+        public static string placeholder_password {
+            get {
+                return ResourceManager.GetString("placeholder_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember me.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rocks.
+        /// </summary>
+        public static string RocksTitle {
+            get {
+                return ResourceManager.GetString("RocksTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sedimentary Rocks.
         /// </summary>
         public static string SedimentaryRocks {
             get {
                 return ResourceManager.GetString("SedimentaryRocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types of rocks.
+        /// </summary>
+        public static string TypeOfRocksViewTitle {
+            get {
+                return ResourceManager.GetString("TypeOfRocksViewTitle", resourceCulture);
             }
         }
         

@@ -161,14 +161,14 @@ namespace COLSTRAT.ViewModels
         {
             apiService = new ApiService();
             dialogService = new DialogService();
-            Load();
+            //Load();
         }
         #endregion
 
         #region Methods
         async void Load()
         {
-            IsRunning = true;
+           /* IsRunning = true;
             IsEnabled = false;
             var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/metamorphic_rocks";
@@ -181,7 +181,7 @@ namespace COLSTRAT.ViewModels
             }
             MetamorphicRocks = new ObservableCollection<MetamorphicRock>((List<MetamorphicRock>)response.Result);
             IsEnabled = true;
-            IsRunning = false;
+            IsRunning = false;*/
         }
         #endregion
         #region Commands
@@ -196,14 +196,14 @@ namespace COLSTRAT.ViewModels
 
         async void Show()
         {
-            if (SourceRock == null)
+         /*   if (SourceRock == null)
             {
                 await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
             Minerals = SourceRock.Minerals;
-            ImageSource = SourceRock.Image;
+            ImageSource = SourceRock.Image;*/
         }
         #endregion
     }

@@ -4,6 +4,8 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using FFImageLoading.Forms.Touch;
+using FFImageLoading;
 
 namespace COLSTRAT.iOS
 {
@@ -22,10 +24,28 @@ namespace COLSTRAT.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Init();
             global::Xamarin.Forms.Forms.Init();
+            
             LoadApplication(new App());
-
             return base.FinishedLaunching(app, options);
+        }
+
+        private void Init()
+        {
+            
+
+            CachedImageRenderer.Init();
+            var config = new FFImageLoading.Config.Configuration()
+            {
+                VerboseLogging = false,
+                VerbosePerformanceLogging = false,
+                VerboseMemoryCacheLogging = false,
+                VerboseLoadingCancelledLogging = false,
+                //Logger = new CustomLogger(),
+            };
+
+            ImageService.Instance.Initialize(config);
         }
     }
 }

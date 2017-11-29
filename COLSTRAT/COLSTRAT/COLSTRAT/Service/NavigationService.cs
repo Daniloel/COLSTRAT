@@ -3,8 +3,8 @@
     using COLSTRAT.Views.Rocks;
     using System.Threading.Tasks;
     using Views;
-    using ViewModels;
     using Xamarin.Forms;
+    using COLSTRAT.Views.Main;
 
     public class NavigationService
     {
@@ -29,6 +29,12 @@
                     break;
                 case "SedimentaryView":
                     await App.Navigator.PushAsync(new SedimentaryView());
+                    break;
+                case "TypesOfRocksView":
+                    await App.Navigator.PushAsync(new TypesOfRocksView());
+                    break;
+                case "RocksView":
+                    await App.Navigator.PushAsync(new RocksView());
                     break;
                 default:
                     break;
