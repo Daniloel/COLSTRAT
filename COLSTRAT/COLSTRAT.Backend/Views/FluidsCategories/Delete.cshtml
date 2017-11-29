@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Menu.Entity.Fluids.Valvules.Valvule
+﻿@model COLSTRAT.Domain.Menu.Entity.Fluids.FluidsCategory
 
 @{
     ViewBag.Title = "Delete";
@@ -8,23 +8,15 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Valvule</h4>
+    <h4>FluidsCategory</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.FluidsCategory.Name)
+            @Html.DisplayNameFor(model => model.Category.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FluidsCategory.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
+            @Html.DisplayFor(model => model.Category.Name)
         </dd>
 
         <dt>
@@ -36,19 +28,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UseFor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UseFor)
+            @Html.DisplayFor(model => model.Description)
         </dd>
 
     </dl>

@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using COLSTRAT.Domain;
 using COLSTRAT.Domain.Menu.Main;
+using COLSTRAT.API.Models;
 
 namespace COLSTRAT.API.Controllers
 {
@@ -20,9 +21,35 @@ namespace COLSTRAT.API.Controllers
         private DataContext db = new DataContext();
 
         // GET: api/MainMenus
-        public IQueryable<MainMenu> GetMainMenu()
+        public async Task<IHttpActionResult> GetMainMenu()
         {
-            return db.MainMenu;
+            var mainmenus = await db.MainMenu.ToListAsync();
+            var mainmenusResponse = new List<MainMenuResponse>();
+
+            foreach (var category in mainmenus)
+            {
+                var categoriesResponse = new List<CategoryResponse>();
+                
+                foreach (var categories in category.Category)
+                {
+                    categoriesResponse.Add(new CategoryResponse
+                    {
+                        CategoryId = categories.CategoryId,
+                        Name = categories.Name,
+                        Description = categories.Description
+                    });
+                }
+
+
+                mainmenusResponse.Add(new MainMenuResponse
+                {
+                    MainMenuId = category.MainMenuId,
+                    Description = category.Description,
+                    Category = categoriesResponse
+                });
+            }
+
+            return Ok(mainmenusResponse);
         }
 
         // GET: api/MainMenus/5

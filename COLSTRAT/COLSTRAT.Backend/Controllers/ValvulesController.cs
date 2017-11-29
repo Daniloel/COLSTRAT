@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using COLSTRAT.Backend.Models;
 using COLSTRAT.Domain.Menu.Entity.Fluids.Valvules;
+using COLSTRAT.Backend.Helpers;
 
 namespace COLSTRAT.Backend.Controllers
 {
@@ -20,7 +21,7 @@ namespace COLSTRAT.Backend.Controllers
         // GET: Valvules
         public async Task<ActionResult> Index()
         {
-            var valvule = db.Valvule.Include(v => v.ValvulesMenu);
+            var valvule = db.Valvule.Include(v => v.FluidsCategory);
             return View(await valvule.ToListAsync());
         }
 
@@ -42,7 +43,7 @@ namespace COLSTRAT.Backend.Controllers
         // GET: Valvules/Create
         public ActionResult Create()
         {
-            ViewBag.ValvulesMenuId = new SelectList(db.ValvulesMenu, "ValvulesMenuId", "Name");
+            ViewBag.FluidsCategoryId = new SelectList(db.FluidsCategories, "FluidsCategoryId", "Name");
             return View();
         }
 
@@ -51,17 +52,41 @@ namespace COLSTRAT.Backend.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ValvuleId,ValvulesMenuId,Image,Name,Descripcion,UseFor")] Valvule valvule)
+        public async Task<ActionResult> Create(ValvuleView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = string.Empty;
+                var folder = "~/Content/ValvulesImages";
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }
+
+                var valvule = ToValvule(view);
+
+                valvule.Image = pic;
                 db.Valvule.Add(valvule);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ValvulesMenuId = new SelectList(db.ValvulesMenu, "ValvulesMenuId", "Name", valvule.ValvulesMenuId);
-            return View(valvule);
+            ViewBag.FluidsCategoryId = new SelectList(db.FluidsCategories, "FluidsCategoryId", "Name", view.FluidsCategoryId);
+            return View(view);
+        }
+
+        private Valvule ToValvule(ValvuleView view)
+        {
+            return new Valvule
+            {
+                ValvuleId = view.ValvuleId,
+                FluidsCategoryId = view.FluidsCategoryId,
+                Image = view.Image,
+                Name = view.Name,
+                Descripcion = view.Descripcion,
+                UseFor = view.UseFor
+            };
         }
 
         // GET: Valvules/Edit/5
@@ -71,13 +96,28 @@ namespace COLSTRAT.Backend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Valvule valvule = await db.Valvule.FindAsync(id);
+            var valvule = await db.Valvule.FindAsync(id);
             if (valvule == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ValvulesMenuId = new SelectList(db.ValvulesMenu, "ValvulesMenuId", "Name", valvule.ValvulesMenuId);
-            return View(valvule);
+
+            ViewBag.FluidsCategoryId = new SelectList(db.FluidsCategories, "FluidsCategoryId", "Name", valvule.FluidsCategoryId);
+            var view = ToView(valvule);
+            return View(view);
+        }
+
+        private ValvuleView ToView(Valvule valvule)
+        {
+            return new ValvuleView
+            {
+                ValvuleId = valvule.ValvuleId,
+                FluidsCategoryId = valvule.FluidsCategoryId,
+                Image = valvule.Image,
+                Name = valvule.Name,
+                Descripcion = valvule.Descripcion,
+                UseFor = valvule.UseFor
+            };
         }
 
         // POST: Valvules/Edit/5
@@ -85,16 +125,26 @@ namespace COLSTRAT.Backend.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ValvuleId,ValvulesMenuId,Image,Name,Descripcion,UseFor")] Valvule valvule)
+        public async Task<ActionResult> Edit(ValvuleView view)
         {
             if (ModelState.IsValid)
             {
+                var pic = view.Image;
+                var folder = "~/Content/ValvulesImages";
+                if (view.ImageFile != null)
+                {
+                    pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
+                    pic = string.Format("{0}/{1}", folder, pic);
+                }
+
+                var valvule = ToValvule(view);
+                valvule.Image = pic;
                 db.Entry(valvule).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.ValvulesMenuId = new SelectList(db.ValvulesMenu, "ValvulesMenuId", "Name", valvule.ValvulesMenuId);
-            return View(valvule);
+            ViewBag.FluidsCategoryId = new SelectList(db.FluidsCategories, "FluidsCategoryId", "Name", view.FluidsCategoryId);
+            return View(view);
         }
 
         // GET: Valvules/Delete/5

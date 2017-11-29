@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock
+﻿@model COLSTRAT.Backend.Models.RockView
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Rocks", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -16,6 +16,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RockId)
+        @Html.HiddenFor(model => model.Image)
 
         <div class="form-group">
             @Html.LabelFor(model => model.RocksMenuId, "RocksMenuId", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -26,10 +27,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                <span class="btn btn-default btn-file">
+                    @Html.TextBoxFor(modelo => modelo.ImageFile, new { type = "file" })
+                </span>
             </div>
         </div>
 

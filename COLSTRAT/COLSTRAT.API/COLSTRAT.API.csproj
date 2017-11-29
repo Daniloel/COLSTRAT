@@ -251,12 +251,16 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryResponse.cs" />
     <Compile Include="Models\CategoryScaleResponse.cs" />
-    <Compile Include="Models\TypeOfRockResponse.cs" />
+    <Compile Include="Models\FluidsCategoryResponse.cs" />
+    <Compile Include="Models\GeologyCategoryResponse.cs" />
+    <Compile Include="Models\MainMenuResponse.cs" />
+    <Compile Include="Models\RocksMenuResponse.cs" />
     <Compile Include="Models\ConstBase.cs" />
     <Compile Include="Models\RockResponse.cs" />
-    <Compile Include="Models\CategoryRockResponse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ValvuleResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

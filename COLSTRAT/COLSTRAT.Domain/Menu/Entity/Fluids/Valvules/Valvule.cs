@@ -8,7 +8,7 @@
     {
         [Key]
         public int ValvuleId { get; set; }
-        public int ValvulesMenuId { get; set; }
+        public int FluidsCategoryId { get; set; }
         public string Image { get; set; }
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(140, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
@@ -20,8 +20,7 @@
         [Display(Name = "This valvule is used for?")]
         public string UseFor { get; set; }
 
-
         [JsonIgnore]
-        public virtual ValvulesMenu ValvulesMenu { get; set; }
+        public virtual FluidsCategory FluidsCategory { get; set; }
     }
 }

@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ValvulesMenu.Name)
+            @Html.DisplayNameFor(model => model.FluidsCategory.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Image)
@@ -20,31 +20,22 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UseFor)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ValvulesMenu.Name)
+            @Html.DisplayFor(modelItem => item.FluidsCategory.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image)
+            @if (!string.IsNullOrEmpty(item.Image))
+            {
+                <img src="@Url.Content(item.Image)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
+            }        
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UseFor)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ValvuleId }) |

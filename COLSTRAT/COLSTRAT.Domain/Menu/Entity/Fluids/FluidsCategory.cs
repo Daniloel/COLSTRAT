@@ -25,6 +25,6 @@ namespace COLSTRAT.Domain.Menu.Entity.Fluids
         [JsonIgnore]
         public virtual Category Category { get; set; }
         [JsonIgnore]
-        public virtual Collection<ValvulesMenu> ValvulesMenu { get; set; }
+        public virtual Collection<Valvule> Valvules { get; set; }
     }
 }

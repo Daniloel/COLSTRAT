@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Menu.Entity.Fluids.Valvules.Valvule
+﻿@model COLSTRAT.Backend.Models.ValvuleView
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Valvules", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -16,20 +16,23 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ValvuleId)
+        @Html.HiddenFor(model => model.Image)
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ValvulesMenuId, "ValvulesMenuId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FluidsCategoryId, "ValvulesMenuId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ValvulesMenuId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ValvulesMenuId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.FluidsCategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                <span class="btn btn-default btn-file">
+                    @Html.TextBoxFor(modelo => modelo.ImageFile, new { type = "file" })
+                </span>
             </div>
         </div>
 

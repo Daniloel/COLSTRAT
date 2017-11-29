@@ -3,7 +3,6 @@
     public class RockResponse
     {
         public int RockId { get; set; }
-        public int TypeOfRockId { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
         public string Descripcion { get; set; }

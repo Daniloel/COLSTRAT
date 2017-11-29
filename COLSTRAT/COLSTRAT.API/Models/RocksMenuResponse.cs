@@ -2,9 +2,9 @@
 
 namespace COLSTRAT.API.Models
 {
-    public class TypeOfRockResponse
+    public class RocksMenuResponse
     {
-        public int TypeOfRockId { get; set; }
+        public int RocksMenuId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public List<RockResponse> Rocks { get; set; }

@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\FluidsCategoriesController.cs" />
     <Compile Include="Controllers\GeologyCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
@@ -208,7 +209,6 @@
     <Compile Include="Controllers\RocksController.cs" />
     <Compile Include="Controllers\RocksMenusController.cs" />
     <Compile Include="Controllers\ValvulesController.cs" />
-    <Compile Include="Controllers\ValvulesMenusController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +218,7 @@
     <Compile Include="Models\DataContextLocal.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ValvuleView.cs" />
     <Compile Include="Models\RockView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -323,9 +324,15 @@
     <Content Include="Views\Valvules\Details.cshtml" />
     <Content Include="Views\Valvules\Edit.cshtml" />
     <Content Include="Views\Valvules\Index.cshtml" />
+    <Content Include="Views\FluidsCategories\Create.cshtml" />
+    <Content Include="Views\FluidsCategories\Delete.cshtml" />
+    <Content Include="Views\FluidsCategories\Details.cshtml" />
+    <Content Include="Views\FluidsCategories\Edit.cshtml" />
+    <Content Include="Views\FluidsCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ValvulesImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

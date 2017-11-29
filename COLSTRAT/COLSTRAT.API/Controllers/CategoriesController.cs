@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Http.Description;
-using COLSTRAT.Domain;
-using COLSTRAT.Domain.Menu.Categories;
-
-namespace COLSTRAT.API.Controllers
+﻿namespace COLSTRAT.API.Controllers
 {
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Linq;
+    using System.Net;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using COLSTRAT.Domain;
+    using COLSTRAT.Domain.Menu.Categories;
+    using COLSTRAT.API.Models;
     [Authorize]
     public class CategoriesController : ApiController
     {
         private DataContext db = new DataContext();
 
         // GET: api/Categories
-        public IQueryable<Category> GetCategories()
+        public async Task<IHttpActionResult> GetCategories()
         {
-            return db.Categories;
+            var categories = await db.Categories.ToListAsync();
+            var categoriesResponse = new List<CategoryResponse>();
+            
+
+            return Ok(categories);
         }
 
         // GET: api/Categories/5
