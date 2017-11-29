@@ -9,7 +9,8 @@ What has changed?
 what did you do?
 - [ ] Create
 - [ ] Edit
+- [ ] Delete
 - [ ] Resolve
 
-how i prove it?
-describe the user do it
+describe the changes and why u do it
+
