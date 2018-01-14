@@ -1,12 +1,7 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using FFImageLoading.Forms.Droid;
 using FFImageLoading;
 
 namespace COLSTRAT.Droid
@@ -16,11 +11,16 @@ namespace COLSTRAT.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            //Plugin.Iconize.Iconize.With(new COLSTRATIconsModule());
+
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
+                          .With(new Plugin.Iconize.Fonts.MaterialModule());
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init();
-
+            
             var config = new FFImageLoading.Config.Configuration()
             {
                 VerboseLogging = false,
@@ -31,6 +31,7 @@ namespace COLSTRAT.Droid
             };
             ImageService.Instance.Initialize(config);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
             LoadApplication(new App());
         }
         

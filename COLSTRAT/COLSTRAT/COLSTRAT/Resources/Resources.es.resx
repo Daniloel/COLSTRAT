@@ -265,4 +265,8 @@
   <data name="MainMenuViewTitle" xml:space="preserve">
     <value>Menu principal</value>
   </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>Nueva categoria</value>
+    <comment>titulo de la pagina de nueva categoria</comment>
+  </data>
 </root>

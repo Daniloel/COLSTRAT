@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using FFImageLoading.Forms.Touch;
 using FFImageLoading;
+using COLSTRAT.Service.Icons;
 
 namespace COLSTRAT.iOS
 {
@@ -26,7 +27,7 @@ namespace COLSTRAT.iOS
         {
             Init();
             global::Xamarin.Forms.Forms.Init();
-            
+            FormsPlugin.Iconize.iOS.IconControls.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
         }
@@ -44,7 +45,8 @@ namespace COLSTRAT.iOS
                 VerboseLoadingCancelledLogging = false,
                 //Logger = new CustomLogger(),
             };
-
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
+                           .With(new Plugin.Iconize.Fonts.MaterialModule());
             ImageService.Instance.Initialize(config);
         }
     }

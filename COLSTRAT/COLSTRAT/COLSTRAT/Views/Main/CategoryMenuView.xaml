@@ -6,7 +6,8 @@
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
-    Title="{Binding TitlePage}">
+    Title="{Binding TitlePage}"
+    xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
     <ContentPage.Content>
         <StackLayout
             Padding="10"
@@ -29,10 +30,11 @@
                                     VerticalOptions="Center"
                                     Text="{Binding Name}">
                                 </Label>
-                                <Image 
+                                <icons:IconImage 
                                     HorizontalOptions="End"
                                     Grid.Column="1"
-                                    Source="ic_chevron_right"
+                                    Icon="fa-chevron-right"
+                                    IconColor="{StaticResource AccentColor2}"
                                     WidthRequest="50"
                                     HeightRequest="50">
                                     <Image.GestureRecognizers>
@@ -40,7 +42,7 @@
                                             Command="{Binding OpenCategoryCommand}">
                                         </TapGestureRecognizer>
                                     </Image.GestureRecognizers>
-                                </Image>
+                                </icons:IconImage>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

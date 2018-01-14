@@ -10,7 +10,7 @@
     using Xamarin.Forms;
 
     public class DataAccess : IDisposable
-    {
+    {//TODO corregir childrens
         SQLiteConnection connection;
 
         public DataAccess()
@@ -42,7 +42,7 @@
         {
             if (WithChildren)
             {
-                return connection.GetAllWithChildren<T>().FirstOrDefault();
+                return connection.Table<T>().FirstOrDefault();
             }
             else
             {
@@ -54,7 +54,7 @@
         {
             if (WithChildren)
             {
-                return connection.GetAllWithChildren<T>().ToList();
+                return connection.Table<T>().ToList();
             }
             else
             {
@@ -66,8 +66,7 @@
         {
             if (WithChildren)
             {
-                return connection
-                    .GetAllWithChildren<T>()
+                return connection.Table<T>().ToList()
                     .FirstOrDefault(m => m.GetHashCode() == pk);
             }
             else

@@ -30,6 +30,7 @@
         public MainMenuViewModel MainMenu { get; set; }
         public RocksViewModel Rocks { get; set; }
         public CategoryMenuViewModel CategoryMenu { get; set; }
+        public NewCategoryViewModel NewCategory { get; set; }
         #endregion
 
         #region Constructor

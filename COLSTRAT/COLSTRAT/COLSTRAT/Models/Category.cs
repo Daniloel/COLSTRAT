@@ -44,7 +44,6 @@ namespace COLSTRAT.Models
         private async void OpenCategoryDetail()
         {
             await dialogService.ShowMessage("Hello", "Pronto añadiremos el show");
-
         }
         #endregion
     }
