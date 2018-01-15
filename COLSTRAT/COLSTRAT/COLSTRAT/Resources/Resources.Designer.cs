@@ -161,6 +161,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Edit Category.
+        /// </summary>
+        public static string EditCategory {
+            get {
+                return ResourceManager.GetString("EditCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit Menu.
+        /// </summary>
+        public static string EditMenu {
+            get {
+                return ResourceManager.GetString("EditMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a category.
         /// </summary>
         public static string error_input_category {
@@ -319,6 +337,15 @@ namespace COLSTRAT.Resources {
         public static string MainMenuViewTitle {
             get {
                 return ResourceManager.GetString("MainMenuViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sure?.
+        /// </summary>
+        public static string message_delete {
+            get {
+                return ResourceManager.GetString("message_delete", resourceCulture);
             }
         }
         

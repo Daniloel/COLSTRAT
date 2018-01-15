@@ -93,16 +93,58 @@ namespace COLSTRAT.ViewModels
         #region Methods
         public void AddMenu(MainMenu mainmenu)
         {
+            IsRefreshing = true;
             mainMenu.Add(mainmenu);
             MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            IsRefreshing = false;
         }
+        public void UpdateMenu(MainMenu mainmenu)
+        {
+            IsRefreshing = true;
+            var oldMenu = mainMenu.Where(c => c.MainMenuId == mainmenu.MainMenuId).FirstOrDefault();
+            oldMenu = mainmenu;
+            MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            IsRefreshing = false;
+        }
+        public async void DeleteMenu(MainMenu mainmenu)
+        {
+            IsRefreshing = true;
 
+            var con = await apiService.CheckConnection();
+            if (!con.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(con.Message);
+                return;
+            }
+
+            string urlBase = Application.Current.Resources["URL_API"].ToString();
+            var mainViewModel = MainViewModel.GetInstante();
+            var response = await apiService.Delete(
+                urlBase,
+                "/api",
+                "/MainMenus",
+                mainViewModel.Token.TokenType,
+                mainViewModel.Token.AccessToken,
+                mainmenu);
+
+            if (!response.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(response.Message);
+                return;
+            }
+            mainMenu.Remove(mainmenu);
+            MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            IsRefreshing = false;
+        }
         private async void LoadMainMenu()
         {
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
+                IsRefreshing = false;
                 await dialogService.ShowErrorMessage(con.Message);
                 return;
             }
@@ -117,6 +159,7 @@ namespace COLSTRAT.ViewModels
 
             if (!response.IsSuccess)
             {
+                IsRefreshing = false;
                 await dialogService.ShowErrorMessage(response.Message);
                 return;
             }

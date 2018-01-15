@@ -287,4 +287,13 @@
   <data name="edit" xml:space="preserve">
     <value>Editar</value>
   </data>
+  <data name="EditCategory" xml:space="preserve">
+    <value>Editar Categoria</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Editar Menu</value>
+  </data>
+  <data name="message_delete" xml:space="preserve">
+    <value>¿Seguro?</value>
+  </data>
 </root>

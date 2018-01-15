@@ -16,6 +16,10 @@ namespace COLSTRAT.ViewModels.Main
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
+        #region Services
+        ApiService apiService;
+        DialogService dialogService;
+        #endregion
         #region Attributes
         bool _isRefreshing;
         List<Category> categories;
@@ -75,10 +79,54 @@ namespace COLSTRAT.ViewModels.Main
             return instance;
         }
 
-        internal void AddMenu(Category category)
+        public void AddMenu(Category category)
         {
+            IsRefreshing = true;
             categories.Add(category);
             CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Description));
+            IsRefreshing = false;
+        }
+        public void UpdateMenu(Category category)
+        {
+            IsRefreshing = true;
+            var oldCategory = categories.Where(c => c.CategoryId == category.CategoryId).FirstOrDefault();
+            oldCategory = category;
+            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Description));
+            IsRefreshing = false;
+        }
+        public async void DeleteCategory(Category category)
+        {
+            IsRefreshing = true;
+            apiService = new ApiService();
+            dialogService = new DialogService();
+            var con = await apiService.CheckConnection();
+            if (!con.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(con.Message);
+                return;
+            }
+
+            string urlBase = Application.Current.Resources["URL_API"].ToString();
+            var mainViewModel = MainViewModel.GetInstante();
+            var response = await apiService.Delete(
+                urlBase,
+                "/api",
+                "/Categories",
+                mainViewModel.Token.TokenType,
+                mainViewModel.Token.AccessToken,
+                category);
+
+            if (!response.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(response.Message);
+                return;
+            }
+            categories.Remove(category);
+
+            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Description));
+            IsRefreshing = false;
         }
         #endregion
 

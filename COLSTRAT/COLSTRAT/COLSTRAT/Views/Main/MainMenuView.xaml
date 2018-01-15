@@ -21,6 +21,8 @@
             Padding="10"
              BindingContext="{Binding MainMenu}">
             <ListView 
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommandMainMenu}"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                 ItemsSource="{Binding MainMenuItems}"
                 HasUnevenRows="True">

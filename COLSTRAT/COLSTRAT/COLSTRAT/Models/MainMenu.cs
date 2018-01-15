@@ -1,9 +1,11 @@
 ﻿namespace COLSTRAT.Models
 {
+    using COLSTRAT.Helpers;
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels;
     using COLSTRAT.ViewModels.Main;
     using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Collections.Generic;
     using System.Windows.Input;
 
@@ -29,6 +31,35 @@
         #endregion
 
         #region Commands
+        public ICommand EditCommand
+        {
+            get
+            {
+                return new RelayCommand(Edit);
+            }
+        }
+        private async void Edit()
+        {
+            MainViewModel.GetInstante().EditMenu = new EditMenuViewModel(this);
+            await navigationService.Navigate("EditMenuView");
+        }
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(Delete);
+            }
+        }
+
+        private async void Delete()
+        {
+            var response = await dialogService.ShowConfirm(Languages.Warning, Languages.Message_Delete);
+            if (!response)
+                return;
+            MainMenuViewModel.GetInstante().DeleteMenu(this);
+
+
+        }
         public ICommand OpenDetailCommand
         {
             get
@@ -45,6 +76,13 @@
             mainViewModel.CurrentMenu = MainMenuId;
             await navigationService.Navigate("CategoryMenuView");
 
+        }
+        #endregion
+
+        #region Methods
+        public override int GetHashCode()
+        {
+            return MainMenuId;
         }
         #endregion
     }

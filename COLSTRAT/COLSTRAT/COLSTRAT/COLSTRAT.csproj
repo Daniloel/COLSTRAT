@@ -72,6 +72,8 @@
     <Compile Include="Service\Icons\COLSTRATIconsModule.cs" />
     <Compile Include="Service\NavigationService.cs" />
     <Compile Include="ViewModels\Main\CategoryMenuViewModel.cs" />
+    <Compile Include="ViewModels\Main\EditMenuViewModel.cs" />
+    <Compile Include="ViewModels\Main\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksViewModel.cs" />
@@ -88,6 +90,12 @@
     </Compile>
     <Compile Include="Views\Main\CategoryMenuView.xaml.cs">
       <DependentUpon>CategoryMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\EditCategoryView.xaml.cs">
+      <DependentUpon>EditCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\EditMenuView.xaml.cs">
+      <DependentUpon>EditMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
@@ -277,6 +285,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Main\NewMenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Main\EditMenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Main\EditCategoryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

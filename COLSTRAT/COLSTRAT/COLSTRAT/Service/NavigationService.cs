@@ -46,6 +46,12 @@
                 case "NewMenuView":
                     await App.Navigator.PushAsync(new NewMenuView());
                     break;
+                case "EditCategoryView":
+                    await App.Navigator.PushAsync(new EditCategoryView());
+                    break;
+                case "EditMenuView":
+                    await App.Navigator.PushAsync(new EditMenuView());
+                    break;
                 default:
                     break;
             }

@@ -62,9 +62,11 @@
         public CategoryMenuViewModel CategoryMenu { get; set; }
         public NewCategoryViewModel NewCategory { get; set; }
         public NewMenuViewModel NewMenu { get; set; }
+        public EditCategoryViewModel EditCategory { get; set; }
+        public EditMenuViewModel EditMenu { get; set; }
         #endregion
 
-        #region Constructor
+            #region Constructor
         public MainViewModel()
         {
             instance = this;
