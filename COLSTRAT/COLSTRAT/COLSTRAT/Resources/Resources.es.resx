@@ -317,4 +317,7 @@
   <data name="option_select_image" xml:space="preserve">
     <value>¿De dónde quieres tomar la imagen?</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
 </root>

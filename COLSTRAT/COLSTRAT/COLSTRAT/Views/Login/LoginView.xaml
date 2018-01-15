@@ -107,7 +107,7 @@
                     HeightRequest="46"
                     FontAttributes="Bold"
                     IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
-                    BackgroundColor="{StaticResource AccentColor2}"
+                    BackgroundColor="Navy"
                     Text="{i18n:Translate btnLoginWithFacebook}"
                     TextColor="White">
                 </Button>

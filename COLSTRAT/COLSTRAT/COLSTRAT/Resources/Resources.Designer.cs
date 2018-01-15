@@ -287,6 +287,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Home.
+        /// </summary>
+        public static string home {
+            get {
+                return ResourceManager.GetString("home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Igneous Rocks.
         /// </summary>
         public static string IgneousRocks {

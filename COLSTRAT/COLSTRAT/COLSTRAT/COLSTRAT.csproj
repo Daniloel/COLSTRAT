@@ -51,6 +51,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\GeneralItem.cs" />
     <Compile Include="Models\MainMenu.cs" />
+    <Compile Include="Models\OptionKeyValue.cs" />
     <Compile Include="Models\Rock.cs" />
     <Compile Include="Models\IgneousRock.cs" />
     <Compile Include="Models\MetamorphicRock.cs" />

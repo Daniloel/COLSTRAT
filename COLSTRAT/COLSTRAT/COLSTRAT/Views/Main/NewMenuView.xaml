@@ -20,6 +20,10 @@
                 Text="{Binding Description, Mode=TwoWay}"
                 Placeholder="Enter menu description...">
             </Entry>
+            <Entry
+                Text="{Binding Icon, Mode=TwoWay}"
+                Placeholder="Enter menu icon...">
+            </Entry>
             <ActivityIndicator
                 VerticalOptions="CenterAndExpand"
                 IsVisible="{Binding IsRunning, Mode=TwoWay}"

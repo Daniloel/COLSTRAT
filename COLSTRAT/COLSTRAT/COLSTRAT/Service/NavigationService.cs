@@ -23,6 +23,9 @@
 
             switch (pageName)
             {
+                case "Home":
+                    SetMainPage();
+                    break;
                 case "IgneousView":
                     await App.Navigator.PushAsync(new IgneousView());
                     break;

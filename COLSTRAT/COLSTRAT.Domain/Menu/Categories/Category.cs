@@ -22,7 +22,7 @@
         [MaxLength(500, ErrorMessage = "The field {0} only can contain {1} characters lenth")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
-
+        public string Icon { get; set; }
         [JsonIgnore]
         public virtual MainMenu MainMenu { get; set; }
         [JsonIgnore]

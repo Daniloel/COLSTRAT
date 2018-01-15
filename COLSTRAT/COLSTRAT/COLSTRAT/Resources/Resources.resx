@@ -283,4 +283,7 @@
   <data name="option_select_image" xml:space="preserve">
     <value>Where do you take the image?</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
 </root>

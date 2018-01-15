@@ -18,14 +18,13 @@
 
     <ContentPage.Content>
         <StackLayout
-            Padding="10"
              BindingContext="{Binding MainMenu}">
             <ListView 
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommandMainMenu}"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                 ItemsSource="{Binding MainMenuItems}"
-                HasUnevenRows="True">
+                RowHeight="80">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -40,13 +39,30 @@
                                     Text="{i18n:Translate delete}">
                                 </MenuItem>
                             </ViewCell.ContextActions>
-                            <Grid>
+                            
+                            <Grid
+                                BackgroundColor="{Binding ColorChanged}">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label 
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding OpenDetailCommand}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <icons:IconImage 
+                                    Margin="5"
+                                    HorizontalOptions="Start"
                                     Grid.Column="0"
+                                    Icon="{Binding Icon}"
+                                    IconColor="White"
+                                    WidthRequest="50"
+                                    HeightRequest="50">
+                                </icons:IconImage>
+                                <Label 
+                                    Grid.Column="1"
                                     FontSize="Large"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
@@ -54,16 +70,12 @@
                                 </Label>
                                 <icons:IconImage 
                                     HorizontalOptions="End"
-                                    Grid.Column="1"
+                                    Grid.Column="2"
                                     Icon="fa-chevron-right"
-                                    IconColor="{StaticResource AccentColor2}"
-                                    WidthRequest="50"
-                                    HeightRequest="50">
-                                    <icons:IconImage.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding OpenDetailCommand}">
-                                        </TapGestureRecognizer>
-                                    </icons:IconImage.GestureRecognizers>
+                                    IconColor="{StaticResource AccentColor}"
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    Margin="10">
                                 </icons:IconImage>
                             </Grid>
                         </ViewCell>

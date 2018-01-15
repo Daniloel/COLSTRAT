@@ -124,6 +124,8 @@
 
         private async void Login()
         {
+            IsRunning = true;
+            IsEnabled = false;
             if (string.IsNullOrEmpty(Email))
             {
                 await dialogService.ShowErrorMessage(Languages.ErrorEmailEmpty);
@@ -134,8 +136,6 @@
                 await dialogService.ShowErrorMessage(Languages.ErrorPasswordEmpty);
                 return;
             }
-            IsRunning = true;
-            IsEnabled = false;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {

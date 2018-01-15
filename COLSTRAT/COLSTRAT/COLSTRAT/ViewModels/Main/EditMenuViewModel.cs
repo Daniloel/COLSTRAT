@@ -25,9 +25,22 @@ namespace COLSTRAT.ViewModels.Main
         private bool _isRunning;
         private bool _isEnabled;
         private MainMenu mainMenu;
+        string _icon;
         #endregion
 
         #region Properties
+        public string Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Icon)));
+                }
+            }
+        }
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -74,6 +87,7 @@ namespace COLSTRAT.ViewModels.Main
         {
             this.mainMenu = mainMenu;
             Description = mainMenu.Description;
+            Icon = mainMenu.Icon;
             IsEnabled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
@@ -109,7 +123,7 @@ namespace COLSTRAT.ViewModels.Main
             }
 
             mainMenu.Description = Description;
-            
+            mainMenu.Icon = Icon;
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
             var response = await apiService.Put(

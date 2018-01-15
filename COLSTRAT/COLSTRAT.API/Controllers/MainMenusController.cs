@@ -36,7 +36,8 @@ namespace COLSTRAT.API.Controllers
                     {
                         CategoryId = categories.CategoryId,
                         Name = categories.Name,
-                        Description = categories.Description
+                        Description = categories.Description,
+                        Icon = categories.Icon
                     });
                 }
 
@@ -45,7 +46,8 @@ namespace COLSTRAT.API.Controllers
                 {
                     MainMenuId = category.MainMenuId,
                     Description = category.Description,
-                    Category = categoriesResponse
+                    Category = categoriesResponse,
+                    Icon = category.Icon
                 });
             }
 
@@ -69,7 +71,8 @@ namespace COLSTRAT.API.Controllers
                 {
                     CategoryId = item.CategoryId,
                     Name = item.Name,
-                    Description = item.Description
+                    Description = item.Description,
+                    Icon = item.Icon
                 });
             }
 

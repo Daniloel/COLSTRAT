@@ -49,7 +49,7 @@ namespace COLSTRAT.Backend.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "MainMenuId,Description")] MainMenu mainMenu)
+        public async Task<ActionResult> Create(MainMenu mainMenu)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace COLSTRAT.Backend.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "MainMenuId,Description")] MainMenu mainMenu)
+        public async Task<ActionResult> Edit(MainMenu mainMenu)
         {
             if (ModelState.IsValid)
             {

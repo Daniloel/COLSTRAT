@@ -102,25 +102,13 @@
         {
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "ic_launcher_igneous",
-                PageName = "IgneousView",
-                Title = Languages.IgneousRocks
+                Icon = "fa-home",
+                PageName = "Home",
+                Title = Languages.Home
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "ic_launcher_metamorphic",
-                PageName = "MetamorphicView",
-                Title = Languages.MetamorphicRocks
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "ic_launcher_sedimentary",
-                PageName = "SedimentaryView",
-                Title = Languages.SedimentaryRocks
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "ic_launcher_exit",
+                Icon = "fa-sign-out",
                 PageName = "LogoutView",
                 Title = Languages.btnExit
             });
@@ -195,42 +183,6 @@
             NewGeneralItem = new NewGeneralItemViewModel();
             NewGeneralItem.Category = CurrentCategory;
             await navigationService.Navigate("NewGeneralItemView");
-        }
-        public ICommand ToIgneousRocks
-        {
-           get { return new RelayCommand(ShowIgneousRocks); }
-        }
-        public async void ShowIgneousRocks()
-        {
-            Igneous = new IgneousViewModel();
-            await navigationService.Navigate("IgneousView");
-        }
-        public ICommand ToMetamorphicRocks
-        {
-            get { return new RelayCommand(ShowMetamorphicRocks); }
-        }
-        async void ShowMetamorphicRocks()
-        {
-            Metamorphic = new MetamorphicViewModel();
-            await navigationService.Navigate("MetamorphicView");
-        }
-        public ICommand ToSedimentaryRocks
-        { 
-            get { return new RelayCommand(ShowSedimentaryRocks); }
-        }
-        async void ShowSedimentaryRocks()
-        {
-            Sedimentary = new SedimentaryViewModel();
-            await navigationService.Navigate("SedimentaryView");
-        }
-        public ICommand ToTypesOfRocks
-        {
-            get{ return new RelayCommand(ShowTypesOfRocks); }
-        }
-        async void ShowTypesOfRocks()
-        {
-            MainMenu = new MainMenuViewModel();
-            await navigationService.Navigate("MainMenuView");
         }
         #endregion
 

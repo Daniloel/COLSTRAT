@@ -14,6 +14,13 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Home
+        {
+            get
+            {
+                return Resources.home;
+            }
+        }
         public static string Option_Pick_Photo
         {
             get
