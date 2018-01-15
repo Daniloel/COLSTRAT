@@ -1,14 +1,13 @@
-﻿using COLSTRAT.Helpers;
-using COLSTRAT.Models;
-using COLSTRAT.Service;
-using GalaSoft.MvvmLight.Command;
-using System.ComponentModel;
-using System.Windows.Input;
-using Xamarin.Forms;
-
-namespace COLSTRAT.ViewModels.Main
+﻿namespace COLSTRAT.ViewModels.Main.GeneralItem
 {
-    public class EditCategoryViewModel : INotifyPropertyChanged
+    using COLSTRAT.Helpers;
+    using COLSTRAT.Models;
+    using COLSTRAT.Service;
+    using GalaSoft.MvvmLight.Command;
+    using System.ComponentModel;
+    using System.Windows.Input;
+    using Xamarin.Forms;
+    public class EditGeneralItemViewModel : INotifyPropertyChanged
     {
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,11 +24,23 @@ namespace COLSTRAT.ViewModels.Main
         private bool _isRunning;
         private bool _isEnabled;
         string _name;
-        Category category;
+        string _imageFullPath;
+        GeneralItem generalItem;
         #endregion
 
         #region Properties
-        
+        public string ImageFullPath
+        {
+            get { return _imageFullPath; }
+            set
+            {
+                if (_imageFullPath != value)
+                {
+                    _imageFullPath = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageFullPath)));
+                }
+            }
+        }
         public string Name
         {
             get { return _name; }
@@ -86,16 +97,17 @@ namespace COLSTRAT.ViewModels.Main
 
 
         #region Contructor
-        public EditCategoryViewModel(Category category)
-        {
-            this.category = category;
 
+        public EditGeneralItemViewModel(GeneralItem generalItem)
+        {
+            this.generalItem = generalItem;
             IsEnabled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
             navigationService = new NavigationService();
-            Description = category.Description;
-            Name = category.Name;
+            Description = generalItem.Description;
+            Name = generalItem.Name;
+            ImageFullPath = generalItem.ImageFullPath;
         }
         #endregion
 
@@ -114,6 +126,7 @@ namespace COLSTRAT.ViewModels.Main
             if (string.IsNullOrEmpty(Name))
             {
                 await dialogService.ShowMessage(Languages.Warning, Languages.ErrorInputCategory);
+                return;
             }
 
             IsRunning = true;
@@ -127,19 +140,19 @@ namespace COLSTRAT.ViewModels.Main
                 return;
             }
 
-            category.Description = Description;
-            category.Name = Name;
-            category.MainMenuId = MainViewModel.GetInstante().CurrentMenu.MainMenuId;
+            generalItem.Description = Description;
+            generalItem.Name = Name;
+            generalItem.CategoryId = MainViewModel.GetInstante().CurrentCategory.CategoryId;
 
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
             var response = await apiService.Put(
                 urlBase,
                 "/api",
-                "/Categories",
+                "/GeneralItems",
                 mainViewModel.Token.TokenType,
                 mainViewModel.Token.AccessToken,
-                category);
+                generalItem);
 
             if (!response.IsSuccess)
             {
@@ -156,8 +169,8 @@ namespace COLSTRAT.ViewModels.Main
                 return;
             }
 
-            CategoryMenuViewModel categoryMenuViewModel = CategoryMenuViewModel.GetInstante();
-            categoryMenuViewModel.UpdateMenu(category);
+            GeneralItemViewModel generalItemViewModel = GeneralItemViewModel.GetInstante();
+            generalItemViewModel.UpdateMenu(generalItem);
             await navigationService.Back();
 
             IsRunning = false;

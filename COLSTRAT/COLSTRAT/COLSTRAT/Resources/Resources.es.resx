@@ -299,4 +299,7 @@
   <data name="error_relateds" xml:space="preserve">
     <value>No puedes borrar esto porque tiene relaciones</value>
   </data>
+  <data name="create" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
 </root>

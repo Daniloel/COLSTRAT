@@ -143,6 +143,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Create New.
+        /// </summary>
+        public static string create {
+            get {
+                return ResourceManager.GetString("create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Delete.
         /// </summary>
         public static string delete {

@@ -39,9 +39,6 @@
 
         private async void OpenTypeOfRock()
         {
-            var mainViewModel = MainViewModel.GetInstante();
-            mainViewModel.Rocks = new RocksViewModel(Rocks);
-            await navigationService.Navigate("RocksView");
             
         }
         #endregion

@@ -2,7 +2,6 @@
 using COLSTRAT.Models;
 using COLSTRAT.Service;
 using GalaSoft.MvvmLight.Command;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,23 +9,22 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace COLSTRAT.ViewModels
+namespace COLSTRAT.ViewModels.Rocks
 {
-    public class GeneralItemViewModel : INotifyPropertyChanged
+    public class RocksMenuViewModel : INotifyPropertyChanged
     {
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
-
         #region Services
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
         #endregion
-        #region Attributes        
+        #region Attributes
+        List<RocksMenu> rocks;
+        ObservableCollection<RocksMenu> _rocksMenu;
         bool _isRefreshing;
-        List<GeneralItem> generalItems;
-        ObservableCollection<GeneralItem> _generalItems;
         #endregion
 
         #region Properties
@@ -42,39 +40,39 @@ namespace COLSTRAT.ViewModels
                 }
             }
         }
-        public ObservableCollection<GeneralItem> GeneralItems
+        public ObservableCollection<RocksMenu> RocksMenu
         {
-            get { return _generalItems; }
+            get { return _rocksMenu; }
             set
             {
-                if (_generalItems != value)
+                if (_rocksMenu != value)
                 {
-                    _generalItems = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(GeneralItems)));
+                    _rocksMenu = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RocksMenu)));
                 }
             }
         }
         #endregion
 
-        #region Contructor
-        public GeneralItemViewModel()
+        #region Constructor
+        public RocksMenuViewModel()
         {
             instance = this;
             apiService = new ApiService();
             dialogService = new DialogService();
             navigationService = new NavigationService();
-            LoadGeneralItems();
+            LoadRocks();
         }
         #endregion
 
         #region Singleton
-        static GeneralItemViewModel instance;
-      
-        public static GeneralItemViewModel GetInstante()
+        static RocksMenuViewModel instance;
+
+        public static RocksMenuViewModel GetInstante()
         {
             if (instance == null)
             {
-                return new GeneralItemViewModel();
+                return new RocksMenuViewModel();
             }
 
             return instance;
@@ -83,7 +81,7 @@ namespace COLSTRAT.ViewModels
 
         #region Methods
 
-        private async void LoadGeneralItems()
+        private async void LoadRocks()
         {
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
@@ -95,7 +93,7 @@ namespace COLSTRAT.ViewModels
             }
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<GeneralItem>(
+            var response = await apiService.GetList<Category>(
                 urlBase,
                 "/api",
                 "/Categories",
@@ -109,27 +107,28 @@ namespace COLSTRAT.ViewModels
                 await dialogService.ShowErrorMessage(response.Message);
                 return;
             }
-            generalItems = (List<GeneralItem>)response.Result;
-            GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            var category = (List<Category>)response.Result;
+            rocks = category.First().RocksMenu;
+            RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
             IsRefreshing = false;
         }
 
-        public void AddMenu(GeneralItem generalitem)
+        public void AddMenu(RocksMenu rocksmenu)
         {
             IsRefreshing = true;
-            generalItems.Add(generalitem);
-            GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            rocks.Add(rocksmenu);
+            RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
             IsRefreshing = false;
         }
-        public void UpdateMenu(GeneralItem generalitem)
+        public void UpdateMenu(RocksMenu rocksmenu)
         {
             IsRefreshing = true;
-            var oldItem = generalItems.Where(c => c.GeneralItemId == generalitem.GeneralItemId).FirstOrDefault();
-            oldItem = generalitem;
-            GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            var oldItem = rocks.Where(c => c.RocksMenuId == rocksmenu.RocksMenuId).FirstOrDefault();
+            oldItem = rocksmenu;
+            RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
             IsRefreshing = false;
         }
-        public async void DeleteCategory(GeneralItem generalitem)
+        public async void DeleteCategory(RocksMenu rocksmenu)
         {
             IsRefreshing = true;
             apiService = new ApiService();
@@ -147,10 +146,10 @@ namespace COLSTRAT.ViewModels
             var response = await apiService.Delete(
                 urlBase,
                 "/api",
-                "/GeneralItems",
+                "/RocksMenus",
                 mainViewModel.Token.TokenType,
                 mainViewModel.Token.AccessToken,
-                generalitem);
+                rocksmenu);
 
             if (!response.IsSuccess)
             {
@@ -165,9 +164,9 @@ namespace COLSTRAT.ViewModels
                 }
                 return;
             }
-            generalItems.Remove(generalitem);
+            rocks.Remove(rocksmenu);
 
-            GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
             IsRefreshing = false;
         }
 
@@ -178,9 +177,10 @@ namespace COLSTRAT.ViewModels
         {
             get
             {
-                return new RelayCommand(LoadGeneralItems);
+                return new RelayCommand(LoadRocks);
             }
         }
         #endregion
+
     }
 }

@@ -61,8 +61,19 @@ namespace COLSTRAT.API.Controllers
             {
                 return NotFound();
             }
+            var mainMenuResponse = new List<MainMenuResponse>();
 
-            return Ok(mainMenu);
+            foreach (var item in mainMenu.Category)
+            {
+                mainMenuResponse.Add(new MainMenuResponse
+                {
+                    CategoryId = item.CategoryId,
+                    Name = item.Name,
+                    Description = item.Description
+                });
+            }
+
+            return Ok(mainMenuResponse);
         }
 
         // PUT: api/MainMenus/5

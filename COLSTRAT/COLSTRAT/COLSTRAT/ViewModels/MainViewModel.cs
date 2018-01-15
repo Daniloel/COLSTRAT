@@ -5,6 +5,7 @@
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels.Login;
     using COLSTRAT.ViewModels.Main;
+    using COLSTRAT.ViewModels.Main.GeneralItem;
     using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
     using System;
@@ -56,6 +57,7 @@
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
         public MainMenuViewModel MainMenu { get; set; }
+        public RocksMenuViewModel RocksMenu { get; set; }
         public RocksViewModel Rocks { get; set; }
         public CategoryMenuViewModel CategoryMenu { get; set; }
         public NewCategoryViewModel NewCategory { get; set; }
@@ -63,9 +65,12 @@
         public EditCategoryViewModel EditCategory { get; set; }
         public EditMenuViewModel EditMenu { get; set; }
         public GeneralItemViewModel GeneralItem { get; set; }
+        public EditGeneralItemViewModel EditGeneralItem { get; set; }
+        public NewGeneralItemViewModel NewGeneralItem { get; set; }
+
         #endregion
 
-            #region Constructor
+        #region Constructor
         public MainViewModel()
         {
             instance = this;
@@ -151,7 +156,20 @@
             NewCategory.MainMenu = CurrentMenu;
             await navigationService.Navigate("NewCategoryView");
         }
+        public ICommand NewGeneralItemCommand
+        {
+            get
+            {
+                return new RelayCommand(GoGeneralItem);
+            }
+        }
 
+        async void GoGeneralItem()
+        {
+            NewGeneralItem = new NewGeneralItemViewModel();
+            NewGeneralItem.Category = CurrentCategory;
+            await navigationService.Navigate("NewGeneralItemView");
+        }
         public ICommand ToIgneousRocks
         {
            get { return new RelayCommand(ShowIgneousRocks); }

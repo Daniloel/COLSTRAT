@@ -9,6 +9,12 @@
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
     Title="{Binding CurrentCategory.Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding NewGeneralItemCommand}"
+                Icon="plus_circle.png">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding GeneralItem}"
@@ -22,6 +28,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem 
+                                    Command="{Binding EditCommand}" 
+                                    Text="{i18n:Translate edit}">
+                                </MenuItem>
+                                <MenuItem 
+                                    Command="{Binding DeleteCommand}" 
+                                    IsDestructive="true"     
+                                    Text="{i18n:Translate delete}">
+                                </MenuItem>
+                            </ViewCell.ContextActions>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -58,7 +75,7 @@
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
-                                    Text="{Binding Descripcion}">
+                                    Text="{Binding Description}">
                                     </Label>
                                 </StackLayout>
                             </Grid>

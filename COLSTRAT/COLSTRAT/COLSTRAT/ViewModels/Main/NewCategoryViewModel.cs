@@ -25,22 +25,14 @@ namespace COLSTRAT.ViewModels.Main
         private bool _isRunning;
         private bool _isEnabled;
         string _name;
-        MainMenu _mainMenu;
         #endregion
 
         #region Properties
 
         public MainMenu MainMenu
         {
-            get { return _mainMenu; }
-            set
-            {
-                if (_mainMenu != value)
-                {
-                    _mainMenu = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MainMenu)));
-                }
-            }
+            get;
+            set;
         }
 
         public string Name
@@ -122,6 +114,7 @@ namespace COLSTRAT.ViewModels.Main
             if (string.IsNullOrEmpty(Name))
             {
                 await dialogService.ShowMessage(Languages.Warning, Languages.ErrorInputCategory);
+                return;
             }
 
             IsRunning = true;

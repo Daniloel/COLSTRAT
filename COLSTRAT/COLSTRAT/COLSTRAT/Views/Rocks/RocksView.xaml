@@ -24,14 +24,6 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                              <!--  <Image
-                                    HorizontalOptions="Start"
-                                    Grid.Column="0"
-                                    HeightRequest="150"
-                                    Source="{Binding ImageFullPath}"
-                                    WidthRequest="100">
-                                    
-                                </Image>-->
                                 <ff:CachedImage
                                     HorizontalOptions="Start"
                                     Grid.Column="0"

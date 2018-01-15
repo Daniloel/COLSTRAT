@@ -127,7 +127,7 @@
                     {
                         GeneralItemId = item.GeneralItemId,
                         Name = item.Name,
-                        Descripcion = item.Description,
+                        Description = item.Description,
                         Image = item.Image
                     });
                 }

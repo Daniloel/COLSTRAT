@@ -2,27 +2,27 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="COLSTRAT.Views.Main.CategoryMenuView"
+    x:Class="COLSTRAT.Views.Main.RocksMenuView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
-    Title="{Binding CurrentMenu.Description}"
+    Title="{i18n:Translate RocksTitle}"
     xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Command="{Binding NewCategoryCommand}"
+            Command="{Binding NewRocksMenuView}"
                 Icon="plus_circle.png">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             Padding="10"
-             BindingContext="{Binding CategoryMenu}">
+             BindingContext="{Binding RocksMenu}">
             <ListView 
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommand}"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
-                ItemsSource="{Binding CategoryMenuItems}"
+                ItemsSource="{Binding RocksMenu}"
                 HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -59,7 +59,7 @@
                                     HeightRequest="50">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer
-                                            Command="{Binding OpenCategoryCommand}">
+                                            Command="{Binding OpenRockCommand}">
                                         </TapGestureRecognizer>
                                     </Image.GestureRecognizers>
                                 </icons:IconImage>

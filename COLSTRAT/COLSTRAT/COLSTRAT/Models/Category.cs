@@ -29,7 +29,6 @@ namespace COLSTRAT.Models
         public List<RocksMenu> RocksMenu { get; set; }
 
         public int FluidsCategoryId { get; set; }
-        public List<Valvule> Valvules { get; set; }
         public List<GeneralItem> GeneralItems { get; set; }
         #endregion
 
@@ -46,6 +45,7 @@ namespace COLSTRAT.Models
             return CategoryId;
         }
         #endregion
+
         #region Commands
         public ICommand EditCommand
         {
@@ -87,11 +87,19 @@ namespace COLSTRAT.Models
             if (CategoryId == FLUIDS)
                 return;
             if (CategoryId == GEOLOGY)
-                return;
-            var mainViewModel = MainViewModel.GetInstante();
-            mainViewModel.CurrentCategory = this;
-            mainViewModel.GeneralItem = new GeneralItemViewModel();
-            await navigationService.Navigate("GeneralItemView");
+            {
+                MainViewModel.GetInstante().CurrentCategory = this;
+                MainViewModel.GetInstante().RocksMenu = new ViewModels.Rocks.RocksMenuViewModel();
+                await navigationService.Navigate("RocksMenuView");
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstante();
+                mainViewModel.CurrentCategory = this;
+                mainViewModel.GeneralItem = new GeneralItemViewModel();
+                await navigationService.Navigate("GeneralItemView");
+            }
+           
         }
         #endregion
     }

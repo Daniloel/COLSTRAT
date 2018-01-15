@@ -6,6 +6,7 @@
     using Xamarin.Forms;
     using COLSTRAT.Views.Main;
     using System;
+    using COLSTRAT.Views.Main.GeneralItem;
 
     public class NavigationService
     {
@@ -54,6 +55,15 @@
                     break;
                 case "GeneralItemView":
                     await App.Navigator.PushAsync(new GeneralItemView());
+                    break;
+                case "NewGeneralItemView":
+                    await App.Navigator.PushAsync(new NewGeneralItemView());
+                    break;
+                case "EditGeneralItemView":
+                    await App.Navigator.PushAsync(new EditGeneralItemView());
+                    break;
+                case "RocksMenuView":
+                    await App.Navigator.PushAsync(new RocksMenuView());
                     break;
                 default:
                     break;

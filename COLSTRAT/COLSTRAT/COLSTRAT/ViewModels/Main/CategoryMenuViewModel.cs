@@ -1,11 +1,13 @@
 ﻿using COLSTRAT.Helpers;
 using COLSTRAT.Models;
 using COLSTRAT.Service;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels.Main
@@ -135,6 +137,48 @@ namespace COLSTRAT.ViewModels.Main
 
             CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Description));
             IsRefreshing = false;
+        }
+        #endregion
+        #region Methods
+        private async void LoadCategoryMenu()
+        {
+            IsRefreshing = true;
+            var con = await apiService.CheckConnection();
+            if (!con.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(con.Message);
+                return;
+            }
+            string urlBase = Application.Current.Resources["URL_API"].ToString();
+            var mainViewModel = MainViewModel.GetInstante();
+            var response = await apiService.GetList<Category>(
+                urlBase,
+                "/api",
+                "/MainMenus",
+                mainViewModel.Token.TokenType,
+                mainViewModel.Token.AccessToken,
+                mainViewModel.CurrentMenu.MainMenuId);
+
+            if (!response.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(response.Message);
+                return;
+            }
+            categories = (List<Category>)response.Result;
+            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Name));
+            IsRefreshing = false;
+        }
+        #endregion
+
+        #region Commands
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadCategoryMenu);
+            }
         }
         #endregion
 
