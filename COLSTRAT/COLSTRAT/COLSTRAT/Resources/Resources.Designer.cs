@@ -143,6 +143,33 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Delete.
+        /// </summary>
+        public static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Edit.
+        /// </summary>
+        public static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a category.
+        /// </summary>
+        public static string error_input_category {
+            get {
+                return ResourceManager.GetString("error_input_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter an email..
         /// </summary>
         public static string error_input_email_0 {
@@ -152,11 +179,29 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a menu.
+        /// </summary>
+        public static string error_input_menu {
+            get {
+                return ResourceManager.GetString("error_input_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a password..
         /// </summary>
         public static string error_input_password_0 {
             get {
                 return ResourceManager.GetString("error_input_password_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a There are a record with the same description.
+        /// </summary>
+        public static string error_record_same {
+            get {
+                return ResourceManager.GetString("error_record_same", resourceCulture);
             }
         }
         
@@ -319,6 +364,15 @@ namespace COLSTRAT.Resources {
         public static string NewCategory {
             get {
                 return ResourceManager.GetString("NewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a New menu.
+        /// </summary>
+        public static string NewMenu {
+            get {
+                return ResourceManager.GetString("NewMenu", resourceCulture);
             }
         }
         

@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels.Main
 {
-    public class NewCategoryViewModel : INotifyPropertyChanged
+    public class NewMenuViewModel : INotifyPropertyChanged
     {
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -24,37 +24,9 @@ namespace COLSTRAT.ViewModels.Main
         string _description;
         private bool _isRunning;
         private bool _isEnabled;
-        string _name;
-        int _mainMenuId;
         #endregion
 
         #region Properties
-
-        public int MainMenuId
-        {
-            get { return _mainMenuId; }
-            set
-            {
-                if (_mainMenuId != value)
-                {
-                    _mainMenuId = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MainMenuId)));
-                }
-            }
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
-                }
-            }
-        }
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -92,14 +64,12 @@ namespace COLSTRAT.ViewModels.Main
                     _description = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
                 }
-
             }
         }
         #endregion
 
-
         #region Constructor
-        public NewCategoryViewModel()
+        public NewMenuViewModel()
         {
             IsEnabled = true;
             dialogService = new DialogService();
@@ -107,6 +77,7 @@ namespace COLSTRAT.ViewModels.Main
             navigationService = new NavigationService();
         }
         #endregion
+
 
         #region Commands
         public ICommand SaveCommand
@@ -119,11 +90,10 @@ namespace COLSTRAT.ViewModels.Main
 
         private async void Save()
         {
-            if (string.IsNullOrEmpty(Name))
+            if (string.IsNullOrEmpty(Description))
             {
-                await dialogService.ShowMessage(Languages.Warning, Languages.ErrorInputCategory);
+                await dialogService.ShowMessage(Languages.Warning, Languages.Error_Input_Menu);
             }
-
             IsRunning = true;
             IsEnabled = false;
             var con = await apiService.CheckConnection();
@@ -135,22 +105,19 @@ namespace COLSTRAT.ViewModels.Main
                 return;
             }
 
-            Category category = new Category()
+            MainMenu menu = new MainMenu()
             {
-                MainMenuId = MainMenuId,
-                Name = Name,
                 Description = Description
             };
-
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
             var response = await apiService.Post(
                 urlBase,
                 "/api",
-                "/Categories",
+                "/MainMenus",
                 mainViewModel.Token.TokenType,
                 mainViewModel.Token.AccessToken,
-                category);
+                menu);
 
             if (!response.IsSuccess)
             {
@@ -167,9 +134,9 @@ namespace COLSTRAT.ViewModels.Main
                 return;
             }
 
-            category = (Category)response.Result;
-            CategoryMenuViewModel categoryMenuViewModel = CategoryMenuViewModel.GetInstante();
-            categoryMenuViewModel.AddMenu(category);
+            menu = (MainMenu)response.Result;
+            MainMenuViewModel mainMenuViewModel = MainMenuViewModel.GetInstante();
+            mainMenuViewModel.AddMenu(menu);
             await navigationService.Back();
 
             IsRunning = false;

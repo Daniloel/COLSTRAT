@@ -5,6 +5,7 @@
     using Views;
     using Xamarin.Forms;
     using COLSTRAT.Views.Main;
+    using System;
 
     public class NavigationService
     {
@@ -39,9 +40,20 @@
                 case "CategoryMenuView":
                     await App.Navigator.PushAsync(new CategoryMenuView());
                     break;
+                case "NewCategoryView":
+                    await App.Navigator.PushAsync(new NewCategoryView());
+                    break;
+                case "NewMenuView":
+                    await App.Navigator.PushAsync(new NewMenuView());
+                    break;
                 default:
                     break;
             }
+        }
+
+        public async Task Back()
+        {
+            await App.Navigator.PopAsync();
         }
     }
 }

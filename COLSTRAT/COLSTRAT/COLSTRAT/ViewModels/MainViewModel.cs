@@ -7,16 +7,46 @@
     using COLSTRAT.ViewModels.Main;
     using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Windows.Input;
 
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         #region Services
         private NavigationService navigationService;
         #endregion
 
+        #region Attributes
+        int _currentMenu;
+        string _titlePage;
+        #endregion
         #region Properties
+        public string TitlePage
+        {
+            get { return _titlePage; }
+            set
+            {
+                if (_titlePage != value)
+                {
+                    _titlePage = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TitlePage)));
+                }
+            }
+        }
+        public int CurrentMenu
+        {
+            get { return _currentMenu; }
+            set
+            {
+                if (_currentMenu != value)
+                {
+                    _currentMenu = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentMenu)));
+                }
+            }
+        }
         public ObservableCollection<MenuItemViewModel> Menu
         {
             get;
@@ -31,6 +61,7 @@
         public RocksViewModel Rocks { get; set; }
         public CategoryMenuViewModel CategoryMenu { get; set; }
         public NewCategoryViewModel NewCategory { get; set; }
+        public NewMenuViewModel NewMenu { get; set; }
         #endregion
 
         #region Constructor
@@ -46,6 +77,8 @@
 
         #region Singleton
         static MainViewModel instance;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static MainViewModel GetInstante()
         {
@@ -89,6 +122,34 @@
         #endregion
         
         #region Commands
+        public ICommand NewMenuCommand
+        {
+            get
+            {
+                return new RelayCommand(GoNewMenu);
+            }
+        }
+
+        async void GoNewMenu()
+        {
+            NewMenu = new NewMenuViewModel();
+            await navigationService.Navigate("NewMenuView");
+        }
+
+        public ICommand NewCategoryCommand
+        {
+            get
+            {
+                return new RelayCommand(GoNewCategory);
+            }
+        }
+
+        async void GoNewCategory()
+        {
+            NewCategory = new NewCategoryViewModel();
+            NewCategory.MainMenuId = CurrentMenu;
+            await navigationService.Navigate("NewCategoryView");
+        }
 
         public ICommand ToIgneousRocks
         {

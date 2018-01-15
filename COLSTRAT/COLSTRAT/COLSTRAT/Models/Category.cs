@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace COLSTRAT.Models
 {
-    public class Category
+    public class Category : MainMenu
     {
         #region Services
         DialogService dialogService;

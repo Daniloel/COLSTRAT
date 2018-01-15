@@ -110,8 +110,25 @@ namespace COLSTRAT.API.Controllers
             }
 
             db.MainMenu.Add(mainMenu);
-            await db.SaveChangesAsync();
 
+            try
+            {
+                await db.SaveChangesAsync();
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("Index"))
+                {
+                    return BadRequest("1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8");
+                }
+                else
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
             return CreatedAtRoute("DefaultApi", new { id = mainMenu.MainMenuId }, mainMenu);
         }
 

@@ -22,6 +22,7 @@
         #region Contructor
         public MainMenu()
         {
+            Category = new List<Category>();
             dialogService = new DialogService();
             navigationService = new NavigationService();
         }
@@ -39,7 +40,9 @@
         private async void OpenDetail()
         {
             var mainViewModel = MainViewModel.GetInstante();
-            mainViewModel.CategoryMenu = new CategoryMenuViewModel(Category,Description);
+            mainViewModel.CategoryMenu = new CategoryMenuViewModel(Category);
+            mainViewModel.TitlePage = Description;
+            mainViewModel.CurrentMenu = MainMenuId;
             await navigationService.Navigate("CategoryMenuView");
 
         }

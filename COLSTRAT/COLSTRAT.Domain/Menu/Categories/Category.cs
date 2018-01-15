@@ -1,6 +1,7 @@
 ﻿namespace COLSTRAT.Domain.Menu.Categories
 {
     using COLSTRAT.Domain.Menu.Entity.Fluids;
+    using COLSTRAT.Domain.Menu.Entity.Generic;
     using COLSTRAT.Domain.Menu.Entity.Geology;
     using COLSTRAT.Domain.Menu.Main;
     using Newtonsoft.Json;
@@ -28,5 +29,7 @@
         public virtual Collection<GeologyCategory> GeologyCategory { get; set; }
         [JsonIgnore]
         public virtual Collection<FluidsCategory> FluidsCategory { get; set; }
+        [JsonIgnore]
+        public virtual Collection<GeneralItem> GeneralItem { get; set; }
     }
 }

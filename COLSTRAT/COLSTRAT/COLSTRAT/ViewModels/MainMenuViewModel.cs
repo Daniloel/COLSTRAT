@@ -23,10 +23,24 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Attributes
+        bool _isRefreshing;
+        List<MainMenu> mainMenu;
         ObservableCollection<MainMenu> _mainMenuItems;
         #endregion
 
         #region Properties
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                if (_isRefreshing != value)
+                {
+                    _isRefreshing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsRefreshing)));
+                }
+            }
+        }
         public ObservableCollection<MainMenu> MainMenuItems
         {
             get { return _mainMenuItems; }
@@ -44,15 +58,48 @@ namespace COLSTRAT.ViewModels
         #region Constructor
         public MainMenuViewModel()
         {
+            instance = this;
             dialogService = new DialogService();
             apiService = new ApiService();
             LoadMainMenu();
         }
         #endregion
 
+
+        #region Singleton
+        static MainMenuViewModel instance;
+        
+        public static MainMenuViewModel GetInstante()
+        {
+            if (instance == null)
+            {
+                return new MainMenuViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
+
+        #region Commands
+        public ICommand RefreshCommandMainMenu
+        {
+            get
+            {
+                return new RelayCommand(LoadMainMenu);
+            }
+        }
+        #endregion
+
         #region Methods
+        public void AddMenu(MainMenu mainmenu)
+        {
+            mainMenu.Add(mainmenu);
+            MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+        }
+
         private async void LoadMainMenu()
         {
+            IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
@@ -74,8 +121,9 @@ namespace COLSTRAT.ViewModels
                 return;
             }
 
-            var mainMenu = (List<MainMenu>)response.Result;
+            mainMenu = (List<MainMenu>)response.Result;
             MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            IsRefreshing = false;
         }
         #endregion
 

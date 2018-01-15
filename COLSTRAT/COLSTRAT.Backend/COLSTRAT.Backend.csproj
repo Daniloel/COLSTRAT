@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\FluidsCategoriesController.cs" />
+    <Compile Include="Controllers\GeneralItemsController.cs" />
     <Compile Include="Controllers\GeologyCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataContextLocal.cs" />
+    <Compile Include="Models\GeneralItemView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ValvuleView.cs" />
@@ -225,6 +227,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GenericItemsImages\001_John_D_Rockefeller_1904.jpg" />
     <Content Include="Content\RocksImages\cuarcita.jpg" />
     <Content Include="Content\ValvulesImages\260px-Válvulaglobo.jpg" />
     <Content Include="favicon.ico" />
@@ -329,6 +332,11 @@
     <Content Include="Views\FluidsCategories\Details.cshtml" />
     <Content Include="Views\FluidsCategories\Edit.cshtml" />
     <Content Include="Views\FluidsCategories\Index.cshtml" />
+    <Content Include="Views\GeneralItems\Create.cshtml" />
+    <Content Include="Views\GeneralItems\Delete.cshtml" />
+    <Content Include="Views\GeneralItems\Details.cshtml" />
+    <Content Include="Views\GeneralItems\Edit.cshtml" />
+    <Content Include="Views\GeneralItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

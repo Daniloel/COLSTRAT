@@ -15,6 +15,5 @@ namespace COLSTRAT.API.Models
         public const int GEOLOGY = 1;
         public const int FLUIDS = 2;
 
-
     }
 }

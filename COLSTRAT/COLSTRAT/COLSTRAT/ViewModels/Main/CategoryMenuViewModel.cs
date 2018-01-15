@@ -1,5 +1,6 @@
 ﻿using COLSTRAT.Models;
 using COLSTRAT.Service;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,22 +17,21 @@ namespace COLSTRAT.ViewModels.Main
         #endregion
 
         #region Attributes
+        bool _isRefreshing;
         List<Category> categories;
-        string _titlePage;
-        string description;
         ObservableCollection<Category> _categoryMenuItems;
         #endregion
 
         #region Properties
-        public string TitlePage
+        public bool IsRefreshing
         {
-            get { return _titlePage; }
+            get { return _isRefreshing; }
             set
             {
-                if (_titlePage != value)
+                if (_isRefreshing != value)
                 {
-                    _titlePage = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TitlePage)));
+                    _isRefreshing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsRefreshing)));
                 }
             }
         }
@@ -50,13 +50,37 @@ namespace COLSTRAT.ViewModels.Main
         #endregion
 
         #region Constructor
-        public CategoryMenuViewModel(List<Category> categories,string description)
+        public CategoryMenuViewModel(List<Category> categories)
         {
-            this.categories = categories;
-            this.description = description;
-            TitlePage = description;
-            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
+            instance = this;
+            if (categories != null)
+            {
+                this.categories = categories;
+                CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
+            }
         }
         #endregion
+
+
+        #region Singleton
+        static CategoryMenuViewModel instance;
+
+        public static CategoryMenuViewModel GetInstante()
+        {
+            if (instance == null)
+            {
+                return new CategoryMenuViewModel(new List<Category>());
+            }
+
+            return instance;
+        }
+
+        internal void AddMenu(Category category)
+        {
+            categories.Add(category);
+            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Description));
+        }
+        #endregion
+
     }
 }

@@ -11,6 +11,8 @@
     using COLSTRAT.Domain;
     using COLSTRAT.Domain.Menu.Categories;
     using COLSTRAT.API.Models;
+    using System;
+
     [Authorize]
     public class CategoriesController : ApiController
     {
@@ -115,10 +117,23 @@
                 return Ok(categoryResponse);
 
             }
+            else
+            {
+                var categoryResponse = new List<GeneralItemsResponse>();
 
+                foreach (var item in category.GeneralItem)
+                {
+                    categoryResponse.Add(new GeneralItemsResponse
+                    {
+                        GeneralItemId = item.GeneralItemId,
+                        Name = item.Name,
+                        Descripcion = item.Description,
+                        Image = item.Image
+                    });
+                }
 
-
-            return Ok(category);
+                return Ok(categoryResponse);
+            }
         }
 
         // PUT: api/Categories/5
@@ -166,8 +181,24 @@
             }
 
             db.Categories.Add(category);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
 
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("Index"))
+                {
+                    return BadRequest("1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8");
+                }
+                else
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
             return CreatedAtRoute("DefaultApi", new { id = category.CategoryId }, category);
         }
 

@@ -65,6 +65,7 @@
     <Compile Include="Menu\Entity\Fluids\FluidsCategory.cs" />
     <Compile Include="Menu\Entity\Fluids\Valvules\Valvule.cs" />
     <Compile Include="Menu\Entity\Fluids\Valvules\ValvulesMenu.cs" />
+    <Compile Include="Menu\Entity\Generic\GeneralItem.cs" />
     <Compile Include="Menu\Entity\Geology\GeologyCategory.cs" />
     <Compile Include="Menu\Entity\Geology\Rocks\RocksMenu.cs" />
     <Compile Include="Menu\Main\MainMenu.cs" />

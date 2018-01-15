@@ -3,6 +3,7 @@
     using COLSTRAT.Domain.Menu.Categories;
     using COLSTRAT.Domain.Menu.Entity.Fluids;
     using COLSTRAT.Domain.Menu.Entity.Fluids.Valvules;
+    using COLSTRAT.Domain.Menu.Entity.Generic;
     using COLSTRAT.Domain.Menu.Entity.Geology;
     using COLSTRAT.Domain.Menu.Entity.Geology.Rocks;
     using COLSTRAT.Domain.Menu.Main;
@@ -20,7 +21,7 @@
         public DbSet<RocksMenu> RocksMenu { get; set; }
         public DbSet<Rock> Rocks { get; set; }
         public DbSet<MohsScale> MohsScales { get; set; }
-
+        public DbSet<GeneralItem> GeneralItems { get; set; }
 
         public DataContext() : base("DefaultConnection")
         {

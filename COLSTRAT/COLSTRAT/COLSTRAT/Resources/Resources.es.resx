@@ -269,4 +269,22 @@
     <value>Nueva categoria</value>
     <comment>titulo de la pagina de nueva categoria</comment>
   </data>
+  <data name="error_input_category" xml:space="preserve">
+    <value>Debes ingresar una categoría</value>
+  </data>
+  <data name="error_input_menu" xml:space="preserve">
+    <value>Debes ingresar un menu</value>
+  </data>
+  <data name="NewMenu" xml:space="preserve">
+    <value>Nuevo menú</value>
+  </data>
+  <data name="error_record_same" xml:space="preserve">
+    <value>Ya existe lo que vas a agregar</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
 </root>
