@@ -25,20 +25,20 @@ namespace COLSTRAT.ViewModels.Main
         private bool _isRunning;
         private bool _isEnabled;
         string _name;
-        int _mainMenuId;
+        MainMenu _mainMenu;
         #endregion
 
         #region Properties
 
-        public int MainMenuId
+        public MainMenu MainMenu
         {
-            get { return _mainMenuId; }
+            get { return _mainMenu; }
             set
             {
-                if (_mainMenuId != value)
+                if (_mainMenu != value)
                 {
-                    _mainMenuId = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MainMenuId)));
+                    _mainMenu = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MainMenu)));
                 }
             }
         }
@@ -137,7 +137,7 @@ namespace COLSTRAT.ViewModels.Main
 
             Category category = new Category()
             {
-                MainMenuId = MainMenuId,
+                MainMenuId = MainMenu.MainMenuId,
                 Name = Name,
                 Description = Description
             };

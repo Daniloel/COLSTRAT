@@ -6,7 +6,7 @@
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
-    Title="{Binding TitlePage}"
+    Title="{Binding CurrentMenu.Description}"
     xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
     <ContentPage.ToolbarItems>
         <ToolbarItem

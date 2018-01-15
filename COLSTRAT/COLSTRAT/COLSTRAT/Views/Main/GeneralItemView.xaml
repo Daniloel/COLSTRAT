@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.GeneralItemView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{Binding CurrentCategory.Name}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding GeneralItem}"
+            Padding="10">
+            <ListView 
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding GeneralItems}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <!--  <Image
+                                    HorizontalOptions="Start"
+                                    Grid.Column="0"
+                                    HeightRequest="150"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                    
+                                </Image>-->
+                                <ff:CachedImage
+                                    HorizontalOptions="Start"
+                                    Grid.Column="0"
+                                    HeightRequest="150"
+                                    Source="{Binding ImageFullPath}"
+                                    WidthRequest="100">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="240"/>
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                                <StackLayout
+                                    Grid.Column="1"
+                                    Orientation="Vertical">
+                                    <Label 
+                                    FontSize="Medium"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Name}">
+                                    </Label>
+                                    <Label 
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Descripcion}">
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

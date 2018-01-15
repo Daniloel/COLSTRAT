@@ -72,8 +72,7 @@
         {
             var mainViewModel = MainViewModel.GetInstante();
             mainViewModel.CategoryMenu = new CategoryMenuViewModel(Category);
-            mainViewModel.TitlePage = Description;
-            mainViewModel.CurrentMenu = MainMenuId;
+            mainViewModel.CurrentMenu = this;
             await navigationService.Navigate("CategoryMenuView");
 
         }

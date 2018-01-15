@@ -19,7 +19,7 @@
         #endregion
 
         #region Attributes
-        int _currentMenu;
+        MainMenu _currentMenu;
         string _titlePage;
         #endregion
         #region Properties
@@ -35,17 +35,15 @@
                 }
             }
         }
-        public int CurrentMenu
+        public MainMenu CurrentMenu
         {
-            get { return _currentMenu; }
-            set
-            {
-                if (_currentMenu != value)
-                {
-                    _currentMenu = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentMenu)));
-                }
-            }
+            get;
+            set;
+        }
+        public Category CurrentCategory
+        {
+            get;
+            set;
         }
         public ObservableCollection<MenuItemViewModel> Menu
         {
@@ -64,6 +62,7 @@
         public NewMenuViewModel NewMenu { get; set; }
         public EditCategoryViewModel EditCategory { get; set; }
         public EditMenuViewModel EditMenu { get; set; }
+        public GeneralItemViewModel GeneralItem { get; set; }
         #endregion
 
             #region Constructor
@@ -149,7 +148,7 @@
         async void GoNewCategory()
         {
             NewCategory = new NewCategoryViewModel();
-            NewCategory.MainMenuId = CurrentMenu;
+            NewCategory.MainMenu = CurrentMenu;
             await navigationService.Navigate("NewCategoryView");
         }
 

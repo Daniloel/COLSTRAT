@@ -9,13 +9,18 @@ using System.Windows.Input;
 
 namespace COLSTRAT.Models
 {
-    public class Category : MainMenu
+    public class Category
     {
+        #region Constant
+        public const int GEOLOGY = 1;
+        public const int FLUIDS = 2;
+        #endregion
         #region Services
         DialogService dialogService;
         NavigationService navigationService;
         #endregion
         #region Attributes
+        public int MainMenuId { get; set; }
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -24,7 +29,8 @@ namespace COLSTRAT.Models
         public List<RocksMenu> RocksMenu { get; set; }
 
         public int FluidsCategoryId { get; set; }
-        public List<Valvule> Valvules { get; set; } 
+        public List<Valvule> Valvules { get; set; }
+        public List<GeneralItem> GeneralItems { get; set; }
         #endregion
 
         #region Contructor
@@ -78,7 +84,14 @@ namespace COLSTRAT.Models
 
         private async void OpenCategoryDetail()
         {
-            await dialogService.ShowMessage("Hello", "Pronto añadiremos el show");
+            if (CategoryId == FLUIDS)
+                return;
+            if (CategoryId == GEOLOGY)
+                return;
+            var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.CurrentCategory = this;
+            mainViewModel.GeneralItem = new GeneralItemViewModel();
+            await navigationService.Navigate("GeneralItemView");
         }
         #endregion
     }

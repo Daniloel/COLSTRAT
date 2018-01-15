@@ -143,7 +143,7 @@ namespace COLSTRAT.ViewModels.Main
 
             category.Description = Description;
             category.Name = Name;
-            category.MainMenuId = MainViewModel.GetInstante().CurrentMenu;
+            category.MainMenuId = MainViewModel.GetInstante().CurrentMenu.MainMenuId;
 
             string urlBase = Application.Current.Resources["URL_API"].ToString();
             var mainViewModel = MainViewModel.GetInstante();
