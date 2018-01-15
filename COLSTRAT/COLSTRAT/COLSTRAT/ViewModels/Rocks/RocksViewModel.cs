@@ -1,9 +1,11 @@
-﻿using COLSTRAT.Models;
+﻿using COLSTRAT.Helpers;
+using COLSTRAT.Models;
 using COLSTRAT.Service;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels.Rocks
 {
@@ -58,6 +60,80 @@ namespace COLSTRAT.ViewModels.Rocks
             dialogService = new DialogService();
             navigationService = new NavigationService();
             Rocks = new ObservableCollection<Rock>(rocks.OrderBy(c => c.Name));
+        }
+        #endregion
+        
+        #region Singleton
+        static RocksViewModel instance;
+
+        public static RocksViewModel GetInstante()
+        {
+            if (instance == null)
+            {
+                return new RocksViewModel(new List<Rock>());
+            }
+
+            return instance;
+        }
+        #endregion
+
+
+        #region Methods
+        public void AddMenu(Rock rock)
+        {
+            IsRefreshing = true;
+            rocks.Add(rock);
+            Rocks = new ObservableCollection<Rock>(rocks.OrderBy(c => c.Name));
+            IsRefreshing = false;
+        }
+        public void UpdateMenu(Rock rock)
+        {
+            IsRefreshing = true;
+            var oldItem = rocks.Where(c => c.RockId == rock.RockId).FirstOrDefault();
+            oldItem = rock;
+            Rocks = new ObservableCollection<Rock>(rocks.OrderBy(c => c.Name));
+            IsRefreshing = false;
+        }
+        public async void DeleteCategory(Rock rock)
+        {
+            IsRefreshing = true;
+            apiService = new ApiService();
+            dialogService = new DialogService();
+            var con = await apiService.CheckConnection();
+            if (!con.IsSuccess)
+            {
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(con.Message);
+                return;
+            }
+
+            string urlBase = Application.Current.Resources["URL_API"].ToString();
+            var mainViewModel = MainViewModel.GetInstante();
+            var response = await apiService.Delete(
+                urlBase,
+                "/api",
+                "/Rocks",
+                mainViewModel.Token.TokenType,
+                mainViewModel.Token.AccessToken,
+                rock);
+
+            if (!response.IsSuccess)
+            {
+                IsRefreshing = false;
+                if (response.Message == "mdg4ymQsXUPdMYLR74DMSqdwMdppHC1yssL5+SuIvJ8B3a7Pf2PIBULCV1+0oQEXewaNRYU09w76N1tktNaPxQ==")
+                {
+                    await dialogService.ShowErrorMessage(Languages.Error_Record_Relateds);
+                }
+                else
+                {
+                    await dialogService.ShowErrorMessage(Languages.ErrorResponseNotFound);
+                }
+                return;
+            }
+            rocks.Remove(rock);
+
+            Rocks = new ObservableCollection<Rock>(rocks.OrderBy(c => c.Name));
+            IsRefreshing = false;
         }
         #endregion
     }

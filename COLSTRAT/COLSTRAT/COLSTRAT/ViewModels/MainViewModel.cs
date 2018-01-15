@@ -126,8 +126,34 @@
             });
         }
         #endregion
-        
+
         #region Commands
+        public ICommand NewRockCommand
+        {
+            get
+            {
+                return new RelayCommand(GoNewRock);
+            }
+        }
+
+        async void GoNewRock()
+        {
+          /*  NewRock = new NewRockViewModel();
+            await navigationService.Navigate("NewRock");*/
+        }
+        public ICommand NewRockMenuCommand
+        {
+            get
+            {
+                return new RelayCommand(GoNewRockMenu);
+            }
+        }
+
+        async void GoNewRockMenu()
+        {
+            /*  NewRock = new NewRockViewModel();
+              await navigationService.Navigate("NewRock");*/
+        }
         public ICommand NewMenuCommand
         {
             get

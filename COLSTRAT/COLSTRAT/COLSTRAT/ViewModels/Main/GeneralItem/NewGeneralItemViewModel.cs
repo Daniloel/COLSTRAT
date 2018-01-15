@@ -25,11 +25,22 @@
         private bool _isRunning;
         private bool _isEnabled;
         string _name;
-        string _image;
+        string _imageFullPath;
         #endregion
 
         #region Properties
-
+        public string ImageFullPath
+        {
+            get { return _imageFullPath; }
+            set
+            {
+                if (_imageFullPath != value)
+                {
+                    _imageFullPath = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageFullPath)));
+                }
+            }
+        }
         public Category Category
         {
             get;

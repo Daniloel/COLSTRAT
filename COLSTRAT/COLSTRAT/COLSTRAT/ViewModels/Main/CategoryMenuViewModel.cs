@@ -65,6 +65,8 @@ namespace COLSTRAT.ViewModels.Main
                 this.categories = categories;
                 CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
             }
+            apiService = new ApiService();
+            dialogService = new DialogService();
         }
         #endregion
 

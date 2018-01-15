@@ -10,7 +10,7 @@
     xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Command="{Binding NewRocksMenuView}"
+            Command="{Binding NewRocksMenuCommand}"
                 Icon="plus_circle.png">
         </ToolbarItem>
     </ContentPage.ToolbarItems>

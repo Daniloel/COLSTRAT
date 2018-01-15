@@ -29,7 +29,7 @@ namespace COLSTRAT.Models
                 {
                     return "http://colstrat-api.somee.com/Content/no-image/no-image.png";
                 }
-                return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
+                return string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~'));
             }
         }
         #endregion
