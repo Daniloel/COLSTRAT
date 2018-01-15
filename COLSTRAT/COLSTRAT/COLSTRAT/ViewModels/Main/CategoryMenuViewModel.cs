@@ -1,4 +1,5 @@
-﻿using COLSTRAT.Models;
+﻿using COLSTRAT.Helpers;
+using COLSTRAT.Models;
 using COLSTRAT.Service;
 using System;
 using System.Collections.Generic;
@@ -120,7 +121,14 @@ namespace COLSTRAT.ViewModels.Main
             if (!response.IsSuccess)
             {
                 IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
+                if (response.Message == "mdg4ymQsXUPdMYLR74DMSqdwMdppHC1yssL5+SuIvJ8B3a7Pf2PIBULCV1+0oQEXewaNRYU09w76N1tktNaPxQ==")
+                {
+                    await dialogService.ShowErrorMessage(Languages.Error_Record_Relateds);
+                }
+                else
+                {
+                    await dialogService.ShowErrorMessage(Languages.ErrorResponseNotFound);
+                }
                 return;
             }
             categories.Remove(category);

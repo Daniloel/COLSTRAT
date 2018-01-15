@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System;
+using COLSTRAT.Helpers;
 
 namespace COLSTRAT.ViewModels
 {
@@ -131,7 +132,14 @@ namespace COLSTRAT.ViewModels
             if (!response.IsSuccess)
             {
                 IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
+                if (response.Message == "mdg4ymQsXUPdMYLR74DMSqdwMdppHC1yssL5+SuIvJ8B3a7Pf2PIBULCV1+0oQEXewaNRYU09w76N1tktNaPxQ==")
+                {
+                    await dialogService.ShowErrorMessage(Languages.Error_Record_Relateds);
+                }
+                else
+                {
+                    await dialogService.ShowErrorMessage(Languages.ErrorResponseNotFound);
+                }
                 return;
             }
             mainMenu.Remove(mainmenu);

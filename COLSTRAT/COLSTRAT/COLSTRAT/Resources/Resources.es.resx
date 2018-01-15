@@ -296,4 +296,7 @@
   <data name="message_delete" xml:space="preserve">
     <value>¿Seguro?</value>
   </data>
+  <data name="error_relateds" xml:space="preserve">
+    <value>No puedes borrar esto porque tiene relaciones</value>
+  </data>
 </root>

@@ -14,6 +14,13 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Error_Record_Relateds
+        {
+            get
+            {
+                return Resources.error_relateds;
+            }
+        }
         public static string Message_Delete
         {
             get

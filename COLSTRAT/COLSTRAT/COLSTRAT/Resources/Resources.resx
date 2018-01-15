@@ -262,4 +262,7 @@
   <data name="message_delete" xml:space="preserve">
     <value>Sure?</value>
   </data>
+  <data name="error_relateds" xml:space="preserve">
+    <value>You can't delete this record, because it has related records</value>
+  </data>
 </root>

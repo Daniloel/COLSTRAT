@@ -224,6 +224,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You can&apos;t delete this record, because it has related records.
+        /// </summary>
+        public static string error_relateds {
+            get {
+                return ResourceManager.GetString("error_relateds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The service is not available, please try latter..
         /// </summary>
         public static string error_service_no_available {
