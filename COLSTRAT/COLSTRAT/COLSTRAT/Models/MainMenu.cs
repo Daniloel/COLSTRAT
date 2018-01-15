@@ -18,12 +18,12 @@
         NavigationService navigationService;
         #endregion
         #region Attributes
-        public List<OptionKeyValue> listColors;
+        public List<Color> listColors;
         public string Icon { get; set; }
         public int MainMenuId { get; set; }
         public string Description { get; set; }
         public List<Category> Category { get; set; }
-        public string ColorChanged
+        public Color ColorChanged
         {
             get
             {
@@ -36,6 +36,7 @@
         public MainMenu()
         {
             Category = new List<Category>();
+            listColors = new List<Color>();
             dialogService = new DialogService();
             navigationService = new NavigationService();
         }
@@ -95,25 +96,17 @@
             return MainMenuId;
         }
         #endregion
-        string GetColor()
-        {
-            var color = listColors.FirstOrDefault(c => (bool)c.val == false);
-            color.val = true;
-            return color.key;
-        }
-
-        void CreateColors()
+        Color GetColor()
         {
             Random r = new Random();
-            foreach (var item in Category)
+
+            Color c = Color.FromRgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
+            while (listColors.Any(co => co == c))
             {
-                Color c = Color.FromRgb(r.Next(0, 256),r.Next(0, 256), r.Next(0, 256));
-                while (listColors.Any(co => co.key == c.ToString()))
-                {
-                    c = Color.FromRgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
-                }
-                listColors.Add(new OptionKeyValue(c.ToString(),false));
+                c = Color.FromRgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
             }
+            listColors.Add(c);
+            return c;
         }
     }
 }
