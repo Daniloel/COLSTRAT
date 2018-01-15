@@ -130,6 +130,7 @@
             dialogService = new DialogService();
             apiService = new ApiService();
             navigationService = new NavigationService();
+            ImageSource = "http://colstrat-api.somee.com/Content/no-image/no-image.png";
         }
         #endregion
 
@@ -152,13 +153,13 @@
             {
                 var source = await dialogService.ShowImageOptions();
 
-                if (source == "Cancel")
+                if (source == Languages.Cancel)
                 {
                     file = null;
                     return;
                 }
 
-                if (source == "From Camera")
+                if (source == Languages.From_Camera)
                 {
                     file = await CrossMedia.Current.TakePhotoAsync(
                         new StoreCameraMediaOptions

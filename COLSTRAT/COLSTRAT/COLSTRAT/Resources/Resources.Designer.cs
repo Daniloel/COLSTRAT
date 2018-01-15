@@ -125,6 +125,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cancel.
+        /// </summary>
+        public static string cancel {
+            get {
+                return ResourceManager.GetString("cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Check your internet connection.
         /// </summary>
         public static string check_internet_connection {
@@ -256,6 +265,24 @@ namespace COLSTRAT.Resources {
         public static string ForgotPass {
             get {
                 return ResourceManager.GetString("ForgotPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a From camera.
+        /// </summary>
+        public static string from_camera {
+            get {
+                return ResourceManager.GetString("from_camera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a From gallery.
+        /// </summary>
+        public static string from_gallery {
+            get {
+                return ResourceManager.GetString("from_gallery", resourceCulture);
             }
         }
         
@@ -431,6 +458,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Where do you take the image?.
+        /// </summary>
+        public static string option_select_image {
+            get {
+                return ResourceManager.GetString("option_select_image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select the rock.
         /// </summary>
         public static string picker_select_the_rock {
@@ -481,6 +517,15 @@ namespace COLSTRAT.Resources {
         public static string SedimentaryRocks {
             get {
                 return ResourceManager.GetString("SedimentaryRocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select the image to change.
+        /// </summary>
+        public static string TapImage {
+            get {
+                return ResourceManager.GetString("TapImage", resourceCulture);
             }
         }
         

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using COLSTRAT.API.Helpers;
 using COLSTRAT.API.Models;
 using COLSTRAT.Domain;
 using COLSTRAT.Domain.Menu.Entity.Generic;
@@ -44,7 +46,7 @@ namespace COLSTRAT.API.Controllers
 
         // PUT: api/GeneralItems/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutGeneralItem(int id, GeneralItem generalItem)
+        public async Task<IHttpActionResult> PutGeneralItem(int id, GeneralItemsResponse generalItem)
         {
             if (!ModelState.IsValid)
             {
@@ -55,8 +57,23 @@ namespace COLSTRAT.API.Controllers
             {
                 return BadRequest();
             }
+            if (generalItem.ImageArray != null && generalItem.ImageArray.Length > 0)
+            {
+                var stream = new MemoryStream(generalItem.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = string.Format("{0}.jpg", guid);
+                var folder = "~/Content/Images";
+                var fullPath = string.Format("{0}/{1}", folder, file);
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
 
-            db.Entry(generalItem).State = EntityState.Modified;
+                if (response)
+                {
+                    generalItem.Image = fullPath;
+                }
+            }
+
+            var item = ToGeneralItem(generalItem);
+            db.Entry(item).State = EntityState.Modified;
 
             try
             {
@@ -82,14 +99,30 @@ namespace COLSTRAT.API.Controllers
 
         // POST: api/GeneralItems
         [ResponseType(typeof(GeneralItem))]
-        public async Task<IHttpActionResult> PostGeneralItem(GeneralItem generalItem)
+        public async Task<IHttpActionResult> PostGeneralItem(GeneralItemsResponse generalItem)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.GeneralItems.Add(generalItem);
+            if (generalItem.ImageArray != null && generalItem.ImageArray.Length > 0)
+            {
+                var stream = new MemoryStream(generalItem.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = string.Format("{0}.jpg", guid);
+                var folder = "~/Content/Images";
+                var fullPath = string.Format("{0}/{1}", folder, file);
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                if (response)
+                {
+                    generalItem.Image = fullPath;
+                }
+            }
+
+            var item = ToGeneralItem(generalItem);
+            db.GeneralItems.Add(item);
             try
             {
                 await db.SaveChangesAsync();
@@ -109,7 +142,20 @@ namespace COLSTRAT.API.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = generalItem.GeneralItemId }, generalItem);
+            return CreatedAtRoute("DefaultApi", new { id = item.GeneralItemId }, item);
+        }
+
+        private GeneralItem ToGeneralItem(GeneralItemsResponse itemResponse)
+        {
+            return new GeneralItem
+            {
+                Category = itemResponse.Category,
+                CategoryId = itemResponse.CategoryId,
+                GeneralItemId = itemResponse.GeneralItemId,
+                Name = itemResponse.Name,
+                Description = itemResponse.Description,
+                Image = itemResponse.Image
+            };
         }
 
         // DELETE: api/GeneralItems/5

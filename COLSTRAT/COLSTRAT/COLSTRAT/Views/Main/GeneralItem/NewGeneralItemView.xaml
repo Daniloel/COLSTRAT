@@ -36,6 +36,11 @@
                     <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
                 </ff:CachedImage.GestureRecognizers>
             </ff:CachedImage>
+            <Label
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="{i18n:Translate TapImage}">
+            </Label>
             <ActivityIndicator
                 VerticalOptions="CenterAndExpand"
                 IsVisible="{Binding IsRunning, Mode=TwoWay}"

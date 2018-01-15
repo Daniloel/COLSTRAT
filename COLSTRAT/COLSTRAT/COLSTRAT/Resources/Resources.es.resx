@@ -302,4 +302,19 @@
   <data name="create" xml:space="preserve">
     <value>Nuevo</value>
   </data>
+  <data name="TapImage" xml:space="preserve">
+    <value>Toca la imagen para cambiarla</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="from_camera" xml:space="preserve">
+    <value>Tomar foto</value>
+  </data>
+  <data name="from_gallery" xml:space="preserve">
+    <value>Desde la galería</value>
+  </data>
+  <data name="option_select_image" xml:space="preserve">
+    <value>¿De dónde quieres tomar la imagen?</value>
+  </data>
 </root>

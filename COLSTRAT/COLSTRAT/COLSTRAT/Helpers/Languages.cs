@@ -14,6 +14,34 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Option_Pick_Photo
+        {
+            get
+            {
+                return Resources.option_select_image;
+            }
+        }
+        public static string From_Gallery
+        {
+            get
+            {
+                return Resources.from_gallery;
+            }
+        }
+        public static string From_Camera
+        {
+            get
+            {
+                return Resources.from_camera;
+            }
+        }
+        public static string Cancel
+        {
+            get
+            {
+                return Resources.cancel;
+            }
+        }
         public static string Error_Record_Relateds
         {
             get

@@ -26,11 +26,11 @@ namespace COLSTRAT.Service
         public async Task<string> ShowImageOptions()
         {
             return await App.Current.MainPage.DisplayActionSheet(
-                "Where do you take the image?",
-                "Cancel",
+                Languages.Option_Pick_Photo,
+                Languages.Cancel,
                 null,
-                "From Gallery",
-                "From Camera");
+                Languages.From_Gallery,
+                Languages.From_Camera);
         }
 
     }

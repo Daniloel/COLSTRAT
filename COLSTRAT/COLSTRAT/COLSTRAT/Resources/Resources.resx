@@ -268,4 +268,19 @@
   <data name="create" xml:space="preserve">
     <value>Create New</value>
   </data>
+  <data name="TapImage" xml:space="preserve">
+    <value>Select the image to change</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="from_camera" xml:space="preserve">
+    <value>From camera</value>
+  </data>
+  <data name="from_gallery" xml:space="preserve">
+    <value>From gallery</value>
+  </data>
+  <data name="option_select_image" xml:space="preserve">
+    <value>Where do you take the image?</value>
+  </data>
 </root>

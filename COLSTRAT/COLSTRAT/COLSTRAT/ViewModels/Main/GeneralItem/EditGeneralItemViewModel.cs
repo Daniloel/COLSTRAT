@@ -4,6 +4,8 @@
     using COLSTRAT.Models;
     using COLSTRAT.Service;
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
     using System.ComponentModel;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -25,10 +27,29 @@
         private bool _isEnabled;
         string _name;
         string _imageFullPath;
+        ImageSource _imageSource;
         GeneralItem generalItem;
+        MediaFile file;
         #endregion
 
         #region Properties
+        public ImageSource ImageSource
+        {
+            set
+            {
+                if (_imageSource != value)
+                {
+                    _imageSource = value;
+                    PropertyChanged?.Invoke(
+                        this,
+                        new PropertyChangedEventArgs(nameof(ImageSource)));
+                }
+            }
+            get
+            {
+                return _imageSource;
+            }
+        }
         public string ImageFullPath
         {
             get { return _imageFullPath; }
@@ -107,12 +128,66 @@
             navigationService = new NavigationService();
             Description = generalItem.Description;
             Name = generalItem.Name;
-            ImageFullPath = generalItem.ImageFullPath;
+            ImageSource = generalItem.ImageFullPath;
         }
         #endregion
 
 
         #region Commands
+        public ICommand ChangeImageCommand
+        {
+            get
+            {
+                return new RelayCommand(ChangeImage);
+            }
+        }
+
+        async void ChangeImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (CrossMedia.Current.IsCameraAvailable &&
+                CrossMedia.Current.IsTakePhotoSupported)
+            {
+                var source = await dialogService.ShowImageOptions();
+
+                if (source == Languages.Cancel)
+                {
+                    file = null;
+                    return;
+                }
+
+                if (source ==Languages.From_Camera)
+                {
+                    file = await CrossMedia.Current.TakePhotoAsync(
+                        new StoreCameraMediaOptions
+                        {
+                            Directory = "Sample",
+                            Name = "test.jpg",
+                            PhotoSize = PhotoSize.Small,
+                        }
+                    );
+                }
+                else
+                {
+                    file = await CrossMedia.Current.PickPhotoAsync();
+                }
+            }
+            else
+            {
+                file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (file != null)
+            {
+                ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
         public ICommand SaveCommand
         {
             get
@@ -139,7 +214,14 @@
                 IsEnabled = true;
                 return;
             }
-
+            byte[] imageArray = null;
+            if (file != null)
+            {
+                imageArray = FilesHelper.ReadFully(file.GetStream());
+                file.Dispose();
+            }
+            
+            generalItem.ImageArray = imageArray;
             generalItem.Description = Description;
             generalItem.Name = Name;
             generalItem.CategoryId = MainViewModel.GetInstante().CurrentCategory.CategoryId;
