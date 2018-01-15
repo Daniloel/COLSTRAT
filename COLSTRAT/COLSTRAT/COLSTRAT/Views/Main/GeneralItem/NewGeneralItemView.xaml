@@ -30,8 +30,11 @@
                 VerticalOptions="CenterAndExpand"
                 Grid.Column="0"
                 HeightRequest="200"
-                Source="{Binding ImageFullPath}"
+                Source="{Binding ImageSource}"
                 WidthRequest="200">
+                <ff:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                </ff:CachedImage.GestureRecognizers>
             </ff:CachedImage>
             <ActivityIndicator
                 VerticalOptions="CenterAndExpand"
