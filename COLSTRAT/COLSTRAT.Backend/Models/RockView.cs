@@ -1,6 +1,6 @@
 ﻿namespace COLSTRAT.Backend.Models
 {
-    using COLSTRAT.Domain;
+    using COLSTRAT.Domain.Menu.Entity.Geology.Rocks;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web;

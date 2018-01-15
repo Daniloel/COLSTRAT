@@ -5,6 +5,8 @@
     using Views;
     using Xamarin.Forms;
     using COLSTRAT.Views.Main;
+    using System;
+    using COLSTRAT.Views.Main.GeneralItem;
 
     public class NavigationService
     {
@@ -21,6 +23,9 @@
 
             switch (pageName)
             {
+                case "Home":
+                    SetMainPage();
+                    break;
                 case "IgneousView":
                     await App.Navigator.PushAsync(new IgneousView());
                     break;
@@ -30,15 +35,47 @@
                 case "SedimentaryView":
                     await App.Navigator.PushAsync(new SedimentaryView());
                     break;
-                case "TypesOfRocksView":
-                    await App.Navigator.PushAsync(new TypesOfRocksView());
+                case "MainMenuView":
+                    await App.Navigator.PushAsync(new MainMenuView());
                     break;
                 case "RocksView":
                     await App.Navigator.PushAsync(new RocksView());
                     break;
+                case "CategoryMenuView":
+                    await App.Navigator.PushAsync(new CategoryMenuView());
+                    break;
+                case "NewCategoryView":
+                    await App.Navigator.PushAsync(new NewCategoryView());
+                    break;
+                case "NewMenuView":
+                    await App.Navigator.PushAsync(new NewMenuView());
+                    break;
+                case "EditCategoryView":
+                    await App.Navigator.PushAsync(new EditCategoryView());
+                    break;
+                case "EditMenuView":
+                    await App.Navigator.PushAsync(new EditMenuView());
+                    break;
+                case "GeneralItemView":
+                    await App.Navigator.PushAsync(new GeneralItemView());
+                    break;
+                case "NewGeneralItemView":
+                    await App.Navigator.PushAsync(new NewGeneralItemView());
+                    break;
+                case "EditGeneralItemView":
+                    await App.Navigator.PushAsync(new EditGeneralItemView());
+                    break;
+                case "RocksMenuView":
+                    await App.Navigator.PushAsync(new RocksMenuView());
+                    break;
                 default:
                     break;
             }
+        }
+
+        public async Task Back()
+        {
+            await App.Navigator.PopAsync();
         }
     }
 }

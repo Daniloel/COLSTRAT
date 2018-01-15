@@ -1,10 +1,10 @@
-﻿@model IEnumerable<COLSTRAT.Domain.Rock>
+﻿@model IEnumerable<COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock>
 
 @{
     ViewBag.Title = "Rocks";
 }
 
-<h2>Index</h2>
+<h2>Rocks</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-primary" })
@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TypeOfRock.Name)
+            @Html.DisplayNameFor(model => model.RocksMenu.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Image)
@@ -20,39 +20,26 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Minerals_Composition)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TypeOfRock.Name)
+            @Html.DisplayFor(modelItem => item.RocksMenu.Name)
         </td>
         <td>
             @if (!string.IsNullOrEmpty(item.Image))
             {
-                <img src="@Url.Content(item.Image)" alt="Image" style="width:300px;height:350px;max-width: 100%; height: auto;" />
+                <img src="@Url.Content(item.Image)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
             }
-
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Minerals_Composition)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RockId }, new { @class = "btn btn-warning" }) 
-            @Html.ActionLink("Details", "Details", new { id=item.RockId }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Edit", "Edit", new { id=item.RockId }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Details", "Details", new { id=item.RockId }, new { @class = "btn btn-info" })
             @Html.ActionLink("Delete", "Delete", new { id=item.RockId }, new { @class = "btn btn-danger" })
         </td>
     </tr>

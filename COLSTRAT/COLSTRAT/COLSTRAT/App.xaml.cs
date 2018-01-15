@@ -15,7 +15,7 @@
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor=Colors.AccentColor };
+            MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor=Colors.MainColor };
             //MainPage = new MasterView();
         }
         #endregion

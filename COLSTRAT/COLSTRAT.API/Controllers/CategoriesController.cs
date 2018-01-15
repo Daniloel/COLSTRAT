@@ -1,7 +1,5 @@
 ﻿namespace COLSTRAT.API.Controllers
 {
-    using COLSTRAT.API.Models;
-    using COLSTRAT.Domain;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
@@ -10,6 +8,10 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Description;
+    using COLSTRAT.Domain;
+    using COLSTRAT.Domain.Menu.Categories;
+    using COLSTRAT.API.Models;
+    using System;
 
     [Authorize]
     public class CategoriesController : ApiController
@@ -19,8 +21,10 @@
         // GET: api/Categories
         public async Task<IHttpActionResult> GetCategories()
         {
-            var categories = db.Categories.ToListAsync();
+            var categories = await db.Categories.ToListAsync();
+            var categoriesResponse = new List<CategoryResponse>();
             
+
             return Ok(categories);
         }
 
@@ -28,80 +32,108 @@
         [ResponseType(typeof(Category))]
         public async Task<IHttpActionResult> GetCategory(int id)
         {
-            Category category = await db.Categories.FindAsync(id);
+            var category = await db.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
-
-            switch (category.CategoryId)
+            if (id == CategoryResponse.GEOLOGY)
             {
-                case ConstBase.ROCKS_CATEGORY:
-                    var rocksCategory = LoadRocks();
-                    return Ok(rocksCategory);
-                    break;
-                case ConstBase.SCALES_CATEGORY:
-                    break;
-                case ConstBase.COLUMN_STRATIGRAPH_CATEGORY:
-                    break;
-                default:
-                    break;
-            }
+                var categoryResponse = new List<GeologyCategoryResponse>();
 
-
-
-            CategoryRockResponse LoadRocks(){
-
-                CategoryRockResponse categoriyResponse = new CategoryRockResponse();
-                if (category.TypesOfRocks != null)
+                foreach (var item in category.GeologyCategory)
                 {
-                    var typeRockResponseList = new List<TypeOfRockResponse>();
-                    
-                    foreach (var typeRock in category.TypesOfRocks)
+                    var rocksmenu = new List<RocksMenuResponse>();
+                    foreach (var rocksm in item.RocksMenu)
                     {
-                        var typeRockResponse = new TypeOfRockResponse();
                         var rocksResponse = new List<RockResponse>();
-                        foreach (var rock in typeRock.Rocks)
+                        foreach (var rocks in rocksm.Rock)
                         {
                             rocksResponse.Add(new RockResponse
                             {
-                                Descripcion = rock.Descripcion,
-                                Image = rock.Image,
-                                TypeOfRockId = rock.TypeOfRockId,
-                                Name = rock.Name,
-                                Minerals_Composition = rock.Descripcion,
-                                UseFor = rock.UseFor,
-                                Structure = rock.Structure,
-                                Chemical_Composition = rock.Chemical_Composition,
-                                Mechanical_Strength = rock.Mechanical_Strength,
-                                Porosity = rock.Porosity,
-                                MohsScaleId = rock.MohsScaleId,
-                                RockId = rock.RockId
+                                RockId = rocks.RockId,
+                                Image = rocks.Image,
+                                Name = rocks.Name,
+                                Descripcion = rocks.Descripcion,
+                                Minerals_Composition = rocks.Minerals_Composition,
+                                UseFor = rocks.UseFor,
+                                Structure = rocks.Structure,
+                                Chemical_Composition = rocks.Chemical_Composition,
+                                Mechanical_Strength = rocks.Mechanical_Strength,
+                                Porosity = rocks.Porosity,
+                                MohsScaleId = rocks.MohsScaleId
                             });
-                            
                         }
-                        typeRockResponseList.Add(new TypeOfRockResponse
+
+                        rocksmenu.Add(new RocksMenuResponse
                         {
-                            TypeOfRockId = typeRock.TypeOfRockId,
-                            Name = typeRock.Name,
-                            Description = typeRock.Description,
+                            RocksMenuId = rocksm.RocksMenuId,
+                            Name = rocksm.Name,
+                            Description = rocksm.Description,
                             Rocks = rocksResponse
                         });
                     }
-
-                    categoriyResponse.CategoryId = category.CategoryId;
-                    categoriyResponse.Description = category.Description;
-                    categoriyResponse.TypeOfRocks = typeRockResponseList;
+                    categoryResponse.Add(new GeologyCategoryResponse
+                    {
+                        GeologyCategoryId = item.GeologyCategoryId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        RocksMenu = rocksmenu
+                    });
                 }
-                return categoriyResponse;
+                return Ok(categoryResponse);
+
             }
+            else if(id == CategoryResponse.FLUIDS)
+            {
+                var categoryResponse = new List<FluidsCategoryResponse>();
 
+                foreach (var item in category.FluidsCategory)
+                {
+                    var valvuleResponse = new List<ValvuleResponse>();
 
+                    foreach (var valvule in item.Valvules)
+                    {
 
-            return Ok(category);
+                        valvuleResponse.Add(new ValvuleResponse
+                        {
+                            ValvuleId = valvule.ValvuleId,
+                            Image = valvule.Image,
+                            Name = valvule.Name,
+                            Descripcion = valvule.Descripcion,
+                            UseFor = valvule.UseFor
+                        });
+                    }
+                    
+                    categoryResponse.Add(new FluidsCategoryResponse
+                    {
+                        FluidsCategoryId = item.FluidsCategoryId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        Valvules = valvuleResponse
+                    });
+                }
 
+                return Ok(categoryResponse);
 
+            }
+            else
+            {
+                var categoryResponse = new List<GeneralItemsResponse>();
 
+                foreach (var item in category.GeneralItem)
+                {
+                    categoryResponse.Add(new GeneralItemsResponse
+                    {
+                        GeneralItemId = item.GeneralItemId,
+                        Name = item.Name,
+                        Description = item.Description,
+                        Image = item.Image
+                    });
+                }
+
+                return Ok(categoryResponse);
+            }
         }
 
         // PUT: api/Categories/5
@@ -123,16 +155,19 @@
             try
             {
                 await db.SaveChangesAsync();
+
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!CategoryExists(id))
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("Index"))
                 {
-                    return NotFound();
+                    return BadRequest("1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8");
                 }
                 else
                 {
-                    throw;
+                    return BadRequest(ex.Message);
                 }
             }
 
@@ -149,8 +184,24 @@
             }
 
             db.Categories.Add(category);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
 
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("Index"))
+                {
+                    return BadRequest("1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8");
+                }
+                else
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
             return CreatedAtRoute("DefaultApi", new { id = category.CategoryId }, category);
         }
 
@@ -165,8 +216,24 @@
             }
 
             db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
 
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("REFERENCE"))
+                {
+                    return BadRequest("mdg4ymQsXUPdMYLR74DMSqdwMdppHC1yssL5+SuIvJ8B3a7Pf2PIBULCV1+0oQEXewaNRYU09w76N1tktNaPxQ==");
+                }
+                else
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
             return Ok(category);
         }
 

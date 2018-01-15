@@ -15,6 +15,7 @@
         DialogService dialogService;
         NavigationService navigationService;
         #endregion
+
         public int TypeOfRockId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -38,9 +39,6 @@
 
         private async void OpenTypeOfRock()
         {
-            var mainViewModel = MainViewModel.GetInstante();
-            mainViewModel.Rocks = new RocksViewModel(Rocks);
-            await navigationService.Navigate("RocksView");
             
         }
         #endregion

@@ -9,6 +9,12 @@
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
     Title="{i18n:Translate RocksTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding NewRockCommand}"
+                Icon="plus_circle.png">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Rocks}"
@@ -19,19 +25,22 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem 
+                                    Command="{Binding EditCommand}" 
+                                    Text="{i18n:Translate edit}">
+                                </MenuItem>
+                                <MenuItem 
+                                    Command="{Binding DeleteCommand}" 
+                                    IsDestructive="true"     
+                                    Text="{i18n:Translate delete}">
+                                </MenuItem>
+                            </ViewCell.ContextActions>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                              <!--  <Image
-                                    HorizontalOptions="Start"
-                                    Grid.Column="0"
-                                    HeightRequest="150"
-                                    Source="{Binding ImageFullPath}"
-                                    WidthRequest="100">
-                                    
-                                </Image>-->
                                 <ff:CachedImage
                                     HorizontalOptions="Start"
                                     Grid.Column="0"

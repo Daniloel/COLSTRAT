@@ -262,7 +262,62 @@
   <data name="RocksTitle" xml:space="preserve">
     <value>Rocas</value>
   </data>
-  <data name="TypeOfRocksViewTitle" xml:space="preserve">
-    <value>Tipos de roca</value>
+  <data name="MainMenuViewTitle" xml:space="preserve">
+    <value>Menu principal</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>Nueva categoria</value>
+    <comment>titulo de la pagina de nueva categoria</comment>
+  </data>
+  <data name="error_input_category" xml:space="preserve">
+    <value>Debes ingresar una categoría</value>
+  </data>
+  <data name="error_input_menu" xml:space="preserve">
+    <value>Debes ingresar un menu</value>
+  </data>
+  <data name="NewMenu" xml:space="preserve">
+    <value>Nuevo menú</value>
+  </data>
+  <data name="error_record_same" xml:space="preserve">
+    <value>Ya existe lo que vas a agregar</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EditCategory" xml:space="preserve">
+    <value>Editar Categoria</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Editar Menu</value>
+  </data>
+  <data name="message_delete" xml:space="preserve">
+    <value>¿Seguro?</value>
+  </data>
+  <data name="error_relateds" xml:space="preserve">
+    <value>No puedes borrar esto porque tiene relaciones</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="TapImage" xml:space="preserve">
+    <value>Toca la imagen para cambiarla</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="from_camera" xml:space="preserve">
+    <value>Tomar foto</value>
+  </data>
+  <data name="from_gallery" xml:space="preserve">
+    <value>Desde la galería</value>
+  </data>
+  <data name="option_select_image" xml:space="preserve">
+    <value>¿De dónde quieres tomar la imagen?</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Inicio</value>
   </data>
 </root>

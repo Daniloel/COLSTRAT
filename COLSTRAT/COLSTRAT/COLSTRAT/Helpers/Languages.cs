@@ -14,6 +14,63 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Home
+        {
+            get
+            {
+                return Resources.home;
+            }
+        }
+        public static string Option_Pick_Photo
+        {
+            get
+            {
+                return Resources.option_select_image;
+            }
+        }
+        public static string From_Gallery
+        {
+            get
+            {
+                return Resources.from_gallery;
+            }
+        }
+        public static string From_Camera
+        {
+            get
+            {
+                return Resources.from_camera;
+            }
+        }
+        public static string Cancel
+        {
+            get
+            {
+                return Resources.cancel;
+            }
+        }
+        public static string Error_Record_Relateds
+        {
+            get
+            {
+                return Resources.error_relateds;
+            }
+        }
+        public static string Message_Delete
+        {
+            get
+            {
+                return Resources.message_delete;
+            }
+        }
+        public static string Error_Record_Same
+        {
+            get { return Resources.error_record_same; }
+        }
+        public static string Error_Input_Menu
+        {
+            get { return Resources.error_input_menu; }
+        }
         public static string Loaded_From_Local
         {
             get { return Resources.loaded_local; }
@@ -116,6 +173,13 @@ namespace COLSTRAT.Helpers
             get
             {
                 return Resources.error_service_no_available;
+            }
+        }
+        public static string ErrorInputCategory
+        {
+            get
+            {
+                return Resources.error_input_category;
             }
         }
     }

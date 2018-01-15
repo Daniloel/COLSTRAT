@@ -1,10 +1,14 @@
-﻿namespace COLSTRAT.Models
+﻿using COLSTRAT.Helpers;
+using COLSTRAT.Service;
+using COLSTRAT.ViewModels.Rocks;
+using GalaSoft.MvvmLight.Command;
+using System.Windows.Input;
+
+namespace COLSTRAT.Models
 {
     public class Rock
     {
         public int RockId { get; set; }
-
-        public int TypeOfRockId { get; set; }
 
         public string Image { get; set; }
 
@@ -37,11 +41,42 @@
                 return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
             }
         }
-
-
+        DialogService dialogService;
+        public Rock()
+        {
+            dialogService = new DialogService();
+        }
         public override int GetHashCode()
         {
             return RockId;
+        }
+
+        public ICommand EditCommand
+        {
+            get
+            {
+                return new RelayCommand(Edit);
+            }
+        }
+        private async void Edit()
+        {
+            
+        }
+        
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(Delete);
+            }
+        }
+
+        private async void Delete()
+        {
+            var response = await dialogService.ShowConfirm(Languages.Warning, Languages.Message_Delete);
+            if (!response)
+                return;
+            RocksViewModel.GetInstante().DeleteCategory(this);
         }
     }
 }

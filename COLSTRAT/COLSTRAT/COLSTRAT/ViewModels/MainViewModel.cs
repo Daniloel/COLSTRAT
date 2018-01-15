@@ -4,18 +4,48 @@
     using COLSTRAT.Models;
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels.Login;
+    using COLSTRAT.ViewModels.Main;
+    using COLSTRAT.ViewModels.Main.GeneralItem;
     using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Windows.Input;
 
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         #region Services
         private NavigationService navigationService;
         #endregion
 
+        #region Attributes
+        MainMenu _currentMenu;
+        string _titlePage;
+        #endregion
         #region Properties
+        public string TitlePage
+        {
+            get { return _titlePage; }
+            set
+            {
+                if (_titlePage != value)
+                {
+                    _titlePage = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TitlePage)));
+                }
+            }
+        }
+        public MainMenu CurrentMenu
+        {
+            get;
+            set;
+        }
+        public Category CurrentCategory
+        {
+            get;
+            set;
+        }
         public ObservableCollection<MenuItemViewModel> Menu
         {
             get;
@@ -26,8 +56,18 @@
         public SedimentaryViewModel Sedimentary { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
-        public TypesOfRocksViewModel TypesOfRocks { get; set; }
+        public MainMenuViewModel MainMenu { get; set; }
+        public RocksMenuViewModel RocksMenu { get; set; }
         public RocksViewModel Rocks { get; set; }
+        public CategoryMenuViewModel CategoryMenu { get; set; }
+        public NewCategoryViewModel NewCategory { get; set; }
+        public NewMenuViewModel NewMenu { get; set; }
+        public EditCategoryViewModel EditCategory { get; set; }
+        public EditMenuViewModel EditMenu { get; set; }
+        public GeneralItemViewModel GeneralItem { get; set; }
+        public EditGeneralItemViewModel EditGeneralItem { get; set; }
+        public NewGeneralItemViewModel NewGeneralItem { get; set; }
+
         #endregion
 
         #region Constructor
@@ -43,6 +83,8 @@
 
         #region Singleton
         static MainViewModel instance;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static MainViewModel GetInstante()
         {
@@ -60,68 +102,87 @@
         {
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "ic_launcher_igneous",
-                PageName = "IgneousView",
-                Title = Languages.IgneousRocks
+                Icon = "fa-home",
+                PageName = "Home",
+                Title = Languages.Home
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "ic_launcher_metamorphic",
-                PageName = "MetamorphicView",
-                Title = Languages.MetamorphicRocks
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "ic_launcher_sedimentary",
-                PageName = "SedimentaryView",
-                Title = Languages.SedimentaryRocks
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "ic_launcher_exit",
+                Icon = "fa-sign-out",
                 PageName = "LogoutView",
                 Title = Languages.btnExit
             });
         }
         #endregion
-        
-        #region Commands
 
-        public ICommand ToIgneousRocks
+        #region Commands
+        public ICommand NewRockCommand
         {
-           get { return new RelayCommand(ShowIgneousRocks); }
+            get
+            {
+                return new RelayCommand(GoNewRock);
+            }
         }
-        public async void ShowIgneousRocks()
+
+        async void GoNewRock()
         {
-            Igneous = new IgneousViewModel();
-            await navigationService.Navigate("IgneousView");
+          /*  NewRock = new NewRockViewModel();
+            await navigationService.Navigate("NewRock");*/
         }
-        public ICommand ToMetamorphicRocks
+        public ICommand NewRockMenuCommand
         {
-            get { return new RelayCommand(ShowMetamorphicRocks); }
+            get
+            {
+                return new RelayCommand(GoNewRockMenu);
+            }
         }
-        async void ShowMetamorphicRocks()
+
+        async void GoNewRockMenu()
         {
-            Metamorphic = new MetamorphicViewModel();
-            await navigationService.Navigate("MetamorphicView");
+            /*  NewRock = new NewRockViewModel();
+              await navigationService.Navigate("NewRock");*/
         }
-        public ICommand ToSedimentaryRocks
-        { 
-            get { return new RelayCommand(ShowSedimentaryRocks); }
-        }
-        async void ShowSedimentaryRocks()
+        public ICommand NewMenuCommand
         {
-            Sedimentary = new SedimentaryViewModel();
-            await navigationService.Navigate("SedimentaryView");
+            get
+            {
+                return new RelayCommand(GoNewMenu);
+            }
         }
-        public ICommand ToTypesOfRocks
+
+        async void GoNewMenu()
         {
-            get{ return new RelayCommand(ShowTypesOfRocks); }
+            NewMenu = new NewMenuViewModel();
+            await navigationService.Navigate("NewMenuView");
         }
-        async void ShowTypesOfRocks()
+
+        public ICommand NewCategoryCommand
         {
-            TypesOfRocks = new TypesOfRocksViewModel();
-            await navigationService.Navigate("TypesOfRocksView");
+            get
+            {
+                return new RelayCommand(GoNewCategory);
+            }
+        }
+
+        async void GoNewCategory()
+        {
+            NewCategory = new NewCategoryViewModel();
+            NewCategory.MainMenu = CurrentMenu;
+            await navigationService.Navigate("NewCategoryView");
+        }
+        public ICommand NewGeneralItemCommand
+        {
+            get
+            {
+                return new RelayCommand(GoGeneralItem);
+            }
+        }
+
+        async void GoGeneralItem()
+        {
+            NewGeneralItem = new NewGeneralItemViewModel();
+            NewGeneralItem.Category = CurrentCategory;
+            await navigationService.Navigate("NewGeneralItemView");
         }
         #endregion
 

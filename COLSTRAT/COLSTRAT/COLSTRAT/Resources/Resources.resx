@@ -229,7 +229,61 @@
   <data name="RocksTitle" xml:space="preserve">
     <value>Rocks</value>
   </data>
-  <data name="TypeOfRocksViewTitle" xml:space="preserve">
-    <value>Types of rocks</value>
+  <data name="MainMenuViewTitle" xml:space="preserve">
+    <value>Main menu</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>New Category</value>
+  </data>
+  <data name="error_input_category" xml:space="preserve">
+    <value>You must enter a category</value>
+  </data>
+  <data name="error_input_menu" xml:space="preserve">
+    <value>You must enter a menu</value>
+  </data>
+  <data name="NewMenu" xml:space="preserve">
+    <value>New menu</value>
+  </data>
+  <data name="error_record_same" xml:space="preserve">
+    <value>There are a record with the same description</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditCategory" xml:space="preserve">
+    <value>Edit Category</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Edit Menu</value>
+  </data>
+  <data name="message_delete" xml:space="preserve">
+    <value>Sure?</value>
+  </data>
+  <data name="error_relateds" xml:space="preserve">
+    <value>You can't delete this record, because it has related records</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="TapImage" xml:space="preserve">
+    <value>Select the image to change</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="from_camera" xml:space="preserve">
+    <value>From camera</value>
+  </data>
+  <data name="from_gallery" xml:space="preserve">
+    <value>From gallery</value>
+  </data>
+  <data name="option_select_image" xml:space="preserve">
+    <value>Where do you take the image?</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
   </data>
 </root>

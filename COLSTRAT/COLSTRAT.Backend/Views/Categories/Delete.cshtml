@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Category
+﻿@model COLSTRAT.Domain.Menu.Categories.Category
 
 @{
     ViewBag.Title = "Delete";
@@ -11,6 +11,22 @@
     <h4>Category</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MainMenu.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainMenu.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>

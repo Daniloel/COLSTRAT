@@ -124,6 +124,8 @@
 
         private async void Login()
         {
+            IsRunning = true;
+            IsEnabled = false;
             if (string.IsNullOrEmpty(Email))
             {
                 await dialogService.ShowErrorMessage(Languages.ErrorEmailEmpty);
@@ -134,8 +136,6 @@
                 await dialogService.ShowErrorMessage(Languages.ErrorPasswordEmpty);
                 return;
             }
-            IsRunning = true;
-            IsEnabled = false;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
@@ -164,7 +164,7 @@
             }
             var mainViewModel = MainViewModel.GetInstante();
             mainViewModel.Token = response;
-            mainViewModel.TypesOfRocks = new TypesOfRocksViewModel();
+            mainViewModel.MainMenu = new MainMenuViewModel();
             navigationService.SetMainPage();
             IsRunning = false;
             IsEnabled = true;

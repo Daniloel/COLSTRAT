@@ -1,4 +1,4 @@
-﻿@model COLSTRAT.Domain.Rock
+﻿@model COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock
 
 @{
     ViewBag.Title = "Details";
@@ -11,19 +11,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MohsScale.Scale)
+            @Html.DisplayNameFor(model => model.MohsScale.Mineral)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MohsScale.Scale)
+            @Html.DisplayFor(model => model.MohsScale.Mineral)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TypeOfRock.Name)
+            @Html.DisplayNameFor(model => model.RocksMenu.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TypeOfRock.Name)
+            @Html.DisplayFor(model => model.RocksMenu.Name)
         </dd>
 
         <dt>

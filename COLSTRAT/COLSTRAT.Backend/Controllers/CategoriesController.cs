@@ -1,12 +1,18 @@
-﻿namespace COLSTRAT.Backend.Controllers
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using COLSTRAT.Backend.Models;
+using COLSTRAT.Domain.Menu.Categories;
+
+namespace COLSTRAT.Backend.Controllers
 {
-    using System.Data.Entity;
-    using System.Threading.Tasks;
-    using System.Net;
-    using System.Web.Mvc;
-    using COLSTRAT.Backend.Models;
-    using COLSTRAT.Domain;
-    [Authorize(Users = "danieldaniyyelda@gmail.com")]
+    [Authorize(Users ="danieldaniyyelda@gmail.com")]
     public class CategoriesController : Controller
     {
         private DataContextLocal db = new DataContextLocal();
@@ -14,7 +20,8 @@
         // GET: Categories
         public async Task<ActionResult> Index()
         {
-            return View(await db.Categories.ToListAsync());
+            var categories = db.Categories.Include(c => c.MainMenu);
+            return View(await categories.ToListAsync());
         }
 
         // GET: Categories/Details/5
@@ -35,15 +42,16 @@
         // GET: Categories/Create
         public ActionResult Create()
         {
+            ViewBag.MainMenuId = new SelectList(db.MainMenu, "MainMenuId", "Description");
             return View();
         }
 
         // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CategoryId,Description")] Category category)
+        public async Task<ActionResult> Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -52,6 +60,7 @@
                 return RedirectToAction("Index");
             }
 
+            ViewBag.MainMenuId = new SelectList(db.MainMenu, "MainMenuId", "Description", category.MainMenuId);
             return View(category);
         }
 
@@ -67,15 +76,16 @@
             {
                 return HttpNotFound();
             }
+            ViewBag.MainMenuId = new SelectList(db.MainMenu, "MainMenuId", "Description", category.MainMenuId);
             return View(category);
         }
 
         // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,Description")] Category category)
+        public async Task<ActionResult> Edit(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +93,7 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.MainMenuId = new SelectList(db.MainMenu, "MainMenuId", "Description", category.MainMenuId);
             return View(category);
         }
 

@@ -10,8 +10,8 @@
         <NavigationPage x:Name="Navigator"
                         BarBackgroundColor="{StaticResource MainColor}">
             <x:Arguments>
-                <views:Main.TypesOfRocksView>
-                </views:Main.TypesOfRocksView>
+                <views:Main.MainMenuView>
+                </views:Main.MainMenuView>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

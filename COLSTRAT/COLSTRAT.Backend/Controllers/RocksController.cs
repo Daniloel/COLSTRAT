@@ -1,15 +1,18 @@
-﻿namespace COLSTRAT.Backend.Controllers
-{
-    using System.Data.Entity;
-    using System.Threading.Tasks;
-    using System.Net;
-    using System.Web.Mvc;
-    using COLSTRAT.Backend.Models;
-    using COLSTRAT.Domain;
-    using COLSTRAT.Backend.Helpers;
-    using System;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using COLSTRAT.Backend.Models;
+using COLSTRAT.Domain.Menu.Entity.Geology.Rocks;
+using COLSTRAT.Backend.Helpers;
 
+namespace COLSTRAT.Backend.Controllers
+{
     [Authorize(Users = "danieldaniyyelda@gmail.com")]
     public class RocksController : Controller
     {
@@ -18,7 +21,7 @@
         // GET: Rocks
         public async Task<ActionResult> Index()
         {
-            var rocks = db.Rocks.Include(r => r.MohsScale).Include(r => r.TypeOfRock);
+            var rocks = db.Rocks.Include(r => r.MohsScale).Include(r => r.RocksMenu);
             return View(await rocks.ToListAsync());
         }
 
@@ -40,14 +43,14 @@
         // GET: Rocks/Create
         public ActionResult Create()
         {
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale");
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name");
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Mineral");
+            ViewBag.RocksMenuId = new SelectList(db.RocksMenu, "RocksMenuId", "Name");
             return View();
         }
 
         // POST: Rocks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(RockView view)
@@ -59,7 +62,7 @@
                 if (view.ImageFile != null)
                 {
                     pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
-                    pic = string.Format("{0}/{1}", folder, pic);
+                    pic = string.Format("{0}/{1}", folder,pic);
                 }
 
                 var rock = ToRock(view);
@@ -68,14 +71,9 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            else
-            {
-                var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.Exception));
-                Console.WriteLine(errors);
-            }
-            
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
+
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Mineral", view.MohsScaleId);
+            ViewBag.RocksMenuId = new SelectList(db.RocksMenu, "RocksMenuId", "Name", view.RocksMenuId);
             return View(view);
         }
 
@@ -83,21 +81,19 @@
         {
             return new Rock
             {
-                Descripcion = view.Descripcion,
+                RockId = view.RockId,
+                RocksMenuId = view.RocksMenuId,
                 Image = view.Image,
-                TypeOfRock = view.TypeOfRock,
-                TypeOfRockId = view.TypeOfRockId,
                 Name = view.Name,
+                Descripcion = view.Descripcion,
                 Minerals_Composition = view.Minerals_Composition,
                 UseFor = view.UseFor,
                 Structure = view.Structure,
                 Chemical_Composition = view.Chemical_Composition,
                 Mechanical_Strength = view.Mechanical_Strength,
                 Porosity = view.Porosity,
-                MohsScale = view.MohsScale,
-                MohsScaleId = view.MohsScaleId,
-                RockId = view.RockId
-            };
+                MohsScaleId = view.MohsScaleId
+             };
         }
 
         // GET: Rocks/Edit/5
@@ -112,8 +108,8 @@
             {
                 return HttpNotFound();
             }
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", rock.MohsScaleId);
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", rock.TypeOfRockId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Mineral", rock.MohsScaleId);
+            ViewBag.RocksMenuId = new SelectList(db.RocksMenu, "RocksMenuId", "Name", rock.RocksMenuId);
             var view = ToView(rock);
             return View(view);
         }
@@ -122,26 +118,24 @@
         {
             return new RockView
             {
-                Descripcion = rock.Descripcion,
+                RockId = rock.RockId,
+                RocksMenuId = rock.RocksMenuId,
                 Image = rock.Image,
-                TypeOfRock = rock.TypeOfRock,
-                TypeOfRockId = rock.TypeOfRockId,
                 Name = rock.Name,
+                Descripcion = rock.Descripcion,
                 Minerals_Composition = rock.Minerals_Composition,
                 UseFor = rock.UseFor,
                 Structure = rock.Structure,
                 Chemical_Composition = rock.Chemical_Composition,
                 Mechanical_Strength = rock.Mechanical_Strength,
                 Porosity = rock.Porosity,
-                MohsScale = rock.MohsScale,
-                MohsScaleId = rock.MohsScaleId,
-                RockId = rock.RockId
+                MohsScaleId = rock.MohsScaleId
             };
         }
 
         // POST: Rocks/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(RockView view)
@@ -162,9 +156,8 @@
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            
-            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Scale", view.MohsScaleId);
-            ViewBag.TypeOfRockId = new SelectList(db.TypeOfRocks, "TypeOfRockId", "Name", view.TypeOfRockId);
+            ViewBag.MohsScaleId = new SelectList(db.MohsScales, "MohsScaleId", "Mineral", view.MohsScaleId);
+            ViewBag.RocksMenuId = new SelectList(db.RocksMenu, "RocksMenuId", "Name", view.RocksMenuId);
             return View(view);
         }
 
