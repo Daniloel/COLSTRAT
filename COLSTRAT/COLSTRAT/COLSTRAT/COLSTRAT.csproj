@@ -53,6 +53,7 @@
     <Compile Include="Models\Login\Customer.cs" />
     <Compile Include="Models\Main\GeneralItem\GeneralItem.cs" />
     <Compile Include="Models\Main\MainMenu.cs" />
+    <Compile Include="Models\Maps\Ubication.cs" />
     <Compile Include="Models\OptionKeyValue.cs" />
     <Compile Include="Models\Rocks\Rock.cs" />
     <Compile Include="Models\Response.cs" />

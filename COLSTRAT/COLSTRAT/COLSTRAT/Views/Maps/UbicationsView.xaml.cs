@@ -1,6 +1,8 @@
 ﻿namespace COLSTRAT.Views.Maps
 {
     using COLSTRAT.Service;
+    using COLSTRAT.ViewModels.Maps;
+    using System.Threading.Tasks;
     using Xamarin.Forms;
     using Xamarin.Forms.Maps;
     using Xamarin.Forms.Xaml;
@@ -36,7 +38,19 @@
                     position,
                     Distance.FromKilometers(.5)));
             }
+
+            await LoadPins();
         }
+        async Task LoadPins()
+        {
+            var ubicationsViewModel = UbicationsViewModel.GetInstance();
+            await ubicationsViewModel.LoadPins();
+            foreach (var pin in ubicationsViewModel.Pins)
+            {
+                MyMap.Pins.Add(pin);
+            }
+        }
+
         #endregion
 
     }

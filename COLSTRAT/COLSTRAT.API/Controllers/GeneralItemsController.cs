@@ -17,6 +17,7 @@ using COLSTRAT.Domain.Menu.Entity.Generic;
 
 namespace COLSTRAT.API.Controllers
 {
+    [Authorize]
     public class GeneralItemsController : ApiController
     {
         private DataContext db = new DataContext();

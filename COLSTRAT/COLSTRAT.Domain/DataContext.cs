@@ -22,6 +22,7 @@
         public DbSet<Rock> Rocks { get; set; }
         public DbSet<MohsScale> MohsScales { get; set; }
         public DbSet<GeneralItem> GeneralItems { get; set; }
+        public DbSet<Customer.Customer> Customers { get; set; }
 
         public DataContext() : base("DefaultConnection")
         {
@@ -31,6 +32,6 @@
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
-        public System.Data.Entity.DbSet<COLSTRAT.Domain.Customer.Customer> Customers { get; set; }
+        public System.Data.Entity.DbSet<COLSTRAT.Domain.Maps.Ubication> Ubications { get; set; }
     }
 }
