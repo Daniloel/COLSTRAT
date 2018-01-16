@@ -407,4 +407,10 @@
   <data name="placeholder_item" xml:space="preserve">
     <value>Ingrese un concepto</value>
   </data>
+  <data name="UbicationsViewTitle" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="confirm_exit" xml:space="preserve">
+    <value>¿Estás seguro que deseas salir?</value>
+  </data>
 </root>

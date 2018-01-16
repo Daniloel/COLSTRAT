@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COLSTRAT App Backend</title>
+    <meta name="viewport" content="width=device-width" />
+    <title>COLTRAT - API</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,20 +16,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("COLSTRAT Backend", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("COLSTRAT API", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Menu principal", "Index", "MainMenus")</li>
-                    <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
-                    <li>@Html.ActionLink("General Items", "Index", "GeneralItems")</li>
-                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
-                    <li>@Html.ActionLink("Rocks Menu", "Index", "RocksMenus")</li>
-                    <li>@Html.ActionLink("Rocks", "Index", "Rocks")</li>
-                    <li>@Html.ActionLink("Ubications", "Index", "Ubications")</li>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
@@ -38,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - COLSTRAT App Backend</p>
+            <p>&copy; @DateTime.Now.Year - COLSTRAT APP</p>
         </footer>
     </div>
 

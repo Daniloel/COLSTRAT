@@ -373,4 +373,10 @@
   <data name="placeholder_item" xml:space="preserve">
     <value>Enter a name</value>
   </data>
+  <data name="UbicationsViewTitle" xml:space="preserve">
+    <value>Ubications</value>
+  </data>
+  <data name="confirm_exit" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
 </root>

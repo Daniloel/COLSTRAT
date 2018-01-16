@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Maps\Ubication.cs" />
     <Compile Include="Menu\Entity\Fluids\FluidsCategory.cs" />
     <Compile Include="Menu\Entity\Fluids\Valvules\Valvule.cs" />
     <Compile Include="Menu\Entity\Fluids\Valvules\ValvulesMenu.cs" />

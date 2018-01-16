@@ -9,6 +9,8 @@
     using COLSTRAT.Views.Login;
     using COLSTRAT.Views.Main.MainMenu;
     using COLSTRAT.Resources;
+    using COLSTRAT.Views.Maps;
+    using COLSTRAT.Helpers;
 
     public class NavigationService
     {
@@ -71,7 +73,13 @@
                     await App.Navigator.PushAsync(new NewCustomerView());
                     break;
                 case "LogoutView":
-                    SetMainPage("LoginView");
+                    DialogService dialog = new DialogService();
+                    var response = await dialog.ShowConfirm(Languages.Warning, Languages.Confirm_Exit);
+                    if (response)
+                        SetMainPage("LoginView");
+                    break;
+                case "UbicationsView":
+                    await App.Navigator.PushAsync(new UbicationsView());
                     break;
                 default:
                     break;

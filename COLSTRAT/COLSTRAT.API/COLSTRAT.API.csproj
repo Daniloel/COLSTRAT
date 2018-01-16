@@ -246,6 +246,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
     <Compile Include="Controllers\RocksMenusController.cs" />
+    <Compile Include="Controllers\UbicationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
