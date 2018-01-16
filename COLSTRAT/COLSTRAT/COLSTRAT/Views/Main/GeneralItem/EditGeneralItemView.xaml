@@ -15,15 +15,15 @@
             BindingContext="{Binding EditGeneralItem}"
             Padding="10">
             <Label
-                Text="Item: ">
+                Text="{i18n:Translate label_item}">
             </Label>
             <Entry
                 Text="{Binding Name, Mode=TwoWay}"
-                Placeholder="Enter a name">
+                Placeholder="{i18n:Translate placeholder_item}">
             </Entry>
             <Entry
                 Text="{Binding Description, Mode=TwoWay}"
-                Placeholder="Enter a description...">
+                Placeholder="{i18n:Translate placeholder_description_item}">
             </Entry>
             <ff:CachedImage
                 HorizontalOptions="CenterAndExpand"

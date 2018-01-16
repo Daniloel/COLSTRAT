@@ -44,23 +44,20 @@
     <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Helpers\Languages.cs" />
     <Compile Include="Helpers\PlatformCulture.cs" />
+    <Compile Include="Helpers\RegexUtilities.cs" />
     <Compile Include="Helpers\TranslateExtension.cs" />
     <Compile Include="Infraestructure\InstanceLocator.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\GeneralItem.cs" />
-    <Compile Include="Models\MainMenu.cs" />
+    <Compile Include="Models\Main\Category.cs" />
+    <Compile Include="Models\Login\Customer.cs" />
+    <Compile Include="Models\Main\GeneralItem\GeneralItem.cs" />
+    <Compile Include="Models\Main\MainMenu.cs" />
     <Compile Include="Models\OptionKeyValue.cs" />
-    <Compile Include="Models\Rock.cs" />
-    <Compile Include="Models\IgneousRock.cs" />
-    <Compile Include="Models\MetamorphicRock.cs" />
+    <Compile Include="Models\Rocks\Rock.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\RocksMenu.cs" />
-    <Compile Include="Models\SedimentaryRock.cs" />
+    <Compile Include="Models\Rocks\RocksMenu.cs" />
     <Compile Include="Models\TokenResponse.cs" />
-    <Compile Include="Models\TypeOfRock.cs" />
-    <Compile Include="Models\Valvule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Colors.cs" />
     <Compile Include="Resources\Resources.Designer.cs">
@@ -74,34 +71,34 @@
     <Compile Include="Service\Icons\COLSTRATIconsCollection.cs" />
     <Compile Include="Service\Icons\COLSTRATIconsModule.cs" />
     <Compile Include="Service\NavigationService.cs" />
-    <Compile Include="ViewModels\GeneralItemViewModel.cs" />
-    <Compile Include="ViewModels\Main\CategoryMenuViewModel.cs" />
-    <Compile Include="ViewModels\Main\EditMenuViewModel.cs" />
-    <Compile Include="ViewModels\Main\EditCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Main\GeneralItem\GeneralItemViewModel.cs" />
+    <Compile Include="ViewModels\Login\NewCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Main\Category\CategoryMenuViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainMenu\EditMenuViewModel.cs" />
+    <Compile Include="ViewModels\Main\Category\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\GeneralItem\EditGeneralItemViewModel.cs" />
     <Compile Include="ViewModels\Main\GeneralItem\NewGeneralItemViewModel.cs" />
-    <Compile Include="ViewModels\Main\NewCategoryViewModel.cs" />
-    <Compile Include="ViewModels\Main\NewMenuViewModel.cs" />
+    <Compile Include="ViewModels\Main\Category\NewCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksMenuViewModel.cs" />
-    <Compile Include="ViewModels\MainMenuViewModel.cs" />
-    <Compile Include="ViewModels\IgneousViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Main\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\MetamorphicViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksViewModel.cs" />
-    <Compile Include="ViewModels\SedimentaryViewModel.cs" />
     <Compile Include="Views\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\CategoryMenuView.xaml.cs">
+    <Compile Include="Views\Login\NewCustomerView.xaml.cs">
+      <DependentUpon>NewCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\Category\CategoryMenuView.xaml.cs">
       <DependentUpon>CategoryMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\EditCategoryView.xaml.cs">
+    <Compile Include="Views\Main\Category\EditCategoryView.xaml.cs">
       <DependentUpon>EditCategoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\EditMenuView.xaml.cs">
+    <Compile Include="Views\Main\MainMenu\EditMenuView.xaml.cs">
       <DependentUpon>EditMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\GeneralItem\EditGeneralItemView.xaml.cs">
@@ -113,13 +110,13 @@
     <Compile Include="Views\Main\GeneralItem\NewGeneralItemView.xaml.cs">
       <DependentUpon>NewGeneralItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\MainMenuView.xaml.cs">
+    <Compile Include="Views\Main\MainMenu\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\NewCategoryView.xaml.cs">
+    <Compile Include="Views\Main\Category\NewCategoryView.xaml.cs">
       <DependentUpon>NewCategoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Main\NewMenuView.xaml.cs">
+    <Compile Include="Views\Main\MainMenu\NewMenuView.xaml.cs">
       <DependentUpon>NewMenuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterView.xaml.cs">
@@ -131,17 +128,8 @@
     <Compile Include="Views\Rocks\RocksMenuView.xaml.cs">
       <DependentUpon>RocksMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Rocks\IgneousView.xaml.cs">
-      <DependentUpon>IgneousView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Rocks\MetamorphicView.xaml.cs">
-      <DependentUpon>MetamorphicView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Rocks\RocksView.xaml.cs">
       <DependentUpon>RocksView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Rocks\SedimentaryView.xaml.cs">
-      <DependentUpon>SedimentaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -249,24 +237,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Rocks\SedimentaryView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Rocks\IgneousView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Rocks\MetamorphicView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Views\MenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
@@ -285,7 +255,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\MainMenuView.xaml">
+    <EmbeddedResource Include="Views\Main\MainMenu\MainMenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -297,31 +267,31 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\CategoryMenuView.xaml">
+    <EmbeddedResource Include="Views\Main\Category\CategoryMenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\NewCategoryView.xaml">
+    <EmbeddedResource Include="Views\Main\Category\NewCategoryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\NewMenuView.xaml">
+    <EmbeddedResource Include="Views\Main\MainMenu\NewMenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\EditMenuView.xaml">
+    <EmbeddedResource Include="Views\Main\MainMenu\EditMenuView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Main\EditCategoryView.xaml">
+    <EmbeddedResource Include="Views\Main\Category\EditCategoryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -346,6 +316,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Rocks\RocksMenuView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Login\NewCustomerView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

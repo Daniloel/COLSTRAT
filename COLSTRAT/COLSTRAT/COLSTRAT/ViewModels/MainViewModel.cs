@@ -51,9 +51,6 @@
             get;
             set;
         }
-        public IgneousViewModel Igneous { get; set; }
-        public MetamorphicViewModel Metamorphic { get; set; }
-        public SedimentaryViewModel Sedimentary { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
         public MainMenuViewModel MainMenu { get; set; }
@@ -67,7 +64,7 @@
         public GeneralItemViewModel GeneralItem { get; set; }
         public EditGeneralItemViewModel EditGeneralItem { get; set; }
         public NewGeneralItemViewModel NewGeneralItem { get; set; }
-
+        public NewCustomerViewModel NewCustomer { get; set; }
         #endregion
 
         #region Constructor
@@ -108,14 +105,29 @@
             });
             Menu.Add(new MenuItemViewModel
             {
+                Icon = "fa-user",
+                PageName = "MyProfileView",
+                Title =Languages.Profile,
+            });
+            Menu.Add(new MenuItemViewModel
+            {
+                Icon = "fa-map-marker",
+                PageName = "UbicationsView",
+                Title = Languages.Ubication,
+            });
+            Menu.Add(new MenuItemViewModel
+            {
                 Icon = "fa-sign-out",
                 PageName = "LogoutView",
                 Title = Languages.btnExit
             });
+
+            
+
         }
         #endregion
 
-        #region Commands
+            #region Commands
         public ICommand NewRockCommand
         {
             get

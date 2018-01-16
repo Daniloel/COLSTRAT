@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.MainMenu.MainMenuView"
+    Title="{i18n:Translate MainMenuViewTitle}"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding NewMenuCommand}"
+            Icon="plus_circle.png">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout
+             BindingContext="{Binding MainMenu}">
+            <ListView 
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommandMainMenu}"
+                IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                ItemsSource="{Binding MainMenuItems}"
+                RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem 
+                                    Command="{Binding EditCommand}" 
+                                    Text="{i18n:Translate edit}">
+                                </MenuItem>
+                                <MenuItem 
+                                    Command="{Binding DeleteCommand}" 
+                                    IsDestructive="true"     
+                                    Text="{i18n:Translate delete}">
+                                </MenuItem>
+                            </ViewCell.ContextActions>
+                            
+                            <Grid
+                                BackgroundColor="{Binding ColorChanged}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding OpenDetailCommand}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <icons:IconImage 
+                                    Margin="5"
+                                    HorizontalOptions="Start"
+                                    Grid.Column="0"
+                                    Icon="{Binding Icon}"
+                                    IconColor="White"
+                                    WidthRequest="50"
+                                    HeightRequest="50">
+                                </icons:IconImage>
+                                <Label 
+                                    Grid.Column="1"
+                                    FontSize="Large"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Description}">
+                                </Label>
+                                <icons:IconImage 
+                                    HorizontalOptions="End"
+                                    Grid.Column="2"
+                                    Icon="fa-chevron-right"
+                                    IconColor="{StaticResource AccentColor}"
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    Margin="10">
+                                </icons:IconImage>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

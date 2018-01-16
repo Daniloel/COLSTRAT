@@ -114,6 +114,20 @@
         #endregion
 
         #region Commands
+        public ICommand RegisterNewUserCommand
+        {
+            get
+            {
+                return new RelayCommand(RegisterNewUser);
+            }
+        }
+
+        async void RegisterNewUser()
+        {
+            MainViewModel.GetInstante().NewCustomer = new NewCustomerViewModel();
+            await navigationService.NavigateOnLogin("NewCustomerView");
+        }
+
         public ICommand LoginCommand
         {
             get
@@ -124,8 +138,7 @@
 
         private async void Login()
         {
-            IsRunning = true;
-            IsEnabled = false;
+            
             if (string.IsNullOrEmpty(Email))
             {
                 await dialogService.ShowErrorMessage(Languages.ErrorEmailEmpty);
@@ -136,6 +149,9 @@
                 await dialogService.ShowErrorMessage(Languages.ErrorPasswordEmpty);
                 return;
             }
+
+            IsRunning = true;
+            IsEnabled = false;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
@@ -165,7 +181,7 @@
             var mainViewModel = MainViewModel.GetInstante();
             mainViewModel.Token = response;
             mainViewModel.MainMenu = new MainMenuViewModel();
-            navigationService.SetMainPage();
+            navigationService.SetMainPage("MasterView");
             IsRunning = false;
             IsEnabled = true;
             Email = null;

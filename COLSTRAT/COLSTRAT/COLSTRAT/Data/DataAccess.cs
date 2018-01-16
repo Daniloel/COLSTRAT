@@ -18,9 +18,6 @@
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(config.Platform,
             System.IO.Path.Combine(config.DirectoryDB, "COLSTRAIT.db3"));
-            connection.CreateTable<IgneousRock>();
-            connection.CreateTable<MetamorphicRock>();
-            connection.CreateTable<SedimentaryRock>();
         }
 
         public void Insert<T>(T model)

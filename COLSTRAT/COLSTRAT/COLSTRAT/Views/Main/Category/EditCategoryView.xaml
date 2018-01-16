@@ -2,45 +2,28 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="COLSTRAT.Views.Main.GeneralItem.NewGeneralItemView"
+    x:Class="COLSTRAT.Views.Main.EditCategoryView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
-    Title="{i18n:Translate create}">
+    Title="{i18n:Translate EditCategory}">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="{Binding NewGeneralItem}"
-            Padding="10"
-            VerticalOptions="FillAndExpand">
+            BindingContext="{Binding EditCategory}"
+            Padding="10">
             <Label
-                Text="{i18n:Translate label_item}">
+                Text="{i18n:Translate label_Category}">
             </Label>
             <Entry
                 Text="{Binding Name, Mode=TwoWay}"
-                Placeholder="{i18n:Translate placeholder_item}">
+                Placeholder="{i18n:Translate placeholder_category}">
             </Entry>
             <Entry
                 Text="{Binding Description, Mode=TwoWay}"
-                Placeholder="{i18n:Translate placeholder_description_item}">
+                Placeholder="{i18n:Translate placeholder_category_description}">
             </Entry>
-            <ff:CachedImage
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Grid.Column="0"
-                HeightRequest="200"
-                Source="{Binding ImageSource}"
-                WidthRequest="200">
-                <ff:CachedImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
-                </ff:CachedImage.GestureRecognizers>
-            </ff:CachedImage>
-            <Label
-                FontSize="Small"
-                HorizontalOptions="Center"
-                Text="{i18n:Translate TapImage}">
-            </Label>
             <ActivityIndicator
                 VerticalOptions="CenterAndExpand"
                 IsVisible="{Binding IsRunning, Mode=TwoWay}"
@@ -53,7 +36,7 @@
                 FontAttributes="Bold"
                 IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                 BackgroundColor="{StaticResource AccentColor2}"
-                Text="{i18n:Translate create}"
+                Text="{i18n:Translate edit}"
                 Margin="50,0"
                 VerticalOptions="EndAndExpand"
                 TextColor="White">

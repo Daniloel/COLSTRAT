@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\FluidsCategoriesController.cs" />
     <Compile Include="Controllers\GeneralItemsController.cs" />
     <Compile Include="Controllers\GeologyCategoriesController.cs" />
@@ -337,6 +338,11 @@
     <Content Include="Views\GeneralItems\Details.cshtml" />
     <Content Include="Views\GeneralItems\Edit.cshtml" />
     <Content Include="Views\GeneralItems\Index.cshtml" />
+    <Content Include="Views\Customers\Create.cshtml" />
+    <Content Include="Views\Customers\Delete.cshtml" />
+    <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Customers\Edit.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

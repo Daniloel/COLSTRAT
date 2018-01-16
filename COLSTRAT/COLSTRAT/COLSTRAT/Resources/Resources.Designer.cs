@@ -152,6 +152,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirm password.
+        /// </summary>
+        public static string confirm_pass {
+            get {
+                return ResourceManager.GetString("confirm_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Create New.
         /// </summary>
         public static string create {
@@ -197,6 +206,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a There are a record with the same email..
+        /// </summary>
+        public static string email_exists {
+            get {
+                return ResourceManager.GetString("email_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a valid email..
+        /// </summary>
+        public static string error_email_invalid {
+            get {
+                return ResourceManager.GetString("error_email_invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a category.
         /// </summary>
         public static string error_input_category {
@@ -215,6 +242,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a first name..
+        /// </summary>
+        public static string error_input_first_name {
+            get {
+                return ResourceManager.GetString("error_input_first_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a last name..
+        /// </summary>
+        public static string error_input_last_name {
+            get {
+                return ResourceManager.GetString("error_input_last_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a menu.
         /// </summary>
         public static string error_input_menu {
@@ -224,11 +269,29 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a password confirm..
+        /// </summary>
+        public static string error_input_pass_confirm {
+            get {
+                return ResourceManager.GetString("error_input_pass_confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a password..
         /// </summary>
         public static string error_input_password_0 {
             get {
                 return ResourceManager.GetString("error_input_password_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The password must have at least 6 characters length..
+        /// </summary>
+        public static string error_pass_length {
+            get {
+                return ResourceManager.GetString("error_pass_length", resourceCulture);
             }
         }
         
@@ -256,6 +319,15 @@ namespace COLSTRAT.Resources {
         public static string error_service_no_available {
             get {
                 return ResourceManager.GetString("error_service_no_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a First name:.
+        /// </summary>
+        public static string first_name {
+            get {
+                return ResourceManager.GetString("first_name", resourceCulture);
             }
         }
         
@@ -305,6 +377,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Address:.
+        /// </summary>
+        public static string label_addres {
+            get {
+                return ResourceManager.GetString("label_addres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Category:.
+        /// </summary>
+        public static string label_Category {
+            get {
+                return ResourceManager.GetString("label_Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Description:.
         /// </summary>
         public static string label_description {
@@ -332,6 +422,33 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Item:.
+        /// </summary>
+        public static string label_item {
+            get {
+                return ResourceManager.GetString("label_item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Last name:.
+        /// </summary>
+        public static string label_last_name {
+            get {
+                return ResourceManager.GetString("label_last_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Menu:.
+        /// </summary>
+        public static string label_menu {
+            get {
+                return ResourceManager.GetString("label_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Minerals:.
         /// </summary>
         public static string label_minerals {
@@ -355,6 +472,15 @@ namespace COLSTRAT.Resources {
         public static string label_password {
             get {
                 return ResourceManager.GetString("label_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Phone:.
+        /// </summary>
+        public static string label_phone {
+            get {
+                return ResourceManager.GetString("label_phone", resourceCulture);
             }
         }
         
@@ -391,6 +517,24 @@ namespace COLSTRAT.Resources {
         public static string MainMenuViewTitle {
             get {
                 return ResourceManager.GetString("MainMenuViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Profile.
+        /// </summary>
+        public static string menu_profile {
+            get {
+                return ResourceManager.GetString("menu_profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ubication.
+        /// </summary>
+        public static string menu_ubication {
+            get {
+                return ResourceManager.GetString("menu_ubication", resourceCulture);
             }
         }
         
@@ -449,6 +593,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Register new user.
+        /// </summary>
+        public static string NewCustomerViewTitle {
+            get {
+                return ResourceManager.GetString("NewCustomerViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a New menu.
         /// </summary>
         public static string NewMenu {
@@ -476,11 +629,65 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The password and confirm, does not match..
+        /// </summary>
+        public static string pass_confirm_notmatch {
+            get {
+                return ResourceManager.GetString("pass_confirm_notmatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select the rock.
         /// </summary>
         public static string picker_select_the_rock {
             get {
                 return ResourceManager.GetString("picker_select_the_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the address....
+        /// </summary>
+        public static string placeholder_addres {
+            get {
+                return ResourceManager.GetString("placeholder_addres", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter a category name.
+        /// </summary>
+        public static string placeholder_category {
+            get {
+                return ResourceManager.GetString("placeholder_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter a category description....
+        /// </summary>
+        public static string placeholder_category_description {
+            get {
+                return ResourceManager.GetString("placeholder_category_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the password confirm....
+        /// </summary>
+        public static string placeholder_confirm_pass {
+            get {
+                return ResourceManager.GetString("placeholder_confirm_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter a description....
+        /// </summary>
+        public static string placeholder_description_item {
+            get {
+                return ResourceManager.GetString("placeholder_description_item", resourceCulture);
             }
         }
         
@@ -494,11 +701,65 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Enter the first name....
+        /// </summary>
+        public static string placeholder_first_name {
+            get {
+                return ResourceManager.GetString("placeholder_first_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter a name.
+        /// </summary>
+        public static string placeholder_item {
+            get {
+                return ResourceManager.GetString("placeholder_item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the last name....
+        /// </summary>
+        public static string placeholder_last_name {
+            get {
+                return ResourceManager.GetString("placeholder_last_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter menu description....
+        /// </summary>
+        public static string placeholder_menu_description {
+            get {
+                return ResourceManager.GetString("placeholder_menu_description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter menu icon....
+        /// </summary>
+        public static string placeholder_menu_icon {
+            get {
+                return ResourceManager.GetString("placeholder_menu_icon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter your password....
         /// </summary>
         public static string placeholder_password {
             get {
                 return ResourceManager.GetString("placeholder_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter the phone....
+        /// </summary>
+        public static string placeholder_phone {
+            get {
+                return ResourceManager.GetString("placeholder_phone", resourceCulture);
             }
         }
         

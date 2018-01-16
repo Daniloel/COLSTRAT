@@ -320,4 +320,91 @@
   <data name="home" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="confirm_pass" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="first_name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="label_addres" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="label_Category" xml:space="preserve">
+    <value>Categoria: </value>
+  </data>
+  <data name="label_last_name" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="label_menu" xml:space="preserve">
+    <value>Menu:</value>
+  </data>
+  <data name="label_phone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="NewCustomerViewTitle" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="placeholder_addres" xml:space="preserve">
+    <value>Ingrese su Dirección</value>
+  </data>
+  <data name="placeholder_category" xml:space="preserve">
+    <value>Ingrese una categoría</value>
+  </data>
+  <data name="placeholder_category_description" xml:space="preserve">
+    <value>Ingrese una descripción</value>
+  </data>
+  <data name="placeholder_confirm_pass" xml:space="preserve">
+    <value>Ingrese de nuevo la contraseña</value>
+  </data>
+  <data name="placeholder_first_name" xml:space="preserve">
+    <value>Ingrese su nombre</value>
+  </data>
+  <data name="placeholder_last_name" xml:space="preserve">
+    <value>Ingrese su apellido</value>
+  </data>
+  <data name="placeholder_menu_description" xml:space="preserve">
+    <value>Ingrese una descripción:</value>
+  </data>
+  <data name="placeholder_menu_icon" xml:space="preserve">
+    <value>Ingrese un icono</value>
+  </data>
+  <data name="placeholder_phone" xml:space="preserve">
+    <value>Ingrese su telefono</value>
+  </data>
+  <data name="email_exists" xml:space="preserve">
+    <value>Ya existe un usuario con el mismo email</value>
+  </data>
+  <data name="error_email_invalid" xml:space="preserve">
+    <value>Debes ingresar un email valido</value>
+  </data>
+  <data name="error_input_first_name" xml:space="preserve">
+    <value>Debes ingresar un nombre</value>
+  </data>
+  <data name="error_input_last_name" xml:space="preserve">
+    <value>Debes ingresar un apellido</value>
+  </data>
+  <data name="error_input_pass_confirm" xml:space="preserve">
+    <value>Debes ingresar la confirmación de contraseña</value>
+  </data>
+  <data name="error_pass_length" xml:space="preserve">
+    <value>La contraseña debe tener al menos 6 carácteres</value>
+  </data>
+  <data name="menu_profile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="menu_ubication" xml:space="preserve">
+    <value>Mi ubicación</value>
+  </data>
+  <data name="pass_confirm_notmatch" xml:space="preserve">
+    <value>Las contraseñas no coinciden</value>
+  </data>
+  <data name="label_item" xml:space="preserve">
+    <value>Item: </value>
+  </data>
+  <data name="placeholder_description_item" xml:space="preserve">
+    <value>Ingrese una descripción</value>
+  </data>
+  <data name="placeholder_item" xml:space="preserve">
+    <value>Ingrese un concepto</value>
+  </data>
 </root>

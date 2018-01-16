@@ -92,7 +92,7 @@
                     TextColor="White">
                 </Button>
                 <Button
-                    Command="{Binding RegistryUserCommand}"
+                    Command="{Binding RegisterNewUserCommand}"
                     BorderRadius="23"
                     HeightRequest="46"
                     FontAttributes="Bold"

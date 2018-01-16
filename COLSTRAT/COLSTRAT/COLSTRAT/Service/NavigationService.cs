@@ -5,16 +5,24 @@
     using Views;
     using Xamarin.Forms;
     using COLSTRAT.Views.Main;
-    using System;
     using COLSTRAT.Views.Main.GeneralItem;
+    using COLSTRAT.Views.Login;
+    using COLSTRAT.Views.Main.MainMenu;
+    using COLSTRAT.Resources;
 
     public class NavigationService
     {
-        public void SetMainPage(string pageName = null)
+        public void SetMainPage(string pageName)
         {
-            if (pageName is default)
-                Application.Current.MainPage = new MasterView();
-               
+            switch (pageName)
+            {
+                case "LoginView":
+                    Application.Current.MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor = Colors.MainColor };
+                    break;
+                case "MasterView":
+                    Application.Current.MainPage = new MasterView();
+                    break;
+            }
         }
 
         public async Task Navigate(string pageName)
@@ -24,16 +32,7 @@
             switch (pageName)
             {
                 case "Home":
-                    SetMainPage();
-                    break;
-                case "IgneousView":
-                    await App.Navigator.PushAsync(new IgneousView());
-                    break;
-                case "MetamorphicView":
-                    await App.Navigator.PushAsync(new MetamorphicView());
-                    break;
-                case "SedimentaryView":
-                    await App.Navigator.PushAsync(new SedimentaryView());
+                    SetMainPage("MasterView");
                     break;
                 case "MainMenuView":
                     await App.Navigator.PushAsync(new MainMenuView());
@@ -68,11 +67,38 @@
                 case "RocksMenuView":
                     await App.Navigator.PushAsync(new RocksMenuView());
                     break;
+                case "NewCustomerView":
+                    await App.Navigator.PushAsync(new NewCustomerView());
+                    break;
+                case "LogoutView":
+                    SetMainPage("LoginView");
+                    break;
                 default:
                     break;
             }
         }
-
+        public async Task NavigateOnLogin(string pageName)
+        {
+            switch (pageName)
+            {
+                case "NewCustomerView":
+                    await Application.Current.MainPage.Navigation.PushAsync(
+                        new NewCustomerView());
+                    break;
+              /*  case "LoginFacebookView":
+                    await Application.Current.MainPage.Navigation.PushAsync(
+                        new LoginFacebookView());
+                    break;
+                case "PasswordRecoveryView":
+                    await Application.Current.MainPage.Navigation.PushAsync(
+                        new PasswordRecoveryView());
+                    break;*/
+            }
+        }
+        public async Task BackOnLogin()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
         public async Task Back()
         {
             await App.Navigator.PopAsync();

@@ -30,5 +30,7 @@
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
+
+        public System.Data.Entity.DbSet<COLSTRAT.Domain.Customer.Customer> Customers { get; set; }
     }
 }
