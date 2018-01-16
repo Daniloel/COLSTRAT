@@ -28,6 +28,7 @@ namespace COLSTRAT.iOS
             Init();
             global::Xamarin.Forms.Forms.Init();
             FormsPlugin.Iconize.iOS.IconControls.Init();
+            Xamarin.FormsMaps.Init();
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);
         }
