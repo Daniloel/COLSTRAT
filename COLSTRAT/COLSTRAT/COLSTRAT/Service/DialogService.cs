@@ -32,6 +32,5 @@ namespace COLSTRAT.Service
                 Languages.From_Gallery,
                 Languages.From_Camera);
         }
-
     }
 }

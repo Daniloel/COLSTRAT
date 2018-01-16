@@ -152,6 +152,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Are you sure?.
+        /// </summary>
+        public static string confirm_exit {
+            get {
+                return ResourceManager.GetString("confirm_exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirm password.
         /// </summary>
         public static string confirm_pass {
@@ -796,6 +805,15 @@ namespace COLSTRAT.Resources {
         public static string TapImage {
             get {
                 return ResourceManager.GetString("TapImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ubications.
+        /// </summary>
+        public static string UbicationsViewTitle {
+            get {
+                return ResourceManager.GetString("UbicationsViewTitle", resourceCulture);
             }
         }
         

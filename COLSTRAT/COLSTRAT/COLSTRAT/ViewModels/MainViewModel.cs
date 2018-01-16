@@ -6,6 +6,7 @@
     using COLSTRAT.ViewModels.Login;
     using COLSTRAT.ViewModels.Main;
     using COLSTRAT.ViewModels.Main.GeneralItem;
+    using COLSTRAT.ViewModels.Maps;
     using COLSTRAT.ViewModels.Rocks;
     using GalaSoft.MvvmLight.Command;
     using System;
@@ -65,6 +66,7 @@
         public EditGeneralItemViewModel EditGeneralItem { get; set; }
         public NewGeneralItemViewModel NewGeneralItem { get; set; }
         public NewCustomerViewModel NewCustomer { get; set; }
+        public UbicationsViewModel Ubications { get; set; }
         #endregion
 
         #region Constructor

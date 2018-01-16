@@ -68,6 +68,7 @@
     <Compile Include="Service\ApiService.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="Service\DialogService.cs" />
+    <Compile Include="Service\GeolocatorService.cs" />
     <Compile Include="Service\Icons\COLSTRATIconsCollection.cs" />
     <Compile Include="Service\Icons\COLSTRATIconsModule.cs" />
     <Compile Include="Service\NavigationService.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ViewModels\Main\GeneralItem\NewGeneralItemViewModel.cs" />
     <Compile Include="ViewModels\Main\Category\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
+    <Compile Include="ViewModels\Maps\UbicationsViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksMenuViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
@@ -118,6 +120,9 @@
     </Compile>
     <Compile Include="Views\Main\MainMenu\NewMenuView.xaml.cs">
       <DependentUpon>NewMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Maps\UbicationsView.xaml.cs">
+      <DependentUpon>UbicationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
@@ -331,6 +336,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Login\NewCustomerView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Maps\UbicationsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
