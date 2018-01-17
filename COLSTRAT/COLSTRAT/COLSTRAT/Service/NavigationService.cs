@@ -93,14 +93,14 @@
                     await Application.Current.MainPage.Navigation.PushAsync(
                         new NewCustomerView());
                     break;
-              /*  case "LoginFacebookView":
+                case "LoginFacebookView":
                     await Application.Current.MainPage.Navigation.PushAsync(
                         new LoginFacebookView());
                     break;
-                case "PasswordRecoveryView":
-                    await Application.Current.MainPage.Navigation.PushAsync(
-                        new PasswordRecoveryView());
-                    break;*/
+                    /*  case "PasswordRecoveryView":
+                          await Application.Current.MainPage.Navigation.PushAsync(
+                              new PasswordRecoveryView());
+                          break;*/
             }
         }
         public async Task BackOnLogin()

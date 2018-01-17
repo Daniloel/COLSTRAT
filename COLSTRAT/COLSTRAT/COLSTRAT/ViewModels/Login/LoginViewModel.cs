@@ -6,6 +6,7 @@
     using COLSTRAT.Service;
     using COLSTRAT.Helpers;
     using Xamarin.Forms;
+    using System;
 
     public class LoginViewModel : INotifyPropertyChanged
     {
@@ -114,6 +115,19 @@
         #endregion
 
         #region Commands
+        public ICommand LoginWithFacebookCommand
+        {
+            get
+            {
+                return new RelayCommand(LoginWithFacebook);
+            }
+        }
+
+        private async void LoginWithFacebook()
+        {
+            await navigationService.NavigateOnLogin("LoginFacebookView");
+        }
+
         public ICommand RegisterNewUserCommand
         {
             get
