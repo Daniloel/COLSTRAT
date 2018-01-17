@@ -67,7 +67,7 @@
                 return;
             }
 
-            var urlAPI = Current.Resources["URLAPI"].ToString();
+            var urlAPI = Current.Resources["URL_API"].ToString();
             var token = await apiService.LoginFacebook(
                 urlAPI,
                 "/api",
@@ -79,7 +79,7 @@
                 await dialogService.ShowMessage(
                     Languages.Warning,
                     Languages.User_Error_Info);
-                Current.MainPage = new NavigationPage(new LoginView());
+                Current.MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor = Colors.MainColor };
                 return;
             }
 

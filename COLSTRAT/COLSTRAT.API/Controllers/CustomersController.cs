@@ -157,7 +157,7 @@ namespace COLSTRAT.API.Controllers
         }
         
         [HttpPost]
-        [Route("LoginFacebook")]
+        [Route("api/Customers/LoginFacebook")]
         public async Task<IHttpActionResult> LoginFacebook(FacebookResponse profile)
         {
             try

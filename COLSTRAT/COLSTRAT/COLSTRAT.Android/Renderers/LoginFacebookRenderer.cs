@@ -12,6 +12,7 @@ namespace COLSTRAT.Droid.Renderers
     using Newtonsoft.Json;
     using Xamarin.Auth;
     using Xamarin.Forms.Platform.Android;
+    using COLSTRAT.Helpers;
 
     public class LoginFacebookRenderer : PageRenderer
     {
@@ -24,7 +25,8 @@ namespace COLSTRAT.Droid.Renderers
                 scope: "",
                 authorizeUrl: new Uri("https://www.facebook.com/v2.11/dialog/oauth"),
                 redirectUrl: new Uri("http://www.facebook.com/connect/login_success.html"));
-
+            auth.Title = Languages.Login_With_FB;
+            auth.AllowCancel = true;
             auth.Completed += async (sender, eventArgs) =>
             {
                 if (eventArgs.IsAuthenticated)

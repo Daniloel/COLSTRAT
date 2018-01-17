@@ -23,7 +23,7 @@
                     IsSuccess = false,
                     Message = Languages.Internet_Settings
                 };
-            }
+            }/*
             var response = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             if (!response)
             {
@@ -32,7 +32,7 @@
                     IsSuccess = false,
                     Message = Languages.Internet_Connection
                 };
-            }
+            }*/
             return new Response
             {
                 IsSuccess = true
@@ -397,17 +397,28 @@
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}", servicePrefix, controller);
-                var response = await client.PostAsync(url, content);
-
-                if (!response.IsSuccessStatusCode)
+                try
                 {
-                    return null;
+                    var response = await client.PostAsync(url, content);
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return null;
+                    }
                 }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("Exception: ", e);
+                    throw;
+                }
+                
+
+                
 
                 var tokenResponse = await GetToken(urlBase, profile.Id, profile.Id);
                 return tokenResponse;
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

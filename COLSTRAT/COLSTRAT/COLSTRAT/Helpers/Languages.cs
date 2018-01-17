@@ -35,6 +35,13 @@ namespace COLSTRAT.Helpers
                 return Resources.error_email_invalid;
             }
         }
+        public static string Login_With_FB
+        {
+            get
+            {
+                return Resources.LoginWithFacebook;
+            }
+        }
         public static string First_Name_Error
         {
             get
