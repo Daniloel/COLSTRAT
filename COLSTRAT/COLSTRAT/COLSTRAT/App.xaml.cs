@@ -3,6 +3,9 @@
     using Xamarin.Forms;
     using COLSTRAT.Views.Login;
     using COLSTRAT.Resources;
+    using System;
+    using COLSTRAT.Models.Login;
+    using COLSTRAT.Views;
 
     public partial class App : Application
     {
@@ -16,7 +19,6 @@
         {
             InitializeComponent();
             MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor=Colors.MainColor };
-            //MainPage = new MasterView();
         }
         #endregion
 
@@ -34,7 +36,22 @@
         protected override void OnResume()
         {
             // Handle when your app resumes
-        } 
+        }
+
+        public static Action LoginFacebookFail
+        {
+            get
+            {
+                return new Action(() => Current.MainPage =
+                                  new NavigationPage(new LoginView()));
+            }
+        }
+
+        public static void LoginFacebookSuccess(FacebookResponse profile)
+        {
+            Current.MainPage = new MasterView();
+        }
+
         #endregion
     }
 }
