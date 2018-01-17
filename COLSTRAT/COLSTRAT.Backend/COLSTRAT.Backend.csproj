@@ -230,6 +230,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\GenericItemsImages\001_John_D_Rockefeller_1904.jpg" />
+    <Content Include="Content\PageImages\logo_app.png" />
     <Content Include="Content\RocksImages\cuarcita.jpg" />
     <Content Include="Content\ValvulesImages\260px-Válvulaglobo.jpg" />
     <Content Include="favicon.ico" />
@@ -349,6 +350,7 @@
     <Content Include="Views\Ubications\Details.cshtml" />
     <Content Include="Views\Ubications\Edit.cshtml" />
     <Content Include="Views\Ubications\Index.cshtml" />
+    <Content Include="Views\Home\Legal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

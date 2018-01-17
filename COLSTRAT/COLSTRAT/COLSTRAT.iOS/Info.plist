@@ -27,9 +27,9 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>COLSTRAT</string>
+	<string>COLSTRAT App</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.COLSTRAT</string>
+	<string>com.quada.COLSTRAT</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>

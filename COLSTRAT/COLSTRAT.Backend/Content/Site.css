@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 80px;
     padding-bottom: 20px;
 }
 
@@ -8,7 +8,16 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.body-content-legal {
+    padding-left: 150px;
+    padding-right: 150px;
+}
+.body-content-admin {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -22,3 +31,13 @@ select,
 textarea {
     max-width: 280px;
 }
+.center-text-justified {
+    text-align: justify;
+    margin: 0 auto;
+}
+
+.center-text {
+    text-align: center;
+    margin: 0 auto;
+}
+

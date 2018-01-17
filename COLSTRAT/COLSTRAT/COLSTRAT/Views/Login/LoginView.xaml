@@ -4,22 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="COLSTRAT.Views.Login.LoginView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     Title="{i18n:Translate LoginViewTitle}"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout
-            BindingContext="{Binding Login}"
-            Padding="10"
-            Spacing="16">
-            <Label 
-                Text="COLSTRAT App"
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center">
-            </Label>
-            <Grid
+            <StackLayout
+                BindingContext="{Binding Login}"
+                Padding="10"
+                Spacing="16">
+                <ff:CachedImage
+                    HorizontalOptions="CenterAndExpand"
+                    Source="logo_app.png">
+                </ff:CachedImage>
+                <Grid
                 Margin="50,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

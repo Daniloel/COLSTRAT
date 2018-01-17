@@ -12,6 +12,7 @@ using COLSTRAT.Domain.Customer;
 
 namespace COLSTRAT.Backend.Controllers
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private DataContextLocal db = new DataContextLocal();
