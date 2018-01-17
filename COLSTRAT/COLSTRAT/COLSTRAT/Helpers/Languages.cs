@@ -14,6 +14,13 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string User_Error_Info
+        {
+            get
+            {
+                return Resources.error_user_information;
+            }
+        }
         public static string Confirm_Exit
         {
             get
@@ -26,6 +33,13 @@ namespace COLSTRAT.Helpers
             get
             {
                 return Resources.error_email_invalid;
+            }
+        }
+        public static string Login_With_FB
+        {
+            get
+            {
+                return Resources.LoginWithFacebook;
             }
         }
         public static string First_Name_Error

@@ -3,6 +3,12 @@
     using Xamarin.Forms;
     using COLSTRAT.Views.Login;
     using COLSTRAT.Resources;
+    using System;
+    using COLSTRAT.Models.Login;
+    using COLSTRAT.Views;
+    using COLSTRAT.Service;
+    using COLSTRAT.ViewModels;
+    using COLSTRAT.Helpers;
 
     public partial class App : Application
     {
@@ -16,7 +22,6 @@
         {
             InitializeComponent();
             MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor=Colors.MainColor };
-            //MainPage = new MasterView();
         }
         #endregion
 
@@ -34,7 +39,57 @@
         protected override void OnResume()
         {
             // Handle when your app resumes
-        } 
+        }
+
+        public static Action LoginFacebookFail
+        {
+            get
+            {
+                return new Action(() => Current.MainPage =
+                                  new NavigationPage(new LoginView()){ BarBackgroundColor = Colors.MainColor });
+            }
+        }
+
+        public async static void LoginFacebookSuccess(FacebookResponse profile)
+        {
+            if (profile == null)
+            {
+                Current.MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor = Colors.MainColor };
+                return;
+            }
+            var apiService = new ApiService();
+            var dialogService = new DialogService();
+
+            var checkConnetion = await apiService.CheckConnection();
+            if (!checkConnetion.IsSuccess)
+            {
+                await dialogService.ShowErrorMessage(checkConnetion.Message);
+                return;
+            }
+
+            var urlAPI = Current.Resources["URL_API"].ToString();
+            var token = await apiService.LoginFacebook(
+                urlAPI,
+                "/api",
+                "/Customers/LoginFacebook",
+                profile);
+
+            if (token == null)
+            {
+                await dialogService.ShowMessage(
+                    Languages.Warning,
+                    Languages.User_Error_Info);
+                Current.MainPage = new NavigationPage(new LoginView()) { BarBackgroundColor = Colors.MainColor };
+                return;
+            }
+
+            var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.Token = token;
+            mainViewModel.MainMenu = new MainMenuViewModel();
+            Current.MainPage = new MasterView();
+
+        }
+
         #endregion
     }
 }

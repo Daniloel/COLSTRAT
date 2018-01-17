@@ -257,6 +257,7 @@
     <Compile Include="Models\CategoryResponse.cs" />
     <Compile Include="Models\CategoryResponseGeneric.cs" />
     <Compile Include="Models\CategoryScaleResponse.cs" />
+    <Compile Include="Models\FacebookResponse.cs" />
     <Compile Include="Models\FluidsCategoryResponse.cs" />
     <Compile Include="Models\GeneralItemsResponse.cs" />
     <Compile Include="Models\GeologyCategoryResponse.cs" />

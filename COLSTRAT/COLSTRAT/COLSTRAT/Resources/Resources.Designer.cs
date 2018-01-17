@@ -98,15 +98,6 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Login with Facebook.
-        /// </summary>
-        public static string btnLoginWithFacebook {
-            get {
-                return ResourceManager.GetString("btnLoginWithFacebook", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Show.
         /// </summary>
         public static string btnShow {
@@ -332,6 +323,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Problem ocurred retrieving user information, try latter..
+        /// </summary>
+        public static string error_user_information {
+            get {
+                return ResourceManager.GetString("error_user_information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a First name:.
         /// </summary>
         public static string first_name {
@@ -413,7 +413,7 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Email:.
+        ///   Busca una cadena traducida similar a Email.
         /// </summary>
         public static string label_email {
             get {
@@ -476,7 +476,7 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Password:.
+        ///   Busca una cadena traducida similar a Password.
         /// </summary>
         public static string label_password {
             get {
@@ -490,6 +490,15 @@ namespace COLSTRAT.Resources {
         public static string label_phone {
             get {
                 return ResourceManager.GetString("label_phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a User or Email.
+        /// </summary>
+        public static string label_user {
+            get {
+                return ResourceManager.GetString("label_user", resourceCulture);
             }
         }
         
@@ -517,6 +526,15 @@ namespace COLSTRAT.Resources {
         public static string LoginViewTitle {
             get {
                 return ResourceManager.GetString("LoginViewTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Login with Facebook.
+        /// </summary>
+        public static string LoginWithFacebook {
+            get {
+                return ResourceManager.GetString("LoginWithFacebook", resourceCulture);
             }
         }
         

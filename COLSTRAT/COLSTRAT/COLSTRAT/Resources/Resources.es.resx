@@ -219,7 +219,7 @@
     <value>Ingresar</value>
     <comment>boton de ingreso</comment>
   </data>
-  <data name="btnLoginWithFacebook" xml:space="preserve">
+  <data name="LoginWithFacebook" xml:space="preserve">
     <value>Ingresar con Facebook</value>
     <comment>boton de login con face</comment>
   </data>
@@ -236,11 +236,11 @@
     <comment>error de pass vacia</comment>
   </data>
   <data name="label_email" xml:space="preserve">
-    <value>Correo electrónico:</value>
+    <value>Email:</value>
     <comment>label de correo en login</comment>
   </data>
   <data name="label_password" xml:space="preserve">
-    <value>Contraseña:</value>
+    <value>Contraseña</value>
     <comment>label de contraseña en login</comment>
   </data>
   <data name="placeholder_email" xml:space="preserve">
@@ -412,5 +412,11 @@
   </data>
   <data name="confirm_exit" xml:space="preserve">
     <value>¿Estás seguro que deseas salir?</value>
+  </data>
+  <data name="error_user_information" xml:space="preserve">
+    <value>Se produjo un problema al recuperar la información del usuario, intente más tarde.</value>
+  </data>
+  <data name="label_user" xml:space="preserve">
+    <value>Usuario o Email</value>
   </data>
 </root>

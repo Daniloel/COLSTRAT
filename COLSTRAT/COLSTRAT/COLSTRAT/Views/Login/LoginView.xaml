@@ -4,55 +4,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="COLSTRAT.Views.Login.LoginView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     Title="{i18n:Translate LoginViewTitle}"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout
-            BindingContext="{Binding Login}"
-            Padding="10"
-            Spacing="16">
-            <Label 
-                Text="COLSTRAT App"
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="Center">
-            </Label>
-            <Grid
+            <StackLayout
+                BindingContext="{Binding Login}"
+                Padding="10"
+                Spacing="16">
+                <ff:CachedImage
+                    HorizontalOptions="CenterAndExpand"
+                    Source="logo_app.png">
+                </ff:CachedImage>
+                <Grid
                 Margin="50,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                    <Label 
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    VerticalOptions="Center"
-                    Text="{i18n:Translate label_email}">
-                </Label>
-                <Entry
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Entry
                     Grid.Column="1"
                     Grid.Row="0"
                     Keyboard="Email"
-                    Placeholder="{i18n:Translate placeholder_email}"
+                    Placeholder="{i18n:Translate label_user}"
                     Text="{Binding Email,Mode=TwoWay}">
-                </Entry>
-                <Label 
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    VerticalOptions="Center"
-                    Text="{i18n:Translate label_password}">
-                </Label>
-                <Entry
+                    </Entry>
+                    <Entry
                     Grid.Column="1"
                     Grid.Row="1"
                     IsPassword="True"
-                    Placeholder="{i18n:Translate placeholder_password}"
+                    Placeholder="{i18n:Translate label_password}"
                     Text="{Binding Password,Mode=TwoWay}">
                 </Entry>
             </Grid>
@@ -108,7 +95,7 @@
                     FontAttributes="Bold"
                     IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                     BackgroundColor="Navy"
-                    Text="{i18n:Translate btnLoginWithFacebook}"
+                    Text="{i18n:Translate LoginWithFacebook}"
                     TextColor="White">
                 </Button>
             </StackLayout>

@@ -18,7 +18,7 @@
             <Color x:Key="AccentColor2">#741424</Color>
             <!--rojo-->
 
-            <!--Parameters-->
+            <!--Parameters  -->
             <x:String x:Key="URL_API">http://colstrat-api.somee.com</x:String>
         </ResourceDictionary> 
     </Application.Resources>

@@ -26,5 +26,12 @@ namespace COLSTRAT.Backend.Controllers
 
             return View();
         }
+
+        public ActionResult Legal()
+        {
+            ViewBag.Message = "Legal page.";
+
+            return View();
+        }
     }
 }

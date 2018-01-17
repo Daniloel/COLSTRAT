@@ -21,7 +21,6 @@
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(50, ErrorMessage = "The field {0} only can contain {1} characters lenght.")]
         [Index("Customer_Email_Index", IsUnique = true)]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [MaxLength(20, ErrorMessage = "The field {0} only can contain {1} characters lenght.")]
