@@ -332,6 +332,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Problem ocurred retrieving user information, try latter..
+        /// </summary>
+        public static string error_user_information {
+            get {
+                return ResourceManager.GetString("error_user_information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a First name:.
         /// </summary>
         public static string first_name {

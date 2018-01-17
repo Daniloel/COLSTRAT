@@ -379,4 +379,7 @@
   <data name="confirm_exit" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="error_user_information" xml:space="preserve">
+    <value>Problem ocurred retrieving user information, try latter.</value>
+  </data>
 </root>

@@ -413,4 +413,7 @@
   <data name="confirm_exit" xml:space="preserve">
     <value>¿Estás seguro que deseas salir?</value>
   </data>
+  <data name="error_user_information" xml:space="preserve">
+    <value>Se produjo un problema al recuperar la información del usuario, intente más tarde.</value>
+  </data>
 </root>
