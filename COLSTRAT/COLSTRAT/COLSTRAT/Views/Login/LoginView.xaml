@@ -15,11 +15,12 @@
                 Padding="10"
                 Spacing="16">
                 <ff:CachedImage
+                    WidthRequest="150"
                     HorizontalOptions="CenterAndExpand"
                     Source="logo_app.png">
                 </ff:CachedImage>
                 <Grid
-                Margin="50,10">
+                Margin="50,0,50,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>

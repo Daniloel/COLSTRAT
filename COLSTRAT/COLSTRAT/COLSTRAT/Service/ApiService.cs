@@ -23,7 +23,7 @@
                     IsSuccess = false,
                     Message = Languages.Internet_Settings
                 };
-            }/*
+            }
             var response = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             if (!response)
             {
@@ -32,7 +32,7 @@
                     IsSuccess = false,
                     Message = Languages.Internet_Connection
                 };
-            }*/
+            }
             return new Response
             {
                 IsSuccess = true

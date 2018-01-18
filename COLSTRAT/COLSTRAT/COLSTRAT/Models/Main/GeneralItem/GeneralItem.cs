@@ -3,6 +3,8 @@ using COLSTRAT.Service;
 using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main.GeneralItem;
 using GalaSoft.MvvmLight.Command;
+using Plugin.Connectivity;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace COLSTRAT.Models
@@ -31,7 +33,12 @@ namespace COLSTRAT.Models
                 {
                     return "http://colstrat-api.somee.com/Content/no-image/no-image.png";
                 }
-                return string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~'));
+                var optionA = ImageIsAvailable();
+                if (optionA != null)
+                {
+                    return optionA.Result;
+                }
+                return "http://colstrat-api.somee.com/Content/no-image/no-image.png";
             }
         }
         #endregion
@@ -43,6 +50,16 @@ namespace COLSTRAT.Models
             navigationService = new NavigationService();
         }
         #endregion
+
+        async Task<string> ImageIsAvailable()
+        {
+            var response = await CrossConnectivity.Current.IsRemoteReachable(string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~')));
+            if (!response)
+            {
+                return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
+            }
+            return string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~'));
+        }
 
         public override int GetHashCode()
         {
