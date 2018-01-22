@@ -26,7 +26,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    var imagePath = "";
+    if (!string.IsNullOrEmpty(item.Image))
+    {
+        FileInfo file = new FileInfo(Server.MapPath(Url.Content(item.Image)));
+        if (file.Exists)
+        {
+            imagePath = Url.Content(item.Image);
+        }
+        else
+        {
+            imagePath = string.Format("http://colstrat-api.somee.com{0}", item.Image.Trim('~'));
+        }
+    }
+    else
+    {
+        imagePath = "http://colstrat-api.somee.com/Content/no-image/no-image.png";
+    }
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Category.Name)
@@ -38,10 +56,7 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @if (!string.IsNullOrEmpty(item.Image))
-            {
-                <img src="@Url.Content(item.Image)" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
-            }
+            <img src="@imagePath" alt="Image" style="width:100px;height:100px;max-width: 100%; height: auto;" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.GeneralItemId }, new { @class = "btn btn-warning" })

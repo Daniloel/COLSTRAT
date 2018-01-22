@@ -16,7 +16,7 @@
         [Required(ErrorMessage = "The field {0} is required.")]
         [MaxLength(20)]
         [Index(IsUnique = true)]
-        [Display(Name = "Type")]
+        [Display(Name = "Category")]
         public string Name { get; set; }
         
         [MaxLength(500, ErrorMessage = "The field {0} only can contain {1} characters lenth")]

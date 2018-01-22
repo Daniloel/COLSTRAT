@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using COLSTRAT.Backend.Models;
 using COLSTRAT.Domain.Menu.Entity.Generic;
 using COLSTRAT.Backend.Helpers;
+using System.IO;
 
 namespace COLSTRAT.Backend.Controllers
 {
@@ -124,23 +125,36 @@ namespace COLSTRAT.Backend.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var pic = view.Image;
                 var folder = "~/Content/GenericItemsImages";
                 if (view.ImageFile != null)
                 {
                     pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
                     pic = string.Format("{0}/{1}", folder, pic);
+                    DeleteFromFolder(view.Image);
                 }
-
+                
                 var item = ToItem(view);
                 item.Image = pic;
                 db.Entry(item).State = EntityState.Modified;
+                
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", view.CategoryId);
 
             return View(view);
+        }
+
+        public void DeleteFromFolder(string img)
+        {
+            var pathOlder = Server.MapPath(Url.Content(img));
+            FileInfo file = new FileInfo(pathOlder);
+            if (file.Exists)//check file exsit or not
+            {
+                file.Delete();
+            }
         }
 
         // GET: GeneralItems/Delete/5
@@ -165,6 +179,12 @@ namespace COLSTRAT.Backend.Controllers
         {
             GeneralItem generalItem = await db.GeneralItems.FindAsync(id);
             db.GeneralItems.Remove(generalItem);
+            var pathOlder = Server.MapPath(Url.Content(generalItem.Image));
+            FileInfo file = new FileInfo(pathOlder);
+            if (file.Exists)//check file exsit or not
+            {
+                file.Delete();
+            }
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

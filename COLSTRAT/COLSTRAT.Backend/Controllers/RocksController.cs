@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using COLSTRAT.Backend.Models;
 using COLSTRAT.Domain.Menu.Entity.Geology.Rocks;
 using COLSTRAT.Backend.Helpers;
+using System.IO;
 
 namespace COLSTRAT.Backend.Controllers
 {
@@ -148,6 +149,7 @@ namespace COLSTRAT.Backend.Controllers
                 {
                     pic = FilesHelper.UploadPhoto(view.ImageFile, folder);
                     pic = string.Format("{0}/{1}", folder, pic);
+                    DeleteFromFolder(view.Image);
                 }
 
                 var rock = ToRock(view);
@@ -160,7 +162,15 @@ namespace COLSTRAT.Backend.Controllers
             ViewBag.RocksMenuId = new SelectList(db.RocksMenu, "RocksMenuId", "Name", view.RocksMenuId);
             return View(view);
         }
-
+        public void DeleteFromFolder(string img)
+        {
+            var pathOlder = Server.MapPath(Url.Content(img));
+            FileInfo file = new FileInfo(pathOlder);
+            if (file.Exists)//check file exsit or not
+            {
+                file.Delete();
+            }
+        }
         // GET: Rocks/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
@@ -183,6 +193,12 @@ namespace COLSTRAT.Backend.Controllers
         {
             Rock rock = await db.Rocks.FindAsync(id);
             db.Rocks.Remove(rock);
+            var pathOlder = Server.MapPath(Url.Content(rock.Image));
+            FileInfo file = new FileInfo(pathOlder);
+            if (file.Exists)//check file exsit or not
+            {
+                file.Delete();
+            }
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
