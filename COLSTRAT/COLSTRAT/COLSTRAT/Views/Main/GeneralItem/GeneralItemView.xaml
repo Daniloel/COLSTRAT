@@ -56,6 +56,7 @@
                                     HorizontalOptions="Start"
                                     Grid.Column="0"
                                     HeightRequest="150"
+                                    ErrorCommand="{Binding ErrorImageCommand}"
                                     Source="{Binding ImageFullPath}"
                                     WidthRequest="100">
                                     <ff:CachedImage.Transformations>

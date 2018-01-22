@@ -1,5 +1,5 @@
 ﻿using System;
-namespace COLSTRAT.Help
+namespace COLSTRAT
 {
     public static class Util
     {

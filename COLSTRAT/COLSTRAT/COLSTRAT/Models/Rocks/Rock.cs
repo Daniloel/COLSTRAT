@@ -2,11 +2,12 @@
 using COLSTRAT.Service;
 using COLSTRAT.ViewModels.Rocks;
 using GalaSoft.MvvmLight.Command;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace COLSTRAT.Models
 {
-    public class Rock
+    public class Rock : INotifyPropertyChanged
     {
         public int RockId { get; set; }
 
@@ -36,21 +37,62 @@ namespace COLSTRAT.Models
             {
                 if (string.IsNullOrEmpty(Image))
                 {
-                    return "noimage";
+                    _imageFullPath = imageService.ContentNotAvailable;
+                    imageService.ImageStatus = ImageService.GetImageStatus.NotAvailable;
                 }
-                return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
+                if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.NoHasSet) && (!string.IsNullOrEmpty(Image)))
+                {
+                    _imageFullPath = imageService.getURL(Image);
+                }
+                return _imageFullPath;
+            }
+            set
+            {
+                if (_imageFullPath != value)
+                {
+                    _imageFullPath = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageFullPath)));
+                }
             }
         }
+        string _imageFullPath;
+        ImageService imageService;
         DialogService dialogService;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public Rock()
         {
             dialogService = new DialogService();
+            imageService = new ImageService();
         }
         public override int GetHashCode()
         {
             return RockId;
         }
-
+        public ICommand ErrorImageCommand
+        {
+            get
+            {
+                return new RelayCommand(AlternativeImage);
+            }
+        }
+        private void AlternativeImage()
+        {
+            if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.NotAvailable))
+            {
+                return;
+            }
+            if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.First))
+            {
+                ImageFullPath = imageService.getAlternativeUrl(Image);
+            }
+            else if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.Alternative))
+            {
+                ImageFullPath = imageService.ContentNotAvailable;
+                imageService.ImageStatus = ImageService.GetImageStatus.NotAvailable;
+            }
+        }
         public ICommand EditCommand
         {
             get

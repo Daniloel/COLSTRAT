@@ -1,7 +1,6 @@
-﻿using System.IO;
-
-namespace COLSTRAT.Helpers
+﻿namespace COLSTRAT.Helpers
 {
+    using System.IO;
     public class FilesHelper
     {
         public static byte[] ReadFully(Stream input)

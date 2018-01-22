@@ -4,16 +4,24 @@ using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main.GeneralItem;
 using GalaSoft.MvvmLight.Command;
 using Plugin.Connectivity;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace COLSTRAT.Models
 {
-    public class GeneralItem
+    public class GeneralItem : INotifyPropertyChanged
     {
         #region Services
         DialogService dialogService;
         NavigationService navigationService;
+        ImageService imageService;
+        #endregion
+
+        #region Attributes
+        string _imageFullPath;
+
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Propeties
@@ -31,14 +39,22 @@ namespace COLSTRAT.Models
             {
                 if (string.IsNullOrEmpty(Image))
                 {
-                    return "http://colstrat-api.somee.com/Content/no-image/no-image.png";
+                    _imageFullPath = imageService.ContentNotAvailable;
+                    imageService.ImageStatus = ImageService.GetImageStatus.NotAvailable;
                 }
-                var optionA = ImageIsAvailable();
-                if (optionA != null)
+                if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.NoHasSet) && (!string.IsNullOrEmpty(Image)))
                 {
-                    return optionA.Result;
+                    _imageFullPath = imageService.getURL(Image);
                 }
-                return "http://colstrat-api.somee.com/Content/no-image/no-image.png";
+                return _imageFullPath;
+            }
+            set
+            {
+                if (_imageFullPath != value)
+                {
+                    _imageFullPath = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ImageFullPath)));
+                }
             }
         }
         #endregion
@@ -48,25 +64,42 @@ namespace COLSTRAT.Models
         {
             dialogService = new DialogService();
             navigationService = new NavigationService();
+            imageService = new ImageService();
         }
         #endregion
 
-        async Task<string> ImageIsAvailable()
-        {
-            var response = await CrossConnectivity.Current.IsRemoteReachable(string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~')));
-            if (!response)
-            {
-                return string.Format("http://colstrat.somee.com{0}", Image.Trim('~'));
-            }
-            return string.Format("http://colstrat-api.somee.com{0}", Image.Trim('~'));
-        }
 
+        #region Methods
         public override int GetHashCode()
         {
             return GeneralItemId;
         }
+        #endregion
 
         #region Commands
+        public ICommand ErrorImageCommand
+        {
+            get
+            {
+                return new RelayCommand(AlternativeImage);
+            }
+        }
+        private void AlternativeImage()
+        {
+            if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.NotAvailable))
+            {
+                return;
+            }
+            if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.First))
+            {
+                ImageFullPath = imageService.getAlternativeUrl(Image);
+            }
+            else if (imageService.ImageStatus.Equals(ImageService.GetImageStatus.Alternative))
+            {
+                ImageFullPath = imageService.ContentNotAvailable;
+                imageService.ImageStatus = ImageService.GetImageStatus.NotAvailable;
+            }
+        }
         public ICommand EditCommand
         {
             get

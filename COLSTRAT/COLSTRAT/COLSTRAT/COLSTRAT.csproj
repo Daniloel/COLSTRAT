@@ -74,6 +74,7 @@
     <Compile Include="Service\GeolocatorService.cs" />
     <Compile Include="Service\Icons\COLSTRATIconsCollection.cs" />
     <Compile Include="Service\Icons\COLSTRATIconsModule.cs" />
+    <Compile Include="Service\ImageService.cs" />
     <Compile Include="Service\NavigationService.cs" />
     <Compile Include="ViewModels\Main\GeneralItem\GeneralItemViewModel.cs" />
     <Compile Include="ViewModels\Login\NewCustomerViewModel.cs" />
