@@ -27,9 +27,23 @@ namespace COLSTRAT.ViewModels
         bool _isRefreshing;
         List<GeneralItem> generalItems;
         ObservableCollection<GeneralItem> _generalItems;
+        string _filter;
         #endregion
 
         #region Properties
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    SearchItem();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
+                }
+            }
+        }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -174,6 +188,33 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Commands
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(SearchItem);
+            }
+        }
+
+        private void SearchItem()
+        {
+            IsRefreshing = true;
+            if (string.IsNullOrEmpty(Filter))
+            {
+                GeneralItems = new ObservableCollection<GeneralItem>
+                    (generalItems.OrderBy(c => c.Name));
+            }
+            else
+            {
+                GeneralItems = new ObservableCollection<GeneralItem>(generalItems
+                .Where(c => c.Description != null && c.Description.ToLower().Contains(Filter.ToLower()) ||
+                c.Name != null && c.Name.ToLower().Contains(Filter.ToLower()))
+                .OrderBy(c => c.Name));
+            }
+            
+            IsRefreshing = false;
+        }
+
         public ICommand RefreshCommand
         {
             get

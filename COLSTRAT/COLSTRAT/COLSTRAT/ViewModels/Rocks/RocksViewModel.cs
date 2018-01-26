@@ -1,10 +1,13 @@
 ﻿using COLSTRAT.Helpers;
 using COLSTRAT.Models;
 using COLSTRAT.Service;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace COLSTRAT.ViewModels.Rocks
@@ -23,9 +26,23 @@ namespace COLSTRAT.ViewModels.Rocks
         List<Rock> rocks;
         ObservableCollection<Rock> _rocks;
         bool _isRefreshing;
+        string _filter;
         #endregion
 
         #region Properties
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    SearchRock();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
+                }
+            }
+        }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -133,6 +150,35 @@ namespace COLSTRAT.ViewModels.Rocks
             rocks.Remove(rock);
 
             Rocks = new ObservableCollection<Rock>(rocks.OrderBy(c => c.Name));
+            IsRefreshing = false;
+        }
+        #endregion
+
+        #region Commands
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(SearchRock);
+            }
+        }
+
+        private void SearchRock()
+        {
+            IsRefreshing = true;
+            if (string.IsNullOrEmpty(Filter))
+            {
+                Rocks = new ObservableCollection<Rock>(rocks
+                    .OrderBy(c => c.Name));
+            }
+            else
+            {
+                Rocks = new ObservableCollection<Rock>(rocks
+                .Where(c => c.Descripcion != null && c.Descripcion.ToLower().Contains(Filter.ToLower()) ||
+                c.Name != null && c.Name.ToLower().Contains(Filter.ToLower()))
+                .OrderBy(c => c.Name));
+            }
+            
             IsRefreshing = false;
         }
         #endregion

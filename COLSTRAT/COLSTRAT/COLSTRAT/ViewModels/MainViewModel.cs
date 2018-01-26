@@ -101,25 +101,25 @@
         {
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "fa-home",
+                Icon = "dt-home",
                 PageName = "Home",
                 Title = Languages.Home
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "fa-user",
+                Icon = "dt-person",
                 PageName = "MyProfileView",
                 Title =Languages.Profile,
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "fa-map-marker",
+                Icon = "dt-person-pin",
                 PageName = "UbicationsView",
                 Title = Languages.Ubication,
             });
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "fa-sign-out",
+                Icon = "dt-exit",
                 PageName = "LogoutView",
                 Title = Languages.btnExit
             });

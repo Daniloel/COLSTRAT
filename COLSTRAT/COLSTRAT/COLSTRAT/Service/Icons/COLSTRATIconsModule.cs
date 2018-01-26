@@ -3,7 +3,7 @@
     using Plugin.Iconize;
     public class COLSTRATIconsModule : IconModule
     {
-        public COLSTRATIconsModule() : base("icons", "icons", "icomoon.ttf", COLSTRATIconsCollection.Icons)
+        public COLSTRATIconsModule() : base("icons", "icons", "icons.ttf", COLSTRATIconsCollection.Icons)
         {
 
         }

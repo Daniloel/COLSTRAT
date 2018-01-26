@@ -19,6 +19,11 @@
         <StackLayout
             BindingContext="{Binding Rocks}"
             Padding="10">
+            <SearchBar
+                Placeholder="{i18n:Translate SearchBarPlaceholder}"
+                Text="{Binding Filter,Mode=TwoWay}"
+                SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
             <ListView 
                 ItemsSource="{Binding Rocks}"
                 HasUnevenRows="True">

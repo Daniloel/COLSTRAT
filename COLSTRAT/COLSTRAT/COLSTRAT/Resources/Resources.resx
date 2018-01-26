@@ -385,4 +385,7 @@
   <data name="label_user" xml:space="preserve">
     <value>User or Email</value>
   </data>
+  <data name="SearchBarPlaceholder" xml:space="preserve">
+    <value>Search...</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using COLSTRAT.Service.Icons;
 using FFImageLoading;
 using Plugin.Permissions;
 
@@ -17,11 +18,6 @@ namespace COLSTRAT.Droid
         
         protected override void OnCreate(Bundle bundle)
         {
-            //Plugin.Iconize.Iconize.With(new COLSTRATIconsModule());
-
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
-                          .With(new Plugin.Iconize.Fonts.MaterialModule());
-
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             base.OnCreate(bundle);
@@ -38,7 +34,9 @@ namespace COLSTRAT.Droid
             ImageService.Instance.Initialize(config);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Xamarin.FormsMaps.Init(this, bundle);
+            Plugin.Iconize.Iconize.With(new COLSTRATIconsModule());
             FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar, Resource.Id.sliding_tabs);
+            
             LoadApplication(new App());
         }
         

@@ -71,7 +71,7 @@
                                 <icons:IconImage 
                                     HorizontalOptions="End"
                                     Grid.Column="2"
-                                    Icon="fa-chevron-right"
+                                    Icon="dt-chevron-right"
                                     IconColor="{StaticResource AccentColor}"
                                     WidthRequest="20"
                                     HeightRequest="20"

@@ -46,8 +46,7 @@ namespace COLSTRAT.iOS
                 VerboseLoadingCancelledLogging = false,
                 //Logger = new CustomLogger(),
             };
-            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
-                           .With(new Plugin.Iconize.Fonts.MaterialModule());
+            Plugin.Iconize.Iconize.With(new COLSTRATIconsModule());
             ImageService.Instance.Initialize(config);
         }
     }

@@ -419,4 +419,7 @@
   <data name="label_user" xml:space="preserve">
     <value>Usuario o Email</value>
   </data>
+  <data name="SearchBarPlaceholder" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
 </root>

@@ -809,6 +809,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Search....
+        /// </summary>
+        public static string SearchBarPlaceholder {
+            get {
+                return ResourceManager.GetString("SearchBarPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Sedimentary Rocks.
         /// </summary>
         public static string SedimentaryRocks {
