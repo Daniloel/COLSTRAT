@@ -29,7 +29,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>COLSTRAT App</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.quada.COLSTRAT</string>
+	<string>com.daniloel.COLSTRAT</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>

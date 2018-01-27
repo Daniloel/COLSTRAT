@@ -71,6 +71,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Change.
+        /// </summary>
+        public static string btn_change_pass {
+            get {
+                return ResourceManager.GetString("btn_change_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Types of rocks.
         /// </summary>
         public static string btn_rocks_types {
@@ -215,6 +224,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a We can&apos;t send the new password to this email..
+        /// </summary>
+        public static string error_cant_send_passtoemail {
+            get {
+                return ResourceManager.GetString("error_cant_send_passtoemail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a new password confirm..
+        /// </summary>
+        public static string error_confirm_input_pass {
+            get {
+                return ResourceManager.GetString("error_confirm_input_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a valid email..
         /// </summary>
         public static string error_email_invalid {
@@ -229,6 +256,15 @@ namespace COLSTRAT.Resources {
         public static string error_input_category {
             get {
                 return ResourceManager.GetString("error_input_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter the current password..
+        /// </summary>
+        public static string error_input_current_pass {
+            get {
+                return ResourceManager.GetString("error_input_current_pass", resourceCulture);
             }
         }
         
@@ -269,6 +305,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a You must enter a new password..
+        /// </summary>
+        public static string error_input_new_pass {
+            get {
+                return ResourceManager.GetString("error_input_new_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You must enter a password confirm..
         /// </summary>
         public static string error_input_pass_confirm {
@@ -287,11 +332,29 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The new password must have at least 6 characters length..
+        /// </summary>
+        public static string error_lenght_new_pass {
+            get {
+                return ResourceManager.GetString("error_lenght_new_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The password must have at least 6 characters length..
         /// </summary>
         public static string error_pass_length {
             get {
                 return ResourceManager.GetString("error_pass_length", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The current password is not valid.
+        /// </summary>
+        public static string error_pass_not_valid {
+            get {
+                return ResourceManager.GetString("error_pass_not_valid", resourceCulture);
             }
         }
         
@@ -404,6 +467,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Confirm New Password.
+        /// </summary>
+        public static string label_confirm_new_pass {
+            get {
+                return ResourceManager.GetString("label_confirm_new_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Current Password.
+        /// </summary>
+        public static string label_current_password {
+            get {
+                return ResourceManager.GetString("label_current_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Description:.
         /// </summary>
         public static string label_description {
@@ -472,6 +553,15 @@ namespace COLSTRAT.Resources {
         public static string label_name {
             get {
                 return ResourceManager.GetString("label_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a New Password.
+        /// </summary>
+        public static string label_new_password {
+            get {
+                return ResourceManager.GetString("label_new_password", resourceCulture);
             }
         }
         
@@ -701,6 +791,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a The password was changed successfully.
+        /// </summary>
+        public static string pass_change_success {
+            get {
+                return ResourceManager.GetString("pass_change_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a The password and confirm, does not match..
         /// </summary>
         public static string pass_confirm_notmatch {
@@ -872,6 +971,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Your new password has been sent to your email!.
+        /// </summary>
+        public static string send_new_pass_success {
+            get {
+                return ResourceManager.GetString("send_new_pass_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a All records are success.
         /// </summary>
         public static string sync_success {
@@ -895,6 +1003,15 @@ namespace COLSTRAT.Resources {
         public static string TapImage {
             get {
                 return ResourceManager.GetString("TapImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Change Password.
+        /// </summary>
+        public static string title_change_pass {
+            get {
+                return ResourceManager.GetString("title_change_pass", resourceCulture);
             }
         }
         

@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
     <Compile Include="Models\Login\FacebookResponse.cs" />
+    <Compile Include="Models\Login\UserRequest.cs" />
     <Compile Include="Models\Main\Category.cs" />
     <Compile Include="Models\Login\Customer.cs" />
     <Compile Include="Models\Main\GeneralItem\GeneralItem.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Service\ImageService.cs" />
     <Compile Include="Service\NavigationService.cs" />
     <Compile Include="Service\SessionService.cs" />
+    <Compile Include="ViewModels\Login\PasswordRecoveryViewModel.cs" />
     <Compile Include="ViewModels\Main\GeneralItem\GeneralItemViewModel.cs" />
     <Compile Include="ViewModels\Login\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\Main\Category\CategoryMenuViewModel.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="ViewModels\Main\Category\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Maps\UbicationsViewModel.cs" />
+    <Compile Include="ViewModels\Profile\MyProfileViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksMenuViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
@@ -104,6 +107,9 @@
     </Compile>
     <Compile Include="Views\Login\NewCustomerView.xaml.cs">
       <DependentUpon>NewCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\PasswordRecoveryView.xaml.cs">
+      <DependentUpon>PasswordRecoveryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\Category\CategoryCell.xaml.cs">
       <DependentUpon>CategoryCell.xaml</DependentUpon>
@@ -149,6 +155,9 @@
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile\MyProfileView.xaml.cs">
+      <DependentUpon>MyProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Rocks\RocksMenuView.xaml.cs">
       <DependentUpon>RocksMenuView.xaml</DependentUpon>
@@ -395,6 +404,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Main\Category\CategoryCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Profile\MyProfileView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Login\PasswordRecoveryView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

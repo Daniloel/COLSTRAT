@@ -61,6 +61,10 @@ namespace COLSTRAT.Models.Main
                     MainViewModel.GetInstante().Sync = new ViewModels.Sync.SyncViewModel();
                     await navigationService.Navigate(PageName);
                     break;
+                case "MyProfileView":
+                    MainViewModel.GetInstante().MyProfile = new ViewModels.Profile.MyProfileViewModel();
+                    await navigationService.Navigate(PageName);
+                    break;
             }
             
         }

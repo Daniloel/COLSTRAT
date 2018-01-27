@@ -13,6 +13,7 @@
     using COLSTRAT.Helpers;
     using COLSTRAT.ViewModels;
     using COLSTRAT.Views.Sync;
+    using COLSTRAT.Views.Profile;
 
     public class NavigationService
     {
@@ -77,6 +78,9 @@
                 case "SyncView":
                     await App.Navigator.PushAsync(new SyncView());
                     break;
+                case "MyProfileView":
+                    await App.Navigator.PushAsync(new MyProfileView());
+                    break;
                 default:
                     break;
             }
@@ -93,10 +97,10 @@
                     await Application.Current.MainPage.Navigation.PushAsync(
                         new LoginFacebookView());
                     break;
-                    /*  case "PasswordRecoveryView":
-                          await Application.Current.MainPage.Navigation.PushAsync(
-                              new PasswordRecoveryView());
-                          break;*/
+                case "PasswordRecoveryView":
+                    await Application.Current.MainPage.Navigation.PushAsync(
+                        new PasswordRecoveryView());
+                    break;
             }
         }
         public async Task BackOnLogin()

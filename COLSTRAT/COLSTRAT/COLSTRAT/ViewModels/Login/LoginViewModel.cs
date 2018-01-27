@@ -118,6 +118,20 @@
         #endregion
 
         #region Commands
+        public ICommand RecoverPassCommand
+        {
+            get
+            {
+                return new RelayCommand(RecoverPass);
+            }
+        }
+
+        private async void RecoverPass()
+        {
+            MainViewModel.GetInstante().PasswordRecovery = new PasswordRecoveryViewModel();
+            await navigationService.NavigateOnLogin("PasswordRecoveryView");
+        }
+
         public ICommand LoginWithFacebookCommand
         {
             get

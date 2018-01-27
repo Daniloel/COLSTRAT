@@ -443,4 +443,43 @@
   <data name="label_sync_info" xml:space="preserve">
     <value>Presione el boton para empezar</value>
   </data>
+  <data name="btn_change_pass" xml:space="preserve">
+    <value>Cambiar</value>
+  </data>
+  <data name="error_confirm_input_pass" xml:space="preserve">
+    <value>Debes ingresar la confirmación de contraseña</value>
+  </data>
+  <data name="error_input_current_pass" xml:space="preserve">
+    <value>Debes ingresar la contraseña actual</value>
+  </data>
+  <data name="error_input_new_pass" xml:space="preserve">
+    <value>Debes ingresar la nueva contraseña</value>
+  </data>
+  <data name="error_lenght_new_pass" xml:space="preserve">
+    <value>La nueva contraseña debe ser mayor a 6 carácteres</value>
+  </data>
+  <data name="error_pass_not_valid" xml:space="preserve">
+    <value>Contraseña actual inválida</value>
+  </data>
+  <data name="label_confirm_new_pass" xml:space="preserve">
+    <value>Confirme la nueva contraseña</value>
+  </data>
+  <data name="label_current_password" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="label_new_password" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="pass_change_success" xml:space="preserve">
+    <value>La contraseña ha sido cambiada exitosamente</value>
+  </data>
+  <data name="title_change_pass" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="error_cant_send_passtoemail" xml:space="preserve">
+    <value>No pudimos enviar la nueva contraseña a ese email</value>
+  </data>
+  <data name="send_new_pass_success" xml:space="preserve">
+    <value>Tu nueva clave ha sido enviada a tu correo!</value>
+  </data>
 </root>

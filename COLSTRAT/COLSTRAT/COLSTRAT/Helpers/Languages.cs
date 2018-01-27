@@ -14,6 +14,64 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        
+        public static string Send_PassToEmail_Success
+        {
+            get
+            {
+                return Resources.send_new_pass_success;
+            }
+        }
+        public static string Error_CantSend_PassToEmail
+        {
+            get
+            {
+                return Resources.error_cant_send_passtoemail;
+            }
+        }
+
+        public static string Pass_Success_Changed
+        {
+            get
+            {
+                return Resources.pass_change_success;
+            }
+        }
+        public static string Error_Confirm_Input_Pass
+        {
+            get
+            {
+                return Resources.error_confirm_input_pass;
+            }
+        }
+        public static string Error_Lenght_New_Pass
+        {
+            get
+            {
+                return Resources.error_lenght_new_pass;
+            }
+        }
+        public static string Error_Input_New_Pass
+        {
+            get
+            {
+                return Resources.error_input_new_pass;
+            }
+        }
+        public static string Error_Current_Pass_Invalid
+        {
+            get
+            {
+                return Resources.error_pass_not_valid;
+            }
+        }
+        public static string Error_Input_Current_Pass
+        {
+            get
+            {
+                return Resources.error_input_current_pass;
+            }
+        }
         public static string Delete
         {
             get

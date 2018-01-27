@@ -8,6 +8,7 @@
     using COLSTRAT.ViewModels.Main;
     using COLSTRAT.ViewModels.Main.GeneralItem;
     using COLSTRAT.ViewModels.Maps;
+    using COLSTRAT.ViewModels.Profile;
     using COLSTRAT.ViewModels.Rocks;
     using COLSTRAT.ViewModels.Sync;
     using GalaSoft.MvvmLight.Command;
@@ -54,6 +55,8 @@
             get;
             set;
         }
+        public PasswordRecoveryViewModel PasswordRecovery { get; set; }
+        public MyProfileViewModel MyProfile { get; set; }
         public SyncViewModel Sync { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
