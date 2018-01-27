@@ -19,6 +19,7 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Services
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         #endregion
@@ -60,6 +61,7 @@ namespace COLSTRAT.ViewModels
         public MainMenuViewModel()
         {
             instance = this;
+            dataService = new DataService();
             dialogService = new DialogService();
             apiService = new ApiService();
             LoadMainMenu();
@@ -152,33 +154,53 @@ namespace COLSTRAT.ViewModels
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(con.Message);
-                return;
+                mainMenu = dataService.Get<MainMenu>(true);
+                if (mainMenu.Count == 0)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    return;
+                }
+                MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
             }
-            string urlBase = Application.Current.Resources["URL_API"].ToString();
-            var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<MainMenu>(
-                urlBase,
-                "/api",
-                "/MainMenus",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken);
-
-            if (!response.IsSuccess)
+            else
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
-                return;
-            }
+                string urlBase = Application.Current.Resources["URL_API"].ToString();
+                var mainViewModel = MainViewModel.GetInstante();
+                var response = await apiService.GetList<MainMenu>(
+                    urlBase,
+                    "/api",
+                    "/MainMenus",
+                    mainViewModel.Token.TokenType,
+                    mainViewModel.Token.AccessToken);
 
-            mainMenu = (List<MainMenu>)response.Result;
-            MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+                if (!response.IsSuccess)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(response.Message);
+                    return;
+                }
+
+                mainMenu = (List<MainMenu>)response.Result;
+                SaveMainMenusOnDB();
+                MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            }
             IsRefreshing = false;
+        }
+
+
+        private void SaveMainMenusOnDB()
+        {
+            dataService.DeleteAll<MainMenu>();
+            foreach (var menu in mainMenu)
+            {
+                dataService.Insert(menu);
+                //dataService.Save(menu.Category);
+            }
         }
         #endregion
 
-        
+
 
     }
 }

@@ -17,6 +17,8 @@
         #endregion
 
         #region Services
+        ImageService imageService;
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
@@ -127,10 +129,12 @@
         public NewGeneralItemViewModel()
         {
             IsEnabled = true;
+            dataService = new DataService();
             dialogService = new DialogService();
             apiService = new ApiService();
             navigationService = new NavigationService();
-            ImageSource = "http://colstrat-api.somee.com/Content/no-image/no-image.png";
+            imageService = new ImageService();
+            ImageSource = imageService.ContentNotAvailable;
         }
         #endregion
 
@@ -211,13 +215,7 @@
             IsRunning = true;
             IsEnabled = false;
             var con = await apiService.CheckConnection();
-            if (!con.IsSuccess)
-            {
-                await dialogService.ShowErrorMessage(con.Message);
-                IsRunning = false;
-                IsEnabled = true;
-                return;
-            }
+            
             byte[] imageArray = null;
             if (file != null)
             {
@@ -232,37 +230,48 @@
                 ImageArray = imageArray,
                 Description = Description
             };
-
-            string urlBase = Application.Current.Resources["URL_API"].ToString();
-            var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.Post(
-                urlBase,
-                "/api",
-                "/GeneralItems",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken,
-                generalItem);
-
-            if (!response.IsSuccess)
+            if (!con.IsSuccess)
             {
-                if (response.Message == "1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8")
+                generalItem.PendingToSave = true;
+                dataService.Insert(generalItem);
+                await dialogService.ShowMessage(Languages.Message_Save_OnLocal);
+            }
+            else
+            {
+                string urlBase = Application.Current.Resources["URL_API"].ToString();
+                var mainViewModel = MainViewModel.GetInstante();
+                var response = await apiService.Post(
+                    urlBase,
+                    "/api",
+                    "/GeneralItems",
+                    mainViewModel.Token.TokenType,
+                    mainViewModel.Token.AccessToken,
+                    generalItem);
+
+                if (!response.IsSuccess)
                 {
-                    await dialogService.ShowErrorMessage(Languages.Error_Record_Same);
+                    if (response.Message == "1oGVEdBYMPQ2yLGq3HnZOzYFmOtfErKHYtyLPO95mdf/BbS7b1DYbDgiMJQi/blDoVi/I1NSS9Ria3sOeX3wOaBCZGatrfNiI4rjkM3XYw8")
+                    {
+                        await dialogService.ShowErrorMessage(Languages.Error_Record_Same);
+                    }
+                    else
+                    {
+                        await dialogService.ShowErrorMessage(Languages.ErrorResponseNotFound);
+                    }
+                    IsRunning = false;
+                    IsEnabled = true;
+                    return;
                 }
-                else
-                {
-                    await dialogService.ShowErrorMessage(Languages.ErrorResponseNotFound);
-                }
+
                 IsRunning = false;
                 IsEnabled = true;
-                return;
+                generalItem = (GeneralItem)response.Result;
+                
             }
 
-            generalItem = (GeneralItem)response.Result;
             GeneralItemViewModel generalItemViewModel = GeneralItemViewModel.GetInstante();
             generalItemViewModel.AddMenu(generalItem);
             await navigationService.Back();
-
             IsRunning = false;
             IsEnabled = true;
         }

@@ -19,6 +19,7 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Services
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
@@ -74,6 +75,7 @@ namespace COLSTRAT.ViewModels
         public GeneralItemViewModel()
         {
             instance = this;
+            dataService = new DataService();
             apiService = new ApiService();
             dialogService = new DialogService();
             navigationService = new NavigationService();
@@ -103,29 +105,46 @@ namespace COLSTRAT.ViewModels
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(con.Message);
-                return;
+                generalItems = dataService.Get<GeneralItem>(false);
+                if (generalItems.Count == 0)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    return;
+                }
             }
-            string urlBase = Application.Current.Resources["URL_API"].ToString();
-            var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<GeneralItem>(
-                urlBase,
-                "/api",
-                "/Categories",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken,
-                mainViewModel.CurrentCategory.CategoryId);
-
-            if (!response.IsSuccess)
+            else
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
-                return;
+                string urlBase = Application.Current.Resources["URL_API"].ToString();
+                var mainViewModel = MainViewModel.GetInstante();
+                var response = await apiService.GetList<GeneralItem>(
+                    urlBase,
+                    "/api",
+                    "/Categories",
+                    mainViewModel.Token.TokenType,
+                    mainViewModel.Token.AccessToken,
+                    mainViewModel.CurrentCategory.CategoryId);
+
+                if (!response.IsSuccess)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(response.Message);
+                    return;
+                }
+                generalItems = (List<GeneralItem>)response.Result;
+                SaveGeneralItemsOnDB();
             }
-            generalItems = (List<GeneralItem>)response.Result;
-            GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            SearchItem();
             IsRefreshing = false;
+        }
+
+        private void SaveGeneralItemsOnDB()
+        {
+            dataService.DeleteAll<GeneralItem>();
+            foreach (var item in generalItems)
+            {
+                dataService.Insert(item);
+            }
         }
 
         public void AddMenu(GeneralItem generalitem)

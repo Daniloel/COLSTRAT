@@ -5,6 +5,8 @@
     using COLSTRAT.ViewModels;
     using COLSTRAT.ViewModels.Main;
     using GalaSoft.MvvmLight.Command;
+    using SQLite.Net.Attributes;
+    using SQLiteNetExtensions.Attributes;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,8 +22,10 @@
         #region Attributes
         public List<Color> listColors;
         public string Icon { get; set; }
+        [PrimaryKey]
         public int MainMenuId { get; set; }
         public string Description { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<Category> Category { get; set; }
         public Color ColorChanged
         {

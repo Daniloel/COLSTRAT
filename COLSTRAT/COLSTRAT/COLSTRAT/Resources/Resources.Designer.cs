@@ -494,6 +494,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Press sync button to start.
+        /// </summary>
+        public static string label_sync_info {
+            get {
+                return ResourceManager.GetString("label_sync_info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a User or Email.
         /// </summary>
         public static string label_user {
@@ -593,11 +602,47 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Dear user, don&apos;t have connection and also has data information.
+        /// </summary>
+        public static string message_not_data {
+            get {
+                return ResourceManager.GetString("message_not_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Don&apos;t hav items for sync.
+        /// </summary>
+        public static string message_not_data_forsync {
+            get {
+                return ResourceManager.GetString("message_not_data_forsync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a You have not chosen a rock to show.
         /// </summary>
         public static string message_not_select_rock {
             get {
                 return ResourceManager.GetString("message_not_select_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The product was save on local DB don&apos;t forget to upload the record when you have WiFi.
+        /// </summary>
+        public static string message_save_onlocaldb {
+            get {
+                return ResourceManager.GetString("message_save_onlocaldb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Message.
+        /// </summary>
+        public static string message_title {
+            get {
+                return ResourceManager.GetString("message_title", resourceCulture);
             }
         }
         
@@ -823,6 +868,24 @@ namespace COLSTRAT.Resources {
         public static string SedimentaryRocks {
             get {
                 return ResourceManager.GetString("SedimentaryRocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a All records are success.
+        /// </summary>
+        public static string sync_success {
+            get {
+                return ResourceManager.GetString("sync_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sync Offline Operations.
+        /// </summary>
+        public static string sync_title {
+            get {
+                return ResourceManager.GetString("sync_title", resourceCulture);
             }
         }
         

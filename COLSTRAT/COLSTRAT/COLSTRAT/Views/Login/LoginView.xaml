@@ -32,6 +32,7 @@
                     <Entry
                     Grid.Column="1"
                     Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
                     Keyboard="Email"
                     Placeholder="{i18n:Translate label_user}"
                     Text="{Binding Email,Mode=TwoWay}">
@@ -39,6 +40,7 @@
                     <Entry
                     Grid.Column="1"
                     Grid.Row="1"
+                    HorizontalOptions="FillAndExpand"
                     IsPassword="True"
                     Placeholder="{i18n:Translate label_password}"
                     Text="{Binding Password,Mode=TwoWay}">

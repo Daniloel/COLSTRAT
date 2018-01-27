@@ -22,7 +22,10 @@ namespace COLSTRAT.Service
         {
             await App.Current.MainPage.DisplayAlert(Languages.Warning, message, Languages.Accept);
         }
-
+        public async Task ShowMessage(string message)
+        {
+            await App.Current.MainPage.DisplayAlert(Languages.Message_Title, message, Languages.Accept);
+        }
         public async Task<string> ShowImageOptions()
         {
             return await App.Current.MainPage.DisplayActionSheet(

@@ -4,6 +4,9 @@ using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main.GeneralItem;
 using GalaSoft.MvvmLight.Command;
 using Plugin.Connectivity;
+using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,18 +23,26 @@ namespace COLSTRAT.Models
 
         #region Attributes
         string _imageFullPath;
-
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Propeties
+
+        [ForeignKey(typeof(Category))]
         public int CategoryId { get; set; }
+        [PrimaryKey]
         public int GeneralItemId { get; set; }
+        [ManyToOne]
+        public Category Category { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
         public byte[] ImageArray { get; set; } 
-
+        public bool PendingToSave
+        {
+            get;
+            set;
+        }
         
         public string ImageFullPath
         {
@@ -127,6 +138,18 @@ namespace COLSTRAT.Models
             if (!response)
                 return;
             GeneralItemViewModel.GetInstante().DeleteCategory(this);
+        }
+        public ICommand OpenDetailItemCommand
+        {
+            get
+            {
+                return new RelayCommand(OpenDetailItem);
+            }
+        }
+
+        private void OpenDetailItem()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

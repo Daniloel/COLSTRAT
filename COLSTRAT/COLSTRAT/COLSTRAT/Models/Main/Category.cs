@@ -3,6 +3,8 @@ using COLSTRAT.Service;
 using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main;
 using GalaSoft.MvvmLight.Command;
+using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -20,15 +22,18 @@ namespace COLSTRAT.Models
         NavigationService navigationService;
         #endregion
         #region Attributes
+        [ForeignKey(typeof(MainMenu))]
         public int MainMenuId { get; set; }
+        [PrimaryKey]
         public int CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
+        [ManyToOne]
+        public MainMenu MainMenu { get; set; }
         public int GeologyCategoryId { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<RocksMenu> RocksMenu { get; set; }
-
-        public int FluidsCategoryId { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<GeneralItem> GeneralItems { get; set; }
         #endregion
 

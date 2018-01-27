@@ -388,4 +388,25 @@
   <data name="SearchBarPlaceholder" xml:space="preserve">
     <value>Search...</value>
   </data>
+  <data name="message_not_data" xml:space="preserve">
+    <value>Dear user, don't have connection and also has data information</value>
+  </data>
+  <data name="message_title" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="message_save_onlocaldb" xml:space="preserve">
+    <value>The product was save on local DB don't forget to upload the record when you have WiFi</value>
+  </data>
+  <data name="sync_title" xml:space="preserve">
+    <value>Sync Offline Operations</value>
+  </data>
+  <data name="message_not_data_forsync" xml:space="preserve">
+    <value>Don't hav items for sync</value>
+  </data>
+  <data name="sync_success" xml:space="preserve">
+    <value>All records are success</value>
+  </data>
+  <data name="label_sync_info" xml:space="preserve">
+    <value>Press sync button to start</value>
+  </data>
 </root>

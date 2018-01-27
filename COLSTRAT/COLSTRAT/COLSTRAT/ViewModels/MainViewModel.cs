@@ -2,12 +2,14 @@
 {
     using COLSTRAT.Helpers;
     using COLSTRAT.Models;
+    using COLSTRAT.Models.Main;
     using COLSTRAT.Service;
     using COLSTRAT.ViewModels.Login;
     using COLSTRAT.ViewModels.Main;
     using COLSTRAT.ViewModels.Main.GeneralItem;
     using COLSTRAT.ViewModels.Maps;
     using COLSTRAT.ViewModels.Rocks;
+    using COLSTRAT.ViewModels.Sync;
     using GalaSoft.MvvmLight.Command;
     using System;
     using System.Collections.ObjectModel;
@@ -37,6 +39,11 @@
                 }
             }
         }
+        public Customer CurrentCustomer
+        {
+            get;
+            set;
+        }
         public MainMenu CurrentMenu
         {
             get;
@@ -47,11 +54,7 @@
             get;
             set;
         }
-        public ObservableCollection<MenuItemViewModel> Menu
-        {
-            get;
-            set;
-        }
+        public SyncViewModel Sync { get; set; }
         public LoginViewModel Login { get; set; }
         public TokenResponse Token { get; set; }
         public MainMenuViewModel MainMenu { get; set; }
@@ -67,6 +70,7 @@
         public NewGeneralItemViewModel NewGeneralItem { get; set; }
         public NewCustomerViewModel NewCustomer { get; set; }
         public UbicationsViewModel Ubications { get; set; }
+        public MenuItemViewModel Menu { get; set; }
         #endregion
 
         #region Constructor
@@ -74,9 +78,7 @@
         {
             instance = this;
             Login = new LoginViewModel();
-            Menu = new ObservableCollection<MenuItemViewModel>();
             navigationService = new NavigationService();
-            LoadMenu();
         }
         #endregion
 
@@ -96,40 +98,8 @@
         }
         #endregion
 
-        #region Methods
-        private void LoadMenu()
-        {
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "dt-home",
-                PageName = "Home",
-                Title = Languages.Home
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "dt-person",
-                PageName = "MyProfileView",
-                Title =Languages.Profile,
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "dt-person-pin",
-                PageName = "UbicationsView",
-                Title = Languages.Ubication,
-            });
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "dt-exit",
-                PageName = "LogoutView",
-                Title = Languages.btnExit
-            });
 
-            
-
-        }
-        #endregion
-
-            #region Commands
+        #region Commands
         public ICommand NewRockCommand
         {
             get

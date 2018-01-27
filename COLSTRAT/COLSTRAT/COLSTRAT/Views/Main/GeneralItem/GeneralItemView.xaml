@@ -4,17 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="COLSTRAT.Views.Main.GeneralItemView"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
-    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource BackgroundColor}"
     Title="{Binding CurrentCategory.Name}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Command="{Binding NewGeneralItemCommand}"
-                Icon="plus_circle.png">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding GeneralItem}"
@@ -29,65 +21,8 @@
                 RefreshCommand="{Binding RefreshCommand}"
                 IsPullToRefreshEnabled="True"
                 ItemsSource="{Binding GeneralItems}"
-                HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem 
-                                    Command="{Binding EditCommand}" 
-                                    Text="{i18n:Translate edit}">
-                                </MenuItem>
-                                <MenuItem 
-                                    Command="{Binding DeleteCommand}" 
-                                    IsDestructive="true"     
-                                    Text="{i18n:Translate delete}">
-                                </MenuItem>
-                            </ViewCell.ContextActions>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <!--  <Image
-                                    HorizontalOptions="Start"
-                                    Grid.Column="0"
-                                    HeightRequest="150"
-                                    Source="{Binding ImageFullPath}"
-                                    WidthRequest="100">
-                                    
-                                </Image>-->
-                                <ff:CachedImage
-                                    HorizontalOptions="Start"
-                                    Grid.Column="0"
-                                    HeightRequest="150"
-                                    ErrorCommand="{Binding ErrorImageCommand}"
-                                    Source="{Binding ImageFullPath}"
-                                    WidthRequest="100">
-                                    <ff:CachedImage.Transformations>
-                                        <ffTransformations:RoundedTransformation Radius="240"/>
-                                    </ff:CachedImage.Transformations>
-                                </ff:CachedImage>
-                                <StackLayout
-                                    Grid.Column="1"
-                                    Orientation="Vertical">
-                                    <Label 
-                                    FontSize="Medium"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="Center"
-                                    Text="{Binding Name}">
-                                    </Label>
-                                    <Label 
-                                    FontSize="Micro"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="Center"
-                                    Text="{Binding Description}">
-                                    </Label>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                HasUnevenRows="True"
+                x:Name="Lv">
             </ListView>
         </StackLayout>
     </ContentPage.Content>

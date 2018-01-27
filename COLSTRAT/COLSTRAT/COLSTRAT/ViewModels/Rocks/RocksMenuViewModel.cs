@@ -2,6 +2,7 @@
 using COLSTRAT.Models;
 using COLSTRAT.Service;
 using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace COLSTRAT.ViewModels.Rocks
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region Services
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
@@ -58,6 +60,7 @@ namespace COLSTRAT.ViewModels.Rocks
         public RocksMenuViewModel()
         {
             instance = this;
+            dataService = new DataService();
             apiService = new ApiService();
             dialogService = new DialogService();
             navigationService = new NavigationService();
@@ -87,30 +90,51 @@ namespace COLSTRAT.ViewModels.Rocks
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(con.Message);
-                return;
+                rocks = dataService.Get<RocksMenu>(true);
+                if (rocks.Count == 0)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    return;
+                }
+                RocksMenu = new ObservableCollection<RocksMenu>(rocks.
+                    OrderBy(c => c.Name));
             }
-            string urlBase = Application.Current.Resources["URL_API"].ToString();
-            var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<Category>(
-                urlBase,
-                "/api",
-                "/Categories",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken,
-                mainViewModel.CurrentCategory.CategoryId);
-
-            if (!response.IsSuccess)
+            else
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
-                return;
+                string urlBase = Application.Current.Resources["URL_API"].ToString();
+                var mainViewModel = MainViewModel.GetInstante();
+                var response = await apiService.GetList<Category>(
+                    urlBase,
+                    "/api",
+                    "/Categories",
+                    mainViewModel.Token.TokenType,
+                    mainViewModel.Token.AccessToken,
+                    mainViewModel.CurrentCategory.CategoryId);
+
+                if (!response.IsSuccess)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(response.Message);
+                    return;
+                }
+                var category = (List<Category>)response.Result;
+                rocks = category.First().RocksMenu;
+                SaveRocksMenuOnDB();
+                RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
             }
-            var category = (List<Category>)response.Result;
-            rocks = category.First().RocksMenu;
-            RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+            
             IsRefreshing = false;
+        }
+
+        private void SaveRocksMenuOnDB()
+        {
+            dataService.DeleteAll<RocksMenu>();
+            foreach (var rock in rocks)
+            {
+                dataService.Insert(rock);
+                dataService.Save(rock.Rocks);
+            }
         }
 
         public void AddMenu(RocksMenu rocksmenu)

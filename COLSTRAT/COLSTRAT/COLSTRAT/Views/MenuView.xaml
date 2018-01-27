@@ -7,8 +7,11 @@
     BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
     BackgroundColor="{StaticResource MenuColor}"
     xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
-    <StackLayout Padding="8">
-        <StackLayout Orientation="Horizontal">
+    <StackLayout 
+        Padding="8"
+        BindingContext="{Binding Menu}">
+        <StackLayout 
+            Orientation="Horizontal">
             <Label
             Text="COLSTRAT"
             TextColor="{StaticResource MenuFontColor}"
@@ -30,7 +33,7 @@
             Color="{StaticResource MenuFontColor}">
         </BoxView>
         <ListView
-        ItemsSource="{Binding Menu}"
+        ItemsSource="{Binding MenuItems}"
         HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -3,21 +3,28 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using COLSTRAT.Interfaces;
-    using COLSTRAT.Models;
+    using Interfaces;
+    using Models;
     using SQLite.Net;
     using SQLiteNetExtensions.Extensions;
     using Xamarin.Forms;
 
     public class DataAccess : IDisposable
-    {//TODO corregir childrens
-        SQLiteConnection connection;
+    {
+        private SQLiteConnection connection;
 
         public DataAccess()
         {
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(config.Platform,
-            System.IO.Path.Combine(config.DirectoryDB, "COLSTRAIT.db3"));
+                System.IO.Path.Combine(config.DirectoryDB, "COLSTRAT.db3"));
+            connection.CreateTable<Category>();
+            connection.CreateTable<GeneralItem>();
+            connection.CreateTable<RocksMenu>();
+            connection.CreateTable<Rock>();
+            connection.CreateTable<MainMenu>();
+            connection.CreateTable<TokenResponse>();
+            connection.CreateTable<Customer>();
         }
 
         public void Insert<T>(T model)
@@ -39,7 +46,7 @@
         {
             if (WithChildren)
             {
-                return connection.Table<T>().FirstOrDefault();
+                return connection.GetAllWithChildren<T>().FirstOrDefault();
             }
             else
             {
@@ -51,7 +58,7 @@
         {
             if (WithChildren)
             {
-                return connection.Table<T>().ToList();
+                return connection.GetAllWithChildren<T>().ToList();
             }
             else
             {
@@ -63,14 +70,13 @@
         {
             if (WithChildren)
             {
-                return connection.Table<T>().ToList()
-                    .FirstOrDefault(m => m.GetHashCode() == pk);
+                return connection.GetAllWithChildren<T>()
+                                 .FirstOrDefault(m => m.GetHashCode() == pk);
             }
             else
             {
-                return connection
-                    .Table<T>()
-                    .FirstOrDefault(m => m.GetHashCode() == pk);
+                return connection.Table<T>()
+                                 .FirstOrDefault(m => m.GetHashCode() == pk);
             }
         }
 
@@ -79,4 +85,5 @@
             connection.Dispose();
         }
     }
+
 }

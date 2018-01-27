@@ -20,6 +20,7 @@ namespace COLSTRAT.ViewModels.Main
         #endregion
 
         #region Services
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         #endregion
@@ -65,6 +66,7 @@ namespace COLSTRAT.ViewModels.Main
                 this.categories = categories;
                 CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
             }
+            dataService = new DataService();
             apiService = new ApiService();
             dialogService = new DialogService();
         }
@@ -148,29 +150,49 @@ namespace COLSTRAT.ViewModels.Main
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(con.Message);
-                return;
+                categories = dataService.Get<Category>(true);
+                if (categories.Count == 0)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    return;
+                }
+                CategoryMenuItems = new ObservableCollection<Category>(categories.
+                    OrderBy(c => c.Name));
             }
-            string urlBase = Application.Current.Resources["URL_API"].ToString();
-            var mainViewModel = MainViewModel.GetInstante();
-            var response = await apiService.GetList<Category>(
-                urlBase,
-                "/api",
-                "/MainMenus",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken,
-                mainViewModel.CurrentMenu.MainMenuId);
+            else{
+                string urlBase = Application.Current.Resources["URL_API"].ToString();
+                var mainViewModel = MainViewModel.GetInstante();
+                var response = await apiService.GetList<Category>(
+                    urlBase,
+                    "/api",
+                    "/MainMenus",
+                    mainViewModel.Token.TokenType,
+                    mainViewModel.Token.AccessToken,
+                    mainViewModel.CurrentMenu.MainMenuId);
 
-            if (!response.IsSuccess)
-            {
-                IsRefreshing = false;
-                await dialogService.ShowErrorMessage(response.Message);
-                return;
+                if (!response.IsSuccess)
+                {
+                    IsRefreshing = false;
+                    await dialogService.ShowErrorMessage(response.Message);
+                    return;
+                }
+                categories = (List<Category>)response.Result;
+                SaveCategoriesOnDB();
+                CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Name));
             }
-            categories = (List<Category>)response.Result;
-            CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Name));
             IsRefreshing = false;
+        }
+
+        private void SaveCategoriesOnDB()
+        {
+            dataService.DeleteAll<Category>();
+            foreach (var category in categories)
+            {
+                dataService.Insert(category);
+               // dataService.Save(category.GeneralItems);
+               // dataService.Save(category.RocksMenu);
+            }
         }
         #endregion
 

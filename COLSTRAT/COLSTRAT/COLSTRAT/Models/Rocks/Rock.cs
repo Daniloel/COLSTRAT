@@ -2,6 +2,9 @@
 using COLSTRAT.Service;
 using COLSTRAT.ViewModels.Rocks;
 using GalaSoft.MvvmLight.Command;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -9,8 +12,19 @@ namespace COLSTRAT.Models
 {
     public class Rock : INotifyPropertyChanged
     {
-        public int RockId { get; set; }
+        #region Attributes
+        string _imageFullPath;
+        ImageService imageService;
+        DialogService dialogService; 
+        #endregion
 
+        #region Properties
+        [ForeignKey(typeof(RocksMenu))]
+        public int RocksMenuId { get; set; }
+        [PrimaryKey]
+        public int RockId { get; set; }
+        [ManyToOne]
+        public RocksMenu RocksMenu { get; set; }
         public string Image { get; set; }
 
         public string Name { get; set; }
@@ -55,21 +69,27 @@ namespace COLSTRAT.Models
                 }
             }
         }
-        string _imageFullPath;
-        ImageService imageService;
-        DialogService dialogService;
+        #endregion
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged; 
+        #endregion
+
+        #region Contructor
         public Rock()
         {
             dialogService = new DialogService();
             imageService = new ImageService();
-        }
+        } 
+        #endregion
+        #region Methods
         public override int GetHashCode()
         {
             return RockId;
-        }
+        } 
+        #endregion
+        #region Commands
         public ICommand ErrorImageCommand
         {
             get
@@ -93,32 +113,18 @@ namespace COLSTRAT.Models
                 imageService.ImageStatus = ImageService.GetImageStatus.NotAvailable;
             }
         }
-        public ICommand EditCommand
+        public ICommand OpenDetailRockCommand
         {
             get
             {
-                return new RelayCommand(Edit);
-            }
-        }
-        private async void Edit()
-        {
-            
-        }
-        
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return new RelayCommand(Delete);
+                return new RelayCommand(OpenDetailRock);
             }
         }
 
-        private async void Delete()
+        private void OpenDetailRock()
         {
-            var response = await dialogService.ShowConfirm(Languages.Warning, Languages.Message_Delete);
-            if (!response)
-                return;
-            RocksViewModel.GetInstante().DeleteCategory(this);
+            throw new NotImplementedException();
         }
+        #endregion
     }
 }

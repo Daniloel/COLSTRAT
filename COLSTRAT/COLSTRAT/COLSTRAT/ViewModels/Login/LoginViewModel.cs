@@ -7,6 +7,9 @@
     using COLSTRAT.Helpers;
     using Xamarin.Forms;
     using System;
+    using COLSTRAT.Models;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class LoginViewModel : INotifyPropertyChanged
     {
@@ -18,6 +21,7 @@
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
+        DataService dataService;
         #endregion
 
         #region Attributes
@@ -108,9 +112,8 @@
             IsToggled = true;
             dialogService = new DialogService();
             apiService = new ApiService();
+            dataService = new DataService();
             navigationService = new NavigationService();
-            Email = "danieldaniyyelda@gmail.com";
-            Password = "123456";
         }
         #endregion
 
@@ -174,7 +177,12 @@
                 IsEnabled = true;
                 return;
             }
+
+
             string urlBase = Application.Current.Resources["URL_API"].ToString();
+
+            
+
             var response = await apiService.GetToken(urlBase,Email, Password);
 
             if (response == null)
@@ -192,8 +200,30 @@
                 IsEnabled = true;
                 return;
             }
+            var responseUser = await apiService.GetList<Customer>(
+                urlBase,
+                "/api",
+                "/Customers",
+                response.TokenType,
+                response.AccessToken
+                );
+
+            if (!responseUser.IsSuccess)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await dialogService.ShowErrorMessage(responseUser.Message);
+                return;
+            }
+            List<Customer> customers = (List<Customer>)responseUser.Result;
+            response.IsRemembered = IsToggled;
+            dataService.DeleteAllAndInsert(response);
+
             var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.CurrentCustomer = customers.FirstOrDefault(p => p.Email == Email);
+            dataService.DeleteAllAndInsert(mainViewModel.CurrentCustomer);
             mainViewModel.Token = response;
+            mainViewModel.Menu = new MenuItemViewModel();
             mainViewModel.MainMenu = new MainMenuViewModel();
             navigationService.SetMainPage("MasterView");
             IsRunning = false;

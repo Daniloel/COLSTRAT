@@ -15,6 +15,7 @@
         #endregion
 
         #region Services
+        DataService dataService;
         ApiService apiService;
         DialogService dialogService;
         NavigationService navigationService;
@@ -112,7 +113,7 @@
             apiService = new ApiService();
             dialogService = new DialogService();
             navigationService = new NavigationService();
-
+            dataService = new DataService();
             IsEnabled = true;
         }
         #endregion
@@ -238,6 +239,7 @@
                 return;
             }
 
+            
             var response2 = await apiService.GetToken(
                 urlBase,
                 Email,
@@ -264,9 +266,11 @@
                 Password = null;
                 return;
             }
-
             var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.CurrentCustomer = (Customer)response.Result;
+            dataService.DeleteAllAndInsert(mainViewModel.CurrentCustomer);
             mainViewModel.Token = response2;
+            mainViewModel.Menu = new MenuItemViewModel();
             mainViewModel.MainMenu = new MainMenuViewModel();
             await navigationService.BackOnLogin();
             navigationService.SetMainPage("MasterView");

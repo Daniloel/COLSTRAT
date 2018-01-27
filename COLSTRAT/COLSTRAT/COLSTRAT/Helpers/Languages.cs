@@ -14,11 +14,76 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Delete
+        {
+            get
+            {
+                return Resources.delete;
+            }
+        }
+        public static string Edit
+        {
+            get
+            {
+                return Resources.edit;
+            }
+        }
+        public static string Label_Sync_Info
+        {
+            get
+            {
+                return Resources.label_sync_info;
+            }
+        }
+        public static string Message_Not_Data
+        {
+            get
+            {
+                return Resources.message_not_data;
+            }
+        }
+        public static string Sync_Success
+        {
+            get
+            {
+                return Resources.sync_success;
+            }
+        }
+        
+        public static string Sync_Not_Data
+        {
+            get
+            {
+                return Resources.message_not_data_forsync;
+            }
+        }
+        public static string Sync_Data
+        {
+            get
+            {
+                return Resources.sync_title;
+            }
+        }
         public static string User_Error_Info
         {
             get
             {
                 return Resources.error_user_information;
+            }
+        }
+        
+        public static string Message_Save_OnLocal
+        {
+            get
+            {
+                return Resources.message_save_onlocaldb;
+            }
+        }
+        public static string Message_Title
+        {
+            get
+            {
+                return Resources.message_title;
             }
         }
         public static string Confirm_Exit

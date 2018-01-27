@@ -8,12 +8,6 @@
     BackgroundColor="{StaticResource BackgroundColor}"
     Title="{i18n:Translate RocksTitle}"
     xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Command="{Binding NewRocksMenuCommand}"
-                Icon="plus_circle.png">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
             Padding="10"
@@ -27,22 +21,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem 
-                                    Command="{Binding EditCommand}" 
-                                    Text="{i18n:Translate edit}">
-                                </MenuItem>
-                                <MenuItem 
-                                    Command="{Binding DeleteCommand}" 
-                                    IsDestructive="true"     
-                                    Text="{i18n:Translate delete}">
-                                </MenuItem>
-                            </ViewCell.ContextActions>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding OpenRockCommand}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
                                 <Label 
                                     Grid.Column="0"
                                     FontSize="Large"
@@ -57,11 +45,6 @@
                                     IconColor="{StaticResource AccentColor2}"
                                     WidthRequest="50"
                                     HeightRequest="50">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding OpenRockCommand}">
-                                        </TapGestureRecognizer>
-                                    </Image.GestureRecognizers>
                                 </icons:IconImage>
                             </Grid>
                         </ViewCell>
