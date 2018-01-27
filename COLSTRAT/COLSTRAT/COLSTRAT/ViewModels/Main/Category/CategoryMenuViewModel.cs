@@ -64,6 +64,7 @@ namespace COLSTRAT.ViewModels.Main
             if (categories != null)
             {
                 this.categories = categories;
+                SaveCategoriesOnDB();
                 CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
             }
             dataService = new DataService();
@@ -150,7 +151,7 @@ namespace COLSTRAT.ViewModels.Main
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                categories = dataService.Get<Category>(true);
+                categories = dataService.Get<Category>(true).Where(p => p.MainMenu == MainViewModel.GetInstante().CurrentMenu).ToList();
                 if (categories.Count == 0)
                 {
                     IsRefreshing = false;
@@ -190,8 +191,8 @@ namespace COLSTRAT.ViewModels.Main
             foreach (var category in categories)
             {
                 dataService.Insert(category);
-               // dataService.Save(category.GeneralItems);
-               // dataService.Save(category.RocksMenu);
+                dataService.Save(category.GeneralItems);
+                dataService.Save(category.RocksMenu);
             }
         }
         #endregion

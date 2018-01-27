@@ -506,4 +506,13 @@
   <data name="error_description_required" xml:space="preserve">
     <value>Debes ingresar una descripción</value>
   </data>
+  <data name="about_title" xml:space="preserve">
+    <value>Acerca de COLSTRAT</value>
+  </data>
+  <data name="info_app" xml:space="preserve">
+    <value>Info. de la App</value>
+  </data>
+  <data name="terms_privacy" xml:space="preserve">
+    <value>Términos y Privacidad</value>
+  </data>
 </root>

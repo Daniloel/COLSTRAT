@@ -13,11 +13,12 @@
             Padding="10"
              BindingContext="{Binding RocksMenu}">
             <ListView 
+                SeparatorColor="{StaticResource MainColor}"
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommand}"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                 ItemsSource="{Binding RocksMenu}"
-                HasUnevenRows="True">
+                RowHeight="50">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -42,9 +43,9 @@
                                     HorizontalOptions="End"
                                     Grid.Column="1"
                                     Icon="dt-chevron-right"
-                                    IconColor="{StaticResource AccentColor2}"
-                                    WidthRequest="50"
-                                    HeightRequest="50">
+                                    IconColor="{StaticResource AccentColor}"
+                                    WidthRequest="20"
+                                    HeightRequest="20">
                                 </icons:IconImage>
                             </Grid>
                         </ViewCell>

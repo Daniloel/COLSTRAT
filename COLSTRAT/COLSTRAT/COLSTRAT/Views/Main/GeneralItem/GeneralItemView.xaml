@@ -17,6 +17,7 @@
                 SearchCommand="{Binding SearchCommand}">
             </SearchBar>
             <ListView 
+                SeparatorColor="{StaticResource AccentColor}"
                 IsRefreshing="{Binding IsRefreshing}"
                 RefreshCommand="{Binding RefreshCommand}"
                 IsPullToRefreshEnabled="True"

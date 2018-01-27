@@ -195,7 +195,7 @@ namespace COLSTRAT.ViewModels
             foreach (var menu in mainMenu)
             {
                 dataService.Insert(menu);
-                //dataService.Save(menu.Category);
+                dataService.Save(menu.Category);
             }
         }
         #endregion

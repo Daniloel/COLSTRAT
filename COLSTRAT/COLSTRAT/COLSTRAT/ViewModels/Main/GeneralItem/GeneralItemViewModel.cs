@@ -105,7 +105,7 @@ namespace COLSTRAT.ViewModels
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                generalItems = dataService.Get<GeneralItem>(false);
+                generalItems = dataService.Get<GeneralItem>(true).Where(p=>p.Category == MainViewModel.GetInstante().CurrentCategory).ToList();
                 if (generalItems.Count == 0)
                 {
                     IsRefreshing = false;

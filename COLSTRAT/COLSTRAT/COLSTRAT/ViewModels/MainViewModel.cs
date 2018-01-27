@@ -60,6 +60,7 @@
             get;
             set;
         }
+        public AboutViewModel About { get; set; }
         public DetailViewModel Detail { get; set; }
         public ChangePasswordViewModel ChangePassword { get; set; }
         public EditRockViewModel EditRock { get; set; }

@@ -62,6 +62,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a About.
+        /// </summary>
+        public static string about_title {
+            get {
+                return ResourceManager.GetString("about_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Accept.
         /// </summary>
         public static string accept {
@@ -463,6 +472,15 @@ namespace COLSTRAT.Resources {
         public static string IgneousRocks {
             get {
                 return ResourceManager.GetString("IgneousRocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a App info.
+        /// </summary>
+        public static string info_app {
+            get {
+                return ResourceManager.GetString("info_app", resourceCulture);
             }
         }
         
@@ -1066,6 +1084,15 @@ namespace COLSTRAT.Resources {
         public static string TapImage {
             get {
                 return ResourceManager.GetString("TapImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Privacy and Terms.
+        /// </summary>
+        public static string terms_privacy {
+            get {
+                return ResourceManager.GetString("terms_privacy", resourceCulture);
             }
         }
         

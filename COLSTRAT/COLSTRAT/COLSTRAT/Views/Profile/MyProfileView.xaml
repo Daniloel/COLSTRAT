@@ -10,7 +10,8 @@
     Title="{i18n:Translate title_my_profile}">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="{Binding MyProfile}">
+            BindingContext="{Binding MyProfile}"
+            VerticalOptions="FillAndExpand">
             <icons:IconImage 
                 Margin="20,20"
                 HorizontalOptions="CenterAndExpand"
@@ -33,29 +34,82 @@
                 FontSize="Medium"
                 Text="{Binding Email}">
             </Label>
-           <TableView
-                Intent="Settings">
+            <TableView
+                Intent="Settings"
+                HasUnevenRows="True">
                 <TableRoot>
                     <TableSection
-                        Title="{i18n:Translate settings_profile}">
+                            Title="{i18n:Translate settings_profile}">
                         <ViewCell Height="40">
                             <StackLayout Orientation="Horizontal">
                                 <icons:IconImage 
-                                    Margin="10,0,0,0"
-                                    WidthRequest="50"
-                                    Icon="dt-password"/>
+                                        Margin="10,0,0,0"
+                                        WidthRequest="50"
+                                        Icon="dt-password"/>
                                 <Label Text="{i18n:Translate title_change_pass}"
-                                       VerticalOptions="FillAndExpand"
-                                       VerticalTextAlignment="Center"
-                                       FontSize="16"
-                                       Margin="10,0,0,0"
-                                       TextColor="{StaticResource FontColor}"
-                                       HorizontalTextAlignment="Start"/>
+                                           VerticalOptions="FillAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="16"
+                                           Margin="10,0,0,0"
+                                           TextColor="{StaticResource FontColor}"
+                                           HorizontalTextAlignment="Start"/>
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer
-                                        Command="{Binding ChangePasswordCommand}">
+                                            Command="{Binding ChangePasswordCommand}">
                                     </TapGestureRecognizer>
                                 </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection
+                            Title="{i18n:Translate about_title}">
+                        <ViewCell
+                                Height="85">
+                            <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <icons:IconImage 
+                                        Margin="10,0,0,0"
+                                        WidthRequest="50"
+                                        HeightRequest="40"
+                                        Icon="dt-help"/>
+                                    <Label Text="{i18n:Translate info_app}"
+                                           VerticalOptions="FillAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="16"
+                                           Margin="10,0,0,0"
+                                           TextColor="{StaticResource FontColor}"
+                                           HorizontalTextAlignment="Start"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding InfoAppCommand}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <BoxView
+                                        Color="{StaticResource MenuColor}"
+                                        HeightRequest="0.5"></BoxView>
+                                <StackLayout
+                                        Orientation="Horizontal">
+                                    <icons:IconImage 
+                                        Margin="10,0,0,0"
+                                        WidthRequest="50"
+                                        HeightRequest="40"
+                                        Icon="dt-reference"/>
+                                    <Label Text="{i18n:Translate terms_privacy}"
+                                           VerticalOptions="FillAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           FontSize="16"
+                                           Margin="10,0,0,0"
+                                           TextColor="{StaticResource FontColor}"
+                                           HorizontalTextAlignment="Start"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding TermsCommand}">
+                                        </TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </TableSection>

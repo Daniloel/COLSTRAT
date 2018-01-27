@@ -115,6 +115,16 @@
                     break;
             }
         }
+        public async Task NavigateModal(string pageName)
+        {
+            switch (pageName)
+            {
+                case "AboutView":
+                    await Application.Current.MainPage.Navigation.PushModalAsync(
+                        new About(),false);
+                    break;
+            }
+        }
         public async Task BackOnLogin()
         {
             await Application.Current.MainPage.Navigation.PopAsync();

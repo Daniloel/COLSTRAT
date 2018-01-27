@@ -472,4 +472,13 @@
   <data name="error_description_required" xml:space="preserve">
     <value>The description is required</value>
   </data>
+  <data name="about_title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="info_app" xml:space="preserve">
+    <value>App info</value>
+  </data>
+  <data name="terms_privacy" xml:space="preserve">
+    <value>Privacy and Terms</value>
+  </data>
 </root>
