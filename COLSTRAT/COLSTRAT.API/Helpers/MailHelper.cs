@@ -11,7 +11,7 @@
         {
             var message = new MailMessage();
             message.To.Add(new MailAddress(to));
-            message.From = new MailAddress(WebConfigurationManager.AppSettings["AdminUser"],"Daniel Tovar de COLSTRAT");
+            message.From = new MailAddress(WebConfigurationManager.AppSettings["AdminUser"]);
             message.Subject = subject;
             message.Body = body;
             message.IsBodyHtml = true;
@@ -25,9 +25,11 @@
                 };
 
                 smtp.Credentials = credential;
+
                 smtp.Host = WebConfigurationManager.AppSettings["SMTPName"];
                 smtp.Port = int.Parse(WebConfigurationManager.AppSettings["SMTPPort"]);
                 smtp.EnableSsl = true;
+               // smtp.UseDefaultCredentials = false;
                 await smtp.SendMailAsync(message);
             }
         }

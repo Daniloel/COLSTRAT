@@ -935,6 +935,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Password Recovery.
+        /// </summary>
+        public static string recover_pass_title {
+            get {
+                return ResourceManager.GetString("recover_pass_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Remember me.
         /// </summary>
         public static string RememberMe {

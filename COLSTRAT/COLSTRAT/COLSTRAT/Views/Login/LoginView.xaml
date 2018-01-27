@@ -20,24 +20,19 @@
                     Source="logo_app.png">
                 </ff:CachedImage>
                 <Grid
-                Margin="50,0,50,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                Margin="50,0,50,10"
+                    HorizontalOptions="FillAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Entry
-                    Grid.Column="1"
                     Grid.Row="0"
                     Keyboard="Email"
                     Placeholder="{i18n:Translate label_user}"
                     Text="{Binding Email,Mode=TwoWay}">
                     </Entry>
                     <Entry
-                    Grid.Column="1"
                     Grid.Row="1"
                     IsPassword="True"
                     Placeholder="{i18n:Translate label_password}"

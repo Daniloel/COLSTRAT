@@ -482,4 +482,7 @@
   <data name="send_new_pass_success" xml:space="preserve">
     <value>Tu nueva clave ha sido enviada a tu correo!</value>
   </data>
+  <data name="recover_pass_title" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
 </root>

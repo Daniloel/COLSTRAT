@@ -448,4 +448,7 @@
   <data name="send_new_pass_success" xml:space="preserve">
     <value>Your new password has been sent to your email!</value>
   </data>
+  <data name="recover_pass_title" xml:space="preserve">
+    <value>Password Recovery</value>
+  </data>
 </root>
