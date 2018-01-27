@@ -217,6 +217,7 @@
             }
             List<Customer> customers = (List<Customer>)responseUser.Result;
             response.IsRemembered = IsToggled;
+            response.Password = Password;
             dataService.DeleteAllAndInsert(response);
 
             var mainViewModel = MainViewModel.GetInstante();

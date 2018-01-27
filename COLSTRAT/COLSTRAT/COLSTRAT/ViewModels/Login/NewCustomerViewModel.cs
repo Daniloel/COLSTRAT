@@ -267,6 +267,9 @@
                 return;
             }
             var mainViewModel = MainViewModel.GetInstante();
+            response2.IsRemembered = true;
+            response2.Password = Password;
+            dataService.DeleteAllAndInsert(response2);
             mainViewModel.CurrentCustomer = (Customer)response.Result;
             dataService.DeleteAllAndInsert(mainViewModel.CurrentCustomer);
             mainViewModel.Token = response2;

@@ -58,6 +58,7 @@
     <Compile Include="Models\Main\MenuItem.cs" />
     <Compile Include="Models\Maps\Ubication.cs" />
     <Compile Include="Models\OptionKeyValue.cs" />
+    <Compile Include="Models\Profile\ChangePasswordRequest.cs" />
     <Compile Include="Models\Rocks\Rock.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Rocks\RocksMenu.cs" />

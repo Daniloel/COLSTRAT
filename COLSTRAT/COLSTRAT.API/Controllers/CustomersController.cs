@@ -10,11 +10,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using COLSTRAT.API.Helpers;
 using COLSTRAT.API.Models;
 using COLSTRAT.Domain;
 using COLSTRAT.Domain.Customer;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json.Linq;
 
 namespace COLSTRAT.API.Controllers
 {
@@ -43,6 +45,7 @@ namespace COLSTRAT.API.Controllers
 
         // PUT: api/Customers/5
         [ResponseType(typeof(void))]
+        [Authorize]
         public async Task<IHttpActionResult> PutCustomer(int id, Customer customer)
         {
             if (!ModelState.IsValid)
@@ -128,6 +131,7 @@ namespace COLSTRAT.API.Controllers
 
         // DELETE: api/Customers/5
         [ResponseType(typeof(Customer))]
+        [Authorize(Users ="danieldaniyyelda@gmail.com")]
         public async Task<IHttpActionResult> DeleteCustomer(int id)
         {
             Customer customer = await db.Customers.FindAsync(id);
@@ -212,5 +216,112 @@ namespace COLSTRAT.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("api/Customers/PasswordRecovery")]
+        public async Task<IHttpActionResult> PasswordRecovery(JObject form)
+        {
+            try
+            {
+                var email = string.Empty;
+                dynamic jsonObject = form;
+
+                try
+                {
+                    email = jsonObject.Email.Value;
+                }
+                catch
+                {
+                    return BadRequest("Incorrect call.");
+                }
+
+                var customer = await db.Customers
+                    .Where(u => u.Email.ToLower() == email.ToLower())
+                    .FirstOrDefaultAsync();
+                if (customer == null)
+                {
+                    return NotFound();
+                }
+
+                var userContext = new ApplicationDbContext();
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+                var userASP = userManager.FindByEmail(email);
+                if (userASP == null)
+                {
+                    return NotFound();
+                }
+
+                var random = new Random();
+                var newPassword = string.Format("{0}", random.Next(100000, 999999));
+                var response1 = userManager.RemovePassword(userASP.Id);
+                var response2 = await userManager.AddPasswordAsync(userASP.Id, newPassword);
+                if (response2.Succeeded)
+                {
+                    var subject = "COLSTRAT - Recuperación de contraseña";
+                    var body = string.Format(@"
+                <h1>COLSTRAT App - Recuperación de contraseña</h1>
+                <p>Tu nueva contraseña es: <strong>{0}</strong></p>
+                <p>Por favor, no olvides cambiarla por una que recuerdes.<br>
+                <img src='http://colstrat.somee.com/Content/PageImages/logo_app.png' alt='Colstrat APP' />",
+                        newPassword);
+
+
+                    await MailHelper.SendMail(email, subject, body);
+                    return Ok(true);
+                }
+
+                return BadRequest("The password can't be changed.");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("api/Customers/ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(JObject form)
+        {
+            var email = string.Empty;
+            var currentPassword = string.Empty;
+            var newPassword = string.Empty;
+            dynamic jsonObject = form;
+
+            try
+            {
+                email = jsonObject.Email.Value;
+                currentPassword = jsonObject.CurrentPassword.Value;
+                newPassword = jsonObject.NewPassword.Value;
+            }
+            catch
+            {
+                return BadRequest("Incorrect call");
+            }
+
+            var userContext = new ApplicationDbContext();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+            var userASP = userManager.FindByEmail(email);
+
+            if (userASP == null)
+            {
+                return NotFound();
+            }
+
+            var response = await userManager.ChangePasswordAsync(
+                userASP.Id, 
+                currentPassword, 
+                newPassword);
+
+            if (!response.Succeeded)
+            {
+                return BadRequest(response.Errors.FirstOrDefault());
+            }
+
+            return Ok(true);
+        }
+
+
     }
 }
