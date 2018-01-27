@@ -43,10 +43,18 @@
         #endregion
 
         #region Commands
+        public ICommand OpenRockCommand
+        {
+            get
+            {
+                return new RelayCommand(OpenRockDetail);
+            }
+        }
         private async void OpenRockDetail()
         {
             
             var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.CurrentRocksMenu = this;
             mainViewModel.Rocks = new RocksViewModel(Rocks);
             await navigationService.Navigate("RocksView");
 

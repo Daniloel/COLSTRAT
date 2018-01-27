@@ -89,8 +89,6 @@ namespace COLSTRAT.Models
 
         private async void OpenCategoryDetail()
         {
-            if (CategoryId == FLUIDS)
-                return;
             if (CategoryId == GEOLOGY)
             {
                 MainViewModel.GetInstante().CurrentCategory = this;

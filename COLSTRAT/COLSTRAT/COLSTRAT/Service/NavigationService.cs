@@ -81,6 +81,12 @@
                 case "MyProfileView":
                     await App.Navigator.PushAsync(new MyProfileView());
                     break;
+                case "EditRockView":
+                    await App.Navigator.PushAsync(new EditRockView());
+                    break;
+                case "NewRockView":
+                    await App.Navigator.PushAsync(new NewRockView());
+                    break;
                 default:
                     break;
             }

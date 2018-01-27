@@ -92,6 +92,8 @@
     <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Maps\UbicationsViewModel.cs" />
     <Compile Include="ViewModels\Profile\MyProfileViewModel.cs" />
+    <Compile Include="ViewModels\Rocks\EditRockViewModel.cs" />
+    <Compile Include="ViewModels\Rocks\NewRockViewModel.cs" />
     <Compile Include="ViewModels\Rocks\RocksMenuViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\MainMenuViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
@@ -158,6 +160,15 @@
     </Compile>
     <Compile Include="Views\Profile\MyProfileView.xaml.cs">
       <DependentUpon>MyProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rocks\EditRockView.xaml.cs">
+      <DependentUpon>EditRockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rocks\NewRockView.xaml.cs">
+      <DependentUpon>NewRockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Rocks\RocksCell.xaml.cs">
+      <DependentUpon>RocksCell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Rocks\RocksMenuView.xaml.cs">
       <DependentUpon>RocksMenuView.xaml</DependentUpon>
@@ -416,6 +427,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Login\PasswordRecoveryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Rocks\RocksCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Rocks\EditRockView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Rocks\NewRockView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

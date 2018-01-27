@@ -245,6 +245,7 @@
     <Compile Include="Controllers\GeologyCategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainMenusController.cs" />
+    <Compile Include="Controllers\RocksController.cs" />
     <Compile Include="Controllers\RocksMenusController.cs" />
     <Compile Include="Controllers\UbicationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

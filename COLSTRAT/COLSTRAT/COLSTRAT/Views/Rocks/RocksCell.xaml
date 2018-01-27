@@ -2,7 +2,7 @@
 <ViewCell 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="COLSTRAT.Views.Main.GeneralItem.GeneralItemCell"
+    x:Class="COLSTRAT.Views.Rocks.RocksCell"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
   <ViewCell.View>
@@ -13,7 +13,7 @@
             </Grid.ColumnDefinitions>
             <Grid.GestureRecognizers>
                 <TapGestureRecognizer
-                    Command="{Binding OpenDetailItemCommand}">
+                    Command="{Binding OpenDetailRockCommand}">
                 </TapGestureRecognizer>
             </Grid.GestureRecognizers>
             <ff:CachedImage
@@ -28,19 +28,19 @@
                 </ff:CachedImage.Transformations>
             </ff:CachedImage>
             <StackLayout
-                    Grid.Column="1"
-                    Orientation="Vertical">
+                Grid.Column="1"
+                Orientation="Vertical">
                 <Label 
                     FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
-                    Text="{Binding Naeweme}">
+                    Text="{Binding Name}">
                 </Label>
                 <Label 
                     FontSize="Micro"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
-                    Text="{Binding Descript34ion}">
+                    Text="{Binding Descripcion}">
                 </Label>
             </StackLayout>
         </Grid>

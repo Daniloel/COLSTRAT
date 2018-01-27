@@ -40,6 +40,11 @@
                 }
             }
         }
+        public RocksMenu CurrentRocksMenu
+        {
+            get;
+            set;
+        }
         public Customer CurrentCustomer
         {
             get;
@@ -55,6 +60,7 @@
             get;
             set;
         }
+        public EditRockViewModel EditRock { get; set; }
         public PasswordRecoveryViewModel PasswordRecovery { get; set; }
         public MyProfileViewModel MyProfile { get; set; }
         public SyncViewModel Sync { get; set; }
@@ -74,6 +80,7 @@
         public NewCustomerViewModel NewCustomer { get; set; }
         public UbicationsViewModel Ubications { get; set; }
         public MenuItemViewModel Menu { get; set; }
+        public NewRockViewModel NewRock { get; set; }
         #endregion
 
         #region Constructor
@@ -113,8 +120,9 @@
 
         async void GoNewRock()
         {
-          /*  NewRock = new NewRockViewModel();
-            await navigationService.Navigate("NewRock");*/
+            NewRock = new NewRockViewModel();
+            NewRock.RockMenu = CurrentRocksMenu;
+            await navigationService.Navigate("NewRockView");
         }
         public ICommand NewRockMenuCommand
         {
@@ -126,8 +134,9 @@
 
         async void GoNewRockMenu()
         {
-            /*  NewRock = new NewRockViewModel();
-              await navigationService.Navigate("NewRock");*/
+            NewRock = new NewRockViewModel();
+            NewRock.RockMenu = CurrentRocksMenu;
+            await navigationService.Navigate("NewRockView");
         }
         public ICommand NewMenuCommand
         {

@@ -1,5 +1,6 @@
 ﻿using COLSTRAT.Helpers;
 using COLSTRAT.Service;
+using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Rocks;
 using GalaSoft.MvvmLight.Command;
 using SQLite;
@@ -15,7 +16,8 @@ namespace COLSTRAT.Models
         #region Attributes
         string _imageFullPath;
         ImageService imageService;
-        DialogService dialogService; 
+        DialogService dialogService;
+        NavigationService navigationService;
         #endregion
 
         #region Properties
@@ -29,6 +31,7 @@ namespace COLSTRAT.Models
 
         public string Name { get; set; }
 
+        public bool PendingToSave { get; set; }
         public string Descripcion { get; set; }
 
         public string Minerals_Composition { get; set; }
@@ -44,7 +47,7 @@ namespace COLSTRAT.Models
         public string Porosity { get; set; }
 
         public int MohsScaleId { get; set; }
-
+        public byte[] ImageArray { get; set; }
         public string ImageFullPath
         {
             get
@@ -79,6 +82,7 @@ namespace COLSTRAT.Models
         #region Contructor
         public Rock()
         {
+            navigationService = new NavigationService();
             dialogService = new DialogService();
             imageService = new ImageService();
         } 
@@ -123,7 +127,35 @@ namespace COLSTRAT.Models
 
         private void OpenDetailRock()
         {
-            throw new NotImplementedException();
+            
+        }
+        public ICommand EditCommand
+        {
+            get
+            {
+                return new RelayCommand(Edit);
+            }
+        }
+        private async void Edit()
+        {
+            MainViewModel.GetInstante().EditRock = new EditRockViewModel(this);
+            await navigationService.Navigate("EditRockView");
+        }
+
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new RelayCommand(Delete);
+            }
+        }
+
+        private async void Delete()
+        {
+            var response = await dialogService.ShowConfirm(Languages.Warning, Languages.Message_Delete);
+            if (!response)
+                return;
+            RocksViewModel.GetInstante().DeleteCategory(this);
         }
         #endregion
     }
