@@ -60,6 +60,8 @@
             get;
             set;
         }
+        public DetailViewModel Detail { get; set; }
+        public ChangePasswordViewModel ChangePassword { get; set; }
         public EditRockViewModel EditRock { get; set; }
         public PasswordRecoveryViewModel PasswordRecovery { get; set; }
         public MyProfileViewModel MyProfile { get; set; }

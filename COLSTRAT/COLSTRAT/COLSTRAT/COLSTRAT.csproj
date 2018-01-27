@@ -81,6 +81,7 @@
     <Compile Include="Service\NavigationService.cs" />
     <Compile Include="Service\SessionService.cs" />
     <Compile Include="ViewModels\Login\PasswordRecoveryViewModel.cs" />
+    <Compile Include="ViewModels\Main\GeneralItem\DetailViewModel.cs" />
     <Compile Include="ViewModels\Main\GeneralItem\GeneralItemViewModel.cs" />
     <Compile Include="ViewModels\Login\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\Main\Category\CategoryMenuViewModel.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ViewModels\Main\Category\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Maps\UbicationsViewModel.cs" />
+    <Compile Include="ViewModels\Profile\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Profile\MyProfileViewModel.cs" />
     <Compile Include="ViewModels\Rocks\EditRockViewModel.cs" />
     <Compile Include="ViewModels\Rocks\NewRockViewModel.cs" />
@@ -121,6 +123,9 @@
     </Compile>
     <Compile Include="Views\Main\Category\EditCategoryView.xaml.cs">
       <DependentUpon>EditCategoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\GeneralItem\DetailView.xaml.cs">
+      <DependentUpon>DetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Main\GeneralItem\GeneralItemCell.xaml.cs">
       <DependentUpon>GeneralItemCell.xaml</DependentUpon>
@@ -157,6 +162,9 @@
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile\ChangePasswordView.xaml.cs">
+      <DependentUpon>ChangePasswordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\MyProfileView.xaml.cs">
       <DependentUpon>MyProfileView.xaml</DependentUpon>
@@ -445,6 +453,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Rocks\NewRockView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Profile\ChangePasswordView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Main\GeneralItem\DetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -40,6 +40,7 @@ namespace COLSTRAT.Service.Icons
             Icons.Add("dt-valvule-4", '\uf028');
             Icons.Add("dt-chevron-right", '\uf029');
             Icons.Add("dt-person", '\uf030');
+            Icons.Add("dt-password", '\uf031');
         }
     }
 }

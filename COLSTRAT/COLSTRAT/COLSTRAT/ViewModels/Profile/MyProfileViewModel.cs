@@ -15,188 +15,77 @@
         #endregion
 
         #region Services
-        ApiService apiService;
-        DataService dataService;
-        DialogService dialogService;
+        SessionService session;
         NavigationService navigationService;
         #endregion
 
         #region Attributes
-        bool _isRunning;
-        bool _isEnabled;
+        private string _displayName;
+        private string _email;
         #endregion
 
         #region Properties
-        public bool IsEnabled
+
+        public string DisplayName
         {
-            get
-            {
-                return _isEnabled;
-            }
-            set
-            {
-                if (_isEnabled != value)
+            get { return _displayName; }
+            set {
+                if (_displayName != value)
                 {
-                    _isEnabled = value;
+                    _displayName = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(IsEnabled)));
+                        new PropertyChangedEventArgs(nameof(DisplayName)));
                 }
             }
         }
 
-        public bool IsRunning
+        public string Email
         {
-            get
-            {
-                return _isRunning;
-            }
+            get { return _email; }
             set
             {
-                if (_isRunning != value)
+                if (_email != value)
                 {
-                    _isRunning = value;
+                    _email = value;
                     PropertyChanged?.Invoke(
                         this,
-                        new PropertyChangedEventArgs(nameof(IsRunning)));
+                        new PropertyChangedEventArgs(nameof(Email)));
                 }
             }
-        }
-
-        public string CurrentPassword
-        {
-            get;
-            set;
-        }
-
-
-        public string NewPassword
-        {
-            get;
-            set;
-        }
-
-        public string ConfirmPassword
-        {
-            get;
-            set;
         }
         #endregion
 
         #region Constructors
         public MyProfileViewModel()
         {
-            apiService = new ApiService();
-            dataService = new DataService();
-            dialogService = new DialogService();
+            session = new SessionService();
             navigationService = new NavigationService();
+            SetUserProfile();
+        }
+        #endregion
 
-            IsEnabled = true;
+        #region Methods
+        void SetUserProfile()
+        {
+            var user = session.GetCurrentUser();
+            Email = user.Email;
+            DisplayName = user.FirstName + " " + user.LastName;
         }
         #endregion
 
         #region Commands
-        public ICommand SaveCommand
+        public ICommand ChangePasswordCommand
         {
             get
             {
-                return new RelayCommand(Save);
+                return new RelayCommand(ChangePassword);
             }
         }
 
-        async void Save()
+        async void ChangePassword()
         {
-            if (string.IsNullOrEmpty(CurrentPassword))
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Error_Input_Current_Pass);
-                return;
-            }
-
-            var mainViewModel = MainViewModel.GetInstante();
-
-            if (!mainViewModel.Token.Password.Equals(CurrentPassword))
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Error_Current_Pass_Invalid);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(NewPassword))
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Error_Input_New_Pass);
-                return;
-            }
-
-            if (NewPassword.Length < 6)
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Error_Lenght_New_Pass);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(ConfirmPassword))
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Error_Confirm_Input_Pass);
-                return;
-            }
-
-            if (!NewPassword.Equals(ConfirmPassword))
-            {
-                await dialogService.ShowErrorMessage(
-                    Languages.Pass_Confirm_NotMatch);
-                return;
-            }
-
-            IsRunning = true;
-            IsEnabled = false;
-
-            var connection = await apiService.CheckConnection();
-            if (!connection.IsSuccess)
-            {
-                IsRunning = false;
-                IsEnabled = true;
-                await dialogService.ShowErrorMessage(connection.Message);
-                return;
-            }
-
-            var changePasswordRequest = new ChangePasswordRequest
-            {
-                CurrentPassword = CurrentPassword,
-                Email = mainViewModel.Token.UserName,
-                NewPassword = NewPassword,
-            };
-
-            var urlAPI = Application.Current.Resources["URL_API"].ToString();
-
-            var response = await apiService.ChangePassword(
-                urlAPI,
-                "/api",
-                "/Customers/ChangePassword",
-                mainViewModel.Token.TokenType,
-                mainViewModel.Token.AccessToken,
-                changePasswordRequest);
-
-            if (!response.IsSuccess)
-            {
-                IsRunning = false;
-                IsEnabled = true;
-                await dialogService.ShowErrorMessage(
-                    response.Message);
-                return;
-            }
-
-            mainViewModel.Token.Password = NewPassword;
-            dataService.Update(mainViewModel.Token);
-
-            await dialogService.ShowMessage(
-                Languages.Pass_Success_Changed);
-            await navigationService.Back();
-
-            IsRunning = false;
-            IsEnabled = true;
+            await navigationService.Navigate("ChangePasswordView");
         }
         #endregion
     }

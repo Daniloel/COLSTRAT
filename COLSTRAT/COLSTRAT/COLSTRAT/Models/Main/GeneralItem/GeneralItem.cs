@@ -147,9 +147,11 @@ namespace COLSTRAT.Models
             }
         }
 
-        private void OpenDetailItem()
+        private async void OpenDetailItem()
         {
-            throw new NotImplementedException();
+            var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.Detail = new DetailViewModel(this);
+            await navigationService.Navigate("DetailView");
         }
         #endregion
     }

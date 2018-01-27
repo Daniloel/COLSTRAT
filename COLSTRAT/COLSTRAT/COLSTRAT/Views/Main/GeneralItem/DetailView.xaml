@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.GeneralItem.DetailView"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    Title="{i18n:Translate detail_title}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Detail}">
+            <ff:CachedImage
+                HorizontalOptions="CenterAndExpand"
+                HeightRequest="250"
+                ErrorCommand="{Binding ErrorImageCommand}"
+                Source="{Binding ImageFullPath}"
+                WidthRequest="200">
+                <ff:CachedImage.Transformations>
+                    <ffTransformations:RoundedTransformation Radius="240"/>
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
+            <BoxView
+                HeightRequest="2"
+                Margin="5,10"
+                Color="{StaticResource AccentColor2}">
+            </BoxView>
+            <Label
+                HorizontalOptions="Center"
+                Margin="10,20"
+                FontAttributes="Bold"
+                FontSize="Large"
+                Text="{Binding Name}">
+            </Label>
+            <Label
+                HorizontalOptions="Center"
+                Margin="10,5"
+                FontSize="Medium"
+                Text="{Binding Description}">
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

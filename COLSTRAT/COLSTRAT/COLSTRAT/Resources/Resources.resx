@@ -451,4 +451,25 @@
   <data name="recover_pass_title" xml:space="preserve">
     <value>Password Recovery</value>
   </data>
+  <data name="title_my_profile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
+  <data name="detail_title" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="settings_profile" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="label_rock" xml:space="preserve">
+    <value>Rock</value>
+  </data>
+  <data name="placeholder_description_rock" xml:space="preserve">
+    <value>Add the description</value>
+  </data>
+  <data name="placeholder_rock" xml:space="preserve">
+    <value>Input the name of the rock</value>
+  </data>
+  <data name="error_description_required" xml:space="preserve">
+    <value>The description is required</value>
+  </data>
 </root>

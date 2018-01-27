@@ -1,6 +1,7 @@
 ﻿using COLSTRAT.Helpers;
 using COLSTRAT.Service;
 using COLSTRAT.ViewModels;
+using COLSTRAT.ViewModels.Main.GeneralItem;
 using COLSTRAT.ViewModels.Rocks;
 using GalaSoft.MvvmLight.Command;
 using SQLite;
@@ -125,9 +126,11 @@ namespace COLSTRAT.Models
             }
         }
 
-        private void OpenDetailRock()
+        private async void OpenDetailRock()
         {
-            
+            var mainViewModel = MainViewModel.GetInstante();
+            mainViewModel.Detail = new DetailViewModel(this);
+            await navigationService.Navigate("DetailView");
         }
         public ICommand EditCommand
         {

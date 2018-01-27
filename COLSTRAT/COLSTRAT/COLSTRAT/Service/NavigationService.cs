@@ -36,6 +36,9 @@
 
             switch (pageName)
             {
+                case "DetailView":
+                    await App.Navigator.PushAsync(new DetailView());
+                    break;
                 case "MainMenuView":
                     await App.Navigator.PushAsync(new MainMenuView());
                     break;
@@ -86,6 +89,9 @@
                     break;
                 case "NewRockView":
                     await App.Navigator.PushAsync(new NewRockView());
+                    break;
+                case "ChangePasswordView":
+                    await App.Navigator.PushAsync(new ChangePasswordView());
                     break;
                 default:
                     break;

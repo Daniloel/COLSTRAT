@@ -72,6 +72,7 @@ namespace COLSTRAT.ViewModels.Rocks
         #region Constructor
         public RocksViewModel(System.Collections.Generic.List<Models.Rock> rocks)
         {
+            instance = this;
             this.rocks = rocks;
             apiService = new ApiService();
             dialogService = new DialogService();

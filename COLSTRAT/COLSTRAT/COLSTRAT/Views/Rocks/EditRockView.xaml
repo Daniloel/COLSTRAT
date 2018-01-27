@@ -15,15 +15,15 @@
             BindingContext="{Binding EditRock}"
             Padding="10">
             <Label
-                Text="{i18n:Translate label_item}">
+                Text="{i18n:Translate label_rock}">
             </Label>
             <Entry
                 Text="{Binding Name, Mode=TwoWay}"
-                Placeholder="{i18n:Translate placeholder_item}">
+                Placeholder="{i18n:Translate placeholder_rock}">
             </Entry>
             <Entry
                 Text="{Binding Description, Mode=TwoWay}"
-                Placeholder="{i18n:Translate placeholder_description_item}">
+                Placeholder="{i18n:Translate placeholder_description_rock}">
             </Entry>
             <ff:CachedImage
                 HorizontalOptions="CenterAndExpand"

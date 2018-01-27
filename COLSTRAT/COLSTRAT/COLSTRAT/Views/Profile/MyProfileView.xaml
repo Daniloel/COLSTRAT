@@ -6,56 +6,61 @@
     BackgroundColor="{StaticResource BackgroundColor}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
-    Title="{i18n:Translate title_change_pass}">
+    xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    Title="{i18n:Translate title_my_profile}">
     <ContentPage.Content>
-        <ScrollView
+        <StackLayout
             BindingContext="{Binding MyProfile}">
-            <StackLayout
-                Padding="10">
-                <Label
-                    Text="{i18n:Translate label_current_password}"
-                    TextColor="{StaticResource FontColor}">
-                </Label>
-                <Entry
-                    IsPassword="true"
-                    Text="{Binding CurrentPassword, Mode=TwoWay}"
-                    TextColor="{StaticResource FontColor}">
-                </Entry>
-                <Label
-                    Text="{i18n:Translate label_new_password}"
-                    TextColor="{StaticResource FontColor}">
-                </Label>
-                <Entry
-                    IsPassword="true"
-                    Text="{Binding NewPassword, Mode=TwoWay}"
-                    TextColor="{StaticResource FontColor}">
-                </Entry>
-                <Label
-                    Text="{i18n:Translate label_confirm_new_pass}"
-                    TextColor="{StaticResource FontColor}">
-                </Label>
-                <Entry
-                    IsPassword="true"
-                    Text="{Binding ConfirmPassword, Mode=TwoWay}"
-                    TextColor="{StaticResource FontColor}">
-                </Entry>
-                <ActivityIndicator
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
-                    VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
-                <Button
-                    Command="{Binding SaveCommand}"
-                    BackgroundColor="{StaticResource AccentColor}"
-                    BorderRadius="23"
-                    FontAttributes="Bold"
-                    HeightRequest="46"
-                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
-                    Margin="50,0"
-                    Text="{i18n:Translate btn_change_pass}"
-                    TextColor="White"
-                    VerticalOptions="EndAndExpand">
-                </Button>
-            </StackLayout>
-        </ScrollView>
+            <icons:IconImage 
+                Margin="20,20"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Icon="dt-person-pin"
+                IconColor="{StaticResource AccentColor}"
+                WidthRequest="100"
+                HeightRequest="100">
+            </icons:IconImage>
+            <Label
+                HorizontalOptions="Center"
+                Margin="0,20,0,0"
+                FontSize="Large"
+                FontAttributes="Bold"
+                Text="{Binding DisplayName}">
+            </Label>
+            <Label
+                HorizontalOptions="Center"
+                Margin="0,5,0,0"
+                FontSize="Medium"
+                Text="{Binding Email}">
+            </Label>
+           <TableView
+                Intent="Settings">
+                <TableRoot>
+                    <TableSection
+                        Title="{i18n:Translate settings_profile}">
+                        <ViewCell Height="40">
+                            <StackLayout Orientation="Horizontal">
+                                <icons:IconImage 
+                                    Margin="10,0,0,0"
+                                    WidthRequest="50"
+                                    Icon="dt-password"/>
+                                <Label Text="{i18n:Translate title_change_pass}"
+                                       VerticalOptions="FillAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       FontSize="16"
+                                       Margin="10,0,0,0"
+                                       TextColor="{StaticResource FontColor}"
+                                       HorizontalTextAlignment="Start"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding ChangePasswordCommand}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

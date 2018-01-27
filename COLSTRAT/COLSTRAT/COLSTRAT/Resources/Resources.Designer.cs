@@ -188,6 +188,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Detail.
+        /// </summary>
+        public static string detail_title {
+            get {
+                return ResourceManager.GetString("detail_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Edit.
         /// </summary>
         public static string edit {
@@ -238,6 +247,15 @@ namespace COLSTRAT.Resources {
         public static string error_confirm_input_pass {
             get {
                 return ResourceManager.GetString("error_confirm_input_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The description is required.
+        /// </summary>
+        public static string error_description_required {
+            get {
+                return ResourceManager.GetString("error_description_required", resourceCulture);
             }
         }
         
@@ -584,6 +602,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Rock.
+        /// </summary>
+        public static string label_rock {
+            get {
+                return ResourceManager.GetString("label_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Press sync button to start.
         /// </summary>
         public static string label_sync_info {
@@ -863,6 +890,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Add the description.
+        /// </summary>
+        public static string placeholder_description_rock {
+            get {
+                return ResourceManager.GetString("placeholder_description_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Enter your email....
         /// </summary>
         public static string placeholder_email {
@@ -935,6 +971,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Input the name of the rock.
+        /// </summary>
+        public static string placeholder_rock {
+            get {
+                return ResourceManager.GetString("placeholder_rock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Password Recovery.
         /// </summary>
         public static string recover_pass_title {
@@ -989,6 +1034,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Options.
+        /// </summary>
+        public static string settings_profile {
+            get {
+                return ResourceManager.GetString("settings_profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a All records are success.
         /// </summary>
         public static string sync_success {
@@ -1021,6 +1075,15 @@ namespace COLSTRAT.Resources {
         public static string title_change_pass {
             get {
                 return ResourceManager.GetString("title_change_pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a My Profile.
+        /// </summary>
+        public static string title_my_profile {
+            get {
+                return ResourceManager.GetString("title_my_profile", resourceCulture);
             }
         }
         

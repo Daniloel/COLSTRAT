@@ -34,13 +34,13 @@
                     FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
-                    Text="{Binding Naeweme}">
+                    Text="{Binding Name}">
                 </Label>
                 <Label 
                     FontSize="Micro"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="Center"
-                    Text="{Binding Descript34ion}">
+                    Text="{Binding Description}">
                 </Label>
             </StackLayout>
         </Grid>

@@ -210,7 +210,11 @@
                 await dialogService.ShowMessage(Languages.Warning, Languages.ErrorInputCategory);
                 return;
             }
-
+            if (string.IsNullOrEmpty(Description))
+            {
+                await dialogService.ShowMessage(Languages.Warning, Languages.Description_Required);
+                return;
+            }
             IsRunning = true;
             IsEnabled = false;
             var con = await apiService.CheckConnection();
@@ -227,7 +231,8 @@
                 RocksMenuId = RockMenu.RocksMenuId,
                 Name = Name,
                 ImageArray = imageArray,
-                Descripcion = Description
+                Descripcion = Description,
+                MohsScaleId = 1
             };
             if (!con.IsSuccess)
             {
