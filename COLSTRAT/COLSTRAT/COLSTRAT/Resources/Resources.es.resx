@@ -333,7 +333,7 @@
     <value>Categoria: </value>
   </data>
   <data name="label_last_name" xml:space="preserve">
-    <value>Apellido</value>
+    <value>Apellido: </value>
   </data>
   <data name="label_menu" xml:space="preserve">
     <value>Menu:</value>
@@ -363,7 +363,7 @@
     <value>Ingrese su apellido</value>
   </data>
   <data name="placeholder_menu_description" xml:space="preserve">
-    <value>Ingrese una descripción:</value>
+    <value>Ingrese un titulo de menú</value>
   </data>
   <data name="placeholder_menu_icon" xml:space="preserve">
     <value>Ingrese un icono</value>

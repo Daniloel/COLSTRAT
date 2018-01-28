@@ -20,6 +20,19 @@
                 Text="{Binding Description, Mode=TwoWay}"
                 Placeholder="{i18n:Translate placeholder_menu_description}">
             </Entry>
+            <Picker
+                ItemsSource="{Binding IconsApp}"
+                SelectedItem="{Binding IconSelected}"
+                ItemDisplayBinding="{Binding Key}">
+            </Picker>
+            <icons:IconImage 
+                Icon="{Binding Icon,Mode=TwoWay}"
+                HorizontalOptions="CenterAndExpand"
+                IconColor="{StaticResource AccentColor}"
+                WidthRequest="50"
+                HeightRequest="50"
+                Margin="10">
+            </icons:IconImage>
             <Entry
                 Text="{Binding Icon, Mode=TwoWay}"
                 Placeholder="{i18n:Translate placeholder_menu_icon}">
