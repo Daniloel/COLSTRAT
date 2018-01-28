@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnExit" xml:space="preserve">
+    <value>Salir</value>
+    <comment>uso en el boton de salir del menu</comment>
+  </data>
+  <data name="IgneousRocks" xml:space="preserve">
+    <value>Rocas ígneas</value>
+    <comment>uso general de la clasificación de rocas</comment>
+  </data>
+  <data name="btnShow" xml:space="preserve">
+    <value>Mostrar</value>
+    <comment>uso en el boton para mostrar la información</comment>
+  </data>
+  <data name="label_description" xml:space="preserve">
+    <value>Descripción:</value>
+    <comment>uso en el label de la descripcion de la roca</comment>
+  </data>
+  <data name="label_image" xml:space="preserve">
+    <value>Imagen:</value>
+    <comment>uso en el label de imagen de la roca</comment>
+  </data>
+  <data name="label_minerals" xml:space="preserve">
+    <value>Minerales</value>
+    <comment>uso en el label de los minerales de la roca</comment>
+  </data>
+  <data name="label_name" xml:space="preserve">
+    <value>Nombre:</value>
+    <comment>uso en el label de nombre de la roca</comment>
+  </data>
+  <data name="MetamorphicRocks" xml:space="preserve">
+    <value>Rocas metamórficas</value>
+    <comment>uso general de la clasificación de rocas</comment>
+  </data>
+  <data name="picker_select_the_rock" xml:space="preserve">
+    <value>Seleccione la roca</value>
+    <comment>uso en el picker title para seleccionar la roca</comment>
+  </data>
+  <data name="SedimentaryRocks" xml:space="preserve">
+    <value>Rocas sedimentarias</value>
+    <comment>uso general de la clasificación de rocas</comment>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Bienvenido a COLSTRAT!</value>
+    <comment>Título de la página de inicio</comment>
+  </data>
+  <data name="accept" xml:space="preserve">
+    <value>Aceptar</value>
+    <comment>aceptar mensaje de error</comment>
+  </data>
+  <data name="message_not_select_rock" xml:space="preserve">
+    <value>No ha elegido una roca para mostrar</value>
+    <comment>mensaje de error al no seleccionar una roca</comment>
+  </data>
+  <data name="warning" xml:space="preserve">
+    <value>Advertencia</value>
+    <comment>titulo de error al no seleccionar una roca</comment>
+  </data>
+  <data name="not" xml:space="preserve">
+    <value>No</value>
+    <comment>opcion de showmessage</comment>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Si</value>
+    <comment>opcion de showmessage</comment>
+  </data>
+  <data name="message_image" xml:space="preserve">
+    <value>Mensaje</value>
+    <comment>titulo del mensaje al seleccionar imagen</comment>
+  </data>
+  <data name="message_image_content" xml:space="preserve">
+    <value>¿Esta imagen te parece de buena calidad?</value>
+    <comment>contenido del mensaje al select image</comment>
+  </data>
+  <data name="loaded_api" xml:space="preserve">
+    <value>Rocas cargadas del api.</value>
+    <comment>label para mostrar de donde fueron cargadas las rocas</comment>
+  </data>
+  <data name="check_internet_connection" xml:space="preserve">
+    <value>Verifica la conexión a internet</value>
+    <comment>mensaje de error de conexión a internet</comment>
+  </data>
+  <data name="check_internet_settings" xml:space="preserve">
+    <value>Verifica la configuración de internet</value>
+    <comment>mensaje de error de config de internet</comment>
+  </data>
+  <data name="loaded_local" xml:space="preserve">
+    <value>Rocas cargadas de datos locales.</value>
+  </data>
+  <data name="LoginViewTitle" xml:space="preserve">
+    <value>Ingresar</value>
+    <comment>titulo de la page dle login</comment>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Recordarme</value>
+    <comment>recuerdame dle login</comment>
+  </data>
+  <data name="ForgotPass" xml:space="preserve">
+    <value>¿Olvidó su contraseña?</value>
+  </data>
+  <data name="btnLogin" xml:space="preserve">
+    <value>Ingresar</value>
+    <comment>boton de ingreso</comment>
+  </data>
+  <data name="LoginWithFacebook" xml:space="preserve">
+    <value>Ingresar con Facebook</value>
+    <comment>boton de login con face</comment>
+  </data>
+  <data name="btnSignUp" xml:space="preserve">
+    <value>Registrarse</value>
+    <comment>boton de registro</comment>
+  </data>
+  <data name="error_input_email_0" xml:space="preserve">
+    <value>Debes ingresar un email.</value>
+    <comment>error de email vacio</comment>
+  </data>
+  <data name="error_input_password_0" xml:space="preserve">
+    <value>Debes ingresar una contraseña</value>
+    <comment>error de pass vacia</comment>
+  </data>
+  <data name="label_email" xml:space="preserve">
+    <value>Email:</value>
+    <comment>label de correo en login</comment>
+  </data>
+  <data name="label_password" xml:space="preserve">
+    <value>Contraseña</value>
+    <comment>label de contraseña en login</comment>
+  </data>
+  <data name="placeholder_email" xml:space="preserve">
+    <value>Ingrese su correo...</value>
+    <comment>placeholder de correo en login</comment>
+  </data>
+  <data name="placeholder_password" xml:space="preserve">
+    <value>Ingrese su contraseña...</value>
+    <comment>placeholder de contraseña en login</comment>
+  </data>
+  <data name="error_service_no_available" xml:space="preserve">
+    <value>Servicio no disponible, por favor intente más tarde</value>
+    <comment>fallo el response</comment>
+  </data>
+  <data name="btn_rocks_types" xml:space="preserve">
+    <value>Tipos de rocas</value>
+    <comment>boton de tipos de rocas, open category</comment>
+  </data>
+  <data name="RocksTitle" xml:space="preserve">
+    <value>Rocas</value>
+  </data>
+  <data name="MainMenuViewTitle" xml:space="preserve">
+    <value>Menu principal</value>
+  </data>
+  <data name="NewCategory" xml:space="preserve">
+    <value>Nueva categoria</value>
+    <comment>titulo de la pagina de nueva categoria</comment>
+  </data>
+  <data name="error_input_category" xml:space="preserve">
+    <value>Debes ingresar una categoría</value>
+  </data>
+  <data name="error_input_menu" xml:space="preserve">
+    <value>Debes ingresar un menu</value>
+  </data>
+  <data name="NewMenu" xml:space="preserve">
+    <value>Nuevo menú</value>
+  </data>
+  <data name="error_record_same" xml:space="preserve">
+    <value>Ya existe lo que vas a agregar</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EditCategory" xml:space="preserve">
+    <value>Editar Categoria</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Editar Menu</value>
+  </data>
+  <data name="message_delete" xml:space="preserve">
+    <value>¿Seguro?</value>
+  </data>
+  <data name="error_relateds" xml:space="preserve">
+    <value>No puedes borrar esto porque tiene relaciones</value>
+  </data>
+  <data name="create" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="TapImage" xml:space="preserve">
+    <value>Toca la imagen para cambiarla</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="from_camera" xml:space="preserve">
+    <value>Tomar foto</value>
+  </data>
+  <data name="from_gallery" xml:space="preserve">
+    <value>Desde la galería</value>
+  </data>
+  <data name="option_select_image" xml:space="preserve">
+    <value>¿De dónde quieres tomar la imagen?</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="confirm_pass" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="first_name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="label_addres" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="label_Category" xml:space="preserve">
+    <value>Categoria: </value>
+  </data>
+  <data name="label_last_name" xml:space="preserve">
+    <value>Apellido: </value>
+  </data>
+  <data name="label_menu" xml:space="preserve">
+    <value>Menu:</value>
+  </data>
+  <data name="label_phone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="NewCustomerViewTitle" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="placeholder_addres" xml:space="preserve">
+    <value>Ingrese su Dirección</value>
+  </data>
+  <data name="placeholder_category" xml:space="preserve">
+    <value>Ingrese una categoría</value>
+  </data>
+  <data name="placeholder_category_description" xml:space="preserve">
+    <value>Ingrese una descripción</value>
+  </data>
+  <data name="placeholder_confirm_pass" xml:space="preserve">
+    <value>Ingrese de nuevo la contraseña</value>
+  </data>
+  <data name="placeholder_first_name" xml:space="preserve">
+    <value>Ingrese su nombre</value>
+  </data>
+  <data name="placeholder_last_name" xml:space="preserve">
+    <value>Ingrese su apellido</value>
+  </data>
+  <data name="placeholder_menu_description" xml:space="preserve">
+    <value>Ingrese un titulo de menú</value>
+  </data>
+  <data name="placeholder_menu_icon" xml:space="preserve">
+    <value>Ingrese un icono</value>
+  </data>
+  <data name="placeholder_phone" xml:space="preserve">
+    <value>Ingrese su telefono</value>
+  </data>
+  <data name="email_exists" xml:space="preserve">
+    <value>Ya existe un usuario con el mismo email</value>
+  </data>
+  <data name="error_email_invalid" xml:space="preserve">
+    <value>Debes ingresar un email valido</value>
+  </data>
+  <data name="error_input_first_name" xml:space="preserve">
+    <value>Debes ingresar un nombre</value>
+  </data>
+  <data name="error_input_last_name" xml:space="preserve">
+    <value>Debes ingresar un apellido</value>
+  </data>
+  <data name="error_input_pass_confirm" xml:space="preserve">
+    <value>Debes ingresar la confirmación de contraseña</value>
+  </data>
+  <data name="error_pass_length" xml:space="preserve">
+    <value>La contraseña debe tener al menos 6 carácteres</value>
+  </data>
+  <data name="menu_profile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="menu_ubication" xml:space="preserve">
+    <value>Mi ubicación</value>
+  </data>
+  <data name="pass_confirm_notmatch" xml:space="preserve">
+    <value>Las contraseñas no coinciden</value>
+  </data>
+  <data name="label_item" xml:space="preserve">
+    <value>Item: </value>
+  </data>
+  <data name="placeholder_description_item" xml:space="preserve">
+    <value>Ingrese una descripción</value>
+  </data>
+  <data name="placeholder_item" xml:space="preserve">
+    <value>Ingrese un concepto</value>
+  </data>
+  <data name="UbicationsViewTitle" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="confirm_exit" xml:space="preserve">
+    <value>¿Estás seguro que deseas salir?</value>
+  </data>
+  <data name="error_user_information" xml:space="preserve">
+    <value>Se produjo un problema al recuperar la información del usuario, intente más tarde.</value>
+  </data>
+  <data name="label_user" xml:space="preserve">
+    <value>Usuario o Email</value>
+  </data>
+  <data name="SearchBarPlaceholder" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="message_not_data" xml:space="preserve">
+    <value>No hay conexión y no hay información para mostrar en la base de datos</value>
+  </data>
+  <data name="message_title" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="message_save_onlocaldb" xml:space="preserve">
+    <value>El item va a ser guardado localmente, no olvide sincronizar la información cuando se conecte al WiFi</value>
+  </data>
+  <data name="sync_title" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="message_not_data_forsync" xml:space="preserve">
+    <value>No hay información para sincronizar</value>
+  </data>
+  <data name="sync_success" xml:space="preserve">
+    <value>Sincronización exitosa!</value>
+  </data>
+  <data name="label_sync_info" xml:space="preserve">
+    <value>Presione el boton para empezar</value>
+  </data>
+  <data name="btn_change_pass" xml:space="preserve">
+    <value>Cambiar</value>
+  </data>
+  <data name="error_confirm_input_pass" xml:space="preserve">
+    <value>Debes ingresar la confirmación de contraseña</value>
+  </data>
+  <data name="error_input_current_pass" xml:space="preserve">
+    <value>Debes ingresar la contraseña actual</value>
+  </data>
+  <data name="error_input_new_pass" xml:space="preserve">
+    <value>Debes ingresar la nueva contraseña</value>
+  </data>
+  <data name="error_lenght_new_pass" xml:space="preserve">
+    <value>La nueva contraseña debe ser mayor a 6 carácteres</value>
+  </data>
+  <data name="error_pass_not_valid" xml:space="preserve">
+    <value>Contraseña actual inválida</value>
+  </data>
+  <data name="label_confirm_new_pass" xml:space="preserve">
+    <value>Confirme la nueva contraseña</value>
+  </data>
+  <data name="label_current_password" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="label_new_password" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="pass_change_success" xml:space="preserve">
+    <value>La contraseña ha sido cambiada exitosamente</value>
+  </data>
+  <data name="title_change_pass" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="error_cant_send_passtoemail" xml:space="preserve">
+    <value>No pudimos enviar la nueva contraseña a ese email</value>
+  </data>
+  <data name="send_new_pass_success" xml:space="preserve">
+    <value>Tu nueva clave ha sido enviada a tu correo!</value>
+  </data>
+  <data name="recover_pass_title" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="title_my_profile" xml:space="preserve">
+    <value>Mi perfil</value>
+  </data>
+  <data name="detail_title" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="label_rock" xml:space="preserve">
+    <value>Roca</value>
+  </data>
+  <data name="placeholder_description_rock" xml:space="preserve">
+    <value>Añada una descripción</value>
+  </data>
+  <data name="placeholder_rock" xml:space="preserve">
+    <value>Ingrese el nombre de la roca</value>
+  </data>
+  <data name="settings_profile" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="error_description_required" xml:space="preserve">
+    <value>Debes ingresar una descripción</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>Acerca de COLSTRAT</value>
+  </data>
+  <data name="info_app" xml:space="preserve">
+    <value>Info. de la App</value>
+  </data>
+  <data name="terms_privacy" xml:space="preserve">
+    <value>Términos y Privacidad</value>
+  </data>
+  <data name="label_not_data" xml:space="preserve">
+    <value>No hay datos para mostrar</value>
+  </data>
+  <data name="label_no_coincidences" xml:space="preserve">
+    <value>No hay coincidencias</value>
+  </data>
+</root>

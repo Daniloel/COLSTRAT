@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Rocks.RocksCell"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+  <ViewCell.View>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer
+                    Command="{Binding OpenDetailRockCommand}">
+                </TapGestureRecognizer>
+            </Grid.GestureRecognizers>
+            <ff:CachedImage
+                HorizontalOptions="Start"
+                Grid.Column="0"
+                HeightRequest="150"
+                ErrorCommand="{Binding ErrorImageCommand}"
+                Source="{Binding ImageFullPath}"
+                WidthRequest="100">
+                <ff:CachedImage.Transformations>
+                    <ffTransformations:RoundedTransformation Radius="240"/>
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
+            <StackLayout
+                Grid.Column="1"
+                Orientation="Vertical">
+                <Label 
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    Text="{Binding Name}">
+                </Label>
+                <Label 
+                    FontSize="Micro"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    Text="{Binding Descripcion}">
+                </Label>
+            </StackLayout>
+        </Grid>
+    </ViewCell.View>
+</ViewCell>

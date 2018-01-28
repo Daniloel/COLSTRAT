@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Rocks.RocksView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{i18n:Translate RocksTitle}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding Rocks}"
+            Padding="10">
+            <SearchBar
+                Placeholder="{i18n:Translate SearchBarPlaceholder}"
+                Text="{Binding Filter,Mode=TwoWay}"
+                SearchCommand="{Binding SearchCommand}">
+            </SearchBar>
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
+            <ListView 
+                SeparatorColor="{StaticResource AccentColor}"
+                ItemsSource="{Binding Rocks}"
+                HasUnevenRows="True"
+                x:Name="Lv">
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

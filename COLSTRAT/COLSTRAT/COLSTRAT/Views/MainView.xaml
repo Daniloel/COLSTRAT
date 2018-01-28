@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.Views.MainView"
+             xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
              BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
              BackgroundColor="{StaticResource BackgroundColor}"
              Title="COLSTRAT App">
@@ -10,7 +11,7 @@
                      HorizontalOptions="FillAndExpand"
                      Orientation="Vertical"
                      Padding="20">
-            <Label Text="Bienvenido a COLSTRAT!"
+            <Label Text="{i18n:Translate welcome}"
                    HorizontalTextAlignment="Center"
                    FontSize="25"
                    TextColor="{StaticResource FontColor}" 
@@ -21,14 +22,14 @@
                          HorizontalOptions="FillAndExpand"
                          VerticalOptions="FillAndExpand">
                 <Button Command="{Binding ToIgneousRocks}"
-                        Text="Rocas ígneas"
+                        Text="{i18n:Translate IgneousRocks}"
                         BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
                         HorizontalOptions="FillAndExpand">
                 </Button>
                 <Button Command="{Binding ToMetamorphicRocks}"
-                        Text="Rocas metamórficas"
+                        Text="{i18n:Translate MetamorphicRocks}"
                         BackgroundColor="{StaticResource AccentColor}"
                         TextColor="Black"
                         FontAttributes="Bold"
@@ -36,7 +37,14 @@
                 </Button>
             </StackLayout>
             <Button Command="{Binding ToSedimentaryRocks}"
-                    Text="Rocas sedimentarias"
+                    Text="{i18n:Translate SedimentaryRocks}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand">
+            </Button>
+            <Button Command="{Binding ToTypesOfRocks}"
+                    Text="{i18n:Translate btn_rocks_types}"
                     BackgroundColor="{StaticResource AccentColor}"
                     TextColor="Black"
                     FontAttributes="Bold"

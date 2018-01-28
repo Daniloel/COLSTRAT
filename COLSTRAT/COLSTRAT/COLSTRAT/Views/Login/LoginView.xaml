@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Login.LoginView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="{i18n:Translate LoginViewTitle}"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                BindingContext="{Binding Login}"
+                Padding="10"
+                Spacing="16">
+                <ff:CachedImage
+                    WidthRequest="200"
+                    HorizontalOptions="CenterAndExpand"
+                    Source="logo_app.png">
+                </ff:CachedImage>
+                <Grid
+                Margin="50,0,50,10"
+                    HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Entry
+                    Grid.Row="0"
+                    Keyboard="Email"
+                    Placeholder="{i18n:Translate label_user}"
+                    Text="{Binding Email,Mode=TwoWay}">
+                    </Entry>
+                    <Entry
+                    Grid.Row="1"
+                    IsPassword="True"
+                    Placeholder="{i18n:Translate label_password}"
+                    Text="{Binding Password,Mode=TwoWay}">
+                </Entry>
+            </Grid>
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="Center">
+                <Label 
+                    Text="{i18n:Translate RememberMe}"
+                    VerticalOptions="Center">
+                </Label>
+                <Switch
+                    IsToggled="{Binding IsToggled, Mode=TwoWay}">
+                </Switch>
+            </StackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Text="{i18n:Translate ForgotPass}"
+                TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RecoverPassCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+            <ActivityIndicator
+                IsVisible="{Binding IsRunning, Mode=TwoWay}"
+                IsRunning="{Binding IsRunning,Mode=TwoWay}">
+            </ActivityIndicator>
+            <StackLayout
+                Margin="50,0">
+                <Button
+                    Command="{Binding LoginCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="{StaticResource AccentColor}"
+                    Text="{i18n:Translate btnLogin}"
+                    TextColor="White">
+                </Button>
+                <Button
+                    Command="{Binding RegisterNewUserCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="{StaticResource AccentColor2}"
+                    Text="{i18n:Translate btnSignUp}"
+                    TextColor="White">
+                </Button>
+                <Button
+                    Command="{Binding LoginWithFacebookCommand}"
+                    BorderRadius="23"
+                    HeightRequest="46"
+                    FontAttributes="Bold"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    BackgroundColor="Navy"
+                    Text="{i18n:Translate LoginWithFacebook}"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
