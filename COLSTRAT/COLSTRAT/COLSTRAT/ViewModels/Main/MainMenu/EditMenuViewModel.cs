@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Command;
 using Plugin.Iconize;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
