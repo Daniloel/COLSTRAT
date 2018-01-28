@@ -1,0 +1,112 @@
+﻿@model COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MohsScale.Mineral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MohsScale.Mineral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RocksMenu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RocksMenu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minerals_Composition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minerals_Composition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Structure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Structure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chemical_Composition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chemical_Composition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mechanical_Strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mechanical_Strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Porosity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Porosity)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

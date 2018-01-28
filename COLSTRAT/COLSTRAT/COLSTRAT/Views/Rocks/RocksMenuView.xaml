@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.RocksMenuView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{i18n:Translate RocksTitle}"
+    xmlns:icons="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10"
+             BindingContext="{Binding RocksMenu}">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
+            <ListView 
+                SeparatorColor="{StaticResource MainColor}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                ItemsSource="{Binding RocksMenu}"
+                RowHeight="50">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding OpenRockCommand}">
+                                    </TapGestureRecognizer>
+                                </Grid.GestureRecognizers>
+                                <Label 
+                                    Grid.Column="0"
+                                    FontSize="Large"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Name}">
+                                </Label>
+                                <icons:IconImage 
+                                    HorizontalOptions="End"
+                                    Grid.Column="1"
+                                    Icon="dt-chevron-right"
+                                    IconColor="{StaticResource AccentColor}"
+                                    WidthRequest="20"
+                                    HeightRequest="20">
+                                </icons:IconImage>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

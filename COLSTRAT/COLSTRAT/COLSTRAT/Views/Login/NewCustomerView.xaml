@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Login.NewCustomerView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    Title="{i18n:Translate NewCustomerViewTitle}"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding NewCustomer}">
+            <StackLayout
+                Padding="10">
+                <Grid
+                    Margin="10,10"
+                    HorizontalOptions="FillAndExpand">
+                    <Label
+                        Grid.Row="0"
+                        Text="{i18n:Translate first_name}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="1"
+                        HeightRequest="30"
+                        Placeholder="{i18n:Translate placeholder_first_name}"
+                        Text="{Binding FirstName, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="2"
+                        Text="{i18n:Translate label_last_name}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="3"
+                        Placeholder="{i18n:Translate placeholder_last_name}"
+                        Text="{Binding LastName, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="4"
+                        Text="{i18n:Translate label_email}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="5"
+                        HeightRequest="30"
+                        Keyboard="Email"
+                        Placeholder="{i18n:Translate placeholder_email}"
+                        Text="{Binding Email, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="6"
+                        Text="{i18n:Translate label_phone}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="7"
+                        HeightRequest="30"
+                        Keyboard="Telephone"
+                        Placeholder="{i18n:Translate placeholder_phone}"
+                        Text="{Binding Phone, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="8"
+                        Text="{i18n:Translate label_addres}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="9"
+                        HeightRequest="30"
+                        Placeholder="{i18n:Translate placeholder_addres}"
+                        Text="{Binding Address, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="10"
+                        Text="{i18n:Translate label_password}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="11"
+                        HeightRequest="30"
+                        IsPassword="true"
+                        Placeholder="{i18n:Translate placeholder_password}"
+                        Text="{Binding Password, Mode=TwoWay}">
+                    </Entry>
+                    <Label
+                        Grid.Row="12"
+                        Text="{i18n:Translate confirm_pass}"
+                        VerticalOptions="Center">
+                    </Label>
+                    <Entry
+                        Grid.Row="13"
+                        HeightRequest="30"
+                        IsPassword="true"
+                        Placeholder="{i18n:Translate placeholder_confirm_pass}"
+                        Text="{Binding Confirm, Mode=TwoWay}">
+                    </Entry>
+                </Grid>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
+                </ActivityIndicator>
+                <Button
+                    Command="{Binding SaveCommand}"
+                    BackgroundColor="Navy"
+                    BorderRadius="23"
+                    FontAttributes="Bold"
+                    HeightRequest="46"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    Margin="50,0"
+                    Text="{i18n:Translate btnSignUp}"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand">
+                </Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

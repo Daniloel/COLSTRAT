@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.CategoryMenuView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{Binding CurrentMenu.Description}">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10"
+             BindingContext="{Binding CategoryMenu}">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
+            <ListView 
+                SeparatorColor="{StaticResource MainColor}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                ItemsSource="{Binding CategoryMenuItems}"
+                RowHeight="50"
+                x:Name="Lv">
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

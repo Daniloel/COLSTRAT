@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace COLSTRAT.Infraestructure
+﻿namespace COLSTRAT.Infraestructure
 {
-    using GalaSoft.MvvmLight.Ioc;
     using ViewModels;
 
     public class InstanceLocator

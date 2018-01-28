@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Main.NewCategoryView"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    BindingContext="{Binding Main, Source={StaticResource Key=Locator}}"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="{i18n:Translate NewCategory}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding NewCategory}"
+            Padding="10">
+            <Label
+                Text="Category: ">
+            </Label>
+            <Entry
+                Text="{Binding Name, Mode=TwoWay}"
+                Placeholder="Enter a category name">
+            </Entry>
+            <Entry
+                Text="{Binding Description, Mode=TwoWay}"
+                Placeholder="Enter a category description...">
+            </Entry>
+            <ActivityIndicator
+                VerticalOptions="CenterAndExpand"
+                IsVisible="{Binding IsRunning, Mode=TwoWay}"
+                IsRunning="{Binding IsRunning,Mode=TwoWay}">
+            </ActivityIndicator>
+            <Button
+                Command="{Binding SaveCommand}"
+                BorderRadius="23"
+                HeightRequest="46"
+                FontAttributes="Bold"
+                IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                BackgroundColor="{StaticResource AccentColor2}"
+                Text="{i18n:Translate NewCategory}"
+                Margin="50,0"
+                VerticalOptions="EndAndExpand"
+                TextColor="White">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

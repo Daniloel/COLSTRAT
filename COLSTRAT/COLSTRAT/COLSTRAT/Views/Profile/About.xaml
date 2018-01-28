@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="COLSTRAT.Views.Profile.About"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    xmlns:i18n="clr-namespace:COLSTRAT.Helpers"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    Title="{i18n:Translate about_title}">
+    <ContentPage.Content>
+        <StackLayout
+            BindingContext="{Binding About}"
+            Spacing="0"
+            VerticalOptions="CenterAndExpand">
+            <Label 
+                Text="{Binding Name,Mode=TwoWay}"
+                FontAttributes="Bold"
+                TextColor="{StaticResource AccentColor2}"
+                FontSize="35"
+                HorizontalOptions="CenterAndExpand">
+            </Label>
+            <Label
+                Text="https://colstrat.com"
+                HorizontalOptions="CenterAndExpand"
+                FontSize="Default"
+                VerticalOptions="Center">
+            </Label>
+            <Label
+                Text="{Binding Version,Mode=TwoWay}"
+                FontSize="Default"
+                HorizontalOptions="CenterAndExpand">
+            </Label>
+            <Label
+                Text="{Binding Compilation,Mode=TwoWay}"
+                HorizontalOptions="CenterAndExpand"
+                FontSize="Micro">
+            </Label>
+            <ff:CachedImage
+                Source="ic_launcher.png"
+                HorizontalOptions="Center"
+                Margin="0,35"
+                HeightRequest="200"
+                WidthRequest="200">
+            </ff:CachedImage>
+            <Label
+                Text="{Binding Copyright,Mode=TwoWay}"
+                FontSize="Default"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center">
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

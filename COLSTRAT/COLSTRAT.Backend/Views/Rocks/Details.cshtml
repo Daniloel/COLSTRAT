@@ -1,0 +1,106 @@
+﻿@model COLSTRAT.Domain.Menu.Entity.Geology.Rocks.Rock
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rock</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MohsScale.Mineral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MohsScale.Mineral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RocksMenu.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RocksMenu.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Minerals_Composition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Minerals_Composition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseFor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseFor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Structure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Structure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Chemical_Composition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Chemical_Composition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mechanical_Strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mechanical_Strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Porosity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Porosity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RockId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

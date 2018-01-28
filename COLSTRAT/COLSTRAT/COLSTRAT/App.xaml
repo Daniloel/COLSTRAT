@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="COLSTRAT.App"
@@ -8,12 +8,18 @@
             <!--Locator-->
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
             <!--Colours-->
-            <Color x:Key="MainColor">#F1CD81</Color><!--color anemico-->
+            <Color x:Key="MainColor">#03263E</Color><!--nav bar azul2-->
             <Color x:Key="FontColor">#100D0D</Color><!--negro-->
-            <Color x:Key="MenuColor">#D9855A</Color><!--fondo del menu-->
-            <Color x:Key="MenuFontColor">#F5D5B2</Color><!--letras del menu-->
-            <Color x:Key="BackgroundColor">#F5D5B2</Color><!--color carne-->
-            <Color x:Key="AccentColor">#BF533B</Color><!--rojo-->
+            <Color x:Key="MenuColor">#08375A</Color><!--fondo del menu azul-->
+            <Color x:Key="MenuFontColor">#FFFFFF</Color><!--letras del menu blanco-->
+            <Color x:Key="BackgroundColor">#F3F4EB</Color><!--background gris-->
+            <Color x:Key="AccentColor">#C21120</Color>
+            <!--rojo claro-->
+            <Color x:Key="AccentColor2">#741424</Color>
+            <!--rojo oscuro-->
+
+            <!--Parameters  -->
+            <x:String x:Key="URL_API">http://colstrat-api.somee.com</x:String>
         </ResourceDictionary> 
     </Application.Resources>
 </Application>

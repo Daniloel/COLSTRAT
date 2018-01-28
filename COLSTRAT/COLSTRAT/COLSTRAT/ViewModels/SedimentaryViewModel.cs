@@ -9,6 +9,9 @@
     using COLSTRAT.Models;
     using Newtonsoft.Json;
     using System.Collections.Generic;
+    using COLSTRAT.Helpers;
+    using Xamarin.Forms;
+
     public class SedimentaryViewModel : INotifyPropertyChanged
     {
         #region Services
@@ -157,26 +160,27 @@
         {
             apiService = new ApiService();
             dialogService = new DialogService();
-            Load();
+          //  Load();
         }
         #endregion
 
         #region Methods
         async void Load()
         {
-            IsRunning = true;
+         /*   IsRunning = true;
             IsEnabled = false;
+            var url = Application.Current.Resources["URL_API"].ToString();
             var controller = "/sedimentary_rocks";
-            var response = await apiService.GetRocks(controller);
+            var response = await apiService.GetList<SedimentaryRock>(url, controller);
             if (!response.IsSuccess)
             {
                 IsRunning = false;
-                await dialogService.ShowMessage("Error", response.Message);
+                await dialogService.ShowMessage(Languages.Warning, response.Message);
+                return;
             }
-            var rocks = JsonConvert.DeserializeObject<List<SedimentaryRock>>(response.Result.ToString());
-            SedimentaryRocks = new ObservableCollection<SedimentaryRock>(rocks);
+            SedimentaryRocks = new ObservableCollection<SedimentaryRock>((List<SedimentaryRock>)response.Result);
             IsEnabled = true;
-            IsRunning = false;
+            IsRunning = false;*/
         }
         #endregion
         #region Commands
@@ -191,14 +195,14 @@
 
         async void Show()
         {
-            if (SourceRock == null)
+          /*  if (SourceRock == null)
             {
-                await dialogService.ShowMessage("Advertencia", "No ha elegido una roca para mostrar");
+                await dialogService.ShowMessage(Languages.Warning, Languages.Message_Not_Select_Rock);
                 return;
             }
             Descripcion = SourceRock.Descripcion;
             Minerals = SourceRock.Minerals;
-            ImageSource = SourceRock.Image;
+            ImageSource = SourceRock.Image;*/
         }
         #endregion
     }
