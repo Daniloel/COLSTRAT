@@ -18,11 +18,11 @@
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(config.Platform,
                 System.IO.Path.Combine(config.DirectoryDB, "COLSTRAT.db3"));
-            connection.CreateTable<Category>();
-            connection.CreateTable<GeneralItem>();
-            connection.CreateTable<RocksMenu>();
-            connection.CreateTable<Rock>();
             connection.CreateTable<MainMenu>();
+            connection.CreateTable<Category>();
+            connection.CreateTable<RocksMenu>();
+            connection.CreateTable<GeneralItem>();
+            connection.CreateTable<Rock>();
             connection.CreateTable<TokenResponse>();
             connection.CreateTable<Customer>();
         }
@@ -31,12 +31,18 @@
         {
             connection.Insert(model);
         }
-
+        public void InsertWithChildrens<T>(T model)
+        {
+            connection.InsertWithChildren(model);
+        }
         public void Update<T>(T model)
         {
             connection.Update(model);
         }
-
+        public void UpdateWithChildren<T>(T model)
+        {
+            connection.UpdateWithChildren(model);
+        }
         public void Delete<T>(T model)
         {
             connection.Delete(model);

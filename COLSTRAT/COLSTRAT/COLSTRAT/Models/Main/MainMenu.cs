@@ -22,6 +22,16 @@
         #region Attributes
         public List<Color> listColors;
         public string Icon { get; set; }
+        public string IconFind
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Icon))
+                    return "dt-broken-image";
+
+                return Icon;
+            }
+        }
         [PrimaryKey]
         public int MainMenuId { get; set; }
         public string Description { get; set; }

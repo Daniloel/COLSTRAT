@@ -333,7 +333,7 @@
     <value>Categoria: </value>
   </data>
   <data name="label_last_name" xml:space="preserve">
-    <value>Apellido</value>
+    <value>Apellido: </value>
   </data>
   <data name="label_menu" xml:space="preserve">
     <value>Menu:</value>
@@ -363,7 +363,7 @@
     <value>Ingrese su apellido</value>
   </data>
   <data name="placeholder_menu_description" xml:space="preserve">
-    <value>Ingrese una descripción:</value>
+    <value>Ingrese un titulo de menú</value>
   </data>
   <data name="placeholder_menu_icon" xml:space="preserve">
     <value>Ingrese un icono</value>
@@ -505,5 +505,20 @@
   </data>
   <data name="error_description_required" xml:space="preserve">
     <value>Debes ingresar una descripción</value>
+  </data>
+  <data name="about_title" xml:space="preserve">
+    <value>Acerca de COLSTRAT</value>
+  </data>
+  <data name="info_app" xml:space="preserve">
+    <value>Info. de la App</value>
+  </data>
+  <data name="terms_privacy" xml:space="preserve">
+    <value>Términos y Privacidad</value>
+  </data>
+  <data name="label_not_data" xml:space="preserve">
+    <value>No hay datos para mostrar</value>
+  </data>
+  <data name="label_no_coincidences" xml:space="preserve">
+    <value>No hay coincidencias</value>
   </data>
 </root>

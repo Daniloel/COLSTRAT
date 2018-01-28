@@ -3,12 +3,9 @@ using COLSTRAT.Service;
 using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main.GeneralItem;
 using GalaSoft.MvvmLight.Command;
-using Plugin.Connectivity;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
-using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace COLSTRAT.Models

@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="Implementations\Config.cs" />
     <Compile Include="Implementations\Localize.cs" />
+    <Compile Include="Implementations\VersioniOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\LoginFacebookRenderer.cs" />

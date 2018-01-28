@@ -51,6 +51,7 @@
                         {
                             rocksResponse.Add(new RockResponse
                             {
+                                RocksMenuId = rocks.RocksMenuId,
                                 RockId = rocks.RockId,
                                 Image = rocks.Image,
                                 Name = rocks.Name,
@@ -66,7 +67,7 @@
                         }
 
                         rocksmenu.Add(new RocksMenuResponse
-                        {
+                        {                            
                             RocksMenuId = rocksm.RocksMenuId,
                             Name = rocksm.Name,
                             Description = rocksm.Description,
@@ -75,6 +76,7 @@
                     }
                     categoryResponse.Add(new GeologyCategoryResponse
                     {
+                        
                         GeologyCategoryId = item.GeologyCategoryId,
                         Name = item.Name,
                         Description = item.Description,
@@ -125,6 +127,8 @@
                 {
                     categoryResponse.Add(new GeneralItemsResponse
                     {
+                        Category = item.Category,
+                        CategoryId = item.CategoryId,
                         GeneralItemId = item.GeneralItemId,
                         Name = item.Name,
                         Description = item.Description,

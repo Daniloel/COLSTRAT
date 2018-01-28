@@ -12,6 +12,13 @@
     <ContentPage.Content>
         <StackLayout
              BindingContext="{Binding MainMenu}">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
             <ListView 
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommandMainMenu}"

@@ -62,6 +62,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a About.
+        /// </summary>
+        public static string about_title {
+            get {
+                return ResourceManager.GetString("about_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Accept.
         /// </summary>
         public static string accept {
@@ -467,6 +476,15 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a App info.
+        /// </summary>
+        public static string info_app {
+            get {
+                return ResourceManager.GetString("info_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Address:.
         /// </summary>
         public static string label_addres {
@@ -580,6 +598,24 @@ namespace COLSTRAT.Resources {
         public static string label_new_password {
             get {
                 return ResourceManager.GetString("label_new_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No coincidences.
+        /// </summary>
+        public static string label_no_coincidences {
+            get {
+                return ResourceManager.GetString("label_no_coincidences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No has data.
+        /// </summary>
+        public static string label_not_data {
+            get {
+                return ResourceManager.GetString("label_not_data", resourceCulture);
             }
         }
         
@@ -1066,6 +1102,15 @@ namespace COLSTRAT.Resources {
         public static string TapImage {
             get {
                 return ResourceManager.GetString("TapImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Privacy and Terms.
+        /// </summary>
+        public static string terms_privacy {
+            get {
+                return ResourceManager.GetString("terms_privacy", resourceCulture);
             }
         }
         

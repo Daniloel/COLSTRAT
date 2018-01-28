@@ -19,6 +19,8 @@
         #region Attributes
         string TAG = "ImageService";
         public GetImageStatus ImageStatus = GetImageStatus.NoHasSet;
+        public static string logoSingle = "http://colstrat.somee.com/Content/PageImages/logo_single.png";
+        public static string logoWithLabel = "http://colstrat.somee.com/Content/PageImages/logo_app.png";
         public string ContentNotAvailable = "http://colstrat-api.somee.com/Content/no-image/no-image.png";
         private static string ContentImgAPI = "http://colstrat-api.somee.com";
         private static string ContentImgBackend = "http://colstrat.somee.com";
@@ -54,7 +56,7 @@
         {
             String url = string.Format(baseUrl + "{0}", path.Trim('~'));
             return url;
-        } 
+        }
         #endregion
     }
     

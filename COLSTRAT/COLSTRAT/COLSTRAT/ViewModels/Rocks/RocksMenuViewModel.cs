@@ -27,9 +27,34 @@ namespace COLSTRAT.ViewModels.Rocks
         List<RocksMenu> rocks;
         ObservableCollection<RocksMenu> _rocksMenu;
         bool _isRefreshing;
+        string _labelInfo;
+        bool _hasData;
         #endregion
-
         #region Properties
+        public string LabelInfo
+        {
+            get { return _labelInfo; }
+            set
+            {
+                if (_labelInfo != value)
+                {
+                    _labelInfo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelInfo)));
+                }
+            }
+        }
+        public bool HasData
+        {
+            get { return _hasData; }
+            set
+            {
+                if (_hasData != value)
+                {
+                    _hasData = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasData)));
+                }
+            }
+        }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -83,9 +108,21 @@ namespace COLSTRAT.ViewModels.Rocks
         #endregion
 
         #region Methods
-
+        void CheckData()
+        {
+            if (rocks.Count == 0)
+            {
+                LabelInfo = Languages.Label_Not_Data;
+                HasData = true;
+            }
+            else
+            {
+                HasData = false;
+            }
+        }
         private async void LoadRocks()
         {
+            HasData = false;
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
@@ -94,11 +131,12 @@ namespace COLSTRAT.ViewModels.Rocks
                 if (rocks.Count == 0)
                 {
                     IsRefreshing = false;
-                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    await dialogService.ShowErrorMessage(con.Message);
+                    await navigationService.Back();
                     return;
                 }
-                RocksMenu = new ObservableCollection<RocksMenu>(rocks.
-                    OrderBy(c => c.Name));
+                RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+                CheckData();
             }
             else
             {
@@ -120,20 +158,19 @@ namespace COLSTRAT.ViewModels.Rocks
                 }
                 var category = (List<Category>)response.Result;
                 rocks = category.First().RocksMenu;
-                SaveRocksMenuOnDB();
+                SaveRocksMenusOnDB();
                 RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+                CheckData();
             }
-            
             IsRefreshing = false;
         }
-
-        private void SaveRocksMenuOnDB()
+        private void SaveRocksMenusOnDB()
         {
             dataService.DeleteAll<RocksMenu>();
-            foreach (var rock in rocks)
+            dataService.DeleteAll<Rock>();
+            foreach (var item in rocks)
             {
-                dataService.Insert(rock);
-                dataService.Save(rock.Rocks);
+                dataService.InsertWithChildrens(item);
             }
         }
 
@@ -142,6 +179,7 @@ namespace COLSTRAT.ViewModels.Rocks
             IsRefreshing = true;
             rocks.Add(rocksmenu);
             RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
         public void UpdateMenu(RocksMenu rocksmenu)
@@ -150,6 +188,7 @@ namespace COLSTRAT.ViewModels.Rocks
             var oldItem = rocks.Where(c => c.RocksMenuId == rocksmenu.RocksMenuId).FirstOrDefault();
             oldItem = rocksmenu;
             RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
         public async void DeleteCategory(RocksMenu rocksmenu)
@@ -191,6 +230,7 @@ namespace COLSTRAT.ViewModels.Rocks
             rocks.Remove(rocksmenu);
 
             RocksMenu = new ObservableCollection<RocksMenu>(rocks.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
 

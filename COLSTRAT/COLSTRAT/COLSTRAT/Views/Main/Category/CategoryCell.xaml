@@ -27,8 +27,8 @@
                 Grid.Column="1"
                 Icon="dt-chevron-right"
                 IconColor="{StaticResource AccentColor}"
-                WidthRequest="50"
-                HeightRequest="50">
+                WidthRequest="20"
+                HeightRequest="20">
             </icons:IconImage>
         </Grid>
     </ViewCell.View>

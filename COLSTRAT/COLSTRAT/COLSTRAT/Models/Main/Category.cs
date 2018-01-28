@@ -99,7 +99,15 @@ namespace COLSTRAT.Models
             {
                 var mainViewModel = MainViewModel.GetInstante();
                 mainViewModel.CurrentCategory = this;
-                mainViewModel.GeneralItem = new GeneralItemViewModel();
+                if (GeneralItems != null)
+                {
+                    mainViewModel.GeneralItem = new GeneralItemViewModel(GeneralItems);
+                }
+                else
+                {
+                    mainViewModel.GeneralItem = new GeneralItemViewModel();
+                }
+
                 await navigationService.Navigate("GeneralItemView");
             }
            

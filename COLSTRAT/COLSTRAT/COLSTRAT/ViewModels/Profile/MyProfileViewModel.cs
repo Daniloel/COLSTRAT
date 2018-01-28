@@ -1,5 +1,6 @@
 ﻿namespace COLSTRAT.ViewModels.Profile
 {
+    using System;
     using System.ComponentModel;
     using System.Windows.Input;
     using COLSTRAT.Helpers;
@@ -85,7 +86,33 @@
 
         async void ChangePassword()
         {
+            MainViewModel.GetInstante().ChangePassword = new ChangePasswordViewModel();
             await navigationService.Navigate("ChangePasswordView");
+        }
+        public ICommand InfoAppCommand
+        {
+            get
+            {
+                return new RelayCommand(ToInfoApp);
+            }
+        }
+
+        private async void ToInfoApp()
+        {
+            MainViewModel.GetInstante().About = new AboutViewModel();
+            await navigationService.NavigateModal("AboutView");
+        }
+        public ICommand TermsCommand
+        {
+            get
+            {
+                return new RelayCommand(ToTermsAndPrivacy);
+            }
+        }
+
+        private void ToTermsAndPrivacy()
+        {
+            Device.OpenUri(new Uri("http://colstrat.somee.com/Home/Legal"));
         }
         #endregion
     }

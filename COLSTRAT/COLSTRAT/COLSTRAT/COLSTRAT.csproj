@@ -50,6 +50,7 @@
     <Compile Include="Infraestructure\InstanceLocator.cs" />
     <Compile Include="Interfaces\IConfig.cs" />
     <Compile Include="Interfaces\ILocalize.cs" />
+    <Compile Include="Interfaces\IVersion.cs" />
     <Compile Include="Models\Login\FacebookResponse.cs" />
     <Compile Include="Models\Login\UserRequest.cs" />
     <Compile Include="Models\Main\Category.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="ViewModels\Main\Category\NewCategoryViewModel.cs" />
     <Compile Include="ViewModels\Main\MainMenu\NewMenuViewModel.cs" />
     <Compile Include="ViewModels\Maps\UbicationsViewModel.cs" />
+    <Compile Include="ViewModels\Profile\AboutViewModel.cs" />
     <Compile Include="ViewModels\Profile\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Profile\MyProfileViewModel.cs" />
     <Compile Include="ViewModels\Rocks\EditRockViewModel.cs" />
@@ -162,6 +164,9 @@
     </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Profile\ChangePasswordView.xaml.cs">
       <DependentUpon>ChangePasswordView.xaml</DependentUpon>
@@ -465,6 +470,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Main\GeneralItem\DetailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Profile\About.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

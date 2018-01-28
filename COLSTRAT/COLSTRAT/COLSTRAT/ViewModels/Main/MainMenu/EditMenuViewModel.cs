@@ -2,7 +2,10 @@
 using COLSTRAT.Models;
 using COLSTRAT.Service;
 using GalaSoft.MvvmLight.Command;
+using Plugin.Iconize;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -26,9 +29,42 @@ namespace COLSTRAT.ViewModels.Main
         private bool _isEnabled;
         private MainMenu mainMenu;
         string _icon;
+        List<IIcon> _iconsApp;
+        Icon _iconSelected;
         #endregion
 
         #region Properties
+        public Icon IconSelected
+        {
+            get
+            {
+                return _iconSelected;
+            }
+            set
+            {
+                if (_iconSelected != value)
+                {
+                    _iconSelected = value;
+                    Icon = IconSelected.Key;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconSelected)));
+                }
+            }
+        }
+        public List<IIcon> IconsApp
+        {
+            get
+            {
+                return _iconsApp;
+            }
+            set
+            {
+                if (_iconsApp != value)
+                {
+                    _iconsApp = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IconsApp)));
+                }
+            }
+        }
         public string Icon
         {
             get { return _icon; }
@@ -92,6 +128,8 @@ namespace COLSTRAT.ViewModels.Main
             dialogService = new DialogService();
             apiService = new ApiService();
             navigationService = new NavigationService();
+            IconsApp = COLSTRAT.Service.Icons.COLSTRATIconsCollection.Icons.ToList();
+
         }
         #endregion
 

@@ -11,12 +11,20 @@
         <StackLayout
             Padding="10"
              BindingContext="{Binding CategoryMenu}">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
             <ListView 
+                SeparatorColor="{StaticResource MainColor}"
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommand}"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                 ItemsSource="{Binding CategoryMenuItems}"
-                HasUnevenRows="True"
+                RowHeight="50"
                 x:Name="Lv">
             </ListView>
         </StackLayout>

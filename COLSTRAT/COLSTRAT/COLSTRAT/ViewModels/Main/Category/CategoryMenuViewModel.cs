@@ -28,9 +28,34 @@ namespace COLSTRAT.ViewModels.Main
         bool _isRefreshing;
         List<Category> categories;
         ObservableCollection<Category> _categoryMenuItems;
+        string _labelInfo;
+        bool _hasData;
         #endregion
-
         #region Properties
+        public string LabelInfo
+        {
+            get { return _labelInfo; }
+            set
+            {
+                if (_labelInfo != value)
+                {
+                    _labelInfo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelInfo)));
+                }
+            }
+        }
+        public bool HasData
+        {
+            get { return _hasData; }
+            set
+            {
+                if (_hasData != value)
+                {
+                    _hasData = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasData)));
+                }
+            }
+        }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -61,14 +86,15 @@ namespace COLSTRAT.ViewModels.Main
         public CategoryMenuViewModel(List<Category> categories)
         {
             instance = this;
+            dataService = new DataService();
+            apiService = new ApiService();
+            dialogService = new DialogService();
             if (categories != null)
             {
                 this.categories = categories;
                 CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(p => p.Name));
             }
-            dataService = new DataService();
-            apiService = new ApiService();
-            dialogService = new DialogService();
+            CheckData();
         }
         #endregion
 
@@ -143,22 +169,30 @@ namespace COLSTRAT.ViewModels.Main
             IsRefreshing = false;
         }
         #endregion
+
         #region Methods
+        void CheckData()
+        {
+            if (categories.Count == 0)
+            {
+                LabelInfo = Languages.Label_Not_Data;
+                HasData = true;
+            }
+            else
+            {
+                HasData = false;
+            }
+        }
         private async void LoadCategoryMenu()
         {
+            HasData = false;
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                categories = dataService.Get<Category>(true);
-                if (categories.Count == 0)
-                {
-                    IsRefreshing = false;
-                    await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
-                    return;
-                }
-                CategoryMenuItems = new ObservableCollection<Category>(categories.
-                    OrderBy(c => c.Name));
+                IsRefreshing = false;
+                await dialogService.ShowErrorMessage(con.Message);
+                return;
             }
             else{
                 string urlBase = Application.Current.Resources["URL_API"].ToString();
@@ -178,21 +212,10 @@ namespace COLSTRAT.ViewModels.Main
                     return;
                 }
                 categories = (List<Category>)response.Result;
-                SaveCategoriesOnDB();
                 CategoryMenuItems = new ObservableCollection<Category>(categories.OrderBy(c => c.Name));
+                CheckData();
             }
             IsRefreshing = false;
-        }
-
-        private void SaveCategoriesOnDB()
-        {
-            dataService.DeleteAll<Category>();
-            foreach (var category in categories)
-            {
-                dataService.Insert(category);
-               // dataService.Save(category.GeneralItems);
-               // dataService.Save(category.RocksMenu);
-            }
         }
         #endregion
 

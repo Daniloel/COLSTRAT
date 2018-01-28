@@ -29,9 +29,35 @@ namespace COLSTRAT.ViewModels
         List<GeneralItem> generalItems;
         ObservableCollection<GeneralItem> _generalItems;
         string _filter;
+        string _labelInfo;
+        bool _hasData;
         #endregion
-
         #region Properties
+            public string LabelInfo
+        {
+            get { return _labelInfo; }
+            set
+            {
+                if (_labelInfo != value)
+                {
+                    _labelInfo = value;
+                    SearchItem();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelInfo)));
+                }
+            }
+        }
+        public bool HasData
+        {
+            get { return _hasData; }
+            set
+            {
+                if (_hasData != value)
+                {
+                    _hasData = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasData)));
+                }
+            }
+        }
         public string Filter
         {
             get { return _filter; }
@@ -72,6 +98,20 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Contructor
+        public GeneralItemViewModel(List<GeneralItem> generalItems)
+        {
+            instance = this;
+            dataService = new DataService();
+            apiService = new ApiService();
+            dialogService = new DialogService();
+            navigationService = new NavigationService();
+            if (generalItems != null)
+            {
+                this.generalItems = generalItems;
+                GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(p => p.Name));
+            }
+            CheckData();
+        }
         public GeneralItemViewModel()
         {
             instance = this;
@@ -98,18 +138,33 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Methods
-
+        void CheckData()
+        {
+            if (generalItems.Count == 0)
+            {
+                LabelInfo = Languages.Label_Not_Data;
+                HasData = true;
+            }
+            else
+            {
+                HasData = false;
+            }
+        }
         private async void LoadGeneralItems()
         {
+            HasData = false;
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
             {
-                generalItems = dataService.Get<GeneralItem>(false);
+                generalItems = dataService.Get<GeneralItem>(true)
+                    .Where(p=>p.CategoryId.Equals(MainViewModel.GetInstante().CurrentCategory.CategoryId)).ToList();
                 if (generalItems.Count == 0)
                 {
+                    CheckData();
                     IsRefreshing = false;
                     await dialogService.ShowErrorMessage(Languages.Message_Not_Data);
+                    await navigationService.Back();
                     return;
                 }
             }
@@ -137,21 +192,19 @@ namespace COLSTRAT.ViewModels
             SearchItem();
             IsRefreshing = false;
         }
-
         private void SaveGeneralItemsOnDB()
         {
-            dataService.DeleteAll<GeneralItem>();
             foreach (var item in generalItems)
             {
-                dataService.Insert(item);
+                dataService.InsertOrUpdate(item);
             }
         }
-
         public void AddMenu(GeneralItem generalitem)
         {
             IsRefreshing = true;
             generalItems.Add(generalitem);
             GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
         public void UpdateMenu(GeneralItem generalitem)
@@ -160,6 +213,7 @@ namespace COLSTRAT.ViewModels
             var oldItem = generalItems.Where(c => c.GeneralItemId == generalitem.GeneralItemId).FirstOrDefault();
             oldItem = generalitem;
             GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
         public async void DeleteCategory(GeneralItem generalitem)
@@ -201,6 +255,7 @@ namespace COLSTRAT.ViewModels
             generalItems.Remove(generalitem);
 
             GeneralItems = new ObservableCollection<GeneralItem>(generalItems.OrderBy(c => c.Name));
+            CheckData();
             IsRefreshing = false;
         }
 
@@ -222,6 +277,7 @@ namespace COLSTRAT.ViewModels
             {
                 GeneralItems = new ObservableCollection<GeneralItem>
                     (generalItems.OrderBy(c => c.Name));
+                CheckData();
             }
             else
             {
@@ -229,6 +285,15 @@ namespace COLSTRAT.ViewModels
                 .Where(c => c.Description != null && c.Description.ToLower().Contains(Filter.ToLower()) ||
                 c.Name != null && c.Name.ToLower().Contains(Filter.ToLower()))
                 .OrderBy(c => c.Name));
+                if (GeneralItems.Count == 0)
+                {
+                    HasData = true;
+                    LabelInfo = Languages.Label_Not_Coincidences;
+                }
+                else
+                {
+                    HasData = false;
+                }
             }
             
             IsRefreshing = false;

@@ -28,9 +28,34 @@ namespace COLSTRAT.ViewModels
         bool _isRefreshing;
         List<MainMenu> mainMenu;
         ObservableCollection<MainMenu> _mainMenuItems;
+        string _labelInfo;
+        bool _hasData;
         #endregion
-
         #region Properties
+        public string LabelInfo
+        {
+            get { return _labelInfo; }
+            set
+            {
+                if (_labelInfo != value)
+                {
+                    _labelInfo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LabelInfo)));
+                }
+            }
+        }
+        public bool HasData
+        {
+            get { return _hasData; }
+            set
+            {
+                if (_hasData != value)
+                {
+                    _hasData = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HasData)));
+                }
+            }
+        }
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
@@ -94,11 +119,24 @@ namespace COLSTRAT.ViewModels
         #endregion
 
         #region Methods
+        void CheckData()
+        {
+            if (mainMenu.Count == 0)
+            {
+                LabelInfo = Languages.Label_Not_Data;
+                HasData = true;
+            }
+            else
+            {
+                HasData = false;
+            }
+        }
         public void AddMenu(MainMenu mainmenu)
         {
             IsRefreshing = true;
             mainMenu.Add(mainmenu);
             MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            CheckData();
             IsRefreshing = false;
         }
         public void UpdateMenu(MainMenu mainmenu)
@@ -107,6 +145,7 @@ namespace COLSTRAT.ViewModels
             var oldMenu = mainMenu.Where(c => c.MainMenuId == mainmenu.MainMenuId).FirstOrDefault();
             oldMenu = mainmenu;
             MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            CheckData();
             IsRefreshing = false;
         }
         public async void DeleteMenu(MainMenu mainmenu)
@@ -146,10 +185,12 @@ namespace COLSTRAT.ViewModels
             }
             mainMenu.Remove(mainmenu);
             MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+            CheckData();
             IsRefreshing = false;
         }
         private async void LoadMainMenu()
         {
+            HasData = false;
             IsRefreshing = true;
             var con = await apiService.CheckConnection();
             if (!con.IsSuccess)
@@ -162,6 +203,7 @@ namespace COLSTRAT.ViewModels
                     return;
                 }
                 MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+                CheckData();
             }
             else
             {
@@ -184,6 +226,7 @@ namespace COLSTRAT.ViewModels
                 mainMenu = (List<MainMenu>)response.Result;
                 SaveMainMenusOnDB();
                 MainMenuItems = new ObservableCollection<MainMenu>(mainMenu.OrderBy(c => c.Description));
+                CheckData();
             }
             IsRefreshing = false;
         }
@@ -191,11 +234,12 @@ namespace COLSTRAT.ViewModels
 
         private void SaveMainMenusOnDB()
         {
+            dataService.DeleteAll<GeneralItem>();
             dataService.DeleteAll<MainMenu>();
+            dataService.DeleteAll<Category>();
             foreach (var menu in mainMenu)
             {
-                dataService.Insert(menu);
-                //dataService.Save(menu.Category);
+                dataService.InsertWithChildrens(menu);
             }
         }
         #endregion
