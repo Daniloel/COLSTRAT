@@ -21,7 +21,7 @@
                 Margin="5"
                 HorizontalOptions="Start"
                 Grid.Column="0"
-                Icon="{Binding Icon}"
+                Icon="{Binding IconFind}"
                 IconColor="White"
                 WidthRequest="50"
                 HeightRequest="50">
