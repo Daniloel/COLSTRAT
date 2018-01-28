@@ -481,4 +481,10 @@
   <data name="terms_privacy" xml:space="preserve">
     <value>Privacy and Terms</value>
   </data>
+  <data name="label_not_data" xml:space="preserve">
+    <value>No has data</value>
+  </data>
+  <data name="label_no_coincidences" xml:space="preserve">
+    <value>No coincidences</value>
+  </data>
 </root>

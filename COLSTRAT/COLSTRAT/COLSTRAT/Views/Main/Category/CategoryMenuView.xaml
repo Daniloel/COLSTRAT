@@ -11,6 +11,13 @@
         <StackLayout
             Padding="10"
              BindingContext="{Binding CategoryMenu}">
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
             <ListView 
                 SeparatorColor="{StaticResource MainColor}"
                 IsPullToRefreshEnabled="True"

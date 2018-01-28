@@ -4,9 +4,8 @@ using COLSTRAT.ViewModels;
 using COLSTRAT.ViewModels.Main.GeneralItem;
 using COLSTRAT.ViewModels.Rocks;
 using GalaSoft.MvvmLight.Command;
-using SQLite;
+using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
-using System;
 using System.ComponentModel;
 using System.Windows.Input;
 

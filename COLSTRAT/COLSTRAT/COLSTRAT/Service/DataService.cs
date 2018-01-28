@@ -79,6 +79,32 @@
             }
         }
 
+        public T InsertOrUpdateWithChildren<T>(T model) where T : class
+        {
+            try
+            {
+                using (var da = new DataAccess())
+                {
+                    var oldRecord = da.Find<T>(model.GetHashCode(), false);
+                    if (oldRecord != null)
+                    {
+                        da.UpdateWithChildren(model);
+                    }
+                    else
+                    {
+                        da.InsertWithChildrens(model);
+                    }
+
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return model;
+            }
+        }
+
         public T Insert<T>(T model)
         {
             using (var da = new DataAccess())
@@ -87,7 +113,14 @@
                 return model;
             }
         }
-
+        public T InsertWithChildrens<T>(T model)
+        {
+            using (var da = new DataAccess())
+            {
+                da.InsertWithChildrens(model);
+                return model;
+            }
+        }
         public T Find<T>(int pk, bool withChildren) where T : class
         {
             using (var da = new DataAccess())

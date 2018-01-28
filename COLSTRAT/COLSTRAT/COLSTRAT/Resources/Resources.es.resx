@@ -515,4 +515,10 @@
   <data name="terms_privacy" xml:space="preserve">
     <value>Términos y Privacidad</value>
   </data>
+  <data name="label_not_data" xml:space="preserve">
+    <value>No hay datos para mostrar</value>
+  </data>
+  <data name="label_no_coincidences" xml:space="preserve">
+    <value>No hay coincidencias</value>
+  </data>
 </root>

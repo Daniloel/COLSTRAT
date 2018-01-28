@@ -602,6 +602,24 @@ namespace COLSTRAT.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No coincidences.
+        /// </summary>
+        public static string label_no_coincidences {
+            get {
+                return ResourceManager.GetString("label_no_coincidences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No has data.
+        /// </summary>
+        public static string label_not_data {
+            get {
+                return ResourceManager.GetString("label_not_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Password.
         /// </summary>
         public static string label_password {

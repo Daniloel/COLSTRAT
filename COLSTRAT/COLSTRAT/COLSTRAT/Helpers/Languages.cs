@@ -14,11 +14,25 @@ namespace COLSTRAT.Helpers
             Resources.Culture = ci;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
+        public static string Label_Not_Coincidences
+        {
+            get
+            {
+                return Resources.label_no_coincidences;
+            }
+        }
         public static string Description_Required
         {
             get
             {
                 return Resources.error_description_required;
+            }
+        }
+        public static string Label_Not_Data
+        {
+            get
+            {
+                return Resources.label_not_data;
             }
         }
         public static string Send_PassToEmail_Success

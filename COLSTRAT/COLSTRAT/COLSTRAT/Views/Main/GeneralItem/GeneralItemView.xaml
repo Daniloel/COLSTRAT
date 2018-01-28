@@ -16,6 +16,13 @@
                 Text="{Binding Filter,Mode=TwoWay}"
                 SearchCommand="{Binding SearchCommand}">
             </SearchBar>
+            <Label
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="{Binding LabelInfo}"
+                IsVisible="{Binding HasData}">
+            </Label>
             <ListView 
                 SeparatorColor="{StaticResource AccentColor}"
                 IsRefreshing="{Binding IsRefreshing}"
